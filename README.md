@@ -1,1 +1,1 @@
-# D-D-Tools
+Tools for a D&D 5e Dungeon Master for creating monsters, encounters, and running encounters. AL files are stored on a Raspberry Pi server to allow access from multiple devices. Server and client currently designed to run on Linix, an Android client will be added later.
