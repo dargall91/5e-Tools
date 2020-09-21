@@ -1,0 +1,200 @@
+{
+    "ac": "12",
+    "languages": "Celestial, Sylvan, Telepathy 60 ft",
+    "senses": "Darkvision 60ft, passive perception 13",
+    "scores": [
+        {
+            "score": 18,
+            "stat": "STR",
+            "proficient": false
+        },
+        {
+            "score": 14,
+            "stat": "DEX",
+            "proficient": false
+        },
+        {
+            "score": 15,
+            "stat": "CON",
+            "proficient": false
+        },
+        {
+            "score": 11,
+            "stat": "INT",
+            "proficient": false
+        },
+        {
+            "score": 17,
+            "stat": "WIS",
+            "proficient": false
+        },
+        {
+            "score": 16,
+            "stat": "CHA",
+            "proficient": false
+        }
+    ],
+    "legendaryActions": [
+        {
+            "name": "Hooves",
+            "description": "One hooves attack"
+        },
+        {
+            "name": "Dark Shroud",
+            "description": "(2 actions) shadowy dark shroud around itself or another creature it can see within 60 ft, gains +2 AC until end of next turn"
+        },
+        {
+            "name": "Heal Self",
+            "description": "(3 actions) magically regains 2d8 + 3 hit points"
+        }
+    ],
+    "hp": "67",
+    "legendaryActionCount": "3",
+    "type": "Celestial",
+    "proficiency": 0,
+    "speed": "50",
+    "skills": [
+        {
+            "skill": "athletics",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "sleight of hand",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "religion",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "deception",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "performance",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "history",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "medicine",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "stealth",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "investigation",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "intimidation",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "perception",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "insight",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "persuasion",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "animal handling",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "survival",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "arcana",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "nature",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "acrobatics",
+            "expertise": false,
+            "proficient": false
+        }
+    ],
+    "abilities": [
+        {
+            "name": "Damage Immunities",
+            "description": "Poison"
+        },
+        {
+            "name": "Condition Immunities",
+            "description": "Charmed, Paralyzed, Poisoned"
+        },
+        {
+            "name": "Charge",
+            "description": "If the unicorn moves at least 20 ft. straight toward a target and then hits it with a horn attack on the same turn, the target takes an extra 9 (2d8) piercing damage. If the target is a creature, it must succeed on a DC 15 Strength saving throw or be knocked prone."
+        },
+        {
+            "name": "Innate Spellcasting",
+            "description": "CHA, DC 14\nAt will: Detect evil and good, poison spray, pass without trace\n1/day each: silence, dispel evil and good, entangle"
+        },
+        {
+            "name": "Magic Resistance",
+            "description": "advantage on saving throws against spells and other magical effects"
+        },
+        {
+            "name": "Magic Weapons",
+            "description": "attacks are magical"
+        }
+    ],
+    "size": "Large",
+    "name": "Dark Unicorn",
+    "challenge": "5",
+    "alignment": "Chaotic Evil",
+    "actions": [
+        {
+            "name": "Multiattack",
+            "description": "One with hooves, one with horn"
+        },
+        {
+            "name": "Hooves",
+            "description": "+7, 5ft, on etarget\n2d6 + 4 bludegon"
+        },
+        {
+            "name": "Horn",
+            "description": "+7, 5ft, one target\n1d8 + 4 pierce"
+        },
+        {
+            "name": "Dark Touch",
+            "description": "(3/day) touch another creature with horn, 2d8 + 2 necrotic damage"
+        },
+        {
+            "name": "Teleport",
+            "description": "(1/day) releports self and up to 3 willing creatures it can see within 5 ft to a location the unicorn is familar with, up to 1 mile away"
+        }
+    ]
+}

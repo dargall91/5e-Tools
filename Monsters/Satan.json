@@ -1,0 +1,168 @@
+{
+    "ac": "66",
+    "languages": "Deep Speech, Abyssal, Celestial",
+    "senses": "passive perception 666, darkvision 666 ft, blindsight 666 ft\t",
+    "scores": [
+        {
+            "score": 20,
+            "stat": "STR",
+            "proficient": false
+        },
+        {
+            "score": 22,
+            "stat": "DEX",
+            "proficient": true
+        },
+        {
+            "score": 24,
+            "stat": "CON",
+            "proficient": true
+        },
+        {
+            "score": 26,
+            "stat": "INT",
+            "proficient": false
+        },
+        {
+            "score": 28,
+            "stat": "WIS",
+            "proficient": true
+        },
+        {
+            "score": 30,
+            "stat": "CHA",
+            "proficient": true
+        }
+    ],
+    "legendaryActions": [
+        {
+            "name": "Heaven's Fury",
+            "description": "Satan uses his Heaven's Fury action"
+        },
+        {
+            "name": "Hell's Rage",
+            "description": "Satan uses his Hell's Rage action"
+        }
+    ],
+    "hp": "666",
+    "legendaryActionCount": "666",
+    "type": "Demon",
+    "proficiency": 6,
+    "speed": "666 walking, 666 flying",
+    "skills": [
+        {
+            "skill": "athletics",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "sleight of hand",
+            "expertise": false,
+            "proficient": true
+        },
+        {
+            "skill": "religion",
+            "expertise": true,
+            "proficient": true
+        },
+        {
+            "skill": "deception",
+            "expertise": true,
+            "proficient": true
+        },
+        {
+            "skill": "performance",
+            "expertise": true,
+            "proficient": true
+        },
+        {
+            "skill": "history",
+            "expertise": false,
+            "proficient": true
+        },
+        {
+            "skill": "medicine",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "stealth",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "investigation",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "intimidation",
+            "expertise": true,
+            "proficient": true
+        },
+        {
+            "skill": "perception",
+            "expertise": false,
+            "proficient": true
+        },
+        {
+            "skill": "insight",
+            "expertise": true,
+            "proficient": true
+        },
+        {
+            "skill": "persuasion",
+            "expertise": true,
+            "proficient": true
+        },
+        {
+            "skill": "animal handling",
+            "expertise": true,
+            "proficient": true
+        },
+        {
+            "skill": "survival",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "arcana",
+            "expertise": false,
+            "proficient": true
+        },
+        {
+            "skill": "nature",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "acrobatics",
+            "expertise": false,
+            "proficient": false
+        }
+    ],
+    "abilities": [
+        {
+            "name": "Resistances",
+            "description": "radiant"
+        },
+        {
+            "name": "Immunities",
+            "description": "fire, ice"
+        }
+    ],
+    "size": "Huge",
+    "name": "Satan",
+    "challenge": "666",
+    "alignment": "Lawful Evil",
+    "actions": [
+        {
+            "name": "Heaven's Fury",
+            "description": "666d666 radiant"
+        },
+        {
+            "name": "Hell's Rage",
+            "description": "666d666 fire damage"
+        }
+    ]
+}

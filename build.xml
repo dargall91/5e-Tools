@@ -1,0 +1,107 @@
+<project name = "DND Builder" default = "targets" basedir = ".">
+	
+	<taskdef resource = "net/sf/antcontrib/antcontrib.properties"/>
+	<property name = "src" value= "./src"/>
+	<property name = "build" value= "./classes"/>
+	<property name = "docs" value= "./docs"/>
+	<property name = "lib" value= "./lib"/>
+	<property name = "hostIP" value = "localhost"/>
+	<property name = "port" value = "8000"/>
+	
+	<path id = "compile.builder.classpath">
+		<pathelement location = "${build}"/>
+		<fileset dir = "${lib}">
+			<include name = "json.jar"/>
+		</fileset>
+		<fileset dir = "${src}/server">
+			<include name = "DNDLibrary.java, Monster.java, Encounter.java, PlayerCharacter.java"/>
+		</fileset>
+	</path>
+	
+	<path id = "compile.server.classpath">
+		<pathelement location = "${build}"/>
+		<fileset dir="${lib}">
+			<include name="json.jar"/>
+		</fileset>
+	</path>
+	
+	<path id = "compile.tracker.classpath">
+		<pathelement location = "${build}"/>
+		<fileset dir = "${lib}">
+			<include name = "json.jar"/>
+		</fileset>
+		<fileset dir = "${src}/server">
+			<include name = "DNDLibrary.java, Monster.java, Encounter.java, PlayerCharacter.java"/>
+		</fileset>
+	</path>
+	
+	<target name = "targets">
+		<echo message = "Targets are: prepare, build.builder, build.sever, build.tracker, build.all, execute.builder, execute.server, execute.tracker, clean"/>
+		<echo message = "Start builder with: ant execute.builder -DhostIP=${hostIP} -Dport=${port}"/>
+		<echo message = "Start server with: ant execute.server -Dport=${port}"/>
+		<echo message = "Start tracker with: ant execute.tracker -Dport=${port}"/>
+	</target>
+	
+	<target name = "prepare.builder">
+		<tstamp/>
+		<mkdir dir = "${build}"/>
+	</target>
+	
+	<target name = "prepare.server" depends = "clean">
+		<tstamp/>
+		<mkdir dir = "${build}"/>
+	</target>
+	
+	<target name = "prepare.tracker">
+		<tstamp/>
+		<mkdir dir = "${build}"/>
+	</target>
+	
+	<target name = "build.builder" depends = "prepare.builder">
+		<javac srcdir = "${src}/builder" includeantruntime = "false" destdir = "${build}">
+			<classpath refid = "compile.builder.classpath"/>
+		</javac>
+	</target>
+	
+	<target name = "build.server" depends = "prepare.server">
+		<javac srcdir = "${src}/server" includeantruntime = "false" destdir = "${build}">
+			<classpath refid = "compile.server.classpath"/>
+		</javac>
+	</target>
+	
+	<target name = "build.tracker" depends = "prepare.builder">
+		<javac srcdir = "${src}/builder" includeantruntime = "false" destdir = "${build}">
+			<classpath refid = "compile.builder.classpath"/>
+		</javac>
+	</target>
+	
+	<target name = "build.all" depends = "build.builder, build.server, build.tracker">
+	</target>
+	
+	<target name = "execute.builder" depends = "build.builder">
+		<java classname = "builder.DNDBuilder" fork = "yes">
+			<arg value = "${hostIP}"/>
+			<arg value = "${port}"/> 
+			<classpath refid = "compile.builder.classpath"/>
+		</java>
+	</target>
+	
+	<target name = "execute.server" depends = "build.server">
+		<java classname = "server.DNDServer" fork = "yes">
+			<arg value = "${port}"/> 
+			<classpath refid = "compile.server.classpath"/>
+		</java>
+	</target>
+	
+	<target name = "execute.tracker" depends = "build.tracker">
+		<java classname = "tracker.CombatTracker" fork = "yes">
+			<arg value = "${hostIP}"/>
+			<arg value = "${port}"/> 
+			<classpath refid = "compile.tracker.classpath"/>
+		</java>
+	</target>
+	
+	<target name = "clean">
+		<delete dir = "${build}"/>
+	</target>
+</project>

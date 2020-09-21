@@ -1,0 +1,161 @@
+{
+    "ac": "8",
+    "languages": "Understanda all languages it spoke in life bu can't speak",
+    "senses": "Darkvision 60 ft, passive perception 8",
+    "scores": [
+        {
+            "score": 13,
+            "stat": "STR",
+            "proficient": false
+        },
+        {
+            "score": 6,
+            "stat": "DEX",
+            "proficient": false
+        },
+        {
+            "score": 16,
+            "stat": "CON",
+            "proficient": false
+        },
+        {
+            "score": 3,
+            "stat": "INT",
+            "proficient": false
+        },
+        {
+            "score": 6,
+            "stat": "WIS",
+            "proficient": true
+        },
+        {
+            "score": 5,
+            "stat": "CHA",
+            "proficient": false
+        }
+    ],
+    "legendaryActions": [],
+    "hp": "22",
+    "legendaryActionCount": "0",
+    "type": "Humaoid",
+    "proficiency": 2,
+    "speed": "20",
+    "skills": [
+        {
+            "skill": "athletics",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "sleight of hand",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "religion",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "deception",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "performance",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "history",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "medicine",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "stealth",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "investigation",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "intimidation",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "perception",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "insight",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "persuasion",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "animal handling",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "survival",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "arcana",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "acrobatics",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "nature",
+            "expertise": false,
+            "proficient": false
+        }
+    ],
+    "abilities": [
+        {
+            "name": "Damage Immunities",
+            "description": "Poison"
+        },
+        {
+            "name": "Condition Immunities",
+            "description": "Poison"
+        },
+        {
+            "name": "Regeneration",
+            "description": "Recovers 4 hit points at the start of each of it's turns, unless it took radiant damage since it's last turn."
+        },
+        {
+            "name": "Undead Fortitude",
+            "description": "If the zombie is reduced to 0 hit points, unless the damage dealt was radiant damage, it recovers all hit points in 5 x 1d4 minutes"
+        }
+    ],
+    "size": "Medium",
+    "name": "Zombie",
+    "challenge": "1/4",
+    "alignment": "Neutral",
+    "actions": [{
+        "name": "Slam",
+        "description": "Melee Weapon Attack, +3 to hit, reach 5ft\nHit: (1d6 + 1) Bludgeoning damage"
+    }]
+}

@@ -1,0 +1,32 @@
+{
+    "name": "Test 3",
+    "theme": "eMuGmldMoSU",
+    "monsterData": [
+        {
+            "quantity": 3,
+            "initiative": 13,
+            "xp": 50,
+            "reinforcement": false,
+            "minion": false,
+            "monster": "Test 2"
+        },
+        {
+            "quantity": 3,
+            "initiative": 8,
+            "xp": 50,
+            "reinforcement": false,
+            "minion": false,
+            "monster": "Test 2"
+        }
+    ],
+    "playerData": [
+        {
+            "level": 3,
+            "players": 3
+        },
+        {
+            "level": 2,
+            "players": 1
+        }
+    ]
+}

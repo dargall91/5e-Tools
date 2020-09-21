@@ -1,0 +1,22 @@
+{
+    "name": "Water Spring",
+    "theme": "eMuGmldMoSU",
+    "monsterData": [{
+        "quantity": 1,
+        "initiative": 0,
+        "xp": 1800,
+        "reinforcement": false,
+        "minion": false,
+        "monster": "Dark Unicorn"
+    }],
+    "playerData": [
+        {
+            "level": 3,
+            "players": 3
+        },
+        {
+            "level": 1,
+            "players": 1
+        }
+    ]
+}
