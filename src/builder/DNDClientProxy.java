@@ -3,6 +3,7 @@ package client;
 import library.*;
 import monster.*;
 import encounter.*;
+import tracker.Combatant;
 import player.*;
 import java.net.*;
 import java.io.*;
@@ -231,6 +232,13 @@ public class DNDClientProxy implements DNDLibrary {
 	
 	public boolean saveAll() {
 		String result = callMethod("all", "save", new Object[0]);
+		//System.out.println("Received " + result + " from server.");
+		JSONObject jsonResult = new JSONObject(result);
+		return jsonResult.optBoolean("result", false);
+	}
+
+	public boolean startEncounter(ArrayList<Combatant> combatants) {
+		String result = callMethod("combat", "begin", new Object[]{combatants});
 		//System.out.println("Received " + result + " from server.");
 		JSONObject jsonResult = new JSONObject(result);
 		return jsonResult.optBoolean("result", false);
