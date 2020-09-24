@@ -163,6 +163,27 @@ public class DNDServerSkeleton {
 					System.out.println("Method " + method + " for all libraries not found.");
 				}
 			}
+
+			else if (library.equals("combat")) {
+				if (method.equals("begin")) {
+					//ServerCombatScreen scs = new ServerCombatScreen(params.getJSONObject(0));
+					System.out.println("test");
+					System.out.println(params);
+				}
+
+				else if (method.equals("update")) {
+
+				}
+
+				else if (method.equals("end")) {
+
+				}
+
+				else {
+					result.put("result", "0.0");
+					System.out.println("Method " + method + " for combat request not found.");
+				}
+			}
 			
 			else {
 				result.put("result", "0.0");
