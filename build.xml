@@ -1,4 +1,4 @@
-<project name = "DND Builder" default = "targets" basedir = ".">
+<project name = "5e Tools" default = "targets" basedir = ".">
 	
 	<taskdef resource = "net/sf/antcontrib/antcontrib.properties"/>
 	<property name = "src" value= "./src"/>
@@ -21,7 +21,7 @@
 	<path id = "compile.server.classpath">
 		<pathelement location = "${build}"/>
 		<fileset dir="${lib}">
-			<include name="json.jar"/>
+			<include name="*.jar"/>
 		</fileset>
 	</path>
 	
