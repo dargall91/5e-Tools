@@ -345,27 +345,14 @@ public class EncounterBuilder extends JSplitPane {
 		//JTextField theme = new JTextField(encounter.getTheme());
 		JComboBox theme = new JComboBox(musicList.toArray());
 		theme.setSelectedItem(encounter.getTheme());
-		theme.setMinimumSize(new Dimension(120, 20));
-		theme.setMaximumSize(new Dimension(120, 20));
-		theme.setPreferredSize(new Dimension(120, 20));
-		
-		DeferredDocumentListener listener = new DeferredDocumentListener (new ActionListener() {
+		theme.setMinimumSize(new Dimension(300, 20));
+		theme.setMaximumSize(new Dimension(300, 20));
+		theme.setPreferredSize(new Dimension(300, 20));
+
+		theme.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				encounter.setTheme(theme.getText());
-			}
-		});
-		
-		theme.getDocument().addDocumentListener(listener);
-		theme.addFocusListener(new FocusListener() {
-			@Override
-			public void focusGained(FocusEvent e) {
-				listener.start();
-			}
-			
-			@Override
-			public void focusLost(FocusEvent e) {
-				listener.stop();
+				encounter.setTheme((String) theme.getSelectedItem());
 			}
 		});
 		
