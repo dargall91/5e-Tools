@@ -42,6 +42,9 @@ public class ServerCombatScreen extends JFrame {
         });
     }
 
+    /**
+     * Initializes the display of combatants
+     */
     private void initialize() {
         getContentPane().removeAll();
         JPanel panel = new JPanel();
@@ -73,13 +76,12 @@ public class ServerCombatScreen extends JFrame {
     /**
      * Starts the music for the encounter
      *
-     * @param jsonCombat
+     * @param encName The name of the encounter being run, determines what track will play
      */
     public void start(String encName) {
         play = true;
-        Encounter encounter = lib.getEncounter(encName));
-        //TODO: test file path, update to get file name from jsonCombat
-        music = new File("Music/Behold the Bearer of Light.mp3");
+        Encounter encounter = lib.getEncounter(encName);
+        music = new File("Music/" + encounter.getTheme());
 
         try {
             //TODO: thread might not be needed once served is moved to RPi
@@ -116,6 +118,9 @@ public class ServerCombatScreen extends JFrame {
         initialize();
     }
 
+    /**
+     * Ends the encounter, stops the music
+     */
     public void endEncounter() {
         play = false;
         setVisible(false);
