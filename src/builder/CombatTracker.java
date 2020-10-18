@@ -289,7 +289,9 @@ public class CombatTracker extends JFrame {
 	private void loadEncounter() {
 		getContentPane().removeAll();
 		repaint();
-		
+		//start music
+		proxy.startEncounter(encounter.getName());
+
 		JPanel panel = new JPanel();
 		panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
 		panel.setAlignmentX(Component.LEFT_ALIGNMENT);
@@ -308,7 +310,7 @@ public class CombatTracker extends JFrame {
 					for (int i = 0; i < combatants.size() - 1; i++)
 						for (int j = i + 1; j < combatants.size(); j++)
 							combatants.get(i).weigh(combatants.get(j));
-					
+
 					Collections.sort(combatants, Collections.reverseOrder());
 					JSONArray combatArray = new JSONArray();
 					for (Combatant i : combatants)
@@ -316,7 +318,8 @@ public class CombatTracker extends JFrame {
 							if (!i.isReinforcement())
 								combatArray.put(i.toSimpleJson());
 
-					proxy.startEncounter(combatArray);
+					proxy.updateEncounter(combatArray);
+
 					runEncounter();
 				}
 			}

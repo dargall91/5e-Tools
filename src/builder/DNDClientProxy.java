@@ -46,8 +46,17 @@ public class DNDClientProxy implements DNDLibrary {
 			String request = call.toString();
 			byte bytesToSend[] = request.getBytes();
 			out.write(bytesToSend, 0, bytesToSend.length);
-			int numBytesReceived = in.read(bytesReceived, 0, buff);
-			result = new String(bytesReceived, 0, numBytesReceived);
+			//int numBytesReceived = in.read(bytesReceived, 0, buff);
+			//result = new String(bytesReceived, 0, numBytesReceived);
+
+			int data = in.read();
+			result = "";
+
+			//loop over bytes received
+			while(data != -1) {
+				result += (char) data;
+				data = in.read();
+			}
 			
 			out.close();
 			in.close();
@@ -222,6 +231,18 @@ public class DNDClientProxy implements DNDLibrary {
 		JSONObject jsonResult = new JSONObject(result);
 		return jsonResult.optBoolean("result", false);
 	}
+
+	public ArrayList<String> getMusicList() {
+		String result = callMethod("encounter", "music", new Object[0]);
+		JSONObject jObj = new JSONObject(result);
+		JSONArray jArr = jObj.getJSONArray("result");
+		ArrayList<String> list = new ArrayList();
+
+		for (int i = 0; i < jArr.length(); i++)
+			list.add(jArr.getString(i));
+
+		return list;
+	}
 	
 	public boolean savePlayerCharacters() {
 		String result = callMethod("pc", "save", new Object[0]);
@@ -237,8 +258,8 @@ public class DNDClientProxy implements DNDLibrary {
 		return jsonResult.optBoolean("result", false);
 	}
 
-	public boolean startEncounter(JSONArray array) {
-		String result = callMethod("combat", "begin", new Object[]{array});
+	public boolean startEncounter(String name) {
+		String result = callMethod("combat", "begin", new Object[]{name});
 		//System.out.println("Received " + result + " from server.");
 		JSONObject jsonResult = new JSONObject(result);
 		return jsonResult.optBoolean("result", false);
