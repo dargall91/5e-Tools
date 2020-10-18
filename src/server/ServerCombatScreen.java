@@ -2,6 +2,7 @@ package tracker;
 
 import encounter.*;
 import monster.Monster;
+import library.*;
 import java.util.*;
 import java.io.*;
 import java.awt.event.*;
@@ -14,14 +15,17 @@ import javazoom.jl.decoder.JavaLayerException;
 import javazoom.jl.player.Player;
 
 public class ServerCombatScreen extends JFrame {
+    private DNDLibrary lib;
     private ArrayList<SimpleCombatant> combatants;
-    private final Dimension VERTICAL_GAP = new Dimension(0, 5);
+    private final Dimension VERTICAL_GAP = new Dimension(0, 15);
     private final Dimension HORIZONTAL_GAP = new Dimension(15, 0);
     private final int INNER_HEIGHT = 25;
-    File music;
-    Player player;
+    private File music;
+    private Player player;
+    private boolean play;
 
-    public ServerCombatScreen() {
+    public ServerCombatScreen(DNDLibrary lib) {
+        this.lib = lib;
         combatants = new ArrayList<SimpleCombatant>();
 
         setTitle("Encounter");
@@ -66,45 +70,45 @@ public class ServerCombatScreen extends JFrame {
         setVisible(true);
     }
 
-    public void start(JSONArray jsonCombat) {
-        //add music player here
-
-        update(jsonCombat);
+    /**
+     * Starts the music for the encounter
+     *
+     * @param jsonCombat
+     */
+    public void start(String encName) {
+        play = true;
+        Encounter encounter = lib.getEncounter(encName));
         //TODO: test file path, update to get file name from jsonCombat
-        music = new File("/home/derek/Music/Behold the Bearer of Light (Instrumental).mp3");
+        music = new File("Music/Behold the Bearer of Light.mp3");
 
         try {
-            //code for resume button
-            FileInputStream fileInputStream = new FileInputStream(music);
-            BufferedInputStream bufferedInputStream = new BufferedInputStream(fileInputStream);
-            player = new Player(bufferedInputStream);
-            //fileInputStream.skip(totalLength-pause);
-            /*Thread playerThread = new Thread();
-            playerThread.start();
-            player.play();*/
             //TODO: thread might not be needed once served is moved to RPi
-            new Thread(){
-                public void run(){
+            new Thread() {
+                public void run() {
                     try {
-                        player.play();
+                        while (play) {
+                            FileInputStream fileInputStream = new FileInputStream(music);
+                            BufferedInputStream bufferedInputStream = new BufferedInputStream(fileInputStream);
+                            player = new Player(bufferedInputStream);
+                            player.play();
+                        }
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
                 }
             }.start();
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (JavaLayerException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
+        } catch (Exception e) {
+            System.out.println("Error in ServerCombatScreen.start: " + e.getMessage());
         }
     }
 
+    /**
+     * Updates the list of combatants
+     *
+     * @param jsonCombat the list of comabatants
+     */
     public void update(JSONArray jsonCombat) {
         combatants.clear();
-
-
 
         for (int i = 0; i < jsonCombat.length(); i++)
             combatants.add(new SimpleCombatant(jsonCombat.getJSONObject(i)));
@@ -113,6 +117,7 @@ public class ServerCombatScreen extends JFrame {
     }
 
     public void endEncounter() {
+        play = false;
         setVisible(false);
         player.close();
         dispose();

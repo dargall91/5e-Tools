@@ -121,6 +121,17 @@ public class DNDServerSkeleton {
 						String save = params.getString(0);
 						result.put("result", lib.saveEncounter(save));
 						break;
+
+					case "music":
+						File file = new File("Music/");
+						String[] fileNames = file.list();
+						JSONArray music = new JSONArray();
+
+						for (int i = 0; i < fileNames.length; i++)
+							music.put(fileNames[i]);
+
+						result.put("result", music);
+						break;
 						
 					default:
 						result.put("result", "0.0");
@@ -169,7 +180,7 @@ public class DNDServerSkeleton {
 
 			else if (library.equals("combat")) {
 				if (method.equals("begin")) {
-					scs.start(params.getJSONArray(0));
+					scs.start(params.getString(0));
 					result.put("result", true);
 				}
 

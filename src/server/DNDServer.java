@@ -45,7 +45,7 @@ public class DNDServer extends Thread {
 	public static void main(String args[]) {
 		Socket sock;
 		DNDLibrary lib = new DNDLibraryImpl();
-		ServerCombatScreen scs = new ServerCombatScreen();
+		ServerCombatScreen scs = new ServerCombatScreen(lib);
 		
 		if (args.length != 1) {
 			System.out.println("No port selected. Defaulting to 8000.");
