@@ -23,6 +23,7 @@ public class ServerCombatScreen extends JFrame {
     private File music;
     private Player player;
     private boolean play;
+    private final String musicDat = "Data/music.dat";
 
     public ServerCombatScreen(DNDLibrary lib) {
         this.lib = lib;
@@ -61,7 +62,7 @@ public class ServerCombatScreen extends JFrame {
 
             //TODO: maybe make text bigger after testing on big screen
             JLabel name = new JLabel(i.getName());
-            name.setFont(new Font(name.getFont().getName(), Font.BOLD, 20));
+            name.setFont(new Font(name.getFont().getName(), Font.BOLD, 40));
 
             comPanel.add(name);
             comPanel.add(Box.createRigidArea(HORIZONTAL_GAP));
@@ -81,9 +82,13 @@ public class ServerCombatScreen extends JFrame {
     public void start(String encName) {
         play = true;
         Encounter encounter = lib.getEncounter(encName);
-        music = new File("Music/" + encounter.getTheme());
 
         try {
+            File musicFile = new File(musicDat);
+            Scanner scan = new Scanner(musicFile);
+            String path = scan.nextLine();
+            music = new File(path + encounter.getTheme());
+
             //TODO: thread might not be needed once served is moved to RPi
             new Thread() {
                 public void run() {
