@@ -28,6 +28,7 @@ public class CombatTracker extends JFrame {
 	private final Integer[] acList;
 	private final Integer[] bonusList;
 	private final Integer[] initList;
+	private final Integer[] monInitList;
 	private final int INNER_HEIGHT = 25;
 	
 	CombatTracker(DNDClientProxy proxy) {
@@ -45,10 +46,10 @@ public class CombatTracker extends JFrame {
 			}
 		});
 		
-		acList = new Integer[31];
+		acList = new Integer[30];
 		
-		for (int i = 0; i < 31; i++)
-			acList[i] = i;
+		for (int i = 0; i < 30; i++)
+			acList[i] = i + 1;
 		
 		bonusList = new Integer[21];
 		
@@ -59,6 +60,11 @@ public class CombatTracker extends JFrame {
 		
 		for (int i = 0; i < 36; i++)
 			initList[i] = i - 5;
+
+		monInitList = new Integer[20];
+
+		for (int i = 0; i < 20; i++)
+			monInitList[i] = i + 1;
 		
 		initialize();
 	}
@@ -239,6 +245,7 @@ public class CombatTracker extends JFrame {
 				scroll.setViewportView(selectList);
 				optionPanel.add(scroll);
 				
+				//TODO: finish search bar
 				//instead of using doclistener, use key listener, update list as each key is typed
 				DeferredDocumentListener listener = new DeferredDocumentListener(new ActionListener() {
 					@Override
@@ -327,8 +334,6 @@ public class CombatTracker extends JFrame {
 		
 		panel.add(pcs());
 		panel.add(Box.createRigidArea(VERTICAL_GAP));
-		//panel.add(monsters());
-		//panel.add(Box.createRigidArea(VERTICAL_GAP));
 		monsters();
 		panel.add(start);
 		add(panel);
@@ -402,11 +407,13 @@ public class CombatTracker extends JFrame {
 		
 		return panel;
 	}
-	
+
+	//TODO: most of this is defunct, really only needs parts related to adding monsters to monData array
 	private void monsters() {
 		JPanel panel = new JPanel();
 		panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
 		panel.setAlignmentX(Component.LEFT_ALIGNMENT);
+
 		
 		JPanel labels = new JPanel();
 		labels.setMaximumSize(new Dimension(500, INNER_HEIGHT));
@@ -462,11 +469,8 @@ public class CombatTracker extends JFrame {
 						encounter.setReinforcement(index, false);
 				}
 			});
-			
-			//combatants.add(new Combatant(monData.get(index), proxy.getMonster(monData.get(index).getMonster()),
-				//(Integer) initiative.getSelectedItem()));
-			combatants.add(new Combatant(monData.get(index),
-				proxy.getMonster(monData.get(index).getMonster())));//.getMonster()).getInitiativeBonus()));
+
+			combatants.add(new Combatant(monData.get(index), proxy.getMonster(monData.get(index).getMonster())));
 			
 			monPanel.add(name);
 			monPanel.add(Box.createRigidArea(HORIZONTAL_GAP));
@@ -475,8 +479,6 @@ public class CombatTracker extends JFrame {
 			monPanel.add(reinBox);
 			panel.add(monPanel);
 		}
-		
-		//return panel;
 	}
 	
 	private void runEncounter() {
@@ -525,6 +527,41 @@ public class CombatTracker extends JFrame {
 							i.setHP(index, hp.getText());
 						}
 					});
+
+					JButton kill = new JButton("Kill");
+					kill.addActionListener(new ActionListener() {
+						@Override
+						public void actionPerformed(ActionEvent e) {
+							if (i.isAlive(index)) {
+								i.kill(index);
+								kill.setText("Revive");
+							}
+
+							else {
+								i.revive(index);
+								kill.setText("Kill");
+							}
+
+							name.setEnabled(i.isAlive(index));
+							ac.setEnabled(i.isAlive(index));
+							hp.setEnabled(i.isAlive(index));
+
+							JSONArray combatArray = new JSONArray();
+							for (Combatant c : combatants)
+								for (int k = 0; k < c.getQuantity(); k++) {
+									if (!c.isReinforcement() && c.isAlive(k))
+										combatArray.put(c.toSimpleJson());
+								}
+
+							proxy.updateEncounter(combatArray);
+						}
+					});
+
+					//if reinforcements from outside the encounter are added these are neccessary to update dead/alive
+					//monsters, since all monsters are added to this list regardless of their status
+					name.setEnabled(i.isAlive(index));
+					ac.setEnabled(i.isAlive(index));
+					hp.setEnabled(i.isAlive(index));
 					
 					comPanel.add(name);
 					comPanel.add(Box.createRigidArea(HORIZONTAL_GAP));
@@ -536,11 +573,11 @@ public class CombatTracker extends JFrame {
 					comPanel.add(Box.createRigidArea(HORIZONTAL_GAP));
 					comPanel.add(hp);
 					comPanel.add(Box.createRigidArea(HORIZONTAL_GAP));
+					comPanel.add(kill);
 					panel.add(comPanel);
 				}
 			}
 
-			//TODO: update enemy HP values in Combatant object
 			else if (!i.isMonster()) {
 				JPanel comPanel = new JPanel();
 				comPanel.setLayout(new BoxLayout(comPanel, BoxLayout.X_AXIS));
@@ -577,7 +614,7 @@ public class CombatTracker extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				JPanel reinPanel = new JPanel();
-				reinPanel.setLayout(new BoxLayout(reinPanel, BoxLayout.X_AXIS));
+				reinPanel.setLayout(new BoxLayout(reinPanel, BoxLayout.Y_AXIS));
 				reinPanel.setAlignmentX(Component.LEFT_ALIGNMENT);
 
 				JPanel instructions = new JPanel();
@@ -593,7 +630,6 @@ public class CombatTracker extends JFrame {
 						reinName.setMaximumSize(new Dimension(120, INNER_HEIGHT));
 						reinName.setPreferredSize(new Dimension(120, INNER_HEIGHT));
 
-						//change to jcheckbox, figure out how to update main jframe after DONE is clicked
 						JCheckBox addRein = new JCheckBox();
 						addRein.addItemListener(new ItemListener() {
 							@Override
@@ -610,7 +646,7 @@ public class CombatTracker extends JFrame {
 						monPanel.add(Box.createRigidArea(HORIZONTAL_GAP));
 						monPanel.add(addRein);
 
-						reinPanel.add(Box.createRigidArea(HORIZONTAL_GAP));
+						reinPanel.add(Box.createRigidArea(VERTICAL_GAP));
 						reinPanel.add(monPanel);
 					}
 				}
@@ -620,6 +656,105 @@ public class CombatTracker extends JFrame {
 					JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
 
 				if (result == 0) {
+					JSONArray combatArray = new JSONArray();
+					for (Combatant i : combatants)
+						for (int j = 0; j < i.getQuantity(); j++)
+							if (!i.isReinforcement() && i.isAlive(j))
+								combatArray.put(i.toSimpleJson());
+
+					proxy.updateEncounter(combatArray);
+					runEncounter();
+				}
+			}
+		});
+		
+		//adds reinforcments from outside the predefined encounter
+		JButton newRein = new JButton("New Reinforcements");
+		newRein.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				JPanel reinPanel = new JPanel();
+				reinPanel.setLayout(new BoxLayout(reinPanel, BoxLayout.Y_AXIS));
+				reinPanel.setAlignmentX(Component.LEFT_ALIGNMENT);
+
+				JPanel instructions = new JPanel();
+				JLabel instrLabel = new JLabel("Select a monster from the list and select the number to add");
+				instructions.add(instrLabel);
+				reinPanel.add(instructions);
+
+				JPanel labels = new JPanel();
+				labels.setLayout(new BoxLayout(labels, BoxLayout.X_AXIS));
+				labels.setAlignmentX(Component.CENTER_ALIGNMENT);
+
+				//TODO: adjust sizes to line up with jcomboboxes
+				JLabel monLabel = new JLabel("Monster:");
+				monLabel.setPreferredSize(new Dimension(120, INNER_HEIGHT));
+				monLabel.setMinimumSize(new Dimension(120, INNER_HEIGHT));
+				monLabel.setMaximumSize(new Dimension(120, INNER_HEIGHT));
+
+				JLabel quanLabel = new JLabel("Quantity:");
+				quanLabel.setPreferredSize(new Dimension(120, INNER_HEIGHT));
+				quanLabel.setMinimumSize(new Dimension(120, INNER_HEIGHT));
+				quanLabel.setMaximumSize(new Dimension(120, INNER_HEIGHT));
+
+				JLabel initLabel = new JLabel("Initiative:");
+				initLabel.setPreferredSize(new Dimension(120, INNER_HEIGHT));
+				initLabel.setMinimumSize(new Dimension(120, INNER_HEIGHT));
+				initLabel.setMaximumSize(new Dimension(120, INNER_HEIGHT));
+
+				labels.add(monLabel);
+				labels.add(quanLabel);
+				labels.add(initLabel);
+
+				reinPanel.add(Box.createRigidArea(VERTICAL_GAP));
+				reinPanel.add(labels);
+
+				JPanel monPanel = new JPanel();
+				monPanel.setLayout(new BoxLayout(monPanel, BoxLayout.X_AXIS));
+				monPanel.setAlignmentX(Component.CENTER_ALIGNMENT);
+				ArrayList<String> monList = proxy.getMonsterList();
+
+				JComboBox monBox = new JComboBox(monList.toArray());
+				monBox.setPreferredSize(new Dimension(120, INNER_HEIGHT));
+				monBox.setMinimumSize(new Dimension(120, INNER_HEIGHT));
+				monBox.setMaximumSize(new Dimension(120, INNER_HEIGHT));
+
+				//TODO: using aclist because it contains usable numbers for quantity, consider creating a new array
+				JComboBox quantity = new JComboBox(acList);
+				quantity.setPreferredSize(new Dimension(50, INNER_HEIGHT));
+				quantity.setMinimumSize(new Dimension(50, INNER_HEIGHT));
+				quantity.setMaximumSize(new Dimension(50, INNER_HEIGHT));
+				quantity.setSelectedIndex(0);
+
+				JComboBox initiative = new JComboBox(monInitList);
+				initiative.setPreferredSize(new Dimension(50, INNER_HEIGHT));
+				initiative.setMinimumSize(new Dimension(50, INNER_HEIGHT));
+				initiative.setMaximumSize(new Dimension(50, INNER_HEIGHT));
+				initiative.setSelectedIndex(0);
+
+				monPanel.add(monBox);
+				monPanel.add(Box.createRigidArea(HORIZONTAL_GAP));
+				monPanel.add(quantity);
+				monPanel.add(Box.createRigidArea(HORIZONTAL_GAP));
+				monPanel.add(initiative);
+
+				reinPanel.add(Box.createRigidArea(VERTICAL_GAP));
+				reinPanel.add(monPanel);
+
+				int result = JOptionPane.showConfirmDialog(null, reinPanel, "Outside Reinforcements", JOptionPane.OK_CANCEL_OPTION);
+
+				if (result == 0) {
+					Monster monster = proxy.getMonster((String) monBox.getSelectedItem());
+					combatants.add(new Combatant(monster, (int) quantity.getSelectedItem(), (int) initiative.getSelectedItem()));
+
+					for (Combatant i : combatants)
+						i.reset();
+
+					for (int i = 0; i < combatants.size() - 1; i++)
+						for (int j = i + 1; j < combatants.size(); j++)
+							combatants.get(i).weigh(combatants.get(j));
+
+					Collections.sort(combatants, Collections.reverseOrder());
 					JSONArray combatArray = new JSONArray();
 					for (Combatant i : combatants)
 						for (int j = 0; j < i.getQuantity(); j++)
@@ -648,6 +783,8 @@ public class CombatTracker extends JFrame {
 
 		panel.add(Box.createRigidArea(VERTICAL_GAP));
 		panel.add(reinforcements);
+		panel.add(Box.createRigidArea(VERTICAL_GAP));
+		panel.add(newRein);
 		panel.add(Box.createRigidArea(VERTICAL_GAP));
 		panel.add(finish);
 

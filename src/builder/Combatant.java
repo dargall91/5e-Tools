@@ -15,14 +15,16 @@ import javax.swing.event.*;
 public class Combatant implements Comparable<Combatant>, Serializable {
 	private boolean monster;
 	private boolean reinforcement;
-	private int initiative, bonus;
+	private int initiative, bonus, quantity;
 	private int weight; //used to break absolute ties (both initiative and bonus are ==), higher weight == higher initiative
-	PlayerCharacter pc;
-	MonsterData monData;
+	private PlayerCharacter pc;
+	//MonsterData monData;
 	private boolean complete; //used to track if tiebreaker has finished executing
 	private String[] ac, hp;
 	private int breaker;
-	
+	private boolean alive[];
+	private String name;
+
 	Combatant(PlayerCharacter pc, int initiative) {
 		this.pc = pc;
 		monster = false;
@@ -36,32 +38,67 @@ public class Combatant implements Comparable<Combatant>, Serializable {
 	}
 	
 	Combatant(MonsterData monData, Monster mon) {
-		this.monData = monData;
+		//this.monData = monData;
+		name = monData.getMonster();
 		monster = true;
 		reinforcement = monData.isReinforcement();
 		bonus = mon.getInitiativeBonus();
 		initiative = monData.getInitiative() + bonus;
 		breaker = 0;
 		complete = false;
-		ac = new String[monData.getQuantity()];
-		hp = new String[monData.getQuantity()];
+		this.quantity = monData.getQuantity();
+		ac = new String[quantity];
+		hp = new String[quantity];
+		alive = new boolean[quantity];
 		
-		for (int i = 0; i < monData.getQuantity(); i++)
+		for (int i = 0; i < quantity; i++)
 			setAC(i, mon.getAC());
 			
-		for (int i = 0; i < monData.getQuantity(); i++)
+		for (int i = 0; i < quantity; i++)
 			setHP(i, mon.getHP());
+
+		for (int i = 0; i < quantity; i++)
+			alive[i] = true;
 			
 		weight = 0;
 	}
 
-	public void initFromJson(JSONObject json) {
+	/**
+	 * Constructor used for adding in monsters from outsid the predefined encounter
+	 * @param monster
+	 */
+	Combatant(Monster mon, int quantity, int initiative) {
+		name = mon.getName();
+		monster = true;
+		reinforcement = false;
+		bonus = mon.getInitiativeBonus();
+		this.initiative = initiative + bonus;
+		breaker = 0;
+		complete = false;
+		this.quantity = quantity;
+		ac = new String[quantity];
+		hp = new String[quantity];
+		alive = new boolean[quantity];
 
+		for (int i = 0; i < quantity; i++)
+			setAC(i, mon.getAC());
+
+		for (int i = 0; i < quantity; i++)
+			setHP(i, mon.getHP());
+
+		for (int i = 0; i < quantity; i++)
+			alive[i] = true;
+
+		weight = 0;
+	}
+
+	public void initFromJson(JSONObject json) {
+		//TODO: is this even needed?
 	}
 	
 	public String getName() {
 		if (monster)
-			return monData.getMonster();
+			return name;
 		
 		return pc.getName();
 	}
@@ -79,7 +116,7 @@ public class Combatant implements Comparable<Combatant>, Serializable {
 	
 	public int getQuantity() {
 		if (monster)
-			return monData.getQuantity();
+			return quantity;
 			
 		return 1;
 	}
@@ -165,6 +202,38 @@ public class Combatant implements Comparable<Combatant>, Serializable {
 	
 	public void setBreaker(int breaker) {
 		this.breaker = breaker;
+	}
+
+	/**
+	 * For now, should only be used for monsters, since PCs have a chance of revival
+	 *
+	 * @param index
+	 */
+	public void kill(int index) {
+		alive[index] = false;
+	}
+
+	/**
+	 * For now, should only be used for monsters, since PCs have a chance of revival
+	 *
+	 * @param index
+	 */
+	public void revive(int index) {
+		alive[index] = true;
+	}
+
+	/**
+	 * Checks if this combatant is alive or dead. A PC is considered always alive for now, may update in future
+	 *
+	 * @param index
+	 * @return true if alive, false otherwise
+	 */
+	public boolean isAlive(int index) {
+		if (monster)
+			return alive[index];
+
+		else
+			return true;
 	}
 	
 	private class TieBreaker {
@@ -259,7 +328,7 @@ public class Combatant implements Comparable<Combatant>, Serializable {
 			return;
 		}
 		
-		//handle ties, then compare weights
+		//handle further ties, then compare weights
 		if (getBreaker() == 0 || c.getBreaker() == 0 || getBreaker() == c.getBreaker()) {
 			TieBreaker tieBreaker = new TieBreaker(c);
 		}
@@ -271,7 +340,6 @@ public class Combatant implements Comparable<Combatant>, Serializable {
 		
 		//ensure 0 values weren't entered, also ensure not tied again
 		if (getBreaker() == 0 || c.getBreaker() == 0 || getBreaker() == c.getBreaker()) {
-			System.out.println("here");
 			weigh(c);
 			return;
 		}
@@ -284,7 +352,17 @@ public class Combatant implements Comparable<Combatant>, Serializable {
 		if (getBreaker() < c.getBreaker())
 			c.increaseWeight();
 	}
-	
+
+	public void reset() {
+		weight = 0;
+	}
+
+	/**
+	 * Used for sorting, combatants must be weighed first
+	 *
+	 * @param c The combatant to compare this one to
+	 * @return 1 if this > c, -1 if this < c, 0 if tie
+	 */
 	public int compareTo(Combatant c) {
 		if (weight > c.getWeight())
 			return 1;

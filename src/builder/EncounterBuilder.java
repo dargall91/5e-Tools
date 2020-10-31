@@ -340,9 +340,7 @@ public class EncounterBuilder extends JSplitPane {
 		panel.setMaximumSize(new Dimension(INNER_WIDTH, INNER_HEIGHT));
 
 		ArrayList<String> musicList = proxy.getMusicList();
-		//TODO: JComboBox, get list of tracks from server
 		JLabel themeLabel = new JLabel("Battle Theme:");
-		//JTextField theme = new JTextField(encounter.getTheme());
 		JComboBox theme = new JComboBox(musicList.toArray());
 		theme.setSelectedItem(encounter.getTheme());
 		theme.setMinimumSize(new Dimension(300, 20));
