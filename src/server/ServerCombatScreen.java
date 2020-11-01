@@ -51,9 +51,9 @@ public class ServerCombatScreen extends JFrame {
         JPanel panel = new JPanel();
         panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
         panel.setAlignmentX(Component.CENTER_ALIGNMENT);
-        panel.setMinimumSize(new Dimension(500, 500));
-        panel.setPreferredSize(new Dimension(500, 500));
-        panel.setMaximumSize(new Dimension(500, 500));
+        panel.setMinimumSize(new Dimension(900, 500));
+        panel.setPreferredSize(new Dimension(900, 500));
+        panel.setMaximumSize(new Dimension(900, 500));
 
         for (SimpleCombatant i : combatants) {
             JPanel comPanel = new JPanel();
@@ -89,7 +89,7 @@ public class ServerCombatScreen extends JFrame {
             String path = scan.nextLine();
             music = new File(path + encounter.getTheme());
 
-            //TODO: thread might not be needed once served is moved to RPi
+            //TODO: thread might not be needed once server is moved to RPi
             new Thread() {
                 public void run() {
                     try {
