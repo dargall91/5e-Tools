@@ -5,9 +5,8 @@ import encounter.*;
 import monster.Monster;
 import player.*;
 import ui.*;
-//import java.util.ArrayList;
 import java.util.*;
-import java.io.File;
+import java.io.*;
 import java.awt.event.*;
 import java.awt.*;
 import javax.swing.*;
@@ -15,9 +14,16 @@ import javax.swing.event.*;
 import org.json.JSONObject;
 import org.json.JSONArray;
 import org.json.JSONTokener;
+import javazoom.jl.decoder.JavaLayerException;
+import javazoom.jl.player.Player;
+import java.applet.Applet;
+import java.applet.AudioClip;
+import javax.sound.sampled.*;
 
+//TODO: combat tracker has evolved beyond a simple tracker to more of a home screen to be used during play, consider renaming and redefining packages
 public class CombatTracker extends JFrame {
 	private JList selectList;
+	private JPanel combatPanel;
 	private String selected;
 	private DNDClientProxy proxy;
 	private Encounter encounter;
@@ -30,7 +36,27 @@ public class CombatTracker extends JFrame {
 	private final Integer[] initList;
 	private final Integer[] monInitList;
 	private final int INNER_HEIGHT = 25;
-	
+	private final String PLAYER_CRIT = "Data/player_crit.dat";
+	private final String MONSTER_CRIT = "Data/monster_crit.dat";
+	private final String PLAYER_KILL = "Data/player_kill.dat";
+	private final String MONSTER_KILL = "Data/monster_kill.dat";
+	private final String TRAP = "Data/trap.dat";
+	private final String FEAR = "Data/fear.dat";
+	private final String AFFLICTION = "Data/affliction.dat";
+	private final String VIRTUE = "Data/virtue.dat";
+	private final String ABUSIVE = "Data/abusive.dat";
+	private final String IRRATIONAL = "Data/irrational.dat";
+	private final String PARANOID = "Data/paranoid.dat";
+	private final String SELFISH = "Data/selfish.dat";
+	private final String FEARFUL = "Data/fearful.dat";
+	private final String HOPELESS = "Data/hopeless.dat";
+	private final String MASOCHISTIC = "Data/masochistic.dat";
+	private final String POWERFUL = "Data/powerful.dat";
+	private final String COURAGEOUS = "Data/courageous.dat";
+	private final String STALWART = "Data/stalwart.dat";
+	private final String VIGOROUS = "Data/vigorous.dat";
+	private final String FOCUSED = "Data/focused.dat";
+
 	CombatTracker(DNDClientProxy proxy) {
 		this.proxy = proxy;
 		setTitle("D&D Combat Tracker");
@@ -71,15 +97,29 @@ public class CombatTracker extends JFrame {
 	
 	private void initialize() {
 		getContentPane().removeAll();
-		
+
 		JPanel panel = new JPanel();
-		panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
-		panel.setAlignmentX(Component.LEFT_ALIGNMENT);
-		panel.setAlignmentY(Component.LEFT_ALIGNMENT);
-		panel.setMinimumSize(new Dimension(500, 500));
-		panel.setPreferredSize(new Dimension(500, 500));
-		panel.setMaximumSize(new Dimension(500, 500));
-		
+		panel.setLayout(new BoxLayout(panel, BoxLayout.X_AXIS));
+		panel.setAlignmentX(Component.CENTER_ALIGNMENT);
+		panel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
+
+		combatPanel = new JPanel();
+
+		panel.add(getCombatPanel());
+		panel.add(getSoundPanel());
+		add(panel);
+		pack();
+		setVisible(true);
+	}
+
+	private JPanel getCombatPanel() {
+		combatPanel.setLayout(new BoxLayout(combatPanel, BoxLayout.Y_AXIS));
+		combatPanel.setAlignmentX(Component.LEFT_ALIGNMENT);
+		combatPanel.setAlignmentY(Component.LEFT_ALIGNMENT);
+		combatPanel.setMinimumSize(new Dimension(500, 900));
+		combatPanel.setPreferredSize(new Dimension(500, 900));
+		combatPanel.setMaximumSize(new Dimension(500, 900));
+
 		JPanel labels = new JPanel();
 		labels.setMaximumSize(new Dimension(500, INNER_HEIGHT));
 		labels.setLayout(new BoxLayout(labels, BoxLayout.X_AXIS));
@@ -87,17 +127,17 @@ public class CombatTracker extends JFrame {
 		JLabel playLabel = new JLabel("PC:");
 		JLabel acLabel = new JLabel("AC:");
 		JLabel bonusLabel = new JLabel("Bonus:");
-		
+
 		labels.add(playLabel);
 		labels.add(Box.createRigidArea(new Dimension(80, 0)));
 		labels.add(acLabel);
 		labels.add(Box.createRigidArea(new Dimension(35, 0)));
 		labels.add(bonusLabel);
-		panel.add(labels);
-		panel.add(Box.createRigidArea(VERTICAL_GAP));
-		
+		combatPanel.add(labels);
+		combatPanel.add(Box.createRigidArea(VERTICAL_GAP));
+
 		players = proxy.getPlayerCharacterList();
-		
+
 		for (int i = 0; i < players.size(); i++) {
 			PlayerCharacter pc = proxy.getPlayerCharacter(players.get(i));
 			JPanel playerPanel = new JPanel();
@@ -112,7 +152,7 @@ public class CombatTracker extends JFrame {
 			ac.setMinimumSize(new Dimension(50, INNER_HEIGHT));
 			ac.setMaximumSize(new Dimension(50, INNER_HEIGHT));
 			ac.setPreferredSize(new Dimension(50, INNER_HEIGHT));
-			
+
 			ac.addActionListener(new ActionListener() {
 				@Override
 				public void actionPerformed(ActionEvent e) {
@@ -120,13 +160,13 @@ public class CombatTracker extends JFrame {
 					proxy.updatePlayerCharacter(pc);
 				}
 			});
-			
+
 			JComboBox bonus = new JComboBox(bonusList);
 			bonus.setSelectedIndex(pc.getBonus() + 5);
 			bonus.setMinimumSize(new Dimension(50, INNER_HEIGHT));
 			bonus.setMaximumSize(new Dimension(50, INNER_HEIGHT));
 			bonus.setPreferredSize(new Dimension(50, INNER_HEIGHT));
-			
+
 			bonus.addActionListener(new ActionListener() {
 				@Override
 				public void actionPerformed(ActionEvent e) {
@@ -134,21 +174,21 @@ public class CombatTracker extends JFrame {
 					proxy.updatePlayerCharacter(pc);
 				}
 			});
-			
+
 			JButton delete = new JButton("Delete");
 			delete.addActionListener(new ActionListener() {
 				@Override
 				public void actionPerformed(ActionEvent e) {
 					int yesNo = (int) JOptionPane.showConfirmDialog(null, "Are you sure you wish to delete "
 							+ name.getText() + "?", "Delete", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
-					
+
 					if (yesNo == JOptionPane.YES_OPTION) {
 						proxy.deletePlayerCharacter(name.getText());
 						initialize();
-					}					
+					}
 				}
 			});
-			
+
 			playerPanel.add(name);
 			playerPanel.add(Box.createRigidArea(HORIZONTAL_GAP));
 			playerPanel.add(ac);
@@ -156,11 +196,11 @@ public class CombatTracker extends JFrame {
 			playerPanel.add(bonus);
 			playerPanel.add(Box.createRigidArea(HORIZONTAL_GAP));
 			playerPanel.add(delete);
-			
-			panel.add(playerPanel);
-			panel.add(Box.createRigidArea(VERTICAL_GAP));
+
+			combatPanel.add(playerPanel);
+			combatPanel.add(Box.createRigidArea(VERTICAL_GAP));
 		}
-		
+
 		JButton add = new JButton("Add PC");
 		add.addActionListener(new ActionListener() {
 			@Override
@@ -168,25 +208,25 @@ public class CombatTracker extends JFrame {
 				boolean valid = true;
 				String message = "Enter the new PC's name:";
 				String name;
-					
+
 				do {
 					name = (String) JOptionPane.showInputDialog(null, message, "Add PC",
-						JOptionPane.QUESTION_MESSAGE);
-						
+							JOptionPane.QUESTION_MESSAGE);
+
 					if (name == null)
 						break;
-						
+
 					else if (name.equals("")) {
 						message = "Enter the new PC's name:";
 						continue;
 					}
-					
+
 					valid = proxy.addPlayerCharacter(name);
-					
+
 					if (valid) {
 						initialize();
 					}
-						
+
 					else {
 						System.out.println("PC already exists");
 						message = "There is already a PC named \"" + name + "\"\nEnter a different name:";
@@ -194,7 +234,7 @@ public class CombatTracker extends JFrame {
 				} while (!valid);
 			}
 		});
-		
+
 		JButton load = new JButton("Load Encounter");
 		load.addActionListener(new ActionListener() {
 			@Override
@@ -204,7 +244,7 @@ public class CombatTracker extends JFrame {
 				optionPanel.setMaximumSize(new Dimension(100, 500));
 				optionPanel.setPreferredSize(new Dimension(100, 500));
 				optionPanel.setLayout(new BoxLayout(optionPanel, BoxLayout.Y_AXIS));
-				
+
 				//contains search field and label
 				JPanel searchPanel = new JPanel();
 				searchPanel.setLayout(new BoxLayout(searchPanel, BoxLayout.X_AXIS));
@@ -215,14 +255,14 @@ public class CombatTracker extends JFrame {
 				searchField.setPreferredSize(new Dimension(100, INNER_HEIGHT));
 				searchPanel.add(searchLabel);
 				searchPanel.add(searchField);
-				
+
 				optionPanel.add(searchPanel);
 				optionPanel.add(Box.createRigidArea(new Dimension(0, 5)));
-				
+
 				//contains list of monsters
 				JScrollPane scroll = new JScrollPane();
 				scroll.setPreferredSize(new Dimension(200, 200));
-				
+
 				selectList = new JList();
 				ArrayList<String> encList = proxy.getEncounterList();
 
@@ -230,21 +270,21 @@ public class CombatTracker extends JFrame {
 					public int getSize() {
 						return encList.size();
 					}
-					
+
 					public Object getElementAt(int i) {
 						return encList.get(i);
 					}
 				});
-				
+
 				selectList.addListSelectionListener(new ListSelectionListener() {
 					public void valueChanged(ListSelectionEvent event) {
 						encListValueChanged(event);
 					}
 				});
-				
+
 				scroll.setViewportView(selectList);
 				optionPanel.add(scroll);
-				
+
 				//TODO: finish search bar
 				//instead of using doclistener, use key listener, update list as each key is typed
 				DeferredDocumentListener listener = new DeferredDocumentListener(new ActionListener() {
@@ -253,30 +293,30 @@ public class CombatTracker extends JFrame {
 						if (searchField.getText().equals("")) {
 							//display all
 						}
-						
+
 						else {
 							//display only those that contain the string
 						}
 					}
 				});
-				
+
 				searchField.getDocument().addDocumentListener(listener);
-				
+
 				searchField.addFocusListener(new FocusListener() {
 					@Override
 					public void focusGained(FocusEvent e) {
 						listener.start();
 					}
-					
+
 					@Override
 					public void focusLost(FocusEvent e) {
 						listener.stop();
 					}
 				});
-				
+
 				int result = JOptionPane.showConfirmDialog(null, optionPanel, "Select an Encounter",
-					JOptionPane.OK_CANCEL_OPTION);
-					
+						JOptionPane.OK_CANCEL_OPTION);
+
 				if (result == JOptionPane.OK_OPTION) {
 					encounter = proxy.getEncounter(selected);
 					combatants = new ArrayList<Combatant>();
@@ -284,27 +324,350 @@ public class CombatTracker extends JFrame {
 				}
 			}
 		});
-		
-		panel.add(add);
-		panel.add(Box.createRigidArea(VERTICAL_GAP));
-		panel.add(load);
-		add(panel);
-		pack();
-		setVisible(true);
-	}
-	
-	private void loadEncounter() {
-		getContentPane().removeAll();
-		repaint();
-		//start music
-		proxy.startEncounter(encounter.getName());
 
+		combatPanel.add(add);
+		combatPanel.add(Box.createRigidArea(VERTICAL_GAP));
+		combatPanel.add(load);
+
+		return combatPanel;
+	}
+
+	private JPanel getSoundPanel() {
 		JPanel panel = new JPanel();
 		panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
 		panel.setAlignmentX(Component.LEFT_ALIGNMENT);
-		panel.setMinimumSize(new Dimension(500, 500));
-		panel.setMaximumSize(new Dimension(500, 500));
-		panel.setPreferredSize(new Dimension(500, 500));
+		panel.setAlignmentY(Component.LEFT_ALIGNMENT);
+		panel.setMinimumSize(new Dimension(325, 900));
+		panel.setPreferredSize(new Dimension(325, 900));
+		panel.setMaximumSize(new Dimension(325, 900));
+
+		JPanel crit = new JPanel();
+		crit.setLayout(new BoxLayout(crit, BoxLayout.X_AXIS));
+		crit.setMinimumSize(new Dimension(305, INNER_HEIGHT));
+		crit.setPreferredSize(new Dimension(305, INNER_HEIGHT));
+		crit.setMaximumSize(new Dimension(305, INNER_HEIGHT));
+
+		JButton monCrit = new JButton("Enemy Critical");
+		monCrit.setMinimumSize(new Dimension(150, INNER_HEIGHT));
+		monCrit.setMaximumSize(new Dimension(150, INNER_HEIGHT));
+		monCrit.setPreferredSize(new Dimension(150, INNER_HEIGHT));
+		monCrit.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				playSound(MONSTER_CRIT);
+			}
+		});
+
+		JButton pcCrit = new JButton("Player Critical");
+		pcCrit.setMinimumSize(new Dimension(150, INNER_HEIGHT));
+		pcCrit.setMaximumSize(new Dimension(150, INNER_HEIGHT));
+		pcCrit.setPreferredSize(new Dimension(150, INNER_HEIGHT));
+		pcCrit.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				playSound(PLAYER_CRIT);
+			}
+		});
+
+		crit.add(monCrit);
+		crit.add(Box.createRigidArea(new Dimension(5, 0)));
+		crit.add(pcCrit);
+		panel.add(crit);
+		panel.add(Box.createRigidArea(new Dimension(0, 10)));
+
+		JPanel kill = new JPanel();
+		kill.setLayout(new BoxLayout(kill, BoxLayout.X_AXIS));
+		kill.setMinimumSize(new Dimension(305, INNER_HEIGHT));
+		kill.setPreferredSize(new Dimension(305, INNER_HEIGHT));
+		kill.setMaximumSize(new Dimension(305, INNER_HEIGHT));
+
+		JButton monKill = new JButton("Enemy Death");
+		monKill.setMinimumSize(new Dimension(150, INNER_HEIGHT));
+		monKill.setMaximumSize(new Dimension(150, INNER_HEIGHT));
+		monKill.setPreferredSize(new Dimension(150, INNER_HEIGHT));
+		monKill.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				playSound(MONSTER_KILL);
+			}
+		});
+
+		JButton pcKill = new JButton("Player Death");
+		pcKill.setMinimumSize(new Dimension(150, INNER_HEIGHT));
+		pcKill.setMaximumSize(new Dimension(150, INNER_HEIGHT));
+		pcKill.setPreferredSize(new Dimension(150, INNER_HEIGHT));
+		pcKill.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				playSound(PLAYER_KILL);
+			}
+		});
+
+		kill.add(monKill);
+		kill.add(Box.createRigidArea(new Dimension(5, 0)));
+		kill.add(pcKill);
+		panel.add(kill);
+		panel.add(Box.createRigidArea(new Dimension(0, 10)));
+
+		JPanel trapFear = new JPanel();
+		trapFear.setLayout(new BoxLayout(trapFear, BoxLayout.X_AXIS));
+		trapFear.setMinimumSize(new Dimension(305, INNER_HEIGHT));
+		trapFear.setPreferredSize(new Dimension(305, INNER_HEIGHT));
+		trapFear.setMaximumSize(new Dimension(305, INNER_HEIGHT));
+
+		JButton trap = new JButton("Trap");
+		trap.setMinimumSize(new Dimension(150, INNER_HEIGHT));
+		trap.setMaximumSize(new Dimension(150, INNER_HEIGHT));
+		trap.setPreferredSize(new Dimension(150, INNER_HEIGHT));
+		trap.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				playSound(TRAP);
+			}
+		});
+
+		JButton fear = new JButton("Fear");
+		fear.setMinimumSize(new Dimension(150, INNER_HEIGHT));
+		fear.setMaximumSize(new Dimension(150, INNER_HEIGHT));
+		fear.setPreferredSize(new Dimension(150, INNER_HEIGHT));
+		fear.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				playSound(FEAR);
+			}
+		});
+
+		trapFear.add(trap);
+		trapFear.add(Box.createRigidArea(new Dimension(5, 0)));
+		trapFear.add(fear);
+		panel.add(trapFear);
+		panel.add(Box.createRigidArea(new Dimension(0, 10)));
+
+		JPanel madness = new JPanel();
+		madness.setLayout(new BoxLayout(madness, BoxLayout.X_AXIS));
+		//madness.setMinimumSize(new Dimension(305, INNER_HEIGHT));
+		//madness.setPreferredSize(new Dimension(305, INNER_HEIGHT));
+		//madness.setMaximumSize(new Dimension(305, INNER_HEIGHT));
+
+		JPanel afflictions = new JPanel();
+		afflictions.setLayout(new BoxLayout(afflictions, BoxLayout.Y_AXIS));
+		afflictions.setAlignmentY(Component.TOP_ALIGNMENT);
+		//afflictions.setMinimumSize(new Dimension(305, INNER_HEIGHT));
+		//afflictions.setPreferredSize(new Dimension(305, INNER_HEIGHT));
+		//afflictions.setMaximumSize(new Dimension(305, INNER_HEIGHT));
+
+		JButton randAffliction = new JButton("Affliction");
+		randAffliction.setMinimumSize(new Dimension(150, INNER_HEIGHT));
+		randAffliction.setMaximumSize(new Dimension(150, INNER_HEIGHT));
+		randAffliction.setPreferredSize(new Dimension(150, INNER_HEIGHT));
+		randAffliction.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				playSound(AFFLICTION);
+			}
+		});
+
+		JButton irrational = new JButton("Irrational");
+		irrational.setMinimumSize(new Dimension(150, INNER_HEIGHT));
+		irrational.setMaximumSize(new Dimension(150, INNER_HEIGHT));
+		irrational.setPreferredSize(new Dimension(150, INNER_HEIGHT));
+		irrational.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				playSound(IRRATIONAL);
+			}
+		});
+
+		JButton paranoid = new JButton("Paranoid");
+		paranoid.setMinimumSize(new Dimension(150, INNER_HEIGHT));
+		paranoid.setMaximumSize(new Dimension(150, INNER_HEIGHT));
+		paranoid.setPreferredSize(new Dimension(150, INNER_HEIGHT));
+		paranoid.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				playSound(PARANOID);
+			}
+		});
+
+		JButton selfish = new JButton("Selfish");
+		selfish.setMinimumSize(new Dimension(150, INNER_HEIGHT));
+		selfish.setMaximumSize(new Dimension(150, INNER_HEIGHT));
+		selfish.setPreferredSize(new Dimension(150, INNER_HEIGHT));
+		selfish.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				playSound(SELFISH);
+			}
+		});
+
+		JButton abusive = new JButton("Abusive");
+		abusive.setMinimumSize(new Dimension(150, INNER_HEIGHT));
+		abusive.setMaximumSize(new Dimension(150, INNER_HEIGHT));
+		abusive.setPreferredSize(new Dimension(150, INNER_HEIGHT));
+		abusive.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				playSound(ABUSIVE);
+			}
+		});
+
+		JButton fearful = new JButton("Fearful");
+		fearful.setMinimumSize(new Dimension(150, INNER_HEIGHT));
+		fearful.setMaximumSize(new Dimension(150, INNER_HEIGHT));
+		fearful.setPreferredSize(new Dimension(150, INNER_HEIGHT));
+		fearful.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				playSound(FEARFUL);
+			}
+		});
+
+		JButton hopeless = new JButton("Hopeless");
+		hopeless.setMinimumSize(new Dimension(150, INNER_HEIGHT));
+		hopeless.setMaximumSize(new Dimension(150, INNER_HEIGHT));
+		hopeless.setPreferredSize(new Dimension(150, INNER_HEIGHT));
+		hopeless.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				playSound(HOPELESS);
+			}
+		});
+
+		JButton masochistic = new JButton("Masochistic");
+		masochistic.setMinimumSize(new Dimension(150, INNER_HEIGHT));
+		masochistic.setMaximumSize(new Dimension(150, INNER_HEIGHT));
+		masochistic.setPreferredSize(new Dimension(150, INNER_HEIGHT));
+		masochistic.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				playSound(MASOCHISTIC);
+			}
+		});
+
+		afflictions.add(randAffliction);
+		afflictions.add(Box.createRigidArea(new Dimension(0, 5)));
+		afflictions.add(irrational);
+		afflictions.add(Box.createRigidArea(new Dimension(0, 5)));
+		afflictions.add(paranoid);
+		afflictions.add(Box.createRigidArea(new Dimension(0, 5)));
+		afflictions.add(selfish);
+		afflictions.add(Box.createRigidArea(new Dimension(0, 5)));
+		afflictions.add(abusive);
+		afflictions.add(Box.createRigidArea(new Dimension(0, 5)));
+		afflictions.add(fearful);
+		afflictions.add(Box.createRigidArea(new Dimension(0, 5)));
+		afflictions.add(hopeless);
+		afflictions.add(Box.createRigidArea(new Dimension(0, 5)));
+		afflictions.add(masochistic);
+
+		JPanel virtues = new JPanel();
+		virtues.setLayout(new BoxLayout(virtues, BoxLayout.Y_AXIS));
+		virtues.setAlignmentY(Component.TOP_ALIGNMENT);
+		//virtues.setMinimumSize(new Dimension(305, INNER_HEIGHT));
+		//virtues.setPreferredSize(new Dimension(305, INNER_HEIGHT));
+		//virtues.setMaximumSize(new Dimension(305, INNER_HEIGHT));
+
+		JButton randVirtue = new JButton("Virtue");
+		randVirtue.setMinimumSize(new Dimension(150, INNER_HEIGHT));
+		randVirtue.setMaximumSize(new Dimension(150, INNER_HEIGHT));
+		randVirtue.setPreferredSize(new Dimension(150, INNER_HEIGHT));
+		randVirtue.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				playSound(VIRTUE);
+			}
+		});
+
+		JButton powerful = new JButton("Powerful");
+		powerful.setMinimumSize(new Dimension(150, INNER_HEIGHT));
+		powerful.setMaximumSize(new Dimension(150, INNER_HEIGHT));
+		powerful.setPreferredSize(new Dimension(150, INNER_HEIGHT));
+		powerful.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				playSound(POWERFUL);
+			}
+		});
+
+		JButton courageous = new JButton("Courageous");
+		courageous.setMinimumSize(new Dimension(150, INNER_HEIGHT));
+		courageous.setMaximumSize(new Dimension(150, INNER_HEIGHT));
+		courageous.setPreferredSize(new Dimension(150, INNER_HEIGHT));
+		courageous.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				playSound(COURAGEOUS);
+			}
+		});
+
+		JButton stalwart = new JButton("Stalwart");
+		stalwart.setMinimumSize(new Dimension(150, INNER_HEIGHT));
+		stalwart.setMaximumSize(new Dimension(150, INNER_HEIGHT));
+		stalwart.setPreferredSize(new Dimension(150, INNER_HEIGHT));
+		stalwart.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				playSound(STALWART);
+			}
+		});
+
+		JButton vigorous = new JButton("Vigorous");
+		vigorous.setMinimumSize(new Dimension(150, INNER_HEIGHT));
+		vigorous.setMaximumSize(new Dimension(150, INNER_HEIGHT));
+		vigorous.setPreferredSize(new Dimension(150, INNER_HEIGHT));
+		vigorous.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				playSound(VIGOROUS);
+			}
+		});
+
+		JButton focused = new JButton("Focused");
+		focused.setMinimumSize(new Dimension(150, INNER_HEIGHT));
+		focused.setMaximumSize(new Dimension(150, INNER_HEIGHT));
+		focused.setPreferredSize(new Dimension(150, INNER_HEIGHT));
+		focused.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				playSound(FOCUSED);
+			}
+		});
+
+		virtues.add(randVirtue);
+		virtues.add(Box.createRigidArea(new Dimension(0, 5)));
+		virtues.add(powerful);
+		virtues.add(Box.createRigidArea(new Dimension(0, 5)));
+		virtues.add(courageous);
+		virtues.add(Box.createRigidArea(new Dimension(0, 5)));
+		virtues.add(stalwart);
+		virtues.add(Box.createRigidArea(new Dimension(0, 5)));
+		virtues.add(vigorous);
+		virtues.add(Box.createRigidArea(new Dimension(0, 5)));
+		virtues.add(focused);
+
+		madness.add(afflictions);
+		madness.add(Box.createRigidArea(new Dimension(5, 0)));
+		madness.add(virtues);
+		panel.add(madness);
+		//panel.add(Box.createRigidArea(new Dimension(0, 5)));
+
+		return panel;
+	}
+
+	//may not be needed
+	private void refreshCombatScreen() {
+		combatPanel.repaint();
+	}
+
+	//may not be needed
+	private void refreshMusicScreen() {
+
+	}
+	
+	private void loadEncounter() {
+		combatPanel.removeAll();
+		//start music
+		proxy.startEncounter(encounter.getName());
 		
 		JButton start = new JButton("Start Encounter");
 		start.addActionListener(new ActionListener() {
@@ -332,14 +695,16 @@ public class CombatTracker extends JFrame {
 			}
 		});
 		
-		panel.add(pcs());
-		panel.add(Box.createRigidArea(VERTICAL_GAP));
+		combatPanel.add(pcs());
+		combatPanel.add(Box.createRigidArea(VERTICAL_GAP));
 		monsters();
-		panel.add(start);
-		add(panel);
+		combatPanel.add(start);
+		//add(combatPanel);
+		//pack();
+		//setVisible(true);
+		combatPanel.repaint();
 		pack();
 		setVisible(true);
-		repaint();
 	}
 	
 	private JPanel pcs() {
@@ -408,89 +773,17 @@ public class CombatTracker extends JFrame {
 		return panel;
 	}
 
-	//TODO: most of this is defunct, really only needs parts related to adding monsters to monData array
 	private void monsters() {
-		JPanel panel = new JPanel();
-		panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
-		panel.setAlignmentX(Component.LEFT_ALIGNMENT);
-
-		
-		JPanel labels = new JPanel();
-		labels.setMaximumSize(new Dimension(500, INNER_HEIGHT));
-		labels.setLayout(new BoxLayout(labels, BoxLayout.X_AXIS));
-		labels.setAlignmentX(Component.LEFT_ALIGNMENT);
-		JLabel monLabel = new JLabel("Monster:");
-		JLabel initLabel = new JLabel("Initiative:");
-		JLabel reinLabel = new JLabel("Reinforcement:");
-		
-		labels.add(monLabel);
-		labels.add(Box.createRigidArea(new Dimension(60, 0)));
-		labels.add(initLabel);
-		labels.add(Box.createRigidArea(new Dimension(20, 0)));
-		labels.add(reinLabel);
-		panel.add(labels);
-		
 		ArrayList<MonsterData> monData = encounter.getMonsterData();
 		
-		for (int i = 0; i < monData.size(); i++) {
-			final int index = i;
-			JPanel monPanel = new JPanel();
-			monPanel.setMaximumSize(new Dimension(500, INNER_HEIGHT));
-			monPanel.setLayout(new BoxLayout(monPanel, BoxLayout.X_AXIS));
-			monPanel.setAlignmentX(Component.LEFT_ALIGNMENT);
-			
-			int quantity = monData.get(i).getQuantity();
-			
-			JLabel name;
-			if (quantity > 1)
-				name = new JLabel(monData.get(i).getMonster() + " (x" + quantity + ")");
-				
-			else
-				name = new JLabel(monData.get(i).getMonster());
-			
-			name.setMinimumSize(new Dimension(120, INNER_HEIGHT));
-			name.setMaximumSize(new Dimension(120, INNER_HEIGHT));
-			name.setPreferredSize(new Dimension(120, INNER_HEIGHT));
-			
-			JComboBox initiative = new JComboBox(initList);
-			initiative.setMinimumSize(new Dimension(50, INNER_HEIGHT));
-			initiative.setMaximumSize(new Dimension(50, INNER_HEIGHT));
-			initiative.setPreferredSize(new Dimension(50, INNER_HEIGHT));
-			initiative.setSelectedIndex(5);
-			
-			JCheckBox reinBox = new JCheckBox();
-			reinBox.setSelected(monData.get(index).isReinforcement());
-			reinBox.addItemListener(new ItemListener() {
-				public void itemStateChanged(ItemEvent e) {
-					if (e.getStateChange() == 1)
-						encounter.setReinforcement(index, true);
-					
-					else
-						encounter.setReinforcement(index, false);
-				}
-			});
-
-			combatants.add(new Combatant(monData.get(index), proxy.getMonster(monData.get(index).getMonster())));
-			
-			monPanel.add(name);
-			monPanel.add(Box.createRigidArea(HORIZONTAL_GAP));
-			monPanel.add(initiative);
-			monPanel.add(Box.createRigidArea(new Dimension(40, 0)));
-			monPanel.add(reinBox);
-			panel.add(monPanel);
-		}
+		for (int i = 0; i < monData.size(); i++)
+			combatants.add(new Combatant(monData.get(i), proxy.getMonster(monData.get(i).getMonster())));
 	}
 	
 	private void runEncounter() {
-		getContentPane().removeAll();
-		JPanel panel = new JPanel();
-		panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
-		panel.setAlignmentX(Component.CENTER_ALIGNMENT);
-		panel.setMinimumSize(new Dimension(500, 500));
-		panel.setPreferredSize(new Dimension(500, 500));
-		panel.setMaximumSize(new Dimension(500, 500));
+		combatPanel.removeAll();
 		
-		//add combatatants to panels, make sure to count for if a moster has multiples
+		//add combatatants to combatPanels, make sure to count for if a moster has multiples
 		for (Combatant i : combatants) {
 			if (i.isMonster() && !i.isReinforcement()) {
 				for (int j = 0; j < i.getQuantity(); j++) {
@@ -574,7 +867,7 @@ public class CombatTracker extends JFrame {
 					comPanel.add(hp);
 					comPanel.add(Box.createRigidArea(HORIZONTAL_GAP));
 					comPanel.add(kill);
-					panel.add(comPanel);
+					combatPanel.add(comPanel);
 				}
 			}
 
@@ -605,7 +898,7 @@ public class CombatTracker extends JFrame {
 				comPanel.add(acLabel);
 				comPanel.add(Box.createRigidArea(HORIZONTAL_GAP));
 				comPanel.add(ac);
-				panel.add(comPanel);
+				combatPanel.add(comPanel);
 			}
 		}
 		
@@ -781,22 +1074,61 @@ public class CombatTracker extends JFrame {
 			}
 		});
 
-		panel.add(Box.createRigidArea(VERTICAL_GAP));
-		panel.add(reinforcements);
-		panel.add(Box.createRigidArea(VERTICAL_GAP));
-		panel.add(newRein);
-		panel.add(Box.createRigidArea(VERTICAL_GAP));
-		panel.add(finish);
+		combatPanel.add(Box.createRigidArea(VERTICAL_GAP));
+		combatPanel.add(reinforcements);
+		combatPanel.add(Box.createRigidArea(VERTICAL_GAP));
+		combatPanel.add(newRein);
+		combatPanel.add(Box.createRigidArea(VERTICAL_GAP));
+		combatPanel.add(finish);
 
-		add(panel);
+		combatPanel.repaint();
 		pack();
 		setVisible(true);
-		repaint();
 	}
 	
 	private void encListValueChanged(ListSelectionEvent event) {
 		if (!selectList.isSelectionEmpty())
 			selected = selectList.getSelectedValue().toString();
+	}
+
+	private void playSound(String lib) {
+		try {
+			//get the file directory
+			File soundPath = new File(lib);
+			Scanner scan = new Scanner(soundPath);
+			String path = scan.nextLine();
+
+			//select a clip at random from the directory
+			File soundFiles = new File(path);
+			String[] fileNames = soundFiles.list();
+			Random rand = new Random();
+
+			//load the randomly selected file
+			File sound = new File(path + fileNames[rand.nextInt(fileNames.length)]);
+
+			System.out.println(sound.getPath());
+
+			//play the sound clip
+			new Thread() {
+				public void run() {
+					try {
+						//AudioClip audio = Applet.newAudioClip(sound.toURI().toURL());
+						//audio.play();
+						//URL url = this.getClass().getClassLoader().getResource("gameover.wav");
+						AudioInputStream audioIn = AudioSystem.getAudioInputStream(sound.toURI().toURL());
+						// Get a sound clip resource.
+						Clip clip = AudioSystem.getClip();
+						// Open audio clip and load samples from the audio input stream.
+						clip.open(audioIn);
+						clip.start();
+					} catch (Exception e) {
+						e.printStackTrace();
+					}
+				}
+			}.start();
+		} catch (Exception e) {
+			System.out.println("Error in ServerCombatScreen.start: " + e.getMessage());
+		}
 	}
 	
 	public static void main(String[] args) {
