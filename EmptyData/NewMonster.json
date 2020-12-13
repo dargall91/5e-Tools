@@ -135,6 +135,7 @@
     "abilities": [],
     "size": "",
     "name": "select a monster",
+    "displayName": "select a monster",
     "challenge": "-1",
     "alignment": "",
     "actions": []
