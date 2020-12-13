@@ -132,7 +132,13 @@ public class Combatant implements Comparable<Combatant>, Serializable {
 	public boolean isReinforcement() {
 		return reinforcement;
 	}
-	
+
+	/**
+	 * Gets this combatant's Armor Class
+	 *
+	 * @param index The index of the subcombatant. If this is not a monster, this can be any number
+	 * @return the AC
+	 */
 	public String getAC(int index) {
 		if (monster)
 			return ac[index];

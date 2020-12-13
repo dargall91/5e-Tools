@@ -14,10 +14,6 @@ import javax.swing.event.*;
 import org.json.JSONObject;
 import org.json.JSONArray;
 import org.json.JSONTokener;
-import javazoom.jl.decoder.JavaLayerException;
-import javazoom.jl.player.Player;
-import java.applet.Applet;
-import java.applet.AudioClip;
 import javax.sound.sampled.*;
 
 //TODO: combat tracker has evolved beyond a simple tracker to more of a home screen to be used during play, consider renaming and redefining packages
@@ -821,7 +817,17 @@ public class CombatTracker extends JFrame {
 						}
 					});
 
-					JButton kill = new JButton("Kill");
+					JButton kill = new JButton();
+					if (i.isAlive(index))
+						kill.setText("Kill");
+
+					else
+						kill.setText("Revive");
+
+					name.setEnabled(i.isAlive(index));
+					ac.setEnabled(i.isAlive(index));
+					hp.setEnabled(i.isAlive(index));
+
 					kill.addActionListener(new ActionListener() {
 						@Override
 						public void actionPerformed(ActionEvent e) {
@@ -911,7 +917,7 @@ public class CombatTracker extends JFrame {
 				reinPanel.setAlignmentX(Component.LEFT_ALIGNMENT);
 
 				JPanel instructions = new JPanel();
-				JLabel instrLabel = new JLabel("Check to box next to the reincforcements to add");
+				JLabel instrLabel = new JLabel("Check the box next to the reinforcements to add:");
 				instructions.add(instrLabel);
 				reinPanel.add(instructions);
 				
@@ -1051,7 +1057,7 @@ public class CombatTracker extends JFrame {
 					JSONArray combatArray = new JSONArray();
 					for (Combatant i : combatants)
 						for (int j = 0; j < i.getQuantity(); j++)
-							if (!i.isReinforcement())
+							if (!i.isReinforcement() && i.isAlive(j))
 								combatArray.put(i.toSimpleJson());
 
 					proxy.updateEncounter(combatArray);
