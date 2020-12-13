@@ -148,6 +148,7 @@
     ],
     "size": "Medium Humanoid",
     "name": "Test",
+    "displayName":"Test",
     "challenge": "2",
     "alignment": "Chaotic Evil",
     "actions": [

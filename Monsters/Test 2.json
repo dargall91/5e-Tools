@@ -144,6 +144,7 @@
     ],
     "size": "medium",
     "name": "Test 2",
+    "displayName":"Test 2",
     "challenge": "1/4",
     "alignment": "unaligned",
     "actions": [{

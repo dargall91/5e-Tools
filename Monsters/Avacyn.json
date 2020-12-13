@@ -35,10 +35,10 @@
         }
     ],
     "legendaryActions": [],
+    "displayName": "Avacyn",
     "hp": "0",
     "legendaryActionCount": "0",
     "type": "type",
-    "proficiency": 0,
     "speed": "speed",
     "skills": [
         {
@@ -122,12 +122,12 @@
             "proficient": false
         },
         {
-            "skill": "nature",
+            "skill": "acrobatics",
             "expertise": false,
             "proficient": false
         },
         {
-            "skill": "acrobatics",
+            "skill": "nature",
             "expertise": false,
             "proficient": false
         }

@@ -152,6 +152,7 @@
     ],
     "size": "Medium",
     "name": "Zombie",
+    "displayName":"Zombie",
     "challenge": "1/4",
     "alignment": "Neutral",
     "actions": [{

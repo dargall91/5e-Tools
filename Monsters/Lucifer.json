@@ -141,6 +141,7 @@
     }],
     "size": "Medium",
     "name": "Lucifer",
+    "displayName":"Lucifer",
     "challenge": "26",
     "alignment": "Lawful Neutral",
     "actions": [{

@@ -135,6 +135,7 @@
     "abilities": [],
     "size": "size",
     "name": "Griselbrand",
+    "displayName":"Griselbrand",
     "challenge": "-1",
     "alignment": "alignment",
     "actions": []

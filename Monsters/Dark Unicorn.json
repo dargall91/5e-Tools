@@ -173,6 +173,7 @@
     ],
     "size": "Large",
     "name": "Dark Unicorn",
+    "displayName":"Dark Unicorn",
     "challenge": "5",
     "alignment": "Chaotic Evil",
     "actions": [

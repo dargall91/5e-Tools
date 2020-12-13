@@ -135,6 +135,7 @@
     "abilities": [],
     "size": "",
     "name": "Kobold",
+    "displayName":"Kobold",
     "challenge": "-1",
     "alignment": "",
     "actions": []

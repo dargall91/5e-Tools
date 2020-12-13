@@ -153,6 +153,7 @@
     ],
     "size": "Huge",
     "name": "Satan",
+    "displayName":"Satan",
     "challenge": "666",
     "alignment": "Lawful Evil",
     "actions": [
