@@ -6,11 +6,12 @@ import java.util.*;
 import org.json.JSONObject;
 import org.json.JSONArray;
 import org.json.JSONTokener;
-//import com.google.gson;
 
+//TODO: remove proficiency var, is now calculated based on CR. Update desktop GUIs to reflect this change
+//TODO: update GUIs with display name
 public class Monster implements Serializable {
 	private final String[] STATS = { "STR", "DEX", "CON", "INT", "WIS", "CHA" };
-	private String name, type, alignment, size, speed, languages, senses, ac, hp,
+	private String name, displayName, type, alignment, size, speed, languages, senses, ac, hp,
 		challenge, legendaryActionCount;
 	int proficiency;
 	Hashtable<String, AbilityScore> scores;
@@ -18,7 +19,7 @@ public class Monster implements Serializable {
 	ArrayList<Ability> abilities;
 	ArrayList<Action> actions;
 	ArrayList<LegendaryAction> legendaryActions;
-	
+
 	/**
 	 * Default constructor, creates an empty monster object
 	 */
@@ -46,7 +47,6 @@ public class Monster implements Serializable {
 	 * Constructs a monster from a json file
 	 */
 	public Monster(String name) {
-		//org.json
 		try {
 			InputStream in = this.getClass().getClassLoader().getResourceAsStream("Monsters/" + name + ".json");
 
@@ -58,13 +58,6 @@ public class Monster implements Serializable {
 		} catch (Exception e) {
 			System.out.println("Error in Monster(String name): " + e.getMessage());
 		}
-		
-		//TODO: Figure out why is can't find gson, change to gson
-		//gson
-		/*Gson gson = new Gson();
-		JsonReader reader = new JsonReader(new FileReader("Monster/" + name + ".json"));
-		Type type = new TypeToken<Monster>(){}.getType();
-		this = gson.fromJson(json, Monster.class);*/
 	}
 	
 	/**
@@ -83,13 +76,13 @@ public class Monster implements Serializable {
 		
 		try {
 			name = json.getString("name");
+			displayName = json.getString("displayName");
 			type = json.getString("type");
 			alignment = json.getString("alignment");
 			size = json.getString("size");
 			ac = json.getString("ac");
 			hp = json.getString("hp");
 			challenge = json.getString("challenge");
-			proficiency = json.getInt("proficiency");
 			speed = json.getString("speed");
 			senses = json.getString("senses");
 			languages = json.getString("languages");
@@ -144,6 +137,10 @@ public class Monster implements Serializable {
 	public String getName() {
 		return name;
 	}
+
+	public String getDisplayName() {
+		return displayName;
+	}
 	
 	public String getType() {
 		return type;
@@ -182,7 +179,56 @@ public class Monster implements Serializable {
 	}
 	
 	public int getProficiency() {
-		return proficiency;
+		if (Objects.isNull(challenge))
+			return 0;
+
+		switch (challenge) {
+			case "-1":
+			case "0":
+			case "1/8":
+			case "1/4":
+			case "1/2":
+			case "1":
+			case "2":
+			case "3":
+			case "4":
+				return 2;
+			case "5":
+			case "6":
+			case "7":
+			case "8":
+				return 3;
+			case "9":
+			case "10":
+			case "11":
+			case "12":
+				return 4;
+			case "13":
+			case "14":
+			case "15":
+			case "16":
+				return 5;
+			case "17":
+			case "18":
+			case "19":
+			case "20":
+				return 6;
+			case "21":
+			case "22":
+			case "23":
+			case "24":
+				return 7;
+			case "25":
+			case "26":
+			case "27":
+			case "28":
+				return 8;
+			case "29":
+			case "30":
+				return 9;
+			default:
+				return 0;
+		}
 	}
 	
 	public String getChallenge() {
@@ -192,7 +238,7 @@ public class Monster implements Serializable {
 	public int getXP() {
 		if (Objects.isNull(challenge))
 			return 0;
-			
+
 		switch (challenge) {
 			case "-1":
 				return 0;
@@ -280,6 +326,19 @@ public class Monster implements Serializable {
 	public int getAbilityScore(String stat) {
 		return scores.get(stat).getScore();
 	}
+
+	public int getAbilityModifier(String stat) {
+		return (scores.get(stat).getScore() - 10) / 2;
+	}
+
+	public String getSignedAbilityModifier(String stat) {
+		int mod = getAbilityModifier(stat);
+
+		if (mod < 0)
+			return Integer.toString(mod);
+
+		return "+" + Integer.toString(mod);
+	}
 	
 	public boolean getAbilityProficiency(String stat) {
 		return scores.get(stat).getProficient();
@@ -304,6 +363,10 @@ public class Monster implements Serializable {
 	//Setters
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	public void setDisplayName(String displayName) {
+		this.displayName = displayName;
 	}
 	
 	public void setType(String type) {
@@ -445,13 +508,13 @@ public class Monster implements Serializable {
 		
 		try {
 			obj.put("name", name);
+			obj.put("displayName", displayName);
 			obj.put("type", type);
 			obj.put("alignment", alignment);
 			obj.put("size", size);
 			obj.put("ac", ac);
 			obj.put("hp", hp);
 			obj.put("challenge", challenge);
-			obj.put("proficiency", proficiency);
 			obj.put("speed", speed);
 			obj.put("senses", senses);
 			obj.put("languages", languages);
@@ -513,6 +576,6 @@ public class Monster implements Serializable {
 			System.out.println("Error in Monster.saveJson: " + e.getMessage());
 		}
 		
-		return true;
+		return result;
 	}
 }

@@ -9,7 +9,7 @@ import java.io.*;
 import java.util.*;
 
 public class DNDServer extends Thread {
-	private static final int buffSize = 6144;
+	private static final int buffSize = 1024;
 	private Socket conn;
 	private DNDServerSkeleton skeleton;
 	
@@ -20,19 +20,20 @@ public class DNDServer extends Thread {
 	
 	public void run() {
 		try {
+			String request = "";
 			OutputStream os = conn.getOutputStream();
 			InputStream is = conn.getInputStream();
 			byte input[] = new byte[buffSize];
-			int num = is.read(input, 0, buffSize);
-			
-			if (num != -1) {
-				String request = new String(input, 0 , num);
-				System.out.println("Client requested: " + request);
-				String response = skeleton.callMethod(request);
-				byte output[] = response.getBytes();
-				os.write(output, 0, output.length);
-				System.out.println("Response is: " + response);
-			}
+
+			BufferedReader reader = new BufferedReader(new InputStreamReader(is));
+			request = reader.readLine();
+
+			//TODO: update response to use PrintWriter to maintain consistency with client
+			System.out.println("Client requested: " + request);
+			String response = skeleton.callMethod(request);
+			byte bytesToSend[] = response.getBytes();
+			os.write(bytesToSend, 0, bytesToSend.length);
+			System.out.println("Response is: " + response);
 			
 			is.close();
 			os.close();
