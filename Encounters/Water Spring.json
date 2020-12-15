@@ -3,7 +3,7 @@
     "theme": "Mournweald Encounter.mp3",
     "monsterData": [{
         "quantity": 1,
-        "initiative": 0,
+        "initiative": 12,
         "xp": 1800,
         "reinforcement": false,
         "minion": false,
