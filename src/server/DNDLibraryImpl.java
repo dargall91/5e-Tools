@@ -187,10 +187,13 @@ public class DNDLibraryImpl implements DNDLibrary {
 	}
 	
 	public boolean renameMonster(String oldName, Monster monster) {
-		boolean result = deleteMonster(oldName);
-			
-		if (result && monLib.put(monster.getName(), monster) == null) {
-			result = true;
+		boolean result = false;
+
+		if (monLib.contains(monster.getName()))
+			return result;
+
+		if (monLib.put(monster.getName(), monster) == null) {
+			result = deleteMonster(oldName);
 			saveMonster(monster.getName());
 			System.out.println("Added " + monster.getName() + " to Monster library.");
 		}
@@ -199,7 +202,7 @@ public class DNDLibraryImpl implements DNDLibrary {
 			System.out.println("Failed to add " + monster.getName() + " to Monster Library.");
 			System.out.println(monster.getName() + " already exists in library.");
 		}
-			
+
 		return result;
 	}
 	

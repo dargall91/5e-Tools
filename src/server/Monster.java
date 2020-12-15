@@ -9,11 +9,12 @@ import org.json.JSONTokener;
 
 //TODO: remove proficiency var, is now calculated based on CR. Update desktop GUIs to reflect this change
 //TODO: update GUIs with display name
+//TODO: update GUIs, leg action coutn now an int
 public class Monster implements Serializable {
 	private final String[] STATS = { "STR", "DEX", "CON", "INT", "WIS", "CHA" };
 	private String name, displayName, type, alignment, size, speed, languages, senses, ac, hp,
-		challenge, legendaryActionCount;
-	int proficiency;
+		challenge;
+	int legendaryActionCount;
 	Hashtable<String, AbilityScore> scores;
 	Hashtable<String, Skill> skills;
 	ArrayList<Ability> abilities;
@@ -119,7 +120,7 @@ public class Monster implements Serializable {
 				actions.add(action);
 			}
 			
-			legendaryActionCount = json.getString("legendaryActionCount");
+			legendaryActionCount = json.getInt("legendaryActionCount");
 			
 			arr = json.getJSONArray("legendaryActions");
 			length = arr.length();
@@ -319,7 +320,7 @@ public class Monster implements Serializable {
 		return senses;
 	}
 	
-	public String getLegendaryActionCount() {
+	public int getLegendaryActionCount() {
 		return legendaryActionCount;
 	}
 	
@@ -411,10 +412,6 @@ public class Monster implements Serializable {
 		this.hp = hp;
 	}
 	
-	public void setProficiency(int proficiency) {
-		this.proficiency = proficiency;
-	}
-	
 	public void setChallenge(String challenge) {
 		this.challenge = challenge;
 	}
@@ -423,7 +420,7 @@ public class Monster implements Serializable {
 		this.senses = senses;
 	}
 	
-	public void setLegendaryActionCount(String count) {
+	public void setLegendaryActionCount(int count) {
 		legendaryActionCount = count;
 	}
 	
@@ -445,6 +442,10 @@ public class Monster implements Serializable {
 	
 	public void setLegendaryDescription(String description, int index) {
 		legendaryActions.get(index).setDescription(description);
+	}
+
+	public void setLegendaryActionCost(int cost, int index) {
+		legendaryActions.get(index).setCost(cost);
 	}
 	
 	//add actions/abilities
