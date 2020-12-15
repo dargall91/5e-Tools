@@ -21,50 +21,52 @@ public class DNDClientProxy implements DNDLibrary {
 		this.host = host;
 		this.port = port;
 	}
-	
+
 	private String callMethod(String library, String method, Object[] params) {
 		JSONObject call = new JSONObject();
-		String result = "{}";
-		
+		String result = "";
+
 		try {
 			ArrayList<Object> list = new ArrayList();
-			
+
 			call.put("library", library);
 			call.put("method", method);
-			
+
 			for (int i = 0; i <  params.length; i++)
 				list.add(params[i]);
-			
+
 			JSONArray jsonParams = new JSONArray(list);
 			call.put("params", jsonParams);
-			
+
 			Socket sock = new Socket(host, port);
 			OutputStream out = sock.getOutputStream();
 			InputStream in = sock.getInputStream();
-			int buff = buffSize;
-			byte bytesReceived[] = new byte[buff];
+
 			String request = call.toString();
-			byte bytesToSend[] = request.getBytes();
-			out.write(bytesToSend, 0, bytesToSend.length);
-			//int numBytesReceived = in.read(bytesReceived, 0, buff);
-			//result = new String(bytesReceived, 0, numBytesReceived);
+			byte[] bytesToSend = request.getBytes();
+			System.out.println("Request: " + request);
+			System.out.println("length: " + bytesToSend.length);
+			//out.write(bytesToSend, 0, bytesToSend.length);
+			PrintWriter writer = new PrintWriter(out, true);
+			writer.println(request);
 
-			int data = in.read();
-			result = "";
+			//TODO: update read to use BufferedReader to maintain consitency with server
+			ByteArrayOutputStream baos = new ByteArrayOutputStream();
+			byte[] buffer = new byte[buffSize];
 
-			//loop over bytes received
-			while(data != -1) {
-				result += (char) data;
-				data = in.read();
-			}
-			
+			for (int i; (i = in.read(buffer)) != -1; )
+				baos.write(buffer, 0, i);
+
+			result = baos.toString();
+
 			out.close();
 			in.close();
 			sock.close();
 		} catch (Exception e) {
 			System.out.println("Exception in callMethod: " + e.getMessage());
+			result = "{}";
 		}
-		
+
 		return result;
 	}
 	
