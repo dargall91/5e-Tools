@@ -1,45 +1,45 @@
 {
-    "ac": "8",
-    "languages": "Darkvision 60 ft, passive perception 8",
-    "senses": "Darkvision 60 ft, passive perception 8",
+    "ac": "11/12",
+    "languages": "passive perception 14, Darkvision 60 ft (can see in magical darkness)",
+    "senses": "passive perception 14, Darkvision 60 ft (can see in magical darkness)",
     "scores": [
         {
-            "score": 13,
+            "score": 15,
             "stat": "STR",
             "proficient": false
         },
         {
-            "score": 6,
+            "score": 13,
             "stat": "DEX",
             "proficient": false
         },
         {
-            "score": 16,
+            "score": 14,
             "stat": "CON",
             "proficient": false
         },
         {
-            "score": 3,
+            "score": 10,
             "stat": "INT",
             "proficient": false
         },
         {
-            "score": 6,
+            "score": 11,
             "stat": "WIS",
-            "proficient": true
+            "proficient": false
         },
         {
-            "score": 5,
+            "score": 10,
             "stat": "CHA",
             "proficient": false
         }
     ],
     "legendaryActions": [],
-    "displayName": "Zombie",
+    "displayName": "Beast",
     "hp": "22",
     "legendaryActionCount": 0,
-    "type": "Humaoid",
-    "speed": "20",
+    "type": "Human, Shapechanger",
+    "speed": "30 (40 in wolf form)",
     "skills": [
         {
             "skill": "History",
@@ -48,8 +48,8 @@
         },
         {
             "skill": "Perception",
-            "expertise": false,
-            "proficient": false
+            "expertise": true,
+            "proficient": true
         },
         {
             "skill": "Performance",
@@ -114,7 +114,7 @@
         {
             "skill": "Stealth",
             "expertise": false,
-            "proficient": false
+            "proficient": true
         },
         {
             "skill": "Survival",
@@ -134,28 +134,38 @@
     ],
     "abilities": [
         {
-            "name": "Damage Immunities",
-            "description": "Poison"
+            "name": "Damage Resistances",
+            "description": "Resistances: bludgeoning, piercing, and slashing from nonmagical attacks not made with silvered weapons"
         },
         {
-            "name": "Condition Immunities",
-            "description": "Poison"
+            "name": "Shapechanger",
+            "description": "descriptionAs action, polymorph into wolf-human hybrid, wolf, or back to true form. Reverts to true form if it dies"
         },
         {
-            "name": "Regeneration",
-            "description": "Recovers 4 hit points at the start of each of it's turns, unless it took radiant damage since it's last turn."
-        },
-        {
-            "name": "Undead Fortitude",
-            "description": "If the zombie is reduced to 0 hit points, unless the damage dealt was radiant damage, it recovers all hit points in 5 x 1d4 minutes"
+            "name": "Keen Hearing and Smell",
+            "description": "advantage on all Perception checks that rely on healing or smell"
         }
     ],
-    "size": "Medium",
-    "name": "Zombie",
-    "challenge": "1/4",
-    "alignment": "Neutral",
-    "actions": [{
-        "name": "Slam",
-        "description": "Melee Weapon Attack, +3 to hit, reach 5ft\nHit: (1d6 + 1) Bludgeoning damage"
-    }]
+    "size": "Medium Humanoid",
+    "name": "Werewolf",
+    "challenge": "2",
+    "alignment": "Chaotic Evil",
+    "actions": [
+        {
+            "name": "Multiattack",
+            "description": "Human/Hybrid only: Two attacks, one with bite, one with claws/spear"
+        },
+        {
+            "name": "Bite",
+            "description": "Wold/Hybrid only: Melee Weapon Attack: +4 to hit, reach 5ft, one target\nHit: 6 (1d8 + 2) piercing. If target is humaoid, succede on DC 12 CON or be cursed with lycanthropy"
+        },
+        {
+            "name": "Claws",
+            "description": "Hybrid only: melee weapon attack, +4 to hit, reach 5 ft, one target\nHit: 7 (2d4 + 2) slashing"
+        },
+        {
+            "name": "Spear",
+            "description": "Humanoid only: melee or ranged weapon attacl, +4 to hit or range 20/60f, one creature\nHit: 5 (1d6 + 2) piercing, or 6 (1d8 + 2) [iercing if used with two hands as melee attack"
+        }
+    ]
 }

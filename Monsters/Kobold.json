@@ -36,98 +36,98 @@
     ],
     "legendaryActions": [],
     "hp": "0",
-    "legendaryActionCount": "0",
+    "legendaryActionCount": 0,
     "type": "",
     "proficiency": 0,
     "speed": "",
     "skills": [
         {
-            "skill": "athletics",
+            "skill": "Athletics",
             "expertise": false,
             "proficient": false
         },
         {
-            "skill": "sleight of hand",
+            "skill": "Sleight of Hand",
             "expertise": false,
             "proficient": false
         },
         {
-            "skill": "religion",
+            "skill": "Religion",
             "expertise": false,
             "proficient": false
         },
         {
-            "skill": "deception",
+            "skill": "Deception",
             "expertise": false,
             "proficient": false
         },
         {
-            "skill": "performance",
+            "skill": "Performance",
             "expertise": false,
             "proficient": false
         },
         {
-            "skill": "history",
+            "skill": "History",
             "expertise": false,
             "proficient": false
         },
         {
-            "skill": "medicine",
+            "skill": "Medicine",
             "expertise": false,
             "proficient": false
         },
         {
-            "skill": "stealth",
+            "skill": "Stealth",
             "expertise": false,
             "proficient": false
         },
         {
-            "skill": "investigation",
+            "skill": "Investigation",
             "expertise": false,
             "proficient": false
         },
         {
-            "skill": "intimidation",
+            "skill": "Intimidation",
             "expertise": false,
             "proficient": false
         },
         {
-            "skill": "perception",
+            "skill": "Perception",
             "expertise": false,
             "proficient": false
         },
         {
-            "skill": "insight",
+            "skill": "Insight",
             "expertise": false,
             "proficient": false
         },
         {
-            "skill": "persuasion",
+            "skill": "Persuasion",
             "expertise": false,
             "proficient": false
         },
         {
-            "skill": "animal handling",
+            "skill": "Animal Handling",
             "expertise": false,
             "proficient": false
         },
         {
-            "skill": "survival",
+            "skill": "Survival",
             "expertise": false,
             "proficient": false
         },
         {
-            "skill": "arcana",
+            "skill": "Arcana",
             "expertise": false,
             "proficient": false
         },
         {
-            "skill": "acrobatics",
+            "skill": "Nature",
             "expertise": false,
             "proficient": false
         },
         {
-            "skill": "nature",
+            "skill": "Acrobatics",
             "expertise": false,
             "proficient": false
         }

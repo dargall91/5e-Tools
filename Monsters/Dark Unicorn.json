@@ -1,6 +1,6 @@
 {
     "ac": "12",
-    "languages": "Celestial, Sylvan, Telepathy 60 ft",
+    "languages": "Darkvision 60ft, passive perception 13",
     "senses": "Darkvision 60ft, passive perception 13",
     "scores": [
         {
@@ -36,111 +36,114 @@
     ],
     "legendaryActions": [
         {
+            "cost": 1,
             "name": "Hooves",
             "description": "One hooves attack"
         },
         {
+            "cost": 2,
             "name": "Dark Shroud",
-            "description": "(2 actions) shadowy dark shroud around itself or another creature it can see within 60 ft, gains +2 AC until end of next turn"
+            "description": "shadowy dark shroud around itself or another creature it can see within 60 ft, gains +2 AC until end of next turn"
         },
         {
+            "cost": 3,
             "name": "Heal Self",
-            "description": "(3 actions) magically regains 2d8 + 3 hit points"
+            "description": "magically regains 2d8 + 3 hit points"
         }
     ],
+    "displayName": "Dark Unicorn",
     "hp": "67",
-    "legendaryActionCount": "3",
+    "legendaryActionCount": 3,
     "type": "Celestial",
-    "proficiency": 0,
     "speed": "50",
     "skills": [
         {
-            "skill": "athletics",
+            "skill": "History",
             "expertise": false,
             "proficient": false
         },
         {
-            "skill": "sleight of hand",
+            "skill": "Perception",
             "expertise": false,
             "proficient": false
         },
         {
-            "skill": "religion",
+            "skill": "Performance",
             "expertise": false,
             "proficient": false
         },
         {
-            "skill": "deception",
+            "skill": "Athletics",
             "expertise": false,
             "proficient": false
         },
         {
-            "skill": "performance",
+            "skill": "Persuasion",
             "expertise": false,
             "proficient": false
         },
         {
-            "skill": "history",
+            "skill": "Intimidation",
             "expertise": false,
             "proficient": false
         },
         {
-            "skill": "medicine",
+            "skill": "Insight",
             "expertise": false,
             "proficient": false
         },
         {
-            "skill": "stealth",
+            "skill": "Religion",
             "expertise": false,
             "proficient": false
         },
         {
-            "skill": "investigation",
+            "skill": "Sleight of Hand",
             "expertise": false,
             "proficient": false
         },
         {
-            "skill": "intimidation",
+            "skill": "Acrobatics",
             "expertise": false,
             "proficient": false
         },
         {
-            "skill": "perception",
+            "skill": "Arcana",
             "expertise": false,
             "proficient": false
         },
         {
-            "skill": "insight",
+            "skill": "Animal Handling",
             "expertise": false,
             "proficient": false
         },
         {
-            "skill": "persuasion",
+            "skill": "Deception",
             "expertise": false,
             "proficient": false
         },
         {
-            "skill": "animal handling",
+            "skill": "Medicine",
             "expertise": false,
             "proficient": false
         },
         {
-            "skill": "survival",
+            "skill": "Stealth",
             "expertise": false,
             "proficient": false
         },
         {
-            "skill": "arcana",
+            "skill": "Survival",
             "expertise": false,
             "proficient": false
         },
         {
-            "skill": "nature",
+            "skill": "Nature",
             "expertise": false,
             "proficient": false
         },
         {
-            "skill": "acrobatics",
+            "skill": "Investigation",
             "expertise": false,
             "proficient": false
         }
@@ -173,7 +176,6 @@
     ],
     "size": "Large",
     "name": "Dark Unicorn",
-    "displayName":"Dark Unicorn",
     "challenge": "5",
     "alignment": "Chaotic Evil",
     "actions": [

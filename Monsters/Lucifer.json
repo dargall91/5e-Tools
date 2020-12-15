@@ -36,101 +36,102 @@
     ],
     "legendaryActions": [{
         "name": "Judgement",
-        "description": "All creatures within 60 ft of Lucifer must make a Persuaion check against by Lucifer's Inisght check. If Lucifer's Inisght check is higher than a creature's persuasion, it takes 6d6 radiant damage and is pushed or pulled pushed 10 ft in a direction of Lucifer's choice. On a successful save, they take half damage and are not pushed."
+        "description": "All creatures within 60 ft of Lucifer must make a Persuaion check against by Lucifer's Inisght check. If Lucifer's Inisght check is higher than a creature's persuasion, it takes 6d6 radiant damage and is pushed or pulled pushed 10 ft in a direction of Lucifer's choice. On a successful save, they take half damage and are not pushed.",
+            "cost": 1
     }],
     "hp": "666",
-    "legendaryActionCount": "1",
+    "legendaryActionCount": 1,
     "type": "Celestial",
     "proficiency": 6,
     "speed": "30 feet (walking), 40 ft (flying)",
     "skills": [
         {
-            "skill": "athletics",
+            "skill": "Athletics",
             "expertise": false,
             "proficient": false
         },
         {
-            "skill": "sleight of hand",
+            "skill": "Sleight of Hand",
             "expertise": false,
             "proficient": false
         },
         {
-            "skill": "religion",
+            "skill": "Religion",
             "expertise": false,
             "proficient": true
         },
         {
-            "skill": "deception",
+            "skill": "Deception",
             "expertise": false,
             "proficient": false
         },
         {
-            "skill": "performance",
+            "skill": "Performance",
             "expertise": false,
             "proficient": false
         },
         {
-            "skill": "history",
+            "skill": "History",
             "expertise": false,
             "proficient": true
         },
         {
-            "skill": "medicine",
+            "skill": "Medicine",
             "expertise": false,
             "proficient": false
         },
         {
-            "skill": "stealth",
+            "skill": "Stealth",
             "expertise": false,
             "proficient": false
         },
         {
-            "skill": "investigation",
+            "skill": "Investigation",
             "expertise": false,
             "proficient": false
         },
         {
-            "skill": "intimidation",
+            "skill": "Intimidation",
             "expertise": false,
             "proficient": false
         },
         {
-            "skill": "perception",
+            "skill": "Perception",
             "expertise": false,
             "proficient": true
         },
         {
-            "skill": "insight",
+            "skill": "Insight",
             "expertise": false,
             "proficient": true
         },
         {
-            "skill": "persuasion",
+            "skill": "Persuasion",
             "expertise": false,
             "proficient": false
         },
         {
-            "skill": "animal handling",
+            "skill": "Animal Handling",
             "expertise": false,
             "proficient": false
         },
         {
-            "skill": "survival",
+            "skill": "Survival",
             "expertise": false,
             "proficient": false
         },
         {
-            "skill": "arcana",
+            "skill": "Arcana",
             "expertise": false,
             "proficient": false
         },
         {
-            "skill": "acrobatics",
+            "skill": "Acrobatics",
             "expertise": false,
             "proficient": false
         },
         {
-            "skill": "nature",
+            "skill": "Nature",
             "expertise": false,
             "proficient": false
         }

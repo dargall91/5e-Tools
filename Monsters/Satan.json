@@ -37,106 +37,108 @@
     "legendaryActions": [
         {
             "name": "Heaven's Fury",
-            "description": "Satan uses his Heaven's Fury action"
+            "description": "Satan uses his Heaven's Fury action",
+            "cost": 2
         },
         {
             "name": "Hell's Rage",
-            "description": "Satan uses his Hell's Rage action"
+            "description": "Satan uses his Hell's Rage action",
+            "cost": 2
         }
     ],
     "hp": "666",
-    "legendaryActionCount": "666",
+    "legendaryActionCount": 5,
     "type": "Demon",
     "proficiency": 6,
     "speed": "666 walking, 666 flying",
     "skills": [
         {
-            "skill": "athletics",
+            "skill": "Athletics",
             "expertise": false,
             "proficient": false
         },
         {
-            "skill": "sleight of hand",
+            "skill": "Sleight of Hand",
             "expertise": false,
             "proficient": true
         },
         {
-            "skill": "religion",
+            "skill": "Religion",
             "expertise": true,
             "proficient": true
         },
         {
-            "skill": "deception",
+            "skill": "Deception",
             "expertise": true,
             "proficient": true
         },
         {
-            "skill": "performance",
+            "skill": "Performance",
             "expertise": true,
             "proficient": true
         },
         {
-            "skill": "history",
+            "skill": "History",
             "expertise": false,
             "proficient": true
         },
         {
-            "skill": "medicine",
+            "skill": "Medicine",
             "expertise": false,
             "proficient": false
         },
         {
-            "skill": "stealth",
+            "skill": "Stealth",
             "expertise": false,
             "proficient": false
         },
         {
-            "skill": "investigation",
+            "skill": "Investigation",
             "expertise": false,
             "proficient": false
         },
         {
-            "skill": "intimidation",
+            "skill": "Intimidation",
             "expertise": true,
             "proficient": true
         },
         {
-            "skill": "perception",
+            "skill": "Perception",
             "expertise": false,
             "proficient": true
         },
         {
-            "skill": "insight",
+            "skill": "Insight",
             "expertise": true,
             "proficient": true
         },
         {
-            "skill": "persuasion",
+            "skill": "Persuasion",
             "expertise": true,
             "proficient": true
         },
         {
-            "skill": "animal handling",
+            "skill": "Animal Handling",
             "expertise": true,
             "proficient": true
         },
         {
-            "skill": "survival",
-            "expertise": false,
-            "proficient": false
-        },
-        {
-            "skill": "arcana",
-            "expertise": false,
-            "proficient": true
-        },
-        {
-            "skill": "nature",
+            "skill": "Survival",
             "expertise": false,
             "proficient": false
         },
         {
-            "skill": "acrobatics",
+            "skill": "Arcana",
+            "expertise": false,
+            "proficient": true
+        },
+        {
+            "skill": "Nature",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Acrobatics",
             "expertise": false,
             "proficient": false
         }
