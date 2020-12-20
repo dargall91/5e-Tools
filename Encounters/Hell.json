@@ -1,10 +1,11 @@
 {
     "name": "Hell",
-    "theme": "Weald.mp3",
+    "theme": "Behold the Bearer of Light.mp3",
+    "lairAction": true,
     "monsterData": [
         {
             "quantity": 1,
-            "initiative": 1,
+            "initiative": 20,
             "xp": 90000,
             "reinforcement": false,
             "minion": false,
@@ -12,7 +13,7 @@
         },
         {
             "quantity": 1,
-            "initiative": 1,
+            "initiative": 8,
             "xp": 666,
             "reinforcement": false,
             "minion": false,

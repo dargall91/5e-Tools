@@ -44,5 +44,6 @@
             "level": 1,
             "players": 1
         }
-    ]
+    ],
+    "lairAction": false
 }
