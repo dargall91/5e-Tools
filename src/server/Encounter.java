@@ -12,6 +12,7 @@ public class Encounter implements Serializable {
 	private ArrayList<PlayerData> playerData;
 	private String difficulty, theme;
 	private int xpTotal;
+	private boolean lairAction;
 	private final int[] EASY = { 25, 50, 75, 125, 250, 300, 350, 450, 550,
 		600, 800, 1000, 1100, 1250, 1400, 1600, 2000, 2100, 2400, 2800 };
 	private final int[] MEDIUM = { 50, 100, 150, 250, 500, 600, 750, 900,
@@ -65,8 +66,9 @@ public class Encounter implements Serializable {
 		
 		try {
 			name = json.getString("name");
-			JSONArray arr = json.getJSONArray("playerData");
 			theme = json.getString("theme");
+			lairAction = json.getBoolean("lairAction");
+			JSONArray arr = json.getJSONArray("playerData");
 			
 			for (int i = 0; i < arr.length(); i++)
 				playerData.add(new PlayerData(arr.getJSONObject(i)));
@@ -99,6 +101,14 @@ public class Encounter implements Serializable {
 	
 	public void setTheme(String theme) {
 		this.theme = theme;
+	}
+
+	public void setLairAction(boolean lairAction) {
+		this.lairAction = lairAction;
+	}
+
+	public boolean hasLairAction() {
+		return lairAction;
 	}
 	
 	public void addPlayerData() {
@@ -316,6 +326,7 @@ public class Encounter implements Serializable {
 		try {
 			obj.put("name", name);
 			obj.put("theme", theme);
+			obj.put("lairAction", lairAction);
 			
 			for (PlayerData i : playerData)
 				dataArr.put(i.toJson());

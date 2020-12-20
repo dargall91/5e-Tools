@@ -207,11 +207,14 @@ public class DNDLibraryImpl implements DNDLibrary {
 	}
 	
 	public boolean renameEncounter(String oldName, Encounter encounter) {
-		boolean result = deleteEncounter(oldName);
-		
-		if (result && encLib.put(encounter.getName(), encounter) == null) {
-			result = true;
-			saveMonster(encounter.getName());
+		boolean result = false;
+
+		if (encLib.contains(encounter.getName()))
+			return result;
+
+		if (encLib.put(encounter.getName(), encounter) == null) {
+			result = deleteEncounter(oldName);
+			saveEncounter(encounter.getName());
 			System.out.println("Added " + encounter.getName() + " to Encounter library.");
 		}
 
@@ -219,7 +222,7 @@ public class DNDLibraryImpl implements DNDLibrary {
 			System.out.println("Failed to add " + encounter.getName() + " to Encounter Library.");
 			System.out.println(encounter.getName() + " already exists in library.");
 		}
-			
+
 		return result;
 	}
 	

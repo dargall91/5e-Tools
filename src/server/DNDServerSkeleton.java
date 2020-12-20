@@ -14,6 +14,7 @@ import org.json.JSONArray;
 public class DNDServerSkeleton {
 	private DNDLibrary lib;
 	ServerCombatScreen scs;
+	private final String MUSIC = "Data/music.dat";
 
 	DNDServerSkeleton(DNDLibrary lib, ServerCombatScreen scs) {
 		this.lib = lib;
@@ -124,8 +125,13 @@ public class DNDServerSkeleton {
 
 					case "music":
 						//TODO: change "Music/" to music.dat filepath
-						File file = new File("Music/");
-						String[] fileNames = file.list();
+						//File file = new File("Music/");
+						File musicDat = new File(MUSIC);
+						Scanner scan = new Scanner(musicDat);
+						String path = scan.nextLine();
+
+						File musicDir = new File(path);
+						String[] fileNames = musicDir.list();
 						JSONArray music = new JSONArray();
 
 						for (int i = 0; i < fileNames.length; i++)
@@ -199,6 +205,11 @@ public class DNDServerSkeleton {
 					result.put("result", "0.0");
 					System.out.println("Method " + method + " for combat request not found.");
 				}
+			}
+
+			else if (library.equals("server")) {
+				System.out.println("Clinet to Server test connection successful");
+				result.put("result", true);
 			}
 			
 			else {
