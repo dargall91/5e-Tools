@@ -1,0 +1,167 @@
+{
+    "ac": "13 (19 w/ Adorable Visage)",
+    "languages": "Understands common but cannot speak",
+    "senses": "passive perception 18",
+    "scores": [
+        {
+            "score": 4,
+            "stat": "STR",
+            "proficient": false
+        },
+        {
+            "score": 17,
+            "stat": "DEX",
+            "proficient": true
+        },
+        {
+            "score": 12,
+            "stat": "CON",
+            "proficient": true
+        },
+        {
+            "score": 6,
+            "stat": "INT",
+            "proficient": false
+        },
+        {
+            "score": 18,
+            "stat": "WIS",
+            "proficient": true
+        },
+        {
+            "score": 22,
+            "stat": "CHA",
+            "proficient": false
+        }
+    ],
+    "legendaryActions": [],
+    "displayName": "Wolf pup",
+    "hp": "90",
+    "legendaryActionCount": 0,
+    "type": "Fey",
+    "speed": "40 ft; climb 30 ft",
+    "skills": [
+        {
+            "skill": "History",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Perception",
+            "expertise": false,
+            "proficient": true
+        },
+        {
+            "skill": "Performance",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Athletics",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Persuasion",
+            "expertise": false,
+            "proficient": true
+        },
+        {
+            "skill": "Intimidation",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Insight",
+            "expertise": true,
+            "proficient": true
+        },
+        {
+            "skill": "Religion",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Sleight of Hand",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Acrobatics",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Arcana",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Animal Handling",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Deception",
+            "expertise": true,
+            "proficient": true
+        },
+        {
+            "skill": "Medicine",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Stealth",
+            "expertise": false,
+            "proficient": true
+        },
+        {
+            "skill": "Survival",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Nature",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Investigation",
+            "expertise": false,
+            "proficient": false
+        }
+    ],
+    "abilities": [
+        {
+            "name": "Adorable Visage",
+            "description": "The everpup relies heavily on its lovable appearance to dissuade hostility. While it is not incapacitated, it adds its charisma bonus to its AC."
+        },
+        {
+            "name": "Vitality Consumption",
+            "description": "As a bonus action, the Everpup creates a 30 ft aura around itself which drains the vitality of other creatures. When a creature enters the aura for the first time on a turn or starts its turn there, the everpup can choose to force it to attempt a DC 18 Constitution saving throw. If a creature is unconsious, it attempts the saving throw at disadvantage. On a failed save, the creature sifferes a level of exhaustion. For each level of exhaustion inflicted this was, the everpup magically regains 10 hit points. THe everpup can end the effect of the aura as a bonus action. If a sleeping creature succeeds on a saving throw against this affect, it immediately regains conciousness."
+        }
+    ],
+    "size": "Small",
+    "name": "Everpup",
+    "challenge": "9",
+    "alignment": "Chaotic Neutral",
+    "actions": [
+        {
+            "name": "Bite",
+            "description": "(Melee Weapon Attack) +7 to hit, reach 5ft, one target\nHit:1d4 +3 piercing damage"
+        },
+        {
+            "name": "Imploring Bleat",
+            "description": "When in danger, the everpup lets out a piteous cry, hoping to coerve other creatures to come to its aid. Each creature of its choice within 60 ft that can hear the everpup must succeed on a DC 18 Wisdom saving throw, or be charmed by the Everpup and regard any creatures hostile to the everpup as an enemy. A charmed creature will act to protect and aide the helpless everpup to the best of its ability, attending to its every desire. A creature may attempt the saving throw again at the end of each of its turns, ending the effect on a success. A creature who scceedes on any saving throw against this effect is immune to the effect for 24 hours. If a creature fails the saving throw three times in a row, the charm becomes permanent, lasting until the everpup is killed or the effect is removed."
+        },
+        {
+            "name": "Soporific Exhale (Recharge 4-6)",
+            "description": "The everpup lets out an adorable, dusty sneeze. Each creature in a 15 ft cone must make a DC 18 Constitution saving throw. On a failed save, each creature with less than 12d10 hit points drops prone and enters a deep sleep. On a success, the creature takes half the resultrolled as psychic damage as it resists falling sleep. This sleep ends if a creature takes damage or if another creature uses their action to shake them awake."
+        },
+        {
+            "name": "Drowsy Getaway (Reaction)",
+            "description": "When the everpup is hit by an attack, and the attacker is within 5 ft of it, the everpup creates a puff of dust from its hide that momentarily clouds the area of the attacker. The attacker must succeed on a DC18 Dexterity saving throw. On a failed save, its speed is halved and it cannot take reactions until the end of their next turn."
+        }
+    ]
+}
