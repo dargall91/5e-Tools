@@ -15,7 +15,7 @@ Why not use one of the many tools out there that other people have already made?
 
 This project is currently undgoing a huge refactor:
 
- - I am changing json libraries from org.json to org.simple.json due to org.json's software license containing the line "The Software shall be used for Good, not Evil." It is well known amongst players of D&D that Dungeon Masters are inherently evil, and will do many evil things to mess with their players. Even ignoring the fact that this line means that org.json is technically not open source, I am evil, and therefore unqualified to continue usinging this library.
+ - I am changing json libraries from org.json to org.simple.json due to org.json's software license containing the line "The Software shall be used for Good, not Evil." It is well known amongst players of D&D that Dungeon Masters are inherently evil, and will do many evil things to mess with their players. Even ignoring the fact that this line means that org.json is technically not open source, I am evil, and therefore unqualified to continue using this library.
  - The Desktop Client and Server were once part of the same project build (this one). They are being separated
  - The Desktop Client currently has two separate parts: an application for creating the monsters and combat scenarios, and an application for running the combat scenarios. These will be combined into one application to match the android client
  - I am changing build tools from Ant to Gradle
