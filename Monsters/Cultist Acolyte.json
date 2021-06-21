@@ -1,0 +1,159 @@
+{
+    "ac": "13",
+    "languages": "Common, Abyssal",
+    "senses": "passive perception 9",
+    "scores": [
+        {
+            "score": 8,
+            "stat": "STR",
+            "proficient": false
+        },
+        {
+            "score": 12,
+            "stat": "DEX",
+            "proficient": false
+        },
+        {
+            "score": 11,
+            "stat": "CON",
+            "proficient": false
+        },
+        {
+            "score": 11,
+            "stat": "INT",
+            "proficient": false
+        },
+        {
+            "score": 8,
+            "stat": "WIS",
+            "proficient": false
+        },
+        {
+            "score": 16,
+            "stat": "CHA",
+            "proficient": false
+        }
+    ],
+    "legendaryActions": [],
+    "displayName": "Cultist",
+    "hp": "22",
+    "legendaryActionCount": 0,
+    "type": "Humanoid",
+    "speed": "30 ft",
+    "skills": [
+        {
+            "skill": "History",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Perception",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Performance",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Athletics",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Persuasion",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Intimidation",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Insight",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Religion",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Sleight of Hand",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Acrobatics",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Arcana",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Animal Handling",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Deception",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Medicine",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Stealth",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Survival",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Nature",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Investigation",
+            "expertise": false,
+            "proficient": false
+        }
+    ],
+    "abilities": [
+        {
+            "name": "Dark Devotion",
+            "description": "The cultist has advantage on saving throws against being charmed or frightened."
+        },
+        {
+            "name": "Spellcasting",
+            "description": "The cultist is a 3rd-level spellcaster. Their spellcasting ability is Charisma (spell save DC 13, +5 to hit with spell attacks) They know the following spells:\n\nCantrips: Eldritch Blast, Mage Hand\n1st-2nd Level (2 2nd-level slots): Arms of Hadar, Cause Fear, Command, Ray of Enfeeblement"
+        }
+    ],
+    "size": "Medium",
+    "name": "Cultist Acolyte",
+    "challenge": "1/2",
+    "alignment": "Neutral Evil",
+    "actions": [
+        {
+            "name": "Dagger",
+            "description": "Melee Weapon Attack: +3 to hit, reach 5 ft, throw (20/60), one target\nHit: 3 (1d4 + 1) piercing damage"
+        },
+        {
+            "name": "Stressful Incantation (Recharge 4-6)",
+            "description": "As a bonus action, the cultist targets one creature it can see within 60 ft. If that creature can hear the cultist, it must succeed on a Resolve saving throw against the cultist's spell save DC. On a failed save, the target takes 1d4 psychic damage and gains stress equal to 3d6 + the psychic damage taken."
+        }
+    ]
+}
