@@ -1,0 +1,45 @@
+{
+    "name": "Area 30",
+    "theme": "Combat in the Ruins - Hallway.mp3",
+    "lairAction": false,
+    "monsterData": [
+        {
+            "quantity": 1,
+            "initiative": 11,
+            "xp": 25,
+            "reinforcement": false,
+            "minion": false,
+            "monster": "Zombie (Giant Rat)"
+        },
+        {
+            "quantity": 2,
+            "initiative": 16,
+            "xp": 25,
+            "reinforcement": false,
+            "minion": false,
+            "monster": "Zombie (Giant Rat)"
+        },
+        {
+            "quantity": 1,
+            "initiative": 18,
+            "xp": 700,
+            "reinforcement": false,
+            "minion": false,
+            "monster": "Skaab (Rat)"
+        }
+    ],
+    "playerData": [
+        {
+            "level": 1,
+            "players": 2
+        },
+        {
+            "level": 1,
+            "players": 2
+        },
+        {
+            "level": 1,
+            "players": 1
+        }
+    ]
+}

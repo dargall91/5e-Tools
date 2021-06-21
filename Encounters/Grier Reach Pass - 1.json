@@ -1,0 +1,27 @@
+{
+    "name": "Grier Reach Pass - 1",
+    "theme": "Dark Descent.mp3",
+    "lairAction": false,
+    "monsterData": [
+        {
+            "quantity": 2,
+            "initiative": 18,
+            "xp": 25,
+            "reinforcement": false,
+            "minion": false,
+            "monster": "Kobold"
+        },
+        {
+            "quantity": 2,
+            "initiative": 14,
+            "xp": 25,
+            "reinforcement": false,
+            "minion": false,
+            "monster": "Kobold"
+        }
+    ],
+    "playerData": [{
+        "level": 6,
+        "players": 2
+    }]
+}

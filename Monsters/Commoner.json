@@ -1,45 +1,45 @@
 {
-    "ac": "8",
-    "languages": "Darkvision 60 ft, passive perception 8",
-    "senses": "Darkvision 60 ft, passive perception 8",
+    "ac": "0",
+    "languages": "",
+    "senses": "passive perception 10",
     "scores": [
         {
-            "score": 13,
+            "score": 12,
             "stat": "STR",
             "proficient": false
         },
         {
-            "score": 6,
+            "score": 10,
             "stat": "DEX",
             "proficient": false
         },
         {
-            "score": 16,
+            "score": 12,
             "stat": "CON",
             "proficient": false
         },
         {
-            "score": 3,
+            "score": 10,
             "stat": "INT",
             "proficient": false
         },
         {
-            "score": 6,
+            "score": 10,
             "stat": "WIS",
-            "proficient": true
+            "proficient": false
         },
         {
-            "score": 5,
+            "score": 10,
             "stat": "CHA",
             "proficient": false
         }
     ],
     "legendaryActions": [],
-    "displayName": "Zombie",
-    "hp": "22",
+    "displayName": "Trump",
+    "hp": "0",
     "legendaryActionCount": 0,
-    "type": "Undead",
-    "speed": "20",
+    "type": "",
+    "speed": "",
     "skills": [
         {
             "skill": "History",
@@ -132,32 +132,13 @@
             "proficient": false
         }
     ],
-    "abilities": [
-        {
-            "name": "Damage Immunities",
-            "description": "Poison"
-        },
-        {
-            "name": "Condition Immunities",
-            "description": "Poison"
-        },
-        {
-            "name": "Regeneration",
-            "description": "Recovers 4 hit points at the start of each of it's turns, unless it took radiant damage since it's last turn."
-        }
-    ],
-    "size": "Medium",
-    "name": "Zombie",
-    "challenge": "1/4",
-    "alignment": "Neutral",
-    "actions": [
-        {
-            "name": "Slam",
-            "description": "Melee Weapon Attack, +3 to hit, reach 5ft\nHit: (1d6 + 1) Bludgeoning damage"
-        },
-        {
-            "name": "Claw (Bralwer Only)",
-            "description": "Melee Weapon Attack, +3 to hit, reach 5ft\nHit: 1d8 + 1 slashing damage"
-        }
-    ]
+    "abilities": [],
+    "size": "",
+    "name": "Commoner",
+    "challenge": "-1",
+    "alignment": "",
+    "actions": [{
+        "name": "Shortsword",
+        "description": "+1 to hit\n1d6 +1 damage"
+    }]
 }

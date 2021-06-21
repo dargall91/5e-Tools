@@ -35,7 +35,7 @@
         }
     ],
     "legendaryActions": [],
-    "displayName": "Wolf pup",
+    "displayName": "Timbur",
     "hp": "90",
     "legendaryActionCount": 0,
     "type": "Fey",
@@ -139,7 +139,7 @@
         },
         {
             "name": "Vitality Consumption",
-            "description": "As a bonus action, the Everpup creates a 30 ft aura around itself which drains the vitality of other creatures. When a creature enters the aura for the first time on a turn or starts its turn there, the everpup can choose to force it to attempt a DC 18 Constitution saving throw. If a creature is unconsious, it attempts the saving throw at disadvantage. On a failed save, the creature sifferes a level of exhaustion. For each level of exhaustion inflicted this was, the everpup magically regains 10 hit points. THe everpup can end the effect of the aura as a bonus action. If a sleeping creature succeeds on a saving throw against this affect, it immediately regains conciousness."
+            "description": "As a bonus action, the Everpup creates a 30 ft aura around itself which drains the vitality of other creatures. When a creature enters the aura for the first time on a turn or starts its turn there, the everpup can choose to force it to attempt a DC 18 Constitution saving throw. If a creature is unconsious, it attempts the saving throw at disadvantage. On a failed save, the creature sufferes a level of exhaustion. For each level of exhaustion inflicted this was, the everpup magically regains 10 hit points. The everpup can end the effect of the aura as a bonus action. If a sleeping creature succeeds on a saving throw against this affect, it immediately regains conciousness."
         }
     ],
     "size": "Small",
@@ -149,7 +149,7 @@
     "actions": [
         {
             "name": "Bite",
-            "description": "(Melee Weapon Attack) +7 to hit, reach 5ft, one target\nHit:1d4 +3 piercing damage"
+            "description": "Melee Weapon Attack: +7 to hit, reach 5 ft, one target\nHit: 1d4 + 3 piercing damage"
         },
         {
             "name": "Imploring Bleat",
@@ -157,11 +157,11 @@
         },
         {
             "name": "Soporific Exhale (Recharge 4-6)",
-            "description": "The everpup lets out an adorable, dusty sneeze. Each creature in a 15 ft cone must make a DC 18 Constitution saving throw. On a failed save, each creature with less than 12d10 hit points drops prone and enters a deep sleep. On a success, the creature takes half the resultrolled as psychic damage as it resists falling sleep. This sleep ends if a creature takes damage or if another creature uses their action to shake them awake."
+            "description": "The everpup lets out an adorable, dusty sneeze. Each creature in a 15 ft cone must make a DC 18 Constitution saving throw. On a failed save, each creature with less than 12d10 hit points drops prone and enters a deep sleep. On a success, the creature takes half the result rolled as psychic damage as it resists falling sleep. This sleep ends if a creature takes damage or if another creature uses their action to shake them awake."
         },
         {
             "name": "Drowsy Getaway (Reaction)",
-            "description": "When the everpup is hit by an attack, and the attacker is within 5 ft of it, the everpup creates a puff of dust from its hide that momentarily clouds the area of the attacker. The attacker must succeed on a DC18 Dexterity saving throw. On a failed save, its speed is halved and it cannot take reactions until the end of their next turn."
+            "description": "When the everpup is hit by an attack, and the attacker is within 5 ft of it, the everpup creates a puff of dust from its hide that momentarily clouds the area of the attacker. The attacker must succeed on a DC 18 Dexterity saving throw. On a failed save, its speed is halved and it cannot take reactions until the end of their next turn."
         }
     ]
 }

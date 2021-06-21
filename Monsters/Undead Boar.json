@@ -1,45 +1,45 @@
 {
-    "ac": "8",
-    "languages": "Darkvision 60 ft, passive perception 8",
-    "senses": "Darkvision 60 ft, passive perception 8",
+    "ac": "13",
+    "languages": "Understands Taran",
+    "senses": "passive perception 13",
     "scores": [
         {
-            "score": 13,
+            "score": 16,
             "stat": "STR",
-            "proficient": false
+            "proficient": true
         },
         {
-            "score": 6,
+            "score": 14,
             "stat": "DEX",
             "proficient": false
         },
         {
-            "score": 16,
+            "score": 15,
             "stat": "CON",
             "proficient": false
         },
         {
-            "score": 3,
+            "score": 5,
             "stat": "INT",
             "proficient": false
         },
         {
-            "score": 6,
+            "score": 16,
             "stat": "WIS",
             "proficient": true
         },
         {
-            "score": 5,
+            "score": 6,
             "stat": "CHA",
             "proficient": false
         }
     ],
     "legendaryActions": [],
-    "displayName": "Zombie",
-    "hp": "22",
+    "displayName": "Undead Piggy",
+    "hp": "38",
     "legendaryActionCount": 0,
-    "type": "Undead",
-    "speed": "20",
+    "type": "Beast, undead",
+    "speed": "40 ft",
     "skills": [
         {
             "skill": "History",
@@ -134,12 +134,8 @@
     ],
     "abilities": [
         {
-            "name": "Damage Immunities",
-            "description": "Poison"
-        },
-        {
-            "name": "Condition Immunities",
-            "description": "Poison"
+            "name": "Charge",
+            "description": "If the boar moves at least 20 ft straight toward a target and then hits it with a maul attack on the same turn, the target takes an additional 1d6 slashing damage. If the target is a creature, it must succeed on a DC 13 Strength saving throw or be knocked prone."
         },
         {
             "name": "Regeneration",
@@ -147,17 +143,11 @@
         }
     ],
     "size": "Medium",
-    "name": "Zombie",
-    "challenge": "1/4",
-    "alignment": "Neutral",
-    "actions": [
-        {
-            "name": "Slam",
-            "description": "Melee Weapon Attack, +3 to hit, reach 5ft\nHit: (1d6 + 1) Bludgeoning damage"
-        },
-        {
-            "name": "Claw (Bralwer Only)",
-            "description": "Melee Weapon Attack, +3 to hit, reach 5ft\nHit: 1d8 + 1 slashing damage"
-        }
-    ]
+    "name": "Undead Boar",
+    "challenge": "1",
+    "alignment": "neutral",
+    "actions": [{
+        "name": "Maul",
+        "description": "Melee Weapon Attack: +5 to hit, reach 5 ft, one target\nHit: 1d8 + 5 slashing damage"
+    }]
 }

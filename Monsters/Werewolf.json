@@ -1,7 +1,7 @@
 {
-    "ac": "11/12",
-    "languages": "passive perception 14, Darkvision 60 ft (can see in magical darkness)",
-    "senses": "passive perception 14, Darkvision 60 ft (can see in magical darkness)",
+    "ac": "12",
+    "languages": "Common",
+    "senses": "Darkvision 120 ft, passive perception 14",
     "scores": [
         {
             "score": 15,
@@ -35,11 +35,11 @@
         }
     ],
     "legendaryActions": [],
-    "displayName": "Beast",
-    "hp": "22",
+    "displayName": "Werewolf",
+    "hp": "58",
     "legendaryActionCount": 0,
-    "type": "Human, Shapechanger",
-    "speed": "30 (40 in wolf form)",
+    "type": "Humanoid (human, shapechanger)",
+    "speed": "30 ft (40 in wolf form)",
     "skills": [
         {
             "skill": "History",
@@ -134,38 +134,34 @@
     ],
     "abilities": [
         {
-            "name": "Damage Resistances",
-            "description": "Resistances: bludgeoning, piercing, and slashing from nonmagical attacks not made with silvered weapons"
+            "name": "Damage Immunities",
+            "description": "Bludgeoning, piercing, and slashing from nonmagical attacks not made with silvered weapons"
         },
         {
             "name": "Shapechanger",
-            "description": "descriptionAs action, polymorph into wolf-human hybrid, wolf, or back to true form. Reverts to true form if it dies"
+            "description": "The werewolf can use its action to polymorph into a wolf-humanoid hybrid, its wolf form, or back into its true form, which is humaoid. Its statistics other than its AC, are the same in each form. Any equipment it is wearing or carrying isn't transformed. It reverts to its true form when it dies."
         },
         {
             "name": "Keen Hearing and Smell",
-            "description": "advantage on all Perception checks that rely on healing or smell"
+            "description": "The werewolf has advantage on Wisdom (Perception) checks that rely on hearing or smell."
         }
     ],
-    "size": "Medium Humanoid",
+    "size": "Mediu",
     "name": "Werewolf",
-    "challenge": "2",
+    "challenge": "3",
     "alignment": "Chaotic Evil",
     "actions": [
         {
-            "name": "Multiattack",
-            "description": "Human/Hybrid only: Two attacks, one with bite, one with claws/spear"
+            "name": "Multiattack (Humanoid or Hybrid form only)",
+            "description": "The werewolf makes two attacks: one with its bite and one with its claws or spear"
         },
         {
-            "name": "Bite",
-            "description": "Wold/Hybrid only: Melee Weapon Attack: +4 to hit, reach 5ft, one target\nHit: 6 (1d8 + 2) piercing. If target is humaoid, succede on DC 12 CON or be cursed with lycanthropy"
+            "name": "Bite (Wolf of Hybrid form only)\t",
+            "description": "Melee Weapon Attack: +4 to hit, reach 5 ft, one target\nHit: 1d8 + 2 piercing damage. If the target is humanoid, it must succeed on a DC 12 Constitution saving throw or be cursed with werewolf lycanthropy."
         },
         {
-            "name": "Claws",
-            "description": "Hybrid only: melee weapon attack, +4 to hit, reach 5 ft, one target\nHit: 7 (2d4 + 2) slashing"
-        },
-        {
-            "name": "Spear",
-            "description": "Humanoid only: melee or ranged weapon attacl, +4 to hit or range 20/60f, one creature\nHit: 5 (1d6 + 2) piercing, or 6 (1d8 + 2) [iercing if used with two hands as melee attack"
+            "name": "Claws (Hybrid Form only)",
+            "description": "Melee Weapon Attack: +4 to hit, reach 5 ft, one target\nHit: 2d4 + 2 slashing damage"
         }
     ]
 }

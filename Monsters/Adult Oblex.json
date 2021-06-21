@@ -1,0 +1,175 @@
+{
+    "ac": "14",
+    "languages": "Comon, Abyssal, Orc",
+    "senses": "Blindght 60 ft (blind beyond this distance), passive perception 14",
+    "scores": [
+        {
+            "score": 8,
+            "stat": "STR",
+            "proficient": false
+        },
+        {
+            "score": 19,
+            "stat": "DEX",
+            "proficient": false
+        },
+        {
+            "score": 16,
+            "stat": "CON",
+            "proficient": false
+        },
+        {
+            "score": 19,
+            "stat": "INT",
+            "proficient": false
+        },
+        {
+            "score": 12,
+            "stat": "WIS",
+            "proficient": false
+        },
+        {
+            "score": 15,
+            "stat": "CHA",
+            "proficient": false
+        }
+    ],
+    "legendaryActions": [],
+    "displayName": "Slime",
+    "hp": "75",
+    "legendaryActionCount": 0,
+    "type": "Ooze",
+    "speed": "20 ft, swim 30 ft",
+    "skills": [
+        {
+            "skill": "History",
+            "expertise": false,
+            "proficient": true
+        },
+        {
+            "skill": "Perception",
+            "expertise": false,
+            "proficient": true
+        },
+        {
+            "skill": "Performance",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Athletics",
+            "expertise": false,
+            "proficient": true
+        },
+        {
+            "skill": "Persuasion",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Intimidation",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Insight",
+            "expertise": false,
+            "proficient": true
+        },
+        {
+            "skill": "Religion",
+            "expertise": false,
+            "proficient": true
+        },
+        {
+            "skill": "Sleight of Hand",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Acrobatics",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Arcana",
+            "expertise": false,
+            "proficient": true
+        },
+        {
+            "skill": "Animal Handling",
+            "expertise": false,
+            "proficient": true
+        },
+        {
+            "skill": "Deception",
+            "expertise": false,
+            "proficient": true
+        },
+        {
+            "skill": "Medicine",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Stealth",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Survival",
+            "expertise": false,
+            "proficient": true
+        },
+        {
+            "skill": "Nature",
+            "expertise": false,
+            "proficient": true
+        },
+        {
+            "skill": "Investigation",
+            "expertise": false,
+            "proficient": false
+        }
+    ],
+    "abilities": [
+        {
+            "name": "Condition Immunities",
+            "description": "Blinded, charmed, deafened, exhaustion, prone"
+        },
+        {
+            "name": "Amorphous",
+            "description": "The Oblex can move through a space as narrow as 1 inch wide without squeezing."
+        },
+        {
+            "name": "Aversion to Fire",
+            "description": "If the oblex takes fire damage, it has disadvanatge on attack rolls and ability checks until the end of its next turn."
+        },
+        {
+            "name": "Innate Spellcasting",
+            "description": "The oblex's innate spellcasting ability os Intellogence (spell save DC 15). It can innately cast the following spells, requiring no material components:\n\n3/day each: Charm Person (5th Level), Color Spray, Detect Thoughts, Hold Person (3rd Level)"
+        },
+        {
+            "name": "Sulfurous Impersonation",
+            "description": "As a bonus action, the oblex can extrude a piece of itself that assumes the appearance of one Medium or smaller creature whose memories it has stolen. The Simulacrum appears, feels, and sounds exactly like the creature it impersonates, though it smells faintly of sulphur. The oblex can impersonate 1d4 + 1 different creatures, each one tethered to its body by a strand of slime that can extend up to 120 ft away. For all practical purposes, the simulacrum is the oblex, meaning that the oblex occupies its space and the sumulacrum's space simultaneously. The slimy tether is immune to damage, but it is severed if there is no opening at least 1 inch wide between the oblex's main body and the simulacrum. The simulacrum disappears if the tether is severed."
+        }
+    ],
+    "size": "Medium",
+    "name": "Adult Oblex",
+    "challenge": "5",
+    "alignment": "Lawful Evil",
+    "actions": [
+        {
+            "name": "Multiattack",
+            "description": "The oblex makes one Pseudopod attack and uses Eat Memories"
+        },
+        {
+            "name": "Pseudopod",
+            "description": "Melee Weapon Attack: +7 to hit, reach 5 ft, one target\nHit: 1d6 + 4 bludgeoning damage plus 2d4 Psychic damage."
+        },
+        {
+            "name": "Eat Memories",
+            "description": "The oblex targets one creature it can see within 5 ft of it. The target must succeed on a DC 15 Wisdom saving throw or take 4d8 psychic damage and become memory drained until it finishes a short or long rest, or until it benefits from a Greater Restoration or Heal spell. Cinstructs, oozes, plances, and undead succeed on the save automatically.\n\nWhile memory drained, the target must subtract 1d4 from all ability checks and attack rolls it makes. Each time the target is memory drained beyond the first, the die size increases by one: (d4, d6, d8, d10, d12, d20). When the die becomes a d20, the creature becomes unconcious for 1 hour. The effect then ends.\n\nWhen the oblex causes a target to become meory drained, the oblex learns all the languages the target knows and gains all of its proficiencies, except for any saving throw proficiencies."
+        }
+    ]
+}

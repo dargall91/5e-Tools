@@ -1,15 +1,15 @@
 {
-    "ac": "8",
-    "languages": "Darkvision 60 ft, passive perception 8",
-    "senses": "Darkvision 60 ft, passive perception 8",
+    "ac": "16",
+    "languages": "Understands the languages it knew before becoming a Wendigo, but cannot speak",
+    "senses": "Darkvision 60 ft, passive perception 10",
     "scores": [
         {
-            "score": 13,
+            "score": 16,
             "stat": "STR",
             "proficient": false
         },
         {
-            "score": 6,
+            "score": 18,
             "stat": "DEX",
             "proficient": false
         },
@@ -19,27 +19,27 @@
             "proficient": false
         },
         {
-            "score": 3,
+            "score": 12,
             "stat": "INT",
             "proficient": false
         },
         {
-            "score": 6,
+            "score": 10,
             "stat": "WIS",
-            "proficient": true
+            "proficient": false
         },
         {
-            "score": 5,
+            "score": 16,
             "stat": "CHA",
             "proficient": false
         }
     ],
     "legendaryActions": [],
-    "displayName": "Zombie",
-    "hp": "22",
+    "displayName": "Wendigo",
+    "hp": "75",
     "legendaryActionCount": 0,
-    "type": "Undead",
-    "speed": "20",
+    "type": "Humanoid",
+    "speed": "60 ft",
     "skills": [
         {
             "skill": "History",
@@ -54,12 +54,12 @@
         {
             "skill": "Performance",
             "expertise": false,
-            "proficient": false
+            "proficient": true
         },
         {
             "skill": "Athletics",
             "expertise": false,
-            "proficient": false
+            "proficient": true
         },
         {
             "skill": "Persuasion",
@@ -89,7 +89,7 @@
         {
             "skill": "Acrobatics",
             "expertise": false,
-            "proficient": false
+            "proficient": true
         },
         {
             "skill": "Arcana",
@@ -114,7 +114,7 @@
         {
             "skill": "Stealth",
             "expertise": false,
-            "proficient": false
+            "proficient": true
         },
         {
             "skill": "Survival",
@@ -134,30 +134,46 @@
     ],
     "abilities": [
         {
-            "name": "Damage Immunities",
-            "description": "Poison"
+            "name": "Resistances",
+            "description": "Cold, poison, bludgeoning, piercing, and slashing damage from nonmagical, nonsilvered weapons; charmed, exhausted, poisoned, frightened conditions"
         },
         {
-            "name": "Condition Immunities",
-            "description": "Poison"
+            "name": "Ambush Predator",
+            "description": "The Wendigo has advantage on attack rolls made against a surprised creature or a creature that cannot see it."
         },
         {
-            "name": "Regeneration",
-            "description": "Recovers 4 hit points at the start of each of it's turns, unless it took radiant damage since it's last turn."
+            "name": "Mimicry",
+            "description": "The Wendigo can mimic sounds it has heard, including voices. A creature that hears the sounds can tell they are imitations with a successful DC 16 Wisdom (Insight) check"
+        },
+        {
+            "name": "Masks of the Wild",
+            "description": "The Wendigo can attempt to hide even when it is only lightly obscured by foilage, heavy rain, falling snow, must, or or other natural phenomena."
+        },
+        {
+            "name": "Cunning Action",
+            "description": "The Wendigo can Dash, Disengage, or Hide as a Bonus action."
+        },
+        {
+            "name": "Punce",
+            "description": "If the Wendigo moves at least 20 feet in a straight line toward a creature then hits it with a claw attack on the same turn, that target must succeed on a DC 16 Strength saving throw or be knocked prone. If the target is knocked prone, the Wendigo can make one bite attack against it as a bonus action."
         }
     ],
     "size": "Medium",
-    "name": "Zombie",
-    "challenge": "1/4",
-    "alignment": "Neutral",
+    "name": "Wendigo",
+    "challenge": "6",
+    "alignment": "Chaotic Evil",
     "actions": [
         {
-            "name": "Slam",
-            "description": "Melee Weapon Attack, +3 to hit, reach 5ft\nHit: (1d6 + 1) Bludgeoning damage"
+            "name": "Multiattack",
+            "description": "The Wendigo makes two attacks, only one of which can be a bite attack."
         },
         {
-            "name": "Claw (Bralwer Only)",
-            "description": "Melee Weapon Attack, +3 to hit, reach 5ft\nHit: 1d8 + 1 slashing damage"
+            "name": "Bite",
+            "description": "Melee Weapon Attack: +7 to hit, reach 5 ft, one target\nHit: 2d8 + 4 piercing damage. On a hit, the target must must succeed on a DC 16 Constitution saving throw or take an additional 2d8 necrotic damage"
+        },
+        {
+            "name": "Claws",
+            "description": "Melee Weapon Attack: +7 to hit, reach 5 ft, one target\nHit: 2d6 + 4 slashing damage"
         }
     ]
 }

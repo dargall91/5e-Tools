@@ -1,25 +1,25 @@
 {
-    "ac": "8",
-    "languages": "Darkvision 60 ft, passive perception 8",
+    "ac": "15",
+    "languages": "Understands common but cannot speak it",
     "senses": "Darkvision 60 ft, passive perception 8",
     "scores": [
         {
-            "score": 13,
+            "score": 18,
             "stat": "STR",
             "proficient": false
         },
         {
-            "score": 6,
+            "score": 10,
             "stat": "DEX",
             "proficient": false
         },
         {
-            "score": 16,
+            "score": 17,
             "stat": "CON",
             "proficient": false
         },
         {
-            "score": 3,
+            "score": 4,
             "stat": "INT",
             "proficient": false
         },
@@ -29,17 +29,17 @@
             "proficient": true
         },
         {
-            "score": 5,
+            "score": 6,
             "stat": "CHA",
             "proficient": false
         }
     ],
     "legendaryActions": [],
     "displayName": "Zombie",
-    "hp": "22",
+    "hp": "97",
     "legendaryActionCount": 0,
     "type": "Undead",
-    "speed": "20",
+    "speed": "30 ft",
     "skills": [
         {
             "skill": "History",
@@ -139,25 +139,33 @@
         },
         {
             "name": "Condition Immunities",
-            "description": "Poison"
+            "description": "charmed, exhaustion, frightened, paralyzed, poisoned"
+        },
+        {
+            "name": "Damage Resistances",
+            "description": "cold, necrotic"
         },
         {
             "name": "Regeneration",
             "description": "Recovers 4 hit points at the start of each of it's turns, unless it took radiant damage since it's last turn."
+        },
+        {
+            "name": "Turn Resistance",
+            "description": "The zombie has advantage on saving throws against any effect that turns undead"
         }
     ],
     "size": "Medium",
-    "name": "Zombie",
-    "challenge": "1/4",
+    "name": "Greater Zombie",
+    "challenge": "5",
     "alignment": "Neutral",
     "actions": [
         {
-            "name": "Slam",
-            "description": "Melee Weapon Attack, +3 to hit, reach 5ft\nHit: (1d6 + 1) Bludgeoning damage"
+            "name": "Multiattack",
+            "description": "The zombie makes two melee attacks"
         },
         {
-            "name": "Claw (Bralwer Only)",
-            "description": "Melee Weapon Attack, +3 to hit, reach 5ft\nHit: 1d8 + 1 slashing damage"
+            "name": "Empowered Slam",
+            "description": "Melee Weapon Attack, +7 to hit, reach 5 ft\nHit: 1d6 + 4 bludgeoning damage plus 2d6 necrotic damage"
         }
     ]
 }

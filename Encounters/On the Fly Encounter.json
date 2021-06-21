@@ -1,10 +1,14 @@
 {
     "name": "On the Fly Encounter",
-    "theme": "Behold the Bearer of Light.mp3",
+    "theme": "Weald.mp3",
     "lairAction": false,
-    "monsterData": [],
-    "playerData": [{
-        "level": 1,
-        "players": 1
-    }]
+    "monsterData": [{
+        "quantity": 1,
+        "initiative": 2,
+        "xp": 5000,
+        "reinforcement": true,
+        "minion": true,
+        "monster": "Everpup"
+    }],
+    "playerData": []
 }

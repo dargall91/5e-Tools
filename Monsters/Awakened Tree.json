@@ -1,10 +1,10 @@
 {
-    "ac": "8",
-    "languages": "Darkvision 60 ft, passive perception 8",
-    "senses": "Darkvision 60 ft, passive perception 8",
+    "ac": "13",
+    "languages": "Common",
+    "senses": "passive perception 10",
     "scores": [
         {
-            "score": 13,
+            "score": 19,
             "stat": "STR",
             "proficient": false
         },
@@ -14,32 +14,32 @@
             "proficient": false
         },
         {
-            "score": 16,
+            "score": 15,
             "stat": "CON",
             "proficient": false
         },
         {
-            "score": 3,
+            "score": 10,
             "stat": "INT",
             "proficient": false
         },
         {
-            "score": 6,
+            "score": 10,
             "stat": "WIS",
-            "proficient": true
+            "proficient": false
         },
         {
-            "score": 5,
+            "score": 7,
             "stat": "CHA",
             "proficient": false
         }
     ],
     "legendaryActions": [],
-    "displayName": "Zombie",
-    "hp": "22",
+    "displayName": "Awakened Tree",
+    "hp": "59",
     "legendaryActionCount": 0,
-    "type": "Undead",
-    "speed": "20",
+    "type": "Plant",
+    "speed": "20 ft",
     "skills": [
         {
             "skill": "History",
@@ -134,30 +134,34 @@
     ],
     "abilities": [
         {
-            "name": "Damage Immunities",
-            "description": "Poison"
+            "name": "Damage Vulnerabilities",
+            "description": "Fire"
         },
         {
-            "name": "Condition Immunities",
-            "description": "Poison"
+            "name": "Damage Resitances",
+            "description": "Bludgeoning, piercing"
         },
         {
-            "name": "Regeneration",
-            "description": "Recovers 4 hit points at the start of each of it's turns, unless it took radiant damage since it's last turn."
+            "name": "False Appearance",
+            "description": "While the tree remains motionless, it is indistinguishable from a normal tree"
         }
     ],
-    "size": "Medium",
-    "name": "Zombie",
-    "challenge": "1/4",
-    "alignment": "Neutral",
+    "size": "Huge",
+    "name": "Awakened Tree",
+    "challenge": "2",
+    "alignment": "unaligned",
     "actions": [
         {
             "name": "Slam",
-            "description": "Melee Weapon Attack, +3 to hit, reach 5ft\nHit: (1d6 + 1) Bludgeoning damage"
+            "description": "Melee Weapon Attack: +6 to hit, reach 10 ft, one target\nHit: 14 (3d6 +4) bludgeoning damage"
         },
         {
-            "name": "Claw (Bralwer Only)",
-            "description": "Melee Weapon Attack, +3 to hit, reach 5ft\nHit: 1d8 + 1 slashing damage"
+            "name": "Roots",
+            "description": "The tree attempts to use its roots to trip a creature. If the tree tries to trip the creature, the creature must succeed on a DC15 Dexterity saving throw or be knocked prone. If the target moved more than its base walking speed on its last turn, the DC becomes 20 instead."
+        },
+        {
+            "name": "Grab",
+            "description": "The tree uses its roots or branches to grapple a creature. Choose a creature within 15 feet of the tree. If the creature is prone, the tree utomatically grapples the creature. Otherwise, the tree makes a Strength (Athletics) check contested by the creature's Strength (Athletics)or Dexterity (Acrobatics) check (the target gets to choose which ability to use). If the tree succeeds, the target is grappled. The tree can release the creature any time, no action required."
         }
     ]
 }

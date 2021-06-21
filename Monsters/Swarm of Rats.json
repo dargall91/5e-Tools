@@ -1,45 +1,45 @@
 {
-    "ac": "8",
-    "languages": "Darkvision 60 ft, passive perception 8",
-    "senses": "Darkvision 60 ft, passive perception 8",
+    "ac": "10",
+    "languages": "None",
+    "senses": "darkvision 30 ft, passive perception 10",
     "scores": [
         {
-            "score": 13,
+            "score": 9,
             "stat": "STR",
             "proficient": false
         },
         {
-            "score": 6,
+            "score": 11,
             "stat": "DEX",
             "proficient": false
         },
         {
-            "score": 16,
+            "score": 9,
             "stat": "CON",
             "proficient": false
         },
         {
-            "score": 3,
+            "score": 2,
             "stat": "INT",
             "proficient": false
         },
         {
-            "score": 6,
+            "score": 10,
             "stat": "WIS",
-            "proficient": true
+            "proficient": false
         },
         {
-            "score": 5,
+            "score": 3,
             "stat": "CHA",
             "proficient": false
         }
     ],
     "legendaryActions": [],
-    "displayName": "Zombie",
-    "hp": "22",
+    "displayName": "Swarm of Rats",
+    "hp": "24",
     "legendaryActionCount": 0,
-    "type": "Undead",
-    "speed": "20",
+    "type": "Beasts",
+    "speed": "30 ft",
     "skills": [
         {
             "skill": "History",
@@ -134,30 +134,28 @@
     ],
     "abilities": [
         {
-            "name": "Damage Immunities",
-            "description": "Poison"
+            "name": "Damage Resistances",
+            "description": "Bludgeoning, piercing, slashing"
         },
         {
             "name": "Condition Immunities",
-            "description": "Poison"
+            "description": "Charmed, firghtened, grappled, paralyzed, prone, restrained, stunned"
         },
         {
-            "name": "Regeneration",
-            "description": "Recovers 4 hit points at the start of each of it's turns, unless it took radiant damage since it's last turn."
+            "name": "Keen Smell",
+            "description": "The rat has advantage on Wisdom (Perception) checks that rely on smell."
+        },
+        {
+            "name": "Swarm",
+            "description": "The swarm can occupy another creature's space and vice versa, and the swarm can move through any opening large enough for a Tiny rat. The swarm can't regain hit points or gain temporary hit points."
         }
     ],
-    "size": "Medium",
-    "name": "Zombie",
+    "size": "Medium swarm of tiny",
+    "name": "Swarm of Rats",
     "challenge": "1/4",
-    "alignment": "Neutral",
-    "actions": [
-        {
-            "name": "Slam",
-            "description": "Melee Weapon Attack, +3 to hit, reach 5ft\nHit: (1d6 + 1) Bludgeoning damage"
-        },
-        {
-            "name": "Claw (Bralwer Only)",
-            "description": "Melee Weapon Attack, +3 to hit, reach 5ft\nHit: 1d8 + 1 slashing damage"
-        }
-    ]
+    "alignment": "Unaligned",
+    "actions": [{
+        "name": "Bites",
+        "description": "Melee Weapon Attack: +2 to hit, reach 0 ft, one creature in the swarm's space\nHit: 2d6 piercing damage, or 1d6 piercing damage if the swarm has half of its hit points or fewer"
+    }]
 }

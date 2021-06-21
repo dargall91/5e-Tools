@@ -1,15 +1,15 @@
 {
-    "ac": "8",
-    "languages": "Darkvision 60 ft, passive perception 8",
+    "ac": "13",
+    "languages": "Common Giant",
     "senses": "Darkvision 60 ft, passive perception 8",
     "scores": [
         {
-            "score": 13,
+            "score": 19,
             "stat": "STR",
             "proficient": false
         },
         {
-            "score": 6,
+            "score": 8,
             "stat": "DEX",
             "proficient": false
         },
@@ -19,27 +19,27 @@
             "proficient": false
         },
         {
-            "score": 3,
+            "score": 5,
             "stat": "INT",
             "proficient": false
         },
         {
-            "score": 6,
+            "score": 7,
             "stat": "WIS",
-            "proficient": true
+            "proficient": false
         },
         {
-            "score": 5,
+            "score": 7,
             "stat": "CHA",
             "proficient": false
         }
     ],
     "legendaryActions": [],
-    "displayName": "Zombie",
-    "hp": "22",
+    "displayName": "Ogre",
+    "hp": "59",
     "legendaryActionCount": 0,
-    "type": "Undead",
-    "speed": "20",
+    "type": "Giant",
+    "speed": "40 ft",
     "skills": [
         {
             "skill": "History",
@@ -132,32 +132,16 @@
             "proficient": false
         }
     ],
-    "abilities": [
-        {
-            "name": "Damage Immunities",
-            "description": "Poison"
-        },
-        {
-            "name": "Condition Immunities",
-            "description": "Poison"
-        },
-        {
-            "name": "Regeneration",
-            "description": "Recovers 4 hit points at the start of each of it's turns, unless it took radiant damage since it's last turn."
-        }
-    ],
-    "size": "Medium",
-    "name": "Zombie",
-    "challenge": "1/4",
-    "alignment": "Neutral",
-    "actions": [
-        {
-            "name": "Slam",
-            "description": "Melee Weapon Attack, +3 to hit, reach 5ft\nHit: (1d6 + 1) Bludgeoning damage"
-        },
-        {
-            "name": "Claw (Bralwer Only)",
-            "description": "Melee Weapon Attack, +3 to hit, reach 5ft\nHit: 1d8 + 1 slashing damage"
-        }
-    ]
+    "abilities": [{
+        "name": "Howdah",
+        "description": "The ogre carries a compact fort on its back. Up to 4 small creatures can each ride in the forst without squeezing. To make a melee attack from the fort, they must use spears or weapons with reach. Creatures in the fort have three-quarters cover against attacks and effects from outside it. If the ogre dies, creatures in the fort are places in unoccupised spaces within 5 feet of the ogre."
+    }],
+    "size": "Large",
+    "name": "Ogre Howdah",
+    "challenge": "2",
+    "alignment": "Chaotic Evil",
+    "actions": [{
+        "name": "Mace",
+        "description": "Melee Weapon Attack: +6 to hit, reach 5 ft, one target\nHit: 11 (2d6 + 4) Bludgeoning damage"
+    }]
 }

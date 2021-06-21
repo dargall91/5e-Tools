@@ -1,32 +1,32 @@
 {
-    "ac": "8",
-    "languages": "Darkvision 60 ft, passive perception 8",
-    "senses": "Darkvision 60 ft, passive perception 8",
+    "ac": "13",
+    "languages": "Understands all languages it knew in life but can't speak",
+    "senses": "Darkvision 60 ft, passive perception 9",
     "scores": [
         {
-            "score": 13,
+            "score": 10,
             "stat": "STR",
             "proficient": false
         },
         {
-            "score": 6,
+            "score": 14,
             "stat": "DEX",
             "proficient": false
         },
         {
-            "score": 16,
+            "score": 15,
             "stat": "CON",
             "proficient": false
         },
         {
-            "score": 3,
+            "score": 6,
             "stat": "INT",
             "proficient": false
         },
         {
-            "score": 6,
+            "score": 8,
             "stat": "WIS",
-            "proficient": true
+            "proficient": false
         },
         {
             "score": 5,
@@ -35,11 +35,11 @@
         }
     ],
     "legendaryActions": [],
-    "displayName": "Zombie",
-    "hp": "22",
+    "displayName": "Skeleton",
+    "hp": "13",
     "legendaryActionCount": 0,
     "type": "Undead",
-    "speed": "20",
+    "speed": "30 ft",
     "skills": [
         {
             "skill": "History",
@@ -134,30 +134,30 @@
     ],
     "abilities": [
         {
+            "name": "Damage Vulverabilities",
+            "description": "Bludgeoning"
+        },
+        {
             "name": "Damage Immunities",
             "description": "Poison"
         },
         {
-            "name": "Condition Immunities",
-            "description": "Poison"
-        },
-        {
-            "name": "Regeneration",
-            "description": "Recovers 4 hit points at the start of each of it's turns, unless it took radiant damage since it's last turn."
+            "name": "Condition Immunitites",
+            "description": "Exhaustion, poisoned"
         }
     ],
     "size": "Medium",
-    "name": "Zombie",
+    "name": "Skeleton",
     "challenge": "1/4",
-    "alignment": "Neutral",
+    "alignment": "Lawful Evil",
     "actions": [
         {
-            "name": "Slam",
-            "description": "Melee Weapon Attack, +3 to hit, reach 5ft\nHit: (1d6 + 1) Bludgeoning damage"
+            "name": "Shortsword",
+            "description": "Melee Weapon Attack: +4 to hit, reach 5 ft, one target\nHit: 1d6 + 2 piercing damage"
         },
         {
-            "name": "Claw (Bralwer Only)",
-            "description": "Melee Weapon Attack, +3 to hit, reach 5ft\nHit: 1d8 + 1 slashing damage"
+            "name": "Shortbow",
+            "description": "Melee Weapon Attack: +4 to hit, range 80/320 ft, one target\nHit: 1d6 + 2 piercing damage"
         }
     ]
 }

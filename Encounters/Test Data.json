@@ -1,6 +1,7 @@
 {
     "name": "Test Data",
     "theme": "Behold the Bearer of Light.mp3",
+    "lairAction": true,
     "monsterData": [
         {
             "quantity": 4,
@@ -21,14 +22,14 @@
         {
             "quantity": 2,
             "initiative": 1,
-            "xp": 0,
+            "xp": 25,
             "reinforcement": false,
             "minion": true,
             "monster": "Kobold"
         },
         {
             "quantity": 1,
-            "initiative": 5,
+            "initiative": 1,
             "xp": 0,
             "reinforcement": false,
             "minion": false,
@@ -44,6 +45,5 @@
             "level": 2,
             "players": 1
         }
-    ],
-    "lairAction": false
+    ]
 }

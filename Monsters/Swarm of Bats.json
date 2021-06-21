@@ -1,45 +1,45 @@
 {
-    "ac": "8",
-    "languages": "Darkvision 60 ft, passive perception 8",
-    "senses": "Darkvision 60 ft, passive perception 8",
+    "ac": "12",
+    "languages": "none",
+    "senses": "Blindsight 60 ft, passive perception 11",
     "scores": [
         {
-            "score": 13,
+            "score": 5,
             "stat": "STR",
             "proficient": false
         },
         {
-            "score": 6,
+            "score": 15,
             "stat": "DEX",
             "proficient": false
         },
         {
-            "score": 16,
+            "score": 10,
             "stat": "CON",
             "proficient": false
         },
         {
-            "score": 3,
+            "score": 2,
             "stat": "INT",
             "proficient": false
         },
         {
-            "score": 6,
+            "score": 12,
             "stat": "WIS",
-            "proficient": true
+            "proficient": false
         },
         {
-            "score": 5,
+            "score": 4,
             "stat": "CHA",
             "proficient": false
         }
     ],
     "legendaryActions": [],
-    "displayName": "Zombie",
+    "displayName": "Swarm of Bats",
     "hp": "22",
     "legendaryActionCount": 0,
-    "type": "Undead",
-    "speed": "20",
+    "type": "Swarm of tiny beasts",
+    "speed": "0ft, fly 30 ft",
     "skills": [
         {
             "skill": "History",
@@ -134,30 +134,32 @@
     ],
     "abilities": [
         {
-            "name": "Damage Immunities",
-            "description": "Poison"
+            "name": "Damage Resistances",
+            "description": "Bludgeoning, piercing, slashing"
         },
         {
             "name": "Condition Immunities",
-            "description": "Poison"
+            "description": "Charmed, frightened, grappled, paralyzed, petrified, prone, restrained, stunned"
         },
         {
-            "name": "Regeneration",
-            "description": "Recovers 4 hit points at the start of each of it's turns, unless it took radiant damage since it's last turn."
+            "name": "Echolocation",
+            "description": "The swarm can't use its blindsight while defeaned"
+        },
+        {
+            "name": "Keen Hearing",
+            "description": "The swarm has advantage on Wisdom (Perception) checks that rely on hearing"
+        },
+        {
+            "name": "Swarm",
+            "description": "The swarm can occupy another creature's space and vice versa, and the swarm can move through any opening large enough for a Tiny bat. The swarm can't regain hit points or gain temporary hit points."
         }
     ],
     "size": "Medium",
-    "name": "Zombie",
+    "name": "Swarm of Bats",
     "challenge": "1/4",
-    "alignment": "Neutral",
-    "actions": [
-        {
-            "name": "Slam",
-            "description": "Melee Weapon Attack, +3 to hit, reach 5ft\nHit: (1d6 + 1) Bludgeoning damage"
-        },
-        {
-            "name": "Claw (Bralwer Only)",
-            "description": "Melee Weapon Attack, +3 to hit, reach 5ft\nHit: 1d8 + 1 slashing damage"
-        }
-    ]
+    "alignment": "Unaligned",
+    "actions": [{
+        "name": "Bites",
+        "description": "Melee Weapon Attack: +4 to hit, reach 0 ft, one creature in the swarm's space\nHit: 5 (2d4) piercing damage, or 2 (1d4) piercing damage if the swarm has half of its hit points or fewer"
+    }]
 }

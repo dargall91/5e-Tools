@@ -1,45 +1,45 @@
 {
-    "ac": "8",
-    "languages": "Darkvision 60 ft, passive perception 8",
-    "senses": "Darkvision 60 ft, passive perception 8",
+    "ac": "10",
+    "languages": "Aquan, Ignan",
+    "senses": "passive perception 10",
     "scores": [
         {
-            "score": 13,
+            "score": 5,
             "stat": "STR",
             "proficient": false
         },
         {
-            "score": 6,
+            "score": 11,
             "stat": "DEX",
             "proficient": false
         },
         {
-            "score": 16,
+            "score": 10,
             "stat": "CON",
             "proficient": false
         },
         {
-            "score": 3,
+            "score": 11,
             "stat": "INT",
             "proficient": false
         },
         {
-            "score": 6,
+            "score": 10,
             "stat": "WIS",
-            "proficient": true
+            "proficient": false
         },
         {
-            "score": 5,
+            "score": 12,
             "stat": "CHA",
             "proficient": false
         }
     ],
     "legendaryActions": [],
-    "displayName": "Zombie",
-    "hp": "22",
+    "displayName": "Steam Imp",
+    "hp": "21",
     "legendaryActionCount": 0,
-    "type": "Undead",
-    "speed": "20",
+    "type": "Elemental",
+    "speed": "30 ft, fly 30 ft",
     "skills": [
         {
             "skill": "History",
@@ -134,30 +134,26 @@
     ],
     "abilities": [
         {
-            "name": "Damage Immunities",
-            "description": "Poison"
+            "name": "Death Burst",
+            "description": "When the mephit dies, it explodes in a cloud of steam. Each creature within 5 feet of the mephit must succeed on a DC 10 Dexterity saving throw or take 1d8 fire damage, (or half as much on a successful one.)"
         },
         {
-            "name": "Condition Immunities",
-            "description": "Poison"
-        },
-        {
-            "name": "Regeneration",
-            "description": "Recovers 4 hit points at the start of each of it's turns, unless it took radiant damage since it's last turn."
+            "name": "Innate Spellcasting (1/Day)",
+            "description": "The mephit can innately cast blur, requiring no material components. Its innate spellcasting ability is Charisma."
         }
     ],
-    "size": "Medium",
-    "name": "Zombie",
+    "size": "Small",
+    "name": "Mephit (Steam)",
     "challenge": "1/4",
-    "alignment": "Neutral",
+    "alignment": "Neutral evil",
     "actions": [
         {
-            "name": "Slam",
-            "description": "Melee Weapon Attack, +3 to hit, reach 5ft\nHit: (1d6 + 1) Bludgeoning damage"
+            "name": "Claws",
+            "description": "Melee Weapon Attack: +2 to hit, reach 5 ft, one creatire\nHit: 1d4 Slashing plus 1d4 fire damage"
         },
         {
-            "name": "Claw (Bralwer Only)",
-            "description": "Melee Weapon Attack, +3 to hit, reach 5ft\nHit: 1d8 + 1 slashing damage"
+            "name": "Steam Breath (Recharge 6)",
+            "description": "The mephit exhales a 15-foot cone of scaling steam. Each creature in that area must succeed on a DC 10 Dexterity saving throw, taking 1d8 fire damage on a failed save, or half as much on a successful one."
         }
     ]
 }

@@ -1,35 +1,43 @@
 {
-    "name": "Markov Manor",
-    "theme": "Behold the Bearer of Light.mp3",
+    "name": "Entrance to Manor",
+    "theme": "The Dark Amulet.mp3",
     "lairAction": false,
     "monsterData": [
         {
             "quantity": 1,
-            "initiative": 9,
+            "initiative": 16,
+            "xp": 200,
+            "reinforcement": false,
+            "minion": false,
+            "monster": "Undead Boar"
+        },
+        {
+            "quantity": 2,
+            "initiative": 19,
             "xp": 50,
             "reinforcement": false,
             "minion": false,
             "monster": "Zombie"
         },
         {
-            "quantity": 1,
-            "initiative": 18,
+            "quantity": 2,
+            "initiative": 10,
             "xp": 50,
             "reinforcement": false,
             "minion": false,
             "monster": "Zombie"
         },
         {
-            "quantity": 1,
-            "initiative": 1,
+            "quantity": 2,
+            "initiative": 6,
             "xp": 50,
             "reinforcement": false,
             "minion": false,
             "monster": "Zombie"
         },
         {
-            "quantity": 1,
-            "initiative": 11,
+            "quantity": 2,
+            "initiative": 15,
             "xp": 50,
             "reinforcement": false,
             "minion": false,
@@ -38,12 +46,12 @@
     ],
     "playerData": [
         {
-            "level": 3,
-            "players": 3
+            "level": 6,
+            "players": 2
         },
         {
-            "level": 1,
-            "players": 1
+            "level": 7,
+            "players": 2
         }
     ]
 }

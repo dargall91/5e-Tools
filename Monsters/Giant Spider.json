@@ -1,45 +1,45 @@
 {
-    "ac": "8",
-    "languages": "Darkvision 60 ft, passive perception 8",
-    "senses": "Darkvision 60 ft, passive perception 8",
+    "ac": "14",
+    "languages": "none",
+    "senses": "Blindsight 10 ft, darkvision 60 ft, passive perception 10",
     "scores": [
         {
-            "score": 13,
+            "score": 14,
             "stat": "STR",
             "proficient": false
         },
         {
-            "score": 6,
+            "score": 16,
             "stat": "DEX",
             "proficient": false
         },
         {
-            "score": 16,
+            "score": 12,
             "stat": "CON",
             "proficient": false
         },
         {
-            "score": 3,
+            "score": 2,
             "stat": "INT",
             "proficient": false
         },
         {
-            "score": 6,
+            "score": 11,
             "stat": "WIS",
-            "proficient": true
+            "proficient": false
         },
         {
-            "score": 5,
+            "score": 4,
             "stat": "CHA",
             "proficient": false
         }
     ],
     "legendaryActions": [],
-    "displayName": "Zombie",
-    "hp": "22",
+    "displayName": "Giant Spider",
+    "hp": "26",
     "legendaryActionCount": 0,
-    "type": "Undead",
-    "speed": "20",
+    "type": "Beast",
+    "speed": "30 ft, climb 30 ft",
     "skills": [
         {
             "skill": "History",
@@ -114,7 +114,7 @@
         {
             "skill": "Stealth",
             "expertise": false,
-            "proficient": false
+            "proficient": true
         },
         {
             "skill": "Survival",
@@ -134,30 +134,30 @@
     ],
     "abilities": [
         {
-            "name": "Damage Immunities",
-            "description": "Poison"
+            "name": "Spider Climb",
+            "description": "The spider can climb difficult surfaces, including upside down on ceilings, without needing to make an ability check"
         },
         {
-            "name": "Condition Immunities",
-            "description": "Poison"
+            "name": "Web Sense",
+            "description": "While in contact with a web, the spider knows the exact location of any other creature in contact with the same web"
         },
         {
-            "name": "Regeneration",
-            "description": "Recovers 4 hit points at the start of each of it's turns, unless it took radiant damage since it's last turn."
+            "name": "Web Walker",
+            "description": "The spider ignores movement restrictions caused by webbing"
         }
     ],
-    "size": "Medium",
-    "name": "Zombie",
-    "challenge": "1/4",
-    "alignment": "Neutral",
+    "size": "Large",
+    "name": "Giant Spider",
+    "challenge": "1",
+    "alignment": "Unaligned",
     "actions": [
         {
-            "name": "Slam",
-            "description": "Melee Weapon Attack, +3 to hit, reach 5ft\nHit: (1d6 + 1) Bludgeoning damage"
+            "name": "Bite",
+            "description": "Melee Weapon Attack: +5 to hit, reach 5ft, one creature\nHit: 7 (1d8 +3) piercing damage, and the target must make a DC 11 Constitution saving throw or take 9 (2d8) poison damage on a failed save, or half as much on a successful one. If the poison damage reduces the target to 0 hit points, the target is stable but poisoned for 1 hour, even after regaining hit points, and is paralyzed while poisond this way."
         },
         {
-            "name": "Claw (Bralwer Only)",
-            "description": "Melee Weapon Attack, +3 to hit, reach 5ft\nHit: 1d8 + 1 slashing damage"
+            "name": "Web (Recharge 5-6)",
+            "description": "Raged Weapon Attack: +5 to hit, range 30/60 ft, one creature\nHit: The target is restrained by webbing. As an action, the restrained target can make a DC 12 Strength check, bursting through the webbing on a success. The webbing can also be destroyed (AC 10; HP 5; vulnerability to fire damage, imunity to bludgeoning, poison, and psychic damage)."
         }
     ]
 }

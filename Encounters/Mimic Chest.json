@@ -1,0 +1,27 @@
+{
+    "name": "Mimic Chest",
+    "theme": "Combat in the Ruins.mp3",
+    "lairAction": false,
+    "monsterData": [{
+        "quantity": 1,
+        "initiative": 1,
+        "xp": 450,
+        "reinforcement": false,
+        "minion": false,
+        "monster": "Mimic"
+    }],
+    "playerData": [
+        {
+            "level": 1,
+            "players": 1
+        },
+        {
+            "level": 1,
+            "players": 2
+        },
+        {
+            "level": 1,
+            "players": 2
+        }
+    ]
+}

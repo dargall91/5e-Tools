@@ -1,0 +1,37 @@
+{
+    "name": "Area 14",
+    "theme": "Combat in the Ruins - Hallway.mp3",
+    "lairAction": false,
+    "monsterData": [
+        {
+            "quantity": 2,
+            "initiative": 13,
+            "xp": 50,
+            "reinforcement": false,
+            "minion": false,
+            "monster": "Mephit (Steam)"
+        },
+        {
+            "quantity": 2,
+            "initiative": 18,
+            "xp": 100,
+            "reinforcement": false,
+            "minion": false,
+            "monster": "Mephit (Ice)"
+        }
+    ],
+    "playerData": [
+        {
+            "level": 8,
+            "players": 2
+        },
+        {
+            "level": 9,
+            "players": 2
+        },
+        {
+            "level": 10,
+            "players": 1
+        }
+    ]
+}

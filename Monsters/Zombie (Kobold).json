@@ -1,15 +1,15 @@
 {
-    "ac": "8",
+    "ac": "11",
     "languages": "Darkvision 60 ft, passive perception 8",
     "senses": "Darkvision 60 ft, passive perception 8",
     "scores": [
         {
-            "score": 13,
+            "score": 8,
             "stat": "STR",
             "proficient": false
         },
         {
-            "score": 6,
+            "score": 13,
             "stat": "DEX",
             "proficient": false
         },
@@ -35,7 +35,7 @@
         }
     ],
     "legendaryActions": [],
-    "displayName": "Zombie",
+    "displayName": "Zombie (Kobold)",
     "hp": "22",
     "legendaryActionCount": 0,
     "type": "Undead",
@@ -147,17 +147,17 @@
         }
     ],
     "size": "Medium",
-    "name": "Zombie",
+    "name": "Zombie (Kobold)",
     "challenge": "1/4",
     "alignment": "Neutral",
     "actions": [
         {
-            "name": "Slam",
-            "description": "Melee Weapon Attack, +3 to hit, reach 5ft\nHit: (1d6 + 1) Bludgeoning damage"
+            "name": "Claws",
+            "description": "Melee Weapon Attack, +3 to hit, reach 5ft\nHit: 1d6 + 1 Slashing damage"
         },
         {
-            "name": "Claw (Bralwer Only)",
-            "description": "Melee Weapon Attack, +3 to hit, reach 5ft\nHit: 1d8 + 1 slashing damage"
+            "name": "Tail",
+            "description": "Melee Weapon Attack, +3 to hit, reach 5ft\nHit: 1d8 + 1 bludgeoning damage"
         }
     ]
 }

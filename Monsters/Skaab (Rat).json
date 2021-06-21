@@ -1,15 +1,15 @@
 {
-    "ac": "8",
-    "languages": "Darkvision 60 ft, passive perception 8",
-    "senses": "Darkvision 60 ft, passive perception 8",
+    "ac": "12",
+    "languages": "Understands common and draconic but can't speak",
+    "senses": "Darkvision 60 ft, passive perception 10",
     "scores": [
         {
-            "score": 13,
+            "score": 14,
             "stat": "STR",
             "proficient": false
         },
         {
-            "score": 6,
+            "score": 16,
             "stat": "DEX",
             "proficient": false
         },
@@ -19,27 +19,27 @@
             "proficient": false
         },
         {
-            "score": 3,
+            "score": 6,
             "stat": "INT",
             "proficient": false
         },
         {
-            "score": 6,
+            "score": 10,
             "stat": "WIS",
-            "proficient": true
+            "proficient": false
         },
         {
-            "score": 5,
+            "score": 4,
             "stat": "CHA",
             "proficient": false
         }
     ],
     "legendaryActions": [],
-    "displayName": "Zombie",
-    "hp": "22",
+    "displayName": "Skaab (Rat)",
+    "hp": "39",
     "legendaryActionCount": 0,
-    "type": "Undead",
-    "speed": "20",
+    "type": "Construct",
+    "speed": "30 ft",
     "skills": [
         {
             "skill": "History",
@@ -135,29 +135,43 @@
     "abilities": [
         {
             "name": "Damage Immunities",
-            "description": "Poison"
+            "description": "Lightning, poison; bludgeoning, piercing, and slashing from nonmagical attacks not made with silvered weapons"
         },
         {
             "name": "Condition Immunities",
-            "description": "Poison"
+            "description": "Charmed, exhaustion, frightened, paralyzed, petrified, poisoned"
         },
         {
-            "name": "Regeneration",
-            "description": "Recovers 4 hit points at the start of each of it's turns, unless it took radiant damage since it's last turn."
+            "name": "Beserk",
+            "description": "Whenever the golem starts its turn with 15 or fewer hit points, roll a d6. On a 6, the golem goes berserk. While beserk, the golem attacks the nearest creature it can see each turn. If no creature is near enough, it attacks an object, favoring objects smaller than itself. It remains berserk until it is destroyed or regains all of its hit points.\nThe golem's creator, if within 60 feet of the beserk golem, can try to calm it by speaking firmly and persuasively. The golem must be able to hear its creator, who must take an action to make a DC 15 Charisma (Persuasion) check. If the check succeeds, the golem ceases to be beserk. If it takes damage again while still at 15 hit points or fewer, the golem might go beserk again."
+        },
+        {
+            "name": "Aversion of Fire",
+            "description": "If the golem takes fire damage, it has disadvantage on attack rolls and ability checks until the end of its turn."
+        },
+        {
+            "name": "Immutable Form",
+            "description": "The golem is immune to any spell or effect that would alter its form"
+        },
+        {
+            "name": "Lightning Absorption",
+            "description": "Whenever the golem is subjected to lightning damage, it takes no damage and instead regains a number of hit points equal to the lightning damage dealt"
+        },
+        {
+            "name": "Magic Resistance",
+            "description": "The golem has advantage on saving throws against spells and other magical effects"
+        },
+        {
+            "name": "Magic Weapons",
+            "description": "The golem's weapon attacks are magical"
         }
     ],
-    "size": "Medium",
-    "name": "Zombie",
-    "challenge": "1/4",
+    "size": "Small",
+    "name": "Skaab (Rat)",
+    "challenge": "3",
     "alignment": "Neutral",
-    "actions": [
-        {
-            "name": "Slam",
-            "description": "Melee Weapon Attack, +3 to hit, reach 5ft\nHit: (1d6 + 1) Bludgeoning damage"
-        },
-        {
-            "name": "Claw (Bralwer Only)",
-            "description": "Melee Weapon Attack, +3 to hit, reach 5ft\nHit: 1d8 + 1 slashing damage"
-        }
-    ]
+    "actions": [{
+        "name": "Claw",
+        "description": "Melee Weapon Attack: +6 to hit, reach 5 ft., one target\nHit: 2d6 + 4 bludgeoning damage"
+    }]
 }

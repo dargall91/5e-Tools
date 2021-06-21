@@ -1,45 +1,45 @@
 {
-    "ac": "8",
-    "languages": "Darkvision 60 ft, passive perception 8",
-    "senses": "Darkvision 60 ft, passive perception 8",
+    "ac": "11",
+    "languages": "Common, Abyssal",
+    "senses": "passive perception 9",
     "scores": [
         {
-            "score": 13,
+            "score": 15,
             "stat": "STR",
             "proficient": false
         },
         {
-            "score": 6,
+            "score": 12,
             "stat": "DEX",
             "proficient": false
         },
         {
-            "score": 16,
+            "score": 13,
             "stat": "CON",
             "proficient": false
         },
         {
-            "score": 3,
+            "score": 9,
             "stat": "INT",
             "proficient": false
         },
         {
-            "score": 6,
+            "score": 8,
             "stat": "WIS",
-            "proficient": true
+            "proficient": false
         },
         {
-            "score": 5,
+            "score": 11,
             "stat": "CHA",
             "proficient": false
         }
     ],
     "legendaryActions": [],
-    "displayName": "Zombie",
-    "hp": "22",
+    "displayName": "Cultist",
+    "hp": "33",
     "legendaryActionCount": 0,
-    "type": "Undead",
-    "speed": "20",
+    "type": "Humanoid",
+    "speed": "30 ft",
     "skills": [
         {
             "skill": "History",
@@ -134,30 +134,30 @@
     ],
     "abilities": [
         {
-            "name": "Damage Immunities",
-            "description": "Poison"
+            "name": "Dark Devotion",
+            "description": "The cultist has advantage on saving throws against being charmed or frightened."
         },
         {
-            "name": "Condition Immunities",
-            "description": "Poison"
+            "name": "Rend for the Old God",
+            "description": "When the cultist scores a hit with a melee weapon attack on a target, its melee weapon attacks have advantage on that target until the beginning of its next turn."
         },
         {
-            "name": "Regeneration",
-            "description": "Recovers 4 hit points at the start of each of it's turns, unless it took radiant damage since it's last turn."
+            "name": "Mark of Madness",
+            "description": "The cultist gains a +1 bonus to all attack and damage rolls made against a creature that has gained stress since the beginning of the cultist's last turn."
         }
     ],
     "size": "Medium",
-    "name": "Zombie",
-    "challenge": "1/4",
-    "alignment": "Neutral",
+    "name": "Cultist Brawler",
+    "challenge": "1/2",
+    "alignment": "Neutral evil",
     "actions": [
         {
-            "name": "Slam",
-            "description": "Melee Weapon Attack, +3 to hit, reach 5ft\nHit: (1d6 + 1) Bludgeoning damage"
+            "name": "Multiattack",
+            "description": "The cultist makes 2 claw attacks."
         },
         {
-            "name": "Claw (Bralwer Only)",
-            "description": "Melee Weapon Attack, +3 to hit, reach 5ft\nHit: 1d8 + 1 slashing damage"
+            "name": "Claw",
+            "description": "Melee Weapon Attack: +4 to hit, reach 5ft, one target\nHit: 6 (1d8 +2) slashing damage"
         }
     ]
 }

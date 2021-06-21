@@ -1,6 +1,7 @@
 {
     "name": "Water Spring",
     "theme": "Mournweald Encounter.mp3",
+    "lairAction": false,
     "monsterData": [{
         "quantity": 1,
         "initiative": 12,
@@ -9,11 +10,8 @@
         "minion": false,
         "monster": "Dark Unicorn"
     }],
-    "playerData": [
-        {
-            "level": 3,
-            "players": 3
-        }
-    ],
-    "lairAction": false
+    "playerData": [{
+        "level": 3,
+        "players": 3
+    }]
 }

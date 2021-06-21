@@ -1,0 +1,167 @@
+{
+    "ac": "15",
+    "languages": "Sylvan, but can aslo speak through one of it's Marionette's by telling it what to say",
+    "senses": "Darkvision 120 ft, passive perception 15",
+    "scores": [
+        {
+            "score": 18,
+            "stat": "STR",
+            "proficient": false
+        },
+        {
+            "score": 10,
+            "stat": "DEX",
+            "proficient": false
+        },
+        {
+            "score": 14,
+            "stat": "CON",
+            "proficient": false
+        },
+        {
+            "score": 15,
+            "stat": "INT",
+            "proficient": false
+        },
+        {
+            "score": 17,
+            "stat": "WIS",
+            "proficient": true
+        },
+        {
+            "score": 22,
+            "stat": "CHA",
+            "proficient": true
+        }
+    ],
+    "legendaryActions": [],
+    "displayName": "Kindercatch",
+    "hp": "75",
+    "legendaryActionCount": 0,
+    "type": "Spirit",
+    "speed": "30 ft",
+    "skills": [
+        {
+            "skill": "History",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Perception",
+            "expertise": false,
+            "proficient": true
+        },
+        {
+            "skill": "Performance",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Athletics",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Persuasion",
+            "expertise": true,
+            "proficient": true
+        },
+        {
+            "skill": "Intimidation",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Insight",
+            "expertise": false,
+            "proficient": true
+        },
+        {
+            "skill": "Religion",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Sleight of Hand",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Acrobatics",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Arcana",
+            "expertise": true,
+            "proficient": true
+        },
+        {
+            "skill": "Animal Handling",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Deception",
+            "expertise": false,
+            "proficient": true
+        },
+        {
+            "skill": "Medicine",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Stealth",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Survival",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Nature",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Investigation",
+            "expertise": false,
+            "proficient": false
+        }
+    ],
+    "abilities": [
+        {
+            "name": "Innate Spellcasting",
+            "description": "Uses Charisma, DC 16, +8\n\nAt Will: Charm Person, Suggestion, Friends, Moonbeam, Tasha's Hideous Laughter\n3/Day each: Sleep, Charm Person, Mass Suggestion, Hold Person"
+        },
+        {
+            "name": "Puppeteer",
+            "description": "The Kindercatch can magically control up to 3 (2?) Marionettes. If the Kindercatch dies, the souls of the children trapped in the Marionette are freed, and falls lifeless to the ground. As an action, the Kindercatch can gain control of one uncontrolled Marionette it can see within 120 feet, provided it has at least one child's soul inside of it already."
+        },
+        {
+            "name": "Friendship (3/day)",
+            "description": "The Kindercatch targets one creature it can see within 60 feet. The target must succeed on a DC 16 Wisdom saving throw or be magically charmed by the Kindercatch until the Kindercatch dies. The charmed creature is under the Kindercatch's control and can't take reactions. Whenever the charmed creature takes damage, it can repeat this saving throw, ending the effect on a success. A creature that has ingested a bitter herb, such as Ginger Root or wormwood, within the last 24 hours, automaticaly succeeds on this saving throw."
+        }
+    ],
+    "size": "Large",
+    "name": "Kindercatch",
+    "challenge": "3",
+    "alignment": "Lawful Evil",
+    "actions": [
+        {
+            "name": "Multiattack",
+            "description": "The Kindercatch makes two attacks with its claws"
+        },
+        {
+            "name": "Claws",
+            "description": "Melee Weapon Attack: +6 to hit, reach 5 ft, one target\nHit: (11) 2d6 +4 Slashing damage"
+        },
+        {
+            "name": "Soul Absorbtion",
+            "description": "One target creature the Kindercatch can see within 60 feet must succeed on a DC 16 Wisdom saving throw or take (10) 3d6 psychic damage, healing itself by the amount of psychic damage inflicted. If the Kindercatch reduces a cretaure to 0 hit points this way, it dies instantly, as the Kindercatch steals its soul."
+        }
+    ]
+}

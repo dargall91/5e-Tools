@@ -35,7 +35,7 @@
         }
     ],
     "legendaryActions": [],
-    "displayName": "",
+    "displayName": "Avacyn",
     "hp": "0",
     "legendaryActionCount": 0,
     "type": "",
@@ -82,12 +82,12 @@
             "proficient": false
         },
         {
-            "skill": "Acrobatics",
+            "skill": "Sleight of Hand",
             "expertise": false,
             "proficient": false
         },
         {
-            "skill": "Sleight of Hand",
+            "skill": "Acrobatics",
             "expertise": false,
             "proficient": false
         },
@@ -135,7 +135,7 @@
     "abilities": [],
     "size": "",
     "name": "Avacyn",
-    "challenge": "-1",
+    "challenge": "30",
     "alignment": "",
     "actions": []
 }
