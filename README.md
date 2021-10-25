@@ -1,4 +1,4 @@
-5e Tools is a tool suite me, a Dungeon Master running a 5th Edition Dungeons and Dragons campaign, where I can manage various things needed to run the game all in one convenient application. This repo is for the server. [The Desktop version of the client application can be found here.](https://github.com/dargall91/5e-Tools-DesktopClient) [The Android version of the client application can be found here.](https://github.com/dargall91/5e-Tools-AndroidClient)
+5e Tools is a tool suite for me, a Dungeon Master running a 5th Edition Dungeons & Dragons campaign, where I can manage various things needed to run the game all in one convenient application. This repo is for the server application. [The Desktop version of the client application can be found here.](https://github.com/dargall91/5e-Tools-DesktopClient) [The Android version of the client application can be found here.](https://github.com/dargall91/5e-Tools-AndroidClient)
 
 How does 5e Tools work?
 Monsters and Combat Scenarios (AKA Encounters) are created on the client applications and saved on a server so that the data can be accessed from either application. When a Combat Scenario begins, the server will play a combat theme on the connected TV and dsiplay the turn order of all the player characters and monsters involved for easy reference by my players. When the encounter ends, the music will stop, and turn order display will close. Additionally, I have added a soundboard to the client that I use to play sound effects when certain events occur, such as critical hits, or when a monster is killed.
@@ -20,16 +20,16 @@ Features
    - Monsters can be marked as invisible, which means that they start the encounter hidden from the players until they have been spotted (feature not yet added)
  - Manage Player Characters
    - Tracks a character's Armor Class (that is, how easy the character is to hit) and initiative bonus (used for breaking ties in turn order) for quick reference by me
-   - When a combat scenario begins, characters from this list be selected to participate in the encounter
+   - When a combat scenario begins, characters from this list will be selected to participate in the encounter
  - Run Combat Scenarios
    - Plays the battle track selected when creating the encounter on a TV to which the server is connected
    - After getting all of my player's initative rolls, any ties will be resolved, then the turn order will be displayed on the Tv so my players can easily reference it
    - The client application will also display the turn order, as well as a few neccessary stats for all involved combatatants for easy tracking by me
    - When a monster is killed or added to the encounter, the lists on the TV and client will be updaded accordingly
-   - Combat can be ended from the client, which stops th emusic, and removes the turn order screen from the TV
+   - Combat can be ended from the client, which stops the music, and removes the turn order screen from the TV
  - Sound Effects
    - The client contains a sound board for sound effects
-   - There are several buttons that I can click when certain events occur, such as critical hits, killing monsters, and triggering traps
+   - There are several buttons that I can click when certain events occur, such as critical hits, killing monsters, triggering traps, etc
 
 Why not use one of the many tools out there that other people have already made? Well, there are a couple reasons, the most import ones being:
 
@@ -45,4 +45,4 @@ This project is currently undgoing a huge refactor:
  - The Desktop Client and Server were once part of the same project build (this one). They are being separated
  - The Desktop Client currently has two separate parts: an application for creating the monsters and combat scenarios, and an application for running the combat scenarios. These will be combined into one application to match the android client
  - I am changing build tools from Ant to Gradle
- - I plan to add additional features to this project, such a magic item creator, and the ability to make monsters begin combat with the "invisible" status, thus hiding them from players in turn order until they have been spotted
+ - I plan to add additional features to this project in the future
