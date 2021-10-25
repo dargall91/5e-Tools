@@ -48,29 +48,34 @@ public class ServerCombatScreen extends JFrame {
      */
     private void initialize() {
         getContentPane().removeAll();
-        JPanel panel = new JPanel();
-        panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
-        panel.setAlignmentX(Component.CENTER_ALIGNMENT);
-        panel.setMinimumSize(new Dimension(900, 500));
-        panel.setPreferredSize(new Dimension(900, 500));
-        panel.setMaximumSize(new Dimension(900, 500));
-
-        for (SimpleCombatant i : combatants) {
-            JPanel comPanel = new JPanel();
-            comPanel.setLayout(new BoxLayout(comPanel, BoxLayout.X_AXIS));
-            comPanel.setAlignmentX(Component.CENTER_ALIGNMENT);
-
-            //TODO: maybe make text bigger after testing on big screen
-            JLabel name = new JLabel(i.getName());
-            name.setFont(new Font(name.getFont().getName(), Font.BOLD, 40));
-
+        JPanel mainPanel = new JPanel();
+        mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.X_AXIS));
+        mainPanel.setAlignmentY(Component.CENTER_ALIGNMENT);
+        //panel.setMinimumSize(new Dimension(900, 1000));
+        //panel.setPreferredSize(new Dimension(900, 1000));
+        //panel.setMaximumSize(new Dimension(900, 1000));
+        
+        JPanel comPanel = new JPanel();
+        
+        for (int i = 0; i < combatants.size(); i++) {
+            if (i % 12 == 0) {
+                comPanel = new JPanel();
+                mainPanel.add(comPanel);
+                comPanel.setLayout(new BoxLayout(comPanel, BoxLayout.Y_AXIS));
+                comPanel.setAlignmentY(Component.TOP_ALIGNMENT);
+            }
+            
+            JLabel name = new JLabel(combatants.get(i).getName());
+            name.setFont(new Font(name.getFont().getName(), Font.BOLD, 60));
+            name.setAlignmentX(Component.CENTER_ALIGNMENT);
+            
             comPanel.add(name);
             comPanel.add(Box.createRigidArea(HORIZONTAL_GAP));
-            panel.add(comPanel);
         }
 
-        add(panel);
+        add(mainPanel);
         pack();
+        setLocationRelativeTo(null);
         setVisible(true);
     }
 
