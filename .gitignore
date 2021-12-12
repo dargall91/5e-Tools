@@ -1,0 +1,16 @@
+# Compiled class file
+*.class
+
+# Log file
+*.log
+
+### IntelliJ ###
+.idea
+*.iml
+/out/
+
+# DS File
+.DS_Store
+
+# Other
+/bin/
