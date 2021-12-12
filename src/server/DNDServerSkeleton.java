@@ -15,6 +15,7 @@ public class DNDServerSkeleton {
 	private DNDLibrary lib;
 	ServerCombatScreen scs;
 	private final String MUSIC = "Data/music.dat";
+	private int trackPos = 0;
 
 	DNDServerSkeleton(DNDLibrary lib, ServerCombatScreen scs) {
 		this.lib = lib;
@@ -196,6 +197,7 @@ public class DNDServerSkeleton {
 
 				else if (method.equals("end")) {
 					scs.endEncounter();
+					trackPos = 0;
 					result.put("result", true);
 				}
 
@@ -207,13 +209,14 @@ public class DNDServerSkeleton {
 
 			else if (library.equals("music")) {
 				if (method.equals("play")) {
-					scs.playMusic(params.getString(0));
+					scs.playMusic(params.getString(0), trackPos);
 					result.put("result", true);
 				} else if (method.equals("pause")) {
-					scs.pauseMusic();
+					trackPos = scs.pauseMusic();
 					result.put("result", true);
 				} else if (method.equals("stop")) {
 					scs.stopMusic();
+					trackPos = 0;
 					result.put("result", true);
 				} else {
 					result.put("result", "0.0");

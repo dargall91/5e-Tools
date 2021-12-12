@@ -24,6 +24,9 @@ public class ServerCombatScreen extends JFrame {
     private Player player;
     private boolean play;
     private final String musicDat = "Data/music.dat";
+    private FileInputStream fileInputStream;
+    private int trackPos = 0;
+    private int trackLen = 0;
 
     public ServerCombatScreen(DNDLibrary lib) {
         this.lib = lib;
@@ -83,27 +86,40 @@ public class ServerCombatScreen extends JFrame {
      */
     public void startEncounter(String encName) {
         Encounter encounter = lib.getEncounter(encName);
-        playMusic(encounter.getTheme());
+        trackPos = 0;
+        playMusic(encounter.getTheme(), trackPos);
     }
 
     /**
      * Plays the specified song track
      *
      * @param track The file name of the track
+     * @param startPos The starting position for the track
      */
-    public void playMusic(String track) {
+    public void playMusic(String track, int startPos) {
         try {
-            play = true;
             File musicFile = new File(musicDat);
             Scanner scan = new Scanner(musicFile);
             String path = scan.nextLine();
+
+            if (music != null && !music.getName().equals(path + track)) {
+                stopMusic();
+            }
+
+            if (play) {
+                return;
+            }
+
             music = new File(path + track);
+            play = true;
 
             new Thread() {
                 public void run() {
                     try {
                         while (play) {
-                            FileInputStream fileInputStream = new FileInputStream(music);
+                            fileInputStream = new FileInputStream(music);
+                            trackLen = fileInputStream.available();
+                            fileInputStream.skip(trackPos);
                             BufferedInputStream bufferedInputStream = new BufferedInputStream(fileInputStream);
                             player = new Player(bufferedInputStream);
                             player.play();
@@ -118,17 +134,22 @@ public class ServerCombatScreen extends JFrame {
         }
     }
 
-    public void pauseMusic() {
-        if (play) {
+    public int pauseMusic() {
+        try {
             play = false;
+            trackPos = trackLen - fileInputStream.available();
+            player.close();
+        } catch (Exception e) {
+            e.printStackTrace();
         }
+
+        return trackPos;
     }
 
     public void stopMusic() {
-        if (play) {
-            play = false;
-            player.close();
-        }
+        play = false;
+        player.close();
+        trackPos = 0;
     }
 
     /**
@@ -151,6 +172,7 @@ public class ServerCombatScreen extends JFrame {
     public void endEncounter() {
         play = false;
         setVisible(false);
+        trackPos = 0;
         player.close();
         dispose();
     }
