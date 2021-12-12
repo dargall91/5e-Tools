@@ -15,6 +15,7 @@ public class DNDServerSkeleton {
 	private DNDLibrary lib;
 	ServerCombatScreen scs;
 	private final String MUSIC = "Data/music.dat";
+	private int trackPos = 0;
 
 	DNDServerSkeleton(DNDLibrary lib, ServerCombatScreen scs) {
 		this.lib = lib;
@@ -124,8 +125,6 @@ public class DNDServerSkeleton {
 						break;
 
 					case "music":
-						//TODO: change "Music/" to music.dat filepath
-						//File file = new File("Music/");
 						File musicDat = new File(MUSIC);
 						Scanner scan = new Scanner(musicDat);
 						String path = scan.nextLine();
@@ -187,17 +186,18 @@ public class DNDServerSkeleton {
 
 			else if (library.equals("combat")) {
 				if (method.equals("begin")) {
-					scs.start(params.getString(0));
+					scs.startEncounter(params.getString(0));
 					result.put("result", true);
 				}
 
 				else if (method.equals("update")) {
-					scs.update(params.getJSONArray(0));
+					scs.updateEncounter(params.getJSONArray(0));
 					result.put("result", true);
 				}
 
 				else if (method.equals("end")) {
 					scs.endEncounter();
+					trackPos = 0;
 					result.put("result", true);
 				}
 
@@ -207,8 +207,25 @@ public class DNDServerSkeleton {
 				}
 			}
 
+			else if (library.equals("music")) {
+				if (method.equals("play")) {
+					scs.playMusic(params.getString(0), trackPos);
+					result.put("result", true);
+				} else if (method.equals("pause")) {
+					trackPos = scs.pauseMusic();
+					result.put("result", true);
+				} else if (method.equals("stop")) {
+					scs.stopMusic();
+					trackPos = 0;
+					result.put("result", true);
+				} else {
+					result.put("result", "0.0");
+					System.out.println("Method " + method + " for music request not found.");
+				}
+			}
+
 			else if (library.equals("server")) {
-				System.out.println("Clinet to Server test connection successful");
+				System.out.println("Client to Server test connection successful");
 				result.put("result", true);
 			}
 			

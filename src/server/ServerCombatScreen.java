@@ -24,6 +24,9 @@ public class ServerCombatScreen extends JFrame {
     private Player player;
     private boolean play;
     private final String musicDat = "Data/music.dat";
+    private FileInputStream fileInputStream;
+    private int trackPos = 0;
+    private int trackLen = 0;
 
     public ServerCombatScreen(DNDLibrary lib) {
         this.lib = lib;
@@ -51,9 +54,6 @@ public class ServerCombatScreen extends JFrame {
         JPanel mainPanel = new JPanel();
         mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.X_AXIS));
         mainPanel.setAlignmentY(Component.CENTER_ALIGNMENT);
-        //panel.setMinimumSize(new Dimension(900, 1000));
-        //panel.setPreferredSize(new Dimension(900, 1000));
-        //panel.setMaximumSize(new Dimension(900, 1000));
         
         JPanel comPanel = new JPanel();
         
@@ -84,22 +84,42 @@ public class ServerCombatScreen extends JFrame {
      *
      * @param encName The name of the encounter being run, determines what track will play
      */
-    public void start(String encName) {
-        play = true;
+    public void startEncounter(String encName) {
         Encounter encounter = lib.getEncounter(encName);
+        trackPos = 0;
+        playMusic(encounter.getTheme(), trackPos);
+    }
 
+    /**
+     * Plays the specified song track
+     *
+     * @param track The file name of the track
+     * @param startPos The starting position for the track
+     */
+    public void playMusic(String track, int startPos) {
         try {
             File musicFile = new File(musicDat);
             Scanner scan = new Scanner(musicFile);
             String path = scan.nextLine();
-            music = new File(path + encounter.getTheme());
 
-            //TODO: thread might not be needed once server is moved to RPi
+            if (music != null && !music.getName().equals(path + track)) {
+                stopMusic();
+            }
+
+            if (play) {
+                return;
+            }
+
+            music = new File(path + track);
+            play = true;
+
             new Thread() {
                 public void run() {
                     try {
                         while (play) {
-                            FileInputStream fileInputStream = new FileInputStream(music);
+                            fileInputStream = new FileInputStream(music);
+                            trackLen = fileInputStream.available();
+                            fileInputStream.skip(trackPos);
                             BufferedInputStream bufferedInputStream = new BufferedInputStream(fileInputStream);
                             player = new Player(bufferedInputStream);
                             player.play();
@@ -114,12 +134,30 @@ public class ServerCombatScreen extends JFrame {
         }
     }
 
+    public int pauseMusic() {
+        try {
+            play = false;
+            trackPos = trackLen - fileInputStream.available();
+            player.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return trackPos;
+    }
+
+    public void stopMusic() {
+        play = false;
+        player.close();
+        trackPos = 0;
+    }
+
     /**
      * Updates the list of combatants
      *
      * @param jsonCombat the list of comabatants
      */
-    public void update(JSONArray jsonCombat) {
+    public void updateEncounter(JSONArray jsonCombat) {
         combatants.clear();
 
         for (int i = 0; i < jsonCombat.length(); i++)
@@ -134,6 +172,7 @@ public class ServerCombatScreen extends JFrame {
     public void endEncounter() {
         play = false;
         setVisible(false);
+        trackPos = 0;
         player.close();
         dispose();
     }
