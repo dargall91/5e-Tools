@@ -51,9 +51,6 @@ public class ServerCombatScreen extends JFrame {
         JPanel mainPanel = new JPanel();
         mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.X_AXIS));
         mainPanel.setAlignmentY(Component.CENTER_ALIGNMENT);
-        //panel.setMinimumSize(new Dimension(900, 1000));
-        //panel.setPreferredSize(new Dimension(900, 1000));
-        //panel.setMaximumSize(new Dimension(900, 1000));
         
         JPanel comPanel = new JPanel();
         
@@ -84,17 +81,24 @@ public class ServerCombatScreen extends JFrame {
      *
      * @param encName The name of the encounter being run, determines what track will play
      */
-    public void start(String encName) {
-        play = true;
+    public void startEncounter(String encName) {
         Encounter encounter = lib.getEncounter(encName);
+        playMusic(encounter.getTheme());
+    }
 
+    /**
+     * Plays the specified song track
+     *
+     * @param track The file name of the track
+     */
+    public void playMusic(String track) {
         try {
+            play = true;
             File musicFile = new File(musicDat);
             Scanner scan = new Scanner(musicFile);
             String path = scan.nextLine();
-            music = new File(path + encounter.getTheme());
+            music = new File(path + track);
 
-            //TODO: thread might not be needed once server is moved to RPi
             new Thread() {
                 public void run() {
                     try {
@@ -114,12 +118,25 @@ public class ServerCombatScreen extends JFrame {
         }
     }
 
+    public void pauseMusic() {
+        if (play) {
+            play = false;
+        }
+    }
+
+    public void stopMusic() {
+        if (play) {
+            play = false;
+            player.close();
+        }
+    }
+
     /**
      * Updates the list of combatants
      *
      * @param jsonCombat the list of comabatants
      */
-    public void update(JSONArray jsonCombat) {
+    public void updateEncounter(JSONArray jsonCombat) {
         combatants.clear();
 
         for (int i = 0; i < jsonCombat.length(); i++)
