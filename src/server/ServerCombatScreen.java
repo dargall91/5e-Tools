@@ -102,7 +102,7 @@ public class ServerCombatScreen extends JFrame {
             Scanner scan = new Scanner(musicFile);
             String path = scan.nextLine();
 
-            if (music != null && !music.getName().equals(path + track)) {
+            if (music != null && !music.getName().equals(track)) {
                 stopMusic();
             }
 
