@@ -1,4 +1,4 @@
-package com.DnD5eTools.client;
+package encounter;
 
 import java.io.Serializable;
 import org.json.JSONObject;
