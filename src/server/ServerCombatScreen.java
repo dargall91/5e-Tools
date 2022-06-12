@@ -17,9 +17,8 @@ import javazoom.jl.player.Player;
 public class ServerCombatScreen extends JFrame {
     private DNDLibrary lib;
     private ArrayList<SimpleCombatant> combatants;
-    private final Dimension VERTICAL_GAP = new Dimension(0, 15);
-    private final Dimension HORIZONTAL_GAP = new Dimension(15, 0);
-    private final int INNER_HEIGHT = 25;
+    private final Dimension VERTICAL_GAP = new Dimension(15, 0);
+    private final Dimension HORIZONTAL_GAP = new Dimension(0, 15);
     private File music;
     private Player player;
     private boolean play;
@@ -28,6 +27,12 @@ public class ServerCombatScreen extends JFrame {
     private int trackPos = 0;
     private int trackLen = 0;
 
+	/**
+	 * Constructs a new ServerCombatScreen and links it with the
+	 * specified DNDLibrary
+	 * 
+	 * @param lib the DNDLibrary to use
+	 */
     public ServerCombatScreen(DNDLibrary lib) {
         this.lib = lib;
         combatants = new ArrayList<SimpleCombatant>();
@@ -51,18 +56,21 @@ public class ServerCombatScreen extends JFrame {
      */
     private void initialize() {
         getContentPane().removeAll();
+        
         JPanel mainPanel = new JPanel();
         mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.X_AXIS));
         mainPanel.setAlignmentY(Component.CENTER_ALIGNMENT);
         
-        JPanel comPanel = new JPanel();
+        JPanel comPanel = null;
         
         for (int i = 0; i < combatants.size(); i++) {
             if (i % 12 == 0) {
                 comPanel = new JPanel();
+                mainPanel.add(Box.createRigidArea(VERTICAL_GAP));
                 mainPanel.add(comPanel);
                 comPanel.setLayout(new BoxLayout(comPanel, BoxLayout.Y_AXIS));
                 comPanel.setAlignmentY(Component.TOP_ALIGNMENT);
+                comPanel.add(Box.createRigidArea(HORIZONTAL_GAP));
             }
             
             JLabel name = new JLabel(combatants.get(i).getName());
@@ -72,6 +80,8 @@ public class ServerCombatScreen extends JFrame {
             comPanel.add(name);
             comPanel.add(Box.createRigidArea(HORIZONTAL_GAP));
         }
+        
+        mainPanel.add(Box.createRigidArea(VERTICAL_GAP));
 
         add(mainPanel);
         pack();
@@ -102,10 +112,12 @@ public class ServerCombatScreen extends JFrame {
             Scanner scan = new Scanner(musicFile);
             String path = scan.nextLine();
 
+			//Stop the current track if it is not the same as the requested track
             if (music != null && !music.getName().equals(track)) {
                 stopMusic();
             }
 
+			//if music was not stopped by the above, then the tracks are the same, no action needed
             if (play) {
                 return;
             }
@@ -134,6 +146,11 @@ public class ServerCombatScreen extends JFrame {
         }
     }
 
+	/**
+     * Pauses any music that is playing
+     *
+     * @return the current position of the music playing
+     */
     public int pauseMusic() {
         try {
             play = false;
@@ -146,6 +163,9 @@ public class ServerCombatScreen extends JFrame {
         return trackPos;
     }
 
+    /**
+     * Stops any music that is playing
+     */
     public void stopMusic() {
         play = false;
         player.close();
@@ -167,13 +187,10 @@ public class ServerCombatScreen extends JFrame {
     }
 
     /**
-     * Ends the encounter, stops the music
+     * Ends the encounter
      */
     public void endEncounter() {
-        play = false;
         setVisible(false);
-        trackPos = 0;
-        player.close();
         dispose();
     }
 }
