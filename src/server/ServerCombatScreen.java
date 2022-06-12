@@ -55,6 +55,8 @@ public class ServerCombatScreen extends JFrame {
      * Initializes the display of combatants
      */
     private void initialize() {
+        getContentPane().removeAll();
+        
         JPanel mainPanel = new JPanel();
         mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.X_AXIS));
         mainPanel.setAlignmentY(Component.CENTER_ALIGNMENT);
@@ -150,7 +152,7 @@ public class ServerCombatScreen extends JFrame {
      * @return the current position of the music playing
      */
     public int pauseMusic() {
-    	try {
+        try {
             play = false;
             trackPos = trackLen - fileInputStream.available();
             player.close();
@@ -189,7 +191,6 @@ public class ServerCombatScreen extends JFrame {
      */
     public void endEncounter() {
         setVisible(false);
-        getContentPane().removeAll();
         dispose();
     }
 }
