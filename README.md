@@ -1,48 +1,111 @@
-5e Tools is a tool suite for me, a Dungeon Master running a 5th Edition Dungeons & Dragons campaign, where I can manage various things needed to run the game all in one convenient application. This repo is for the server application. [The Desktop version of the client application can be found here.](https://github.com/dargall91/5e-Tools-DesktopClient) [The Android version of the client application can be found here.](https://github.com/dargall91/5e-Tools-AndroidClient)
+# 5e Tools
 
-How does 5e Tools work?
-Monsters and Combat Scenarios (AKA Encounters) are created on the client applications and saved on a server so that the data can be accessed from either application. When a Combat Scenario begins, the server will play a combat theme on the connected TV and dsiplay the turn order of all the player characters and monsters involved for easy reference by my players. When the encounter ends, the music will stop, and turn order display will close. Additionally, I have added a soundboard to the client that I use to play sound effects when certain events occur, such as critical hits, or when a monster is killed.
+5e Tools is a tool suite for me, a Dungeon Master running a 5th Edition 
+Dungeons & Dragons campaign, where I can manage various things needed to run 
+the game all in one convenient application. This repo is for the server.
 
-Features
+[The Desktop version of the client application can be found here.](https://github.com/dargall91/5e-Tools-DesktopClient)
 
- - Create Custom Monsters
-   - All monsters have a certain set of traits that must be defined (name, ability scores, hit points, etc). Beyond that, they can be given any number of additional traits
-   - A monster can be copied to be used as a template to create a new monster, which is ideal for creating realated monsters with similar traits (currently supported on the desktop client only)
-   - Monsters can be given a different "display name" that can be used to hide the monster's true identity fromt he players. When a combat scenario is running, this display name is what will be shown to the players on the TV screen
- - Create Combat Scenarios
-   - Monsters saved on the server can be added to combat scenarios
-   - The number of players involved in the combat scenario, and their character levels, can be defined
-   - The combat scenario tracks the difficulty of the encounter using the rules defined in the Dungeon Master's Guide
-   - A battle theme from a list of tracks saved on the server can be chosen for an encounter
-   - Each monsters' initative (used in determining turn order) can be pre-rolled and saved here
-   - Monsters can be marked as a reinforcement, that is they will not be present when the encounter starts, but can join in later
-   - Monsters can be marked as minions, which means that they are so trvially easy to defeat they do not influence the difficulty of the encounter
-   - Monsters can be marked as invisible, which means that they start the encounter hidden from the players until they have been spotted (feature not yet added)
- - Manage Player Characters
-   - Tracks a character's Armor Class (that is, how easy the character is to hit) and initiative bonus (used for breaking ties in turn order) for quick reference by me
-   - When a combat scenario begins, characters from this list will be selected to participate in the encounter
- - Run Combat Scenarios
-   - Plays the battle track selected when creating the encounter on a TV to which the server is connected
-   - After getting all of my player's initative rolls, any ties will be resolved, then the turn order will be displayed on the Tv so my players can easily reference it
-   - The client application will also display the turn order, as well as a few neccessary stats for all involved combatatants for easy tracking by me
-   - When a monster is killed or added to the encounter, the lists on the TV and client will be updaded accordingly
-   - Combat can be ended from the client, which stops the music, and removes the turn order screen from the TV
- - Sound Effects
-   - The client contains a sound board for sound effects
-   - There are several buttons that I can click when certain events occur, such as critical hits, killing monsters, triggering traps, etc
+[The Android version of the client application can be found here.](https://github.com/dargall91/5e-Tools-AndroidClient)
 
-Why not use one of the many tools out there that other people have already made? Well, there are a couple reasons, the most import ones being:
+The desktop client has fallen behind the android client as I no longer have 
+a laptop, making it less useful.
 
- - I wanted to put into practice some of the things that I had recently learned in college in hopes of starting a protfolio
- - Other tools out there do not allow you to make custom monsters and inject them directly into combat scenarios, you have to use the predefined monsters
- - I wanted to implement features that other tools do not have, such as adding monster reinforcements mid combat
- - I wanted a tool that would automaitcally manage some things for me, such as automatically playing and looping combat music
- - I have a simplified custom rule for breaking ties in turn order that other tools do not follow
+## Why not use one of the many tools that already exist?
 
-This project is currently undgoing a huge refactor:
+The original goal of this project was simple: create an application that 
+allowed me to manage everything I needed in one location. When I started this
+project, there were very few tools out there that allowed you to manage more 
+than one aspect of the game at once. There were separate tools for creating 
+encounters, creating monsters, and running combat (initiative). Most tools did 
+not allow you to easily add your custom monsters to your encounters or
+include them in the initiative list. Most initiative trackers also did not 
+let your players see the turn order without them making an account on the 
+website and keeping their phones on until combat was done. To keep track of 
+all of these things you needed many browser tabs open all at once, and it 
+gets very messy. Additionally, I like to use music when combat is running, 
+which meant running YouTube at the same time. Unless you pay for YouTube 
+Premium, or you have a laptop, the music will stop when you suspend the app 
+to check one of the many browser tabs mentioned above.
 
- - I am changing json libraries from org.json to org.simple.json due to org.json's software license containing the line "The Software shall be used for Good, not Evil." It is well known amongst players of D&D that Dungeon Masters are inherently evil, and will do many evil things to mess with their players. Even ignoring the fact that this line means that org.json is technically not open source, I am evil, and therefore unqualified to continue using this library.
- - The Desktop Client and Server were once part of the same project build (this one). They are being separated
- - The Desktop Client currently has two separate parts: an application for creating the monsters and combat scenarios, and an application for running the combat scenarios. These will be combined into one application to match the android client
- - I am changing build tools from Ant to Gradle
- - I plan to add additional features to this project in the future
+5e Tools accomplishes my goal. In one application, I can create monsters, 
+create encounters using those monsters, and track initiative. My players can 
+see the turn order on a TV screen, and music automatically plays when 
+combat starts. 5e Tools has the added bonus of allowing me to incorporate 
+extra features that some other tools out there lack, such as a sound board 
+and the ability to include Lair Actions in an encounter.
+
+## How does 5e Tools work?
+
+Monsters and Combat Scenarios (AKA Encounters) can be created on either client 
+application and saved on the server. When an Encounter is started, the 
+server will display the turn order of all combatants on the screen and 
+begin playing the selected battle track. When the encounter ends, the music 
+will stop, and turn order display will close. The clients also contain a 
+sound board which can be used when certain events occur, such as falling 
+into a trap or landing a critical hit.
+
+### Monster Builder
+ - Add and Delete monsters on the server
+ - Fully customize a monster from scratch
+ - Copy an existing monster, ideal for creating related monsters with 
+   similar traits
+ - Hide the true identity of a monster from the players by specifying a 
+   "display name" to show up on the screen in combat
+
+### Encounter Builder
+ - Add and Delete encounters on the server
+ - Create encounters out of the monsters saved on the server
+ - Utilizes the rules from the Dungeon Master's Guide to calculate the 
+   difficulty of the combat
+ - Select a battle theme to be played when the encounter is started
+ - Each monster's initiative is pre-rolled to save time when the encounter 
+   begins
+ - Monsters can be flagged as a reinforcement; reinforcements do not appear 
+   at the start of combat and can be added later through the combat tracker
+ - Monsters can be marked as minions; minions are monsters which are so weak 
+   that they do not influence the difficulty of the encounter
+ - Monsters can be marked as invisible; invisible monsters do not appear on 
+   the screen for the players to see, keeping their presence hidden
+ - Lair Actions can be added to an encounter to always occur at initiative 
+   count 20
+
+### Combat Tracker
+ - Before an encounter is loaded, a list of all the players' characters are 
+   shown
+   - Add and Delete characters on the server
+   - Track a character's Armor Class (how hard they are to hit) and their 
+     Initiative Bonus (influences when they take their turn in combat and 
+     used to break initiative ties)
+ - After loading an encounter, the battle track selected for the 
+   encounter plays through the TV connected to the server
+ - Select which characters are in the combat, record their initiative rolls, 
+   then start the encounter
+ - Once started, the TV displays all the combatants that are not flagged 
+   as a reinforcement or invisible; all non-reinforcement combatants are 
+   displayed on the client for the user to track
+ - Monsters flagged as reinforcements can be added any time once combat has 
+   started; additional reinforcements can also be added
+ - Invisible monsters can be set to visible mid-combat
+ - Monsters can be killed or revived mid-combat, removing or adding them 
+   back to the server display for the players to see
+ - Killing a monster with the kill button will play a sound effect through 
+   the client
+ - Ending the combat returns the client display to the list of player 
+   characters and removes the display on the server
+ - When choosing to end the encounter, you can choose to also stop the music 
+   or let it keep playing
+
+### Music & Sound Effects
+ - The client contains a sound board for sound effects such as critical hits,
+   triggering traps, and more
+ - The client also includes a full music player for controlling music 
+   outside of combat or changing it mid-combat
+
+## Future Changes
+
+This project undergoes occasional updates to add new features and fix bugs. 
+It is close to what I'd consider "complete" as nearly all the features I 
+wanted to include have been added. The next and possibly last feature I plan to 
+add is one that allows me to view a monsters stats from within the combat 
+tracker for quicker reference.  
