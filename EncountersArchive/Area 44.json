@@ -1,0 +1,45 @@
+{
+    "name": "Area 44",
+    "theme": "Combat in the Ruins.mp3",
+    "lairAction": true,
+    "monsterData": [
+        {
+            "quantity": 1,
+            "initiative": 12,
+            "xp": 1800,
+            "reinforcement": false,
+            "minion": false,
+            "monster": "Hag (Green, Coven)"
+        },
+        {
+            "quantity": 1,
+            "initiative": 3,
+            "xp": 1800,
+            "reinforcement": false,
+            "minion": false,
+            "monster": "Hag (Green, Coven)"
+        },
+        {
+            "quantity": 1,
+            "initiative": 20,
+            "xp": 2900,
+            "reinforcement": false,
+            "minion": false,
+            "monster": "Hag (Night)"
+        }
+    ],
+    "playerData": [
+        {
+            "level": 8,
+            "players": 2
+        },
+        {
+            "level": 9,
+            "players": 2
+        },
+        {
+            "level": 10,
+            "players": 2
+        }
+    ]
+}

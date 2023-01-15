@@ -1,0 +1,27 @@
+{
+    "name": "Area 12",
+    "theme": "Combat in the Ruins.mp3",
+    "lairAction": false,
+    "monsterData": [{
+        "quantity": 1,
+        "initiative": 12,
+        "xp": 1800,
+        "reinforcement": false,
+        "minion": false,
+        "monster": "Greater Zombie"
+    }],
+    "playerData": [
+        {
+            "level": 1,
+            "players": 2
+        },
+        {
+            "level": 1,
+            "players": 2
+        },
+        {
+            "level": 1,
+            "players": 1
+        }
+    ]
+}

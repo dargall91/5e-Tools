@@ -1,0 +1,57 @@
+{
+    "name": "Gavony - Giant Seige (2)",
+    "theme": "Attack On Titan - Female Titan.mp3",
+    "lairAction": false,
+    "monsterData": [
+        {
+            "quantity": 2,
+            "initiative": 4,
+            "xp": 1800,
+            "reinforcement": false,
+            "minion": false,
+            "monster": "Hill Giant"
+        },
+        {
+            "quantity": 1,
+            "initiative": 17,
+            "xp": 1800,
+            "reinforcement": false,
+            "minion": false,
+            "monster": "Hill Giant"
+        },
+        {
+            "quantity": 2,
+            "initiative": 13,
+            "xp": 1800,
+            "reinforcement": false,
+            "minion": false,
+            "monster": "Cultist Acolyte (Veteran)"
+        },
+        {
+            "quantity": 2,
+            "initiative": 10,
+            "xp": 1800,
+            "reinforcement": false,
+            "minion": false,
+            "monster": "Cultist Brawler (Veteran)"
+        },
+        {
+            "quantity": 1,
+            "initiative": 14,
+            "xp": 5900,
+            "reinforcement": true,
+            "minion": false,
+            "monster": "Ormendahl"
+        }
+    ],
+    "playerData": [
+        {
+            "level": 9,
+            "players": 1
+        },
+        {
+            "level": 10,
+            "players": 4
+        }
+    ]
+}

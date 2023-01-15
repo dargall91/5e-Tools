@@ -1,0 +1,97 @@
+{
+    "name": "Vs Hag",
+    "theme": "Mournweald Encounter.mp3",
+    "lairAction": true,
+    "monsterData": [
+        {
+            "quantity": 1,
+            "initiative": 17,
+            "xp": 700,
+            "reinforcement": false,
+            "minion": false,
+            "monster": "Green Hag"
+        },
+        {
+            "quantity": 2,
+            "initiative": 9,
+            "xp": 25,
+            "reinforcement": false,
+            "minion": true,
+            "monster": "Flumph"
+        },
+        {
+            "quantity": 2,
+            "initiative": 9,
+            "xp": 0,
+            "reinforcement": false,
+            "minion": false,
+            "monster": "Werewolf"
+        },
+        {
+            "quantity": 3,
+            "initiative": 3,
+            "xp": 25,
+            "reinforcement": true,
+            "minion": true,
+            "monster": "Flumph"
+        },
+        {
+            "quantity": 1,
+            "initiative": 11,
+            "xp": 100,
+            "reinforcement": true,
+            "minion": true,
+            "monster": "Swarm of Insects"
+        },
+        {
+            "quantity": 2,
+            "initiative": 2,
+            "xp": 50,
+            "reinforcement": true,
+            "minion": true,
+            "monster": "Swarm of Bats"
+        },
+        {
+            "quantity": 3,
+            "initiative": 16,
+            "xp": 25,
+            "reinforcement": true,
+            "minion": true,
+            "monster": "Flumph"
+        },
+        {
+            "quantity": 1,
+            "initiative": 12,
+            "xp": 100,
+            "reinforcement": true,
+            "minion": true,
+            "monster": "Swarm of Insects"
+        },
+        {
+            "quantity": 2,
+            "initiative": 18,
+            "xp": 50,
+            "reinforcement": true,
+            "minion": true,
+            "monster": "Swarm of Bats"
+        },
+        {
+            "quantity": 1,
+            "initiative": 14,
+            "xp": 5000,
+            "reinforcement": false,
+            "minion": true,
+            "monster": "Everpup"
+        }
+    ],
+    "playerData": [
+        {
+            "level": 4,
+            "players": 3
+        },
+        {
+            "level": 5,
+            "players": 1
+        }
+    ]
+}

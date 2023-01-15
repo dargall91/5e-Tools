@@ -1,0 +1,41 @@
+{
+    "name": "Gavony - Arrival",
+    "theme": "Mournweald Encounter.mp3",
+    "lairAction": false,
+    "monsterData": [
+        {
+            "quantity": 2,
+            "initiative": 7,
+            "xp": 450,
+            "reinforcement": true,
+            "minion": false,
+            "monster": "Ankheg"
+        },
+        {
+            "quantity": 2,
+            "initiative": 20,
+            "xp": 450,
+            "reinforcement": true,
+            "minion": false,
+            "monster": "Ankheg"
+        },
+        {
+            "quantity": 1,
+            "initiative": 19,
+            "xp": 1100,
+            "reinforcement": true,
+            "minion": false,
+            "monster": "Ankheg (Lv 2)"
+        }
+    ],
+    "playerData": [
+        {
+            "level": 9,
+            "players": 2
+        },
+        {
+            "level": 10,
+            "players": 2
+        }
+    ]
+}

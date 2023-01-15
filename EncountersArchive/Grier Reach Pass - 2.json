@@ -1,0 +1,27 @@
+{
+    "name": "Grier Reach Pass - 2",
+    "theme": "The Dark Amulet.mp3",
+    "lairAction": false,
+    "monsterData": [
+        {
+            "quantity": 1,
+            "initiative": 12,
+            "xp": 0,
+            "reinforcement": false,
+            "minion": false,
+            "monster": "Nefarox - Kobold"
+        },
+        {
+            "quantity": 2,
+            "initiative": 7,
+            "xp": 200,
+            "reinforcement": false,
+            "minion": false,
+            "monster": "Kobold - Lv 2"
+        }
+    ],
+    "playerData": [{
+        "level": 6,
+        "players": 2
+    }]
+}

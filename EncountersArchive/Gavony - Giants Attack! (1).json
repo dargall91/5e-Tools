@@ -1,0 +1,41 @@
+{
+    "name": "Gavony - Giants Attack! (1)",
+    "theme": "Attack On Titan - Battle Theme.mp3",
+    "lairAction": true,
+    "monsterData": [
+        {
+            "quantity": 1,
+            "initiative": 8,
+            "xp": 1800,
+            "reinforcement": false,
+            "minion": false,
+            "monster": "Hill Giant"
+        },
+        {
+            "quantity": 1,
+            "initiative": 13,
+            "xp": 1800,
+            "reinforcement": false,
+            "minion": false,
+            "monster": "Hill Giant"
+        },
+        {
+            "quantity": 1,
+            "initiative": 7,
+            "xp": 1800,
+            "reinforcement": true,
+            "minion": false,
+            "monster": "Hill Giant"
+        }
+    ],
+    "playerData": [
+        {
+            "level": 9,
+            "players": 1
+        },
+        {
+            "level": 10,
+            "players": 4
+        }
+    ]
+}

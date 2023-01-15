@@ -1,0 +1,17 @@
+{
+    "name": "Stickfingers",
+    "theme": "Terror in the Woods.mp3",
+    "lairAction": false,
+    "monsterData": [{
+        "quantity": 1,
+        "initiative": 20,
+        "xp": 5900,
+        "reinforcement": false,
+        "minion": false,
+        "monster": "Old Stickfingers"
+    }],
+    "playerData": [{
+        "level": 10,
+        "players": 2
+    }]
+}

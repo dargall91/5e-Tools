@@ -1,0 +1,17 @@
+{
+    "name": "Old Stickfingers",
+    "theme": "Prayer.mp3",
+    "lairAction": false,
+    "monsterData": [{
+        "quantity": 1,
+        "initiative": 16,
+        "xp": 5900,
+        "reinforcement": false,
+        "minion": false,
+        "monster": "Old Stickfingers"
+    }],
+    "playerData": [{
+        "level": 10,
+        "players": 4
+    }]
+}

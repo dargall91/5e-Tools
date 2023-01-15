@@ -1,0 +1,41 @@
+{
+    "name": "Confronting Trump",
+    "theme": "Town in Chaos.mp3",
+    "lairAction": false,
+    "monsterData": [
+        {
+            "quantity": 2,
+            "initiative": 10,
+            "xp": 100,
+            "reinforcement": false,
+            "minion": false,
+            "monster": "Cultist Acolyte"
+        },
+        {
+            "quantity": 2,
+            "initiative": 11,
+            "xp": 100,
+            "reinforcement": false,
+            "minion": false,
+            "monster": "Cultist Brawler"
+        },
+        {
+            "quantity": 1,
+            "initiative": 1,
+            "xp": 0,
+            "reinforcement": false,
+            "minion": false,
+            "monster": "Commoner"
+        }
+    ],
+    "playerData": [
+        {
+            "level": 7,
+            "players": 2
+        },
+        {
+            "level": 8,
+            "players": 2
+        }
+    ]
+}

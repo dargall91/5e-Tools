@@ -1,0 +1,35 @@
+{
+    "name": "Stensia - Inside the Mine",
+    "theme": "Combat in the Ruins.mp3",
+    "lairAction": false,
+    "monsterData": [
+        {
+            "quantity": 2,
+            "initiative": 1,
+            "xp": 100,
+            "reinforcement": false,
+            "minion": false,
+            "monster": "Dust Mephit"
+        },
+        {
+            "quantity": 2,
+            "initiative": 19,
+            "xp": 100,
+            "reinforcement": false,
+            "minion": false,
+            "monster": "Dust Mephit"
+        },
+        {
+            "quantity": 1,
+            "initiative": 18,
+            "xp": 0,
+            "reinforcement": false,
+            "minion": true,
+            "monster": "Commoner"
+        }
+    ],
+    "playerData": [{
+        "level": 7,
+        "players": 4
+    }]
+}

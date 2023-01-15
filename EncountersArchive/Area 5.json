@@ -1,0 +1,45 @@
+{
+    "name": "Area 5",
+    "theme": "Combat in the Ruins.mp3",
+    "lairAction": false,
+    "monsterData": [
+        {
+            "quantity": 1,
+            "initiative": 12,
+            "xp": 50,
+            "reinforcement": false,
+            "minion": false,
+            "monster": "Skeleton"
+        },
+        {
+            "quantity": 1,
+            "initiative": 18,
+            "xp": 50,
+            "reinforcement": false,
+            "minion": false,
+            "monster": "Skeleton"
+        },
+        {
+            "quantity": 1,
+            "initiative": 17,
+            "xp": 50,
+            "reinforcement": false,
+            "minion": false,
+            "monster": "Skeleton"
+        }
+    ],
+    "playerData": [
+        {
+            "level": 8,
+            "players": 2
+        },
+        {
+            "level": 9,
+            "players": 2
+        },
+        {
+            "level": 10,
+            "players": 1
+        }
+    ]
+}

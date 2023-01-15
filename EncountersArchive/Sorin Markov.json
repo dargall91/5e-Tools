@@ -1,0 +1,35 @@
+{
+    "name": "Sorin Markov",
+    "theme": "Battle in the Warrens.mp3",
+    "lairAction": true,
+    "monsterData": [
+        {
+            "quantity": 1,
+            "initiative": 16,
+            "xp": 13000,
+            "reinforcement": false,
+            "minion": false,
+            "monster": "Sorin Markov"
+        },
+        {
+            "quantity": 1,
+            "initiative": 16,
+            "xp": 1800,
+            "reinforcement": true,
+            "minion": false,
+            "monster": "Vampire Spawn"
+        },
+        {
+            "quantity": 1,
+            "initiative": 7,
+            "xp": 1800,
+            "reinforcement": true,
+            "minion": false,
+            "monster": "Vampire Spawn"
+        }
+    ],
+    "playerData": [{
+        "level": 10,
+        "players": 4
+    }]
+}

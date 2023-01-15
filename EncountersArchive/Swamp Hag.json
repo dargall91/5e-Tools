@@ -1,0 +1,81 @@
+{
+    "name": "Swamp Hag",
+    "theme": "The Cove (Siren).mp3",
+    "lairAction": true,
+    "monsterData": [
+        {
+            "quantity": 1,
+            "initiative": 8,
+            "xp": 1800,
+            "reinforcement": false,
+            "minion": false,
+            "monster": "Water Elemental"
+        },
+        {
+            "quantity": 1,
+            "initiative": 9,
+            "xp": 100,
+            "reinforcement": true,
+            "minion": false,
+            "monster": "Crocodile"
+        },
+        {
+            "quantity": 1,
+            "initiative": 1,
+            "xp": 50,
+            "reinforcement": true,
+            "minion": false,
+            "monster": "Oblex Spawn"
+        },
+        {
+            "quantity": 1,
+            "initiative": 13,
+            "xp": 1800,
+            "reinforcement": false,
+            "minion": false,
+            "monster": "Swamp Hag"
+        },
+        {
+            "quantity": 1,
+            "initiative": 3,
+            "xp": 50,
+            "reinforcement": true,
+            "minion": false,
+            "monster": "Oblex Spawn"
+        },
+        {
+            "quantity": 1,
+            "initiative": 9,
+            "xp": 100,
+            "reinforcement": true,
+            "minion": false,
+            "monster": "Crocodile"
+        },
+        {
+            "quantity": 1,
+            "initiative": 6,
+            "xp": 200,
+            "reinforcement": true,
+            "minion": false,
+            "monster": "Pelagic Shaman"
+        },
+        {
+            "quantity": 1,
+            "initiative": 3,
+            "xp": 100,
+            "reinforcement": true,
+            "minion": false,
+            "monster": "Pelagic Grouper"
+        }
+    ],
+    "playerData": [
+        {
+            "level": 7,
+            "players": 2
+        },
+        {
+            "level": 8,
+            "players": 2
+        }
+    ]
+}
