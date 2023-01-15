@@ -1,0 +1,24 @@
+{
+    "name": "Nefarox (Lair)",
+    "theme": "BFG Division.mp3",
+    "lairAction": false,
+    "monsterData": [{
+        "quantity": 1,
+        "initiative": 14,
+        "xp": 5900,
+        "invisible": false,
+        "reinforcement": false,
+        "minion": false,
+        "monster": "Nefarox (lv 2)"
+    }],
+    "playerData": [
+        {
+            "level": 11,
+            "players": 3
+        },
+        {
+            "level": 8,
+            "players": 2
+        }
+    ]
+}

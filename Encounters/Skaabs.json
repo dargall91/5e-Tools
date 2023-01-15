@@ -1,0 +1,27 @@
+{
+    "name": "Skaabs",
+    "theme": "Combat in the Ruins - Hallway.mp3",
+    "lairAction": false,
+    "monsterData": [
+        {
+            "quantity": 2,
+            "initiative": 15,
+            "xp": 1800,
+            "reinforcement": false,
+            "minion": false,
+            "monster": "Flesh Golem"
+        },
+        {
+            "quantity": 2,
+            "initiative": 7,
+            "xp": 1800,
+            "reinforcement": false,
+            "minion": false,
+            "monster": "Flesh Golem"
+        }
+    ],
+    "playerData": [{
+        "level": 10,
+        "players": 4
+    }]
+}

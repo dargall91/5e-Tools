@@ -1,0 +1,141 @@
+{
+    "ac": "0",
+    "languages": "none",
+    "senses": "Passive perception 10",
+    "scores": [
+        {
+            "score": 10,
+            "stat": "STR",
+            "proficient": false
+        },
+        {
+            "score": 12,
+            "stat": "DEX",
+            "proficient": false
+        },
+        {
+            "score": 10,
+            "stat": "CON",
+            "proficient": false
+        },
+        {
+            "score": 10,
+            "stat": "INT",
+            "proficient": false
+        },
+        {
+            "score": 10,
+            "stat": "WIS",
+            "proficient": false
+        },
+        {
+            "score": 10,
+            "stat": "CHA",
+            "proficient": false
+        }
+    ],
+    "legendaryActions": [],
+    "displayName": "Griselbrand",
+    "hp": "0",
+    "legendaryActionCount": 0,
+    "type": "type",
+    "speed": "speed",
+    "skills": [
+        {
+            "skill": "History",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Perception",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Performance",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Athletics",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Persuasion",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Intimidation",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Insight",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Religion",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Sleight of Hand",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Acrobatics",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Arcana",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Animal Handling",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Deception",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Medicine",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Stealth",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Survival",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Nature",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Investigation",
+            "expertise": false,
+            "proficient": false
+        }
+    ],
+    "abilities": [],
+    "size": "size",
+    "name": "Griselbrand",
+    "challenge": "-1",
+    "alignment": "alignment",
+    "actions": []
+}

@@ -1,0 +1,208 @@
+{
+    "ac": "11",
+    "languages": "Understands all languages but cannot speak",
+    "senses": "passive perception 15, Darkvision 60 ft",
+    "scores": [
+        {
+            "score": 12,
+            "stat": "STR",
+            "proficient": false
+        },
+        {
+            "score": 12,
+            "stat": "DEX",
+            "proficient": false
+        },
+        {
+            "score": 12,
+            "stat": "CON",
+            "proficient": false
+        },
+        {
+            "score": 12,
+            "stat": "INT",
+            "proficient": false
+        },
+        {
+            "score": 16,
+            "stat": "WIS",
+            "proficient": false
+        },
+        {
+            "score": 14,
+            "stat": "CHA",
+            "proficient": false
+        }
+    ],
+    "legendaryActions": [
+        {
+            "cost": 1,
+            "name": "Claw",
+            "description": "Old Stickfingers makes one Claw attack"
+        },
+        {
+            "cost": 1,
+            "name": "Move",
+            "description": "Old Stickingfingers can move up to its movement speed. Attack rolls made against him have disadvantage when moving this way"
+        },
+        {
+            "cost": 2,
+            "name": "Paralyzing Gaze",
+            "description": "Old Stickingers uses his Paralyzing Gaze"
+        },
+        {
+            "cost": 1,
+            "name": "Cantrip",
+            "description": "Old Stickfingers casts a cantrip"
+        }
+    ],
+    "displayName": "Old Stickfingers",
+    "hp": "150",
+    "legendaryActionCount": 3,
+    "type": "Aberration",
+    "speed": "40 feet",
+    "skills": [
+        {
+            "skill": "History",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Perception",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Performance",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Athletics",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Persuasion",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Intimidation",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Insight",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Religion",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Sleight of Hand",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Acrobatics",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Arcana",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Animal Handling",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Deception",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Medicine",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Stealth",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Survival",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Nature",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Investigation",
+            "expertise": false,
+            "proficient": false
+        }
+    ],
+    "abilities": [
+        {
+            "name": "Fear Factor",
+            "description": "Old Stickfingers' fear factor is 2d6 + 3"
+        },
+        {
+            "name": "Damage Resistances",
+            "description": "Bludeoning, Slashing, and Piercing from nonmagical, nonsilvered attacks"
+        },
+        {
+            "name": "Magic Resistance",
+            "description": "Old Stickfingers has advantage on saving throws against all magical effects."
+        },
+        {
+            "name": "Condition Immunities",
+            "description": "Frightened, Sleep"
+        },
+        {
+            "name": "His Eyes, All of Them",
+            "description": "At the start of each of Old Stickfingers' turn, roll 2d6. Old Stickfingers has this many eyes until the start of its next turn. Old Stickfingers gains a bonus to his AC, Spell Save DC, Fear Factor, Saving Throws, Skill Checks, attack rolls, and damage rolls equal to the number of eyes he has. He then regains hit points equal to the number of eyes he has."
+        },
+        {
+            "name": "Frightful Presence",
+            "description": "If a creature starts its turn within 20 feet of Old Stickfingers and the two of them can see each other, Old Stickfingers can force the creature to make Wisdom saving throw against Old Stickfingers' spell save DC. On a failed save, the creature is frightened of Old Stickfingers until the start of its next turn. The range of this ability increases by 5 x the number of eyes Old Stickfingers has.\n\nA creature that isn't surprised can avert its eyes to avoid making the saving throw at the start of its turn. If it does, it cannot see Old Stickfingers until the start of its next turn, when it can avert its eyes again. If the creature looks at Old Stickfingers in the meantime, it must immediately make the save."
+        },
+        {
+            "name": "Innate Spellcasting",
+            "description": "Old Stickfingers is an 11th-level spellcaster. Wisdom is spell casting. Spells have +7 to hit, Spell Save DC 15. He can innately cast the following spells, requiring no spell components to do so. If Old Stickfingers has 12 eyes, each spell is upcast one level:\n\nAt will: Chill Touch, Frostbite, Ray of Frost, Thorn Whip\n3/day each: Absorb Elements, Charm Person, Earthbind, Plant Growth, Protection from Energy\n1/day: Shadow of Moil"
+        },
+        {
+            "name": "Legendary Resistance (3/day)",
+            "description": "If Old Stickfingers would fail a saving throw, he can choose to succeed instead."
+        }
+    ],
+    "size": "Medium",
+    "name": "Old Stickfingers",
+    "challenge": "10",
+    "alignment": "Lawful Neutral",
+    "actions": [
+        {
+            "name": "Multiattack",
+            "description": "Old Stickfingers makes two claw attacks"
+        },
+        {
+            "name": "Claw",
+            "description": "Melee Weapon Attack: +5 to hit, reach 5 ft + 5x the number of eyes Old Stickfingers has, one target. If Old Stickfingers has 12 eyes, he can target one additional creature\nHit: 2d8 + 1 piercing damage"
+        },
+        {
+            "name": "Paralyzing Gaze (Recharge 6)",
+            "description": "Old Stickfingers chooses one target creature it can see within 20 feet of itself. This range increases by a number of feet equal to 5 x the number of eyes Old Stickfingers has. If Old Stickfingers has 12 eyes he can target one additional creature. The targets must succeed on a Constitution saving throw against Old Stickfingers' spell save DC or be paralyzed for one minute."
+        }
+    ]
+}

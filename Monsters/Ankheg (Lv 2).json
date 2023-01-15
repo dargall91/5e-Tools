@@ -1,0 +1,163 @@
+{
+    "ac": "16",
+    "languages": "None",
+    "senses": "Darkvision 60 ft, Temorsense 60 ft, passive perception 12",
+    "scores": [
+        {
+            "score": 19,
+            "stat": "STR",
+            "proficient": false
+        },
+        {
+            "score": 13,
+            "stat": "DEX",
+            "proficient": false
+        },
+        {
+            "score": 15,
+            "stat": "CON",
+            "proficient": false
+        },
+        {
+            "score": 2,
+            "stat": "INT",
+            "proficient": false
+        },
+        {
+            "score": 15,
+            "stat": "WIS",
+            "proficient": false
+        },
+        {
+            "score": 8,
+            "stat": "CHA",
+            "proficient": false
+        }
+    ],
+    "legendaryActions": [],
+    "displayName": "Bug?",
+    "hp": "68",
+    "legendaryActionCount": 0,
+    "type": "Monstrosity",
+    "speed": "30 ft, burrow 20 ft",
+    "skills": [
+        {
+            "skill": "History",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Perception",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Performance",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Athletics",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Persuasion",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Intimidation",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Insight",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Religion",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Sleight of Hand",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Acrobatics",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Arcana",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Animal Handling",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Deception",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Medicine",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Stealth",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Survival",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Nature",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Investigation",
+            "expertise": false,
+            "proficient": false
+        }
+    ],
+    "abilities": [
+        {
+            "name": "Acidic Exoskeleton",
+            "description": "Once per player turn, when the Ankheg is hit with a melee attack, acid sprays from the ankheg's exoskeleton at the attacker. The attacker must succeed on a DC 16 Dexterity saving throw, taking 4d8 acid damage on a failed save, or half as much on a successful one."
+        },
+        {
+            "name": "Fear Factor",
+            "description": "3d6"
+        }
+    ],
+    "size": "Large",
+    "name": "Ankheg (Lv 2)",
+    "challenge": "4",
+    "alignment": "Unaligned",
+    "actions": [
+        {
+            "name": "Multiattack",
+            "description": "The ankheg makes two Bite attacks"
+        },
+        {
+            "name": "Bite",
+            "description": "Melee Weapon Attack: +8 to hit, reach 5 ft., one target\nHit: 2d8 + 4 slashing damage plus 2d8 acid damage. If the target is a Large or smaller creature, it is grappled (escape DC 16). Until this grapple ends, the ankheg can bite only the grappled creature and has advantage on attack rolls to do so."
+        },
+        {
+            "name": "Acid Spray (Recharge 5-6)",
+            "description": "The ankheg spits acid in a line that is 45 feet long and 10 feet wide, provided that it has no creature grappled. Each creature in that line must make a DC 16 Dexterity saving throw, taking 4d8 acid damage on a failed save, or half as much damage on a successful one."
+        }
+    ]
+}

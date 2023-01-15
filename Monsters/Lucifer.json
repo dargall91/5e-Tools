@@ -1,0 +1,151 @@
+{
+    "ac": "18",
+    "languages": "Celestial, Common, Abyssal, Primordial",
+    "senses": "Angleic Sight 120 ft",
+    "scores": [
+        {
+            "score": 18,
+            "stat": "STR",
+            "proficient": false
+        },
+        {
+            "score": 22,
+            "stat": "DEX",
+            "proficient": false
+        },
+        {
+            "score": 18,
+            "stat": "CON",
+            "proficient": false
+        },
+        {
+            "score": 20,
+            "stat": "INT",
+            "proficient": false
+        },
+        {
+            "score": 24,
+            "stat": "WIS",
+            "proficient": true
+        },
+        {
+            "score": 30,
+            "stat": "CHA",
+            "proficient": true
+        }
+    ],
+    "legendaryActions": [{
+        "cost": 1,
+        "name": "Judgement",
+        "description": "All creatures within 60 ft of Lucifer must make a Persuaion check against by Lucifer's Inisght check. If Lucifer's Inisght check is higher than a creature's persuasion, it takes 6d6 radiant damage and is pushed or pulled pushed 10 ft in a direction of Lucifer's choice. On a successful save, they take half damage and are not pushed."
+    }],
+    "displayName": "Lucifer",
+    "hp": "666",
+    "legendaryActionCount": 1,
+    "type": "Celestial",
+    "speed": "30 feet (walking), 40 ft (flying)",
+    "skills": [
+        {
+            "skill": "History",
+            "expertise": false,
+            "proficient": true
+        },
+        {
+            "skill": "Perception",
+            "expertise": false,
+            "proficient": true
+        },
+        {
+            "skill": "Performance",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Athletics",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Persuasion",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Intimidation",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Insight",
+            "expertise": false,
+            "proficient": true
+        },
+        {
+            "skill": "Religion",
+            "expertise": false,
+            "proficient": true
+        },
+        {
+            "skill": "Sleight of Hand",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Acrobatics",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Arcana",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Animal Handling",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Deception",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Medicine",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Stealth",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Survival",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Nature",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Investigation",
+            "expertise": false,
+            "proficient": false
+        }
+    ],
+    "abilities": [{
+        "name": "Magic Resistance",
+        "description": "Lucifer has advantage on saving throws against spells and other magical effects."
+    }],
+    "size": "Medium",
+    "name": "Lucifer",
+    "challenge": "26",
+    "alignment": "Lawful Neutral",
+    "actions": [{
+        "name": "Divine Smite",
+        "description": "Melee Attack, reach 5 ft\n2d8 slashing damage, if the target is a follower of Yahweh, this atack deals an extra 1d8 radiant damage"
+    }]
+}

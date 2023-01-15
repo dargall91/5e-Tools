@@ -1,0 +1,187 @@
+{
+    "ac": "17",
+    "languages": "All",
+    "senses": "passive perception 10",
+    "scores": [
+        {
+            "score": 23,
+            "stat": "STR",
+            "proficient": false
+        },
+        {
+            "score": 12,
+            "stat": "DEX",
+            "proficient": false
+        },
+        {
+            "score": 22,
+            "stat": "CON",
+            "proficient": false
+        },
+        {
+            "score": 20,
+            "stat": "INT",
+            "proficient": true
+        },
+        {
+            "score": 16,
+            "stat": "WIS",
+            "proficient": true
+        },
+        {
+            "score": 22,
+            "stat": "CHA",
+            "proficient": true
+        }
+    ],
+    "legendaryActions": [{
+        "cost": 1,
+        "name": "In Aeternum in me Vivas",
+        "description": "Ormendahl absorbs the life essense of one creature who has pledged its deovition to Griselbrand and his demons. He regains hit points equal to twice the creature's current hit points"
+    }],
+    "displayName": "Ormendahl",
+    "hp": "150",
+    "legendaryActionCount": 1,
+    "type": "Demon",
+    "speed": "40 ft, fly 30 ft",
+    "skills": [
+        {
+            "skill": "History",
+            "expertise": false,
+            "proficient": true
+        },
+        {
+            "skill": "Perception",
+            "expertise": false,
+            "proficient": true
+        },
+        {
+            "skill": "Performance",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Athletics",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Persuasion",
+            "expertise": false,
+            "proficient": true
+        },
+        {
+            "skill": "Intimidation",
+            "expertise": false,
+            "proficient": true
+        },
+        {
+            "skill": "Insight",
+            "expertise": false,
+            "proficient": true
+        },
+        {
+            "skill": "Religion",
+            "expertise": false,
+            "proficient": true
+        },
+        {
+            "skill": "Sleight of Hand",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Acrobatics",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Arcana",
+            "expertise": false,
+            "proficient": true
+        },
+        {
+            "skill": "Animal Handling",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Deception",
+            "expertise": false,
+            "proficient": true
+        },
+        {
+            "skill": "Medicine",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Stealth",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Survival",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Nature",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Investigation",
+            "expertise": false,
+            "proficient": false
+        }
+    ],
+    "abilities": [
+        {
+            "name": "Fear Factor",
+            "description": "4d8 + 6"
+        },
+        {
+            "name": "Damage Resistances",
+            "description": "Fire, Necrotic, Cold; Bludgeoning, pierching, and slashing from nonmagical, nonsilvered attacks"
+        },
+        {
+            "name": "Condition Immunities",
+            "description": "Charmed, exhaustion, frightened"
+        },
+        {
+            "name": "Legendary Resistance (3/day)",
+            "description": "Can choose to succeed on a failed save"
+        },
+        {
+            "name": "Magic Resistance",
+            "description": "Advanatage on saving throws against spells and other magical effects"
+        },
+        {
+            "name": "Ego Sum Ormendahl",
+            "description": "When Ormendahl is reduced to 0 hit points, he is instantly revived in the body of one of his followers. He takes over his follower's body, which instantly transforms into his current form. He regains all of his hit points."
+        },
+        {
+            "name": "Innate Spellcasting",
+            "description": "Ormendahl is an 11th level spellcaster. His innate spelllcasting ability is Charisma (spell save DC 18, +10 to hit with spell attacks). He can innately cast the following spells, requiring no material components:\n\nAt will: Detect Magic, Command, Toll the Dead, Chill Touch, Fog Cloud, Burning Hands\n3/day each: Hellish Rebuke, Darkness, Dissonant Whispers\n1/day each: Phantasmal Killer, Banishment, Fire Shield"
+        },
+        {
+            "name": "Fear Factor",
+            "description": "Charisma"
+        }
+    ],
+    "size": "Huge",
+    "name": "Ormendahl",
+    "challenge": "10",
+    "alignment": "Evil",
+    "actions": [
+        {
+            "name": "Multiattack",
+            "description": "Ormendahl makes two slam attacks"
+        },
+        {
+            "name": "Slam",
+            "description": "Melee Weapon Attack: +10 to hit, reach 10 ft, one target\nHit: 3d8 + 6 bludeoning"
+        }
+    ]
+}

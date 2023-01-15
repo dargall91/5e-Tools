@@ -1,0 +1,153 @@
+{
+    "ac": "12",
+    "languages": "None",
+    "senses": "darkvision 60 ft, passive perception 10",
+    "scores": [
+        {
+            "score": 7,
+            "stat": "STR",
+            "proficient": false
+        },
+        {
+            "score": 15,
+            "stat": "DEX",
+            "proficient": false
+        },
+        {
+            "score": 11,
+            "stat": "CON",
+            "proficient": false
+        },
+        {
+            "score": 2,
+            "stat": "INT",
+            "proficient": false
+        },
+        {
+            "score": 10,
+            "stat": "WIS",
+            "proficient": false
+        },
+        {
+            "score": 4,
+            "stat": "CHA",
+            "proficient": false
+        }
+    ],
+    "legendaryActions": [],
+    "displayName": "Giant Rat",
+    "hp": "7",
+    "legendaryActionCount": 0,
+    "type": "Beast",
+    "speed": "30 ft",
+    "skills": [
+        {
+            "skill": "History",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Perception",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Performance",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Athletics",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Persuasion",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Intimidation",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Insight",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Religion",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Sleight of Hand",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Acrobatics",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Arcana",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Animal Handling",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Deception",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Medicine",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Stealth",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Survival",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Nature",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Investigation",
+            "expertise": false,
+            "proficient": false
+        }
+    ],
+    "abilities": [
+        {
+            "name": "Keen Smell",
+            "description": "The rat has advantage on Wisdom (Perception) checks that rely on smell."
+        },
+        {
+            "name": "Pack Tactics",
+            "description": "The rat has advantage on an attack rolls against a creature if at least one of its allies is within 5 feet of the creature and the ally isn't incapacitated."
+        }
+    ],
+    "size": "Small",
+    "name": "Giant Rat",
+    "challenge": "1/8",
+    "alignment": "Unaligned",
+    "actions": [{
+        "name": "Bite",
+        "description": "Melee Weapon Attack: +4 to hit, reach 5 ft, one target\nHit: 1d4 + 2 piercing damage"
+    }]
+}

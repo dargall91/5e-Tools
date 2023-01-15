@@ -1,0 +1,175 @@
+{
+    "ac": "13",
+    "languages": "Abyssal, Common",
+    "senses": "Darkvision 120 ft, passive perception 10",
+    "scores": [
+        {
+            "score": 5,
+            "stat": "STR",
+            "proficient": false
+        },
+        {
+            "score": 17,
+            "stat": "DEX",
+            "proficient": false
+        },
+        {
+            "score": 10,
+            "stat": "CON",
+            "proficient": false
+        },
+        {
+            "score": 7,
+            "stat": "INT",
+            "proficient": false
+        },
+        {
+            "score": 10,
+            "stat": "WIS",
+            "proficient": false
+        },
+        {
+            "score": 10,
+            "stat": "CHA",
+            "proficient": false
+        }
+    ],
+    "legendaryActions": [],
+    "displayName": "???",
+    "hp": "7",
+    "legendaryActionCount": 0,
+    "type": "Fiend",
+    "speed": "40 ft",
+    "skills": [
+        {
+            "skill": "History",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Perception",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Performance",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Athletics",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Persuasion",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Intimidation",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Insight",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Religion",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Sleight of Hand",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Acrobatics",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Arcana",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Animal Handling",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Deception",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Medicine",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Stealth",
+            "expertise": false,
+            "proficient": true
+        },
+        {
+            "skill": "Survival",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Nature",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Investigation",
+            "expertise": false,
+            "proficient": false
+        }
+    ],
+    "abilities": [
+        {
+            "name": "Damage Resistances",
+            "description": "Cold, Fire, Lighting; bludgeoning, Piercing, and Slashing from nonmagical attacks"
+        },
+        {
+            "name": "Damage Immunities",
+            "description": "Poison"
+        },
+        {
+            "name": "Condition Immunities",
+            "description": "Poisoned"
+        },
+        {
+            "name": "Shapechanger",
+            "description": "The Quasit can use it's action to polymorph into a beast that resembes a bat (10 ft, fly 40 ft), a centipede (40 ft, climb 40 ft), or a toad (40 ft, swim 40 ft) or back into its true form. Its statistics are the same in each form, except for the speed changes. Any equipment it is wearing or carrying isn't transofmormed. It reverts to its true form if it dies."
+        },
+        {
+            "name": "Magic Resistance",
+            "description": "Advantage on saving throws against spells and other magical effects"
+        }
+    ],
+    "size": "Tiny",
+    "name": "Quasit",
+    "challenge": "1",
+    "alignment": "Chaotic Evil",
+    "actions": [
+        {
+            "name": "Claws (Bite in beast form)",
+            "description": "Melee Weapon Attack: +4 to hit, reach 5 ft, one target\nHit:5 (1d4 + 2) piercing, and the target must succeed on a DC 10 Constitution saving throw or take 5 (2d4) Poison damage and become poisoned for 1 minute. The target can repeat the saving throw at the end of each of its turns, ending the effect on a success."
+        },
+        {
+            "name": "Scare (1/day)",
+            "description": "One creature of the Quasit's choice within 20 feet of it must succeed on a DC 10 Wisdom saving throw or be frighened for 1 minute.  The target can repeat the saving throw at the end of each of its turns, with disadvantage if the quasit is within line of sight, ending the effect on a success."
+        },
+        {
+            "name": "Invisibility",
+            "description": "The Quasit magically turns invisible until it attacks or uses Scare, or until its concentration ends (as if concentrating on a spell). Any equipment the quasit wears turns invisible with it."
+        }
+    ]
+}

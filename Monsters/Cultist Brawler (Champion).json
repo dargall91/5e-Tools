@@ -1,0 +1,167 @@
+{
+    "ac": "16",
+    "languages": "Common, Abyssal",
+    "senses": "passive perception 13",
+    "scores": [
+        {
+            "score": 20,
+            "stat": "STR",
+            "proficient": false
+        },
+        {
+            "score": 16,
+            "stat": "DEX",
+            "proficient": false
+        },
+        {
+            "score": 16,
+            "stat": "CON",
+            "proficient": false
+        },
+        {
+            "score": 11,
+            "stat": "INT",
+            "proficient": false
+        },
+        {
+            "score": 10,
+            "stat": "WIS",
+            "proficient": false
+        },
+        {
+            "score": 14,
+            "stat": "CHA",
+            "proficient": false
+        }
+    ],
+    "legendaryActions": [],
+    "displayName": "Cultist",
+    "hp": "82",
+    "legendaryActionCount": 0,
+    "type": "Humanoid",
+    "speed": "40 ft",
+    "skills": [
+        {
+            "skill": "History",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Perception",
+            "expertise": false,
+            "proficient": true
+        },
+        {
+            "skill": "Performance",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Athletics",
+            "expertise": false,
+            "proficient": true
+        },
+        {
+            "skill": "Persuasion",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Intimidation",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Insight",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Religion",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Sleight of Hand",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Acrobatics",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Arcana",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Animal Handling",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Deception",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Medicine",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Stealth",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Survival",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Nature",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Investigation",
+            "expertise": false,
+            "proficient": false
+        }
+    ],
+    "abilities": [
+        {
+            "name": "Dark Devotion",
+            "description": "The cultist has advantage on saving throws against being charmed or frightened."
+        },
+        {
+            "name": "Rend for the Old God",
+            "description": "When the cultist scores a hit with a melee weapon attack on a target, its melee weapon attacks have advantage on that target until the beginning of its next turn."
+        },
+        {
+            "name": "Mark of Madness",
+            "description": "The cultist gains a +3 bonus to all attack and damage rolls made against a creature that has gained stress since the end of the cultist's last turn."
+        },
+        {
+            "name": "Unarmored Defense",
+            "description": "While the cultist not not wearing any amor, its AC equals 10 + their Dexterity modifier + their Constitution modifier."
+        }
+    ],
+    "size": "Medium",
+    "name": "Cultist Brawler (Champion)",
+    "challenge": "8",
+    "alignment": "Neutral evil",
+    "actions": [
+        {
+            "name": "Multiattack",
+            "description": "The cultist makes 3 claw attacks."
+        },
+        {
+            "name": "Claw",
+            "description": "Melee Weapon Attack: +8 to hit, reach 5ft, one target\nHit: 1d8 + 5 slashing damage"
+        }
+    ]
+}

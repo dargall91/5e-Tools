@@ -1,0 +1,44 @@
+{
+    "name": "Bandits 2",
+    "theme": "Mournweald Encounter.mp3",
+    "lairAction": false,
+    "monsterData": [
+        {
+            "quantity": 2,
+            "initiative": 6,
+            "xp": 25,
+            "invisible": false,
+            "reinforcement": false,
+            "minion": false,
+            "monster": "Bandit"
+        },
+        {
+            "quantity": 2,
+            "initiative": 11,
+            "xp": 25,
+            "invisible": false,
+            "reinforcement": false,
+            "minion": false,
+            "monster": "Bandit"
+        },
+        {
+            "quantity": 1,
+            "initiative": 20,
+            "xp": 25,
+            "invisible": false,
+            "reinforcement": false,
+            "minion": false,
+            "monster": "Bandit"
+        }
+    ],
+    "playerData": [
+        {
+            "level": 3,
+            "players": 1
+        },
+        {
+            "level": 3,
+            "players": 1
+        }
+    ]
+}

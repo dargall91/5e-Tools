@@ -1,0 +1,220 @@
+{
+    "ac": "16",
+    "languages": "Common",
+    "senses": "Darkvision 120 ft, passive perception 17",
+    "scores": [
+        {
+            "score": 18,
+            "stat": "STR",
+            "proficient": false
+        },
+        {
+            "score": 18,
+            "stat": "DEX",
+            "proficient": true
+        },
+        {
+            "score": 18,
+            "stat": "CON",
+            "proficient": true
+        },
+        {
+            "score": 17,
+            "stat": "INT",
+            "proficient": false
+        },
+        {
+            "score": 15,
+            "stat": "WIS",
+            "proficient": true
+        },
+        {
+            "score": 18,
+            "stat": "CHA",
+            "proficient": true
+        }
+    ],
+    "legendaryActions": [
+        {
+            "cost": 1,
+            "name": "Move",
+            "description": "Sorin moves up to his speed without provoking oppurtunity attacks"
+        },
+        {
+            "cost": 1,
+            "name": "Melee Attack",
+            "description": "Sorin makes one unarmed strike or Rapier attack"
+        },
+        {
+            "cost": 2,
+            "name": "Bite",
+            "description": "Sorin makes one bite attack"
+        },
+        {
+            "cost": 2,
+            "name": "Spell",
+            "description": "Sorin casts a spell"
+        }
+    ],
+    "displayName": "Sorin Markov",
+    "hp": "144",
+    "legendaryActionCount": 3,
+    "type": "Undead (Shapechanger)",
+    "speed": "30 ft",
+    "skills": [
+        {
+            "skill": "History",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Perception",
+            "expertise": false,
+            "proficient": true
+        },
+        {
+            "skill": "Performance",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Athletics",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Persuasion",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Intimidation",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Insight",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Religion",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Sleight of Hand",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Acrobatics",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Arcana",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Animal Handling",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Deception",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Medicine",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Stealth",
+            "expertise": false,
+            "proficient": true
+        },
+        {
+            "skill": "Survival",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Nature",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Investigation",
+            "expertise": false,
+            "proficient": false
+        }
+    ],
+    "abilities": [
+        {
+            "name": "Damage Resistances",
+            "description": "Necrotic; bludgeoning, piercing, and slashing from nonmagical attacks"
+        },
+        {
+            "name": "Shapechanger",
+            "description": "If Sorin isn't in sunlight or running water, he can use its action to polymorph into a Tiny Bat or a Medium Cloud of Mist, or back into his true form.\nWhile in bat form, Sorin can't speak, his walking speed is 5 ft, and he has a flying speed of 30 ft. His other statistics remain unchanged. Anything he is wearing transforms with him, but nothing he is carrying does. He reverts to his true form if he dies.\nWhile in mist form, Sorin can't take actions, speak, or manipulate objects. He is weightless, has a flying speed of 20 ft, can hoverm and can enter a hostile creature's space and stop there. In addition, if air can pass through a spacem the mist can do so without squeezing, and it can't pass through water. It has advantage on Strength, Dexterity, and Constitution saving throws, and is immune to all magical damage, except the damage it takes from sunlight."
+        },
+        {
+            "name": "Legendary Resistance (3/day)",
+            "description": "If Sorin fails a saving throw, he can choose to succeed instead."
+        },
+        {
+            "name": "Misty Escape",
+            "description": "Uneeded for Sorin, but keep for future vampire stat blocks"
+        },
+        {
+            "name": "Regeneration",
+            "description": "Sorin regains 20 hit points at the start of its turn if he has at least 1 hit point and isn't in sunlight or running water. If Sorin takes radiant damage or damage from holy water, the trait doesn't function at the start of Sorin's next turn."
+        },
+        {
+            "name": "Spider Climb",
+            "description": "description"
+        },
+        {
+            "name": "Vampire Weaknesses",
+            "description": "description"
+        },
+        {
+            "name": "Spellcasting",
+            "description": "Sorin is a 11th level spellcaster. His spellcasting ability is Intelligence (spell save DC 16, +8 to hit with spell attacks). Sorin has the following spells prepared:\n\nCantrips (at will): Toll the Dead, Mind Sliver, Frostbite, Acid Splash/Fire Bolt, Sacred Flame\n1st Level (4 slots): Chromatic Orb, Shield, Tasha's Hideous Laughter\n2nd Level (3 slots): Darkness, Earthbind, Hold Person, Scorching Ray\n3rd Level (3 slots): Vampiric Touch, Fireball, Bestow Curse, Summon Undead\n4th Level (3 slots): Banishment, Greater Invisibility, Phantasmal Killer\n5th Level (2 slot): Dominate Person, Wall of Force\n6th Level (1 slot): Otto's Irresistable Dance"
+        }
+    ],
+    "size": "Medium",
+    "name": "Sorin Markov",
+    "challenge": "15",
+    "alignment": "Lawful Evil",
+    "actions": [
+        {
+            "name": "Multiattack",
+            "description": "Sorin makes two attacks, only one of which can be a bite attack."
+        },
+        {
+            "name": "Rapier (Vampire form only)",
+            "description": "Melee Weapon attack: +12 to hit, reach 5 ft, one creature\nHit: 1d8 + 4 piercing damage + 1d8 radiant damage\nSword of Smiting: 7 charges for an additional 1d8 radiant damage each"
+        },
+        {
+            "name": "Unarmed Strike (Vampire Form only)",
+            "description": "Melee Weapon Attack: +9 to hit, reach 5 ft., one creature.\nHit: 8 (1d8 + 4) bludgeoning damage. Instead of dealing damage, the vampire can grapple the target (escape DC 18)."
+        },
+        {
+            "name": "Bite (Bat or Vampire form only)",
+            "description": "Melee Weapon Attack: +9 to hit, reach 5 ft., one willing creature, or a creature that is grappled by the vampire, incapacitated, or restrained. Hit: 7 (1d6 + 4) piercing damage plus 10 (3d6) necrotic damage. The target's hit point maximum is reduced by an amount equal to the necrotic damage taken, and the vampire regains hit points equal to that amount. The reduction lasts until the target finishes a long rest. The target dies if this effect reduces its hit point maximum to 0. A humanoid slain in this way and then buried in the ground rises the following night as a vampire spawn under the vampire's control."
+        },
+        {
+            "name": "Charm",
+            "description": "The vampire targets one humanoid it can see within 30 ft. of it. If the target can see the vampire, the target must succeed on a DC 17 Wisdom saving throw against this magic or be charmed by the vampire. The charmed target regards the vampire as a trusted friend to be heeded and protected. Although the target isn't under the vampire's control, it takes the vampire's requests or actions in the most favorable way it can, and it is a willing target for the vampire's bit attack.\nEach time the vampire or the vampire's companions do anything harmful to the target, it can repeat the saving throw, ending the effect on itself on a success. Otherwise, the effect lasts 24 hours or until the vampire is destroyed, is on a different plane of existence than the target, or takes a bonus action to end the effect."
+        },
+        {
+            "name": "Chdilren of the Night (1/Day)",
+            "description": "The vampire magically calls 2d4 swarms of bats or rats, provided that the sun isn't up. While outdoors, the vampire can call 3d6 wolves instead. The called creatures arrive in 1d4 rounds, acting as allies of the vampire and obeying its spoken commands. The beasts remain for 1 hour, until the vampire dies, or until the vampire dismisses them as a bonus action."
+        }
+    ]
+}

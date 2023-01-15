@@ -1,0 +1,167 @@
+{
+    "ac": "15/24",
+    "languages": "Understands common but can;'t speak, telepathy 60 ft",
+    "senses": "Darkvision 60 ft, passive perception 12",
+    "scores": [
+        {
+            "score": 6,
+            "stat": "STR",
+            "proficient": false
+        },
+        {
+            "score": 15,
+            "stat": "DEX",
+            "proficient": false
+        },
+        {
+            "score": 10,
+            "stat": "CON",
+            "proficient": false
+        },
+        {
+            "score": 14,
+            "stat": "INT",
+            "proficient": false
+        },
+        {
+            "score": 17,
+            "stat": "WIS",
+            "proficient": false
+        },
+        {
+            "score": 11,
+            "stat": "CHA",
+            "proficient": false
+        }
+    ],
+    "legendaryActions": [],
+    "displayName": "Flumph",
+    "hp": "24",
+    "legendaryActionCount": 0,
+    "type": "Aberration",
+    "speed": "5ft, fly 30 ft",
+    "skills": [
+        {
+            "skill": "History",
+            "expertise": false,
+            "proficient": true
+        },
+        {
+            "skill": "Perception",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Performance",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Athletics",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Persuasion",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Intimidation",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Insight",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Religion",
+            "expertise": false,
+            "proficient": true
+        },
+        {
+            "skill": "Sleight of Hand",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Acrobatics",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Arcana",
+            "expertise": false,
+            "proficient": true
+        },
+        {
+            "skill": "Animal Handling",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Deception",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Medicine",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Stealth",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Survival",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Nature",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Investigation",
+            "expertise": false,
+            "proficient": false
+        }
+    ],
+    "abilities": [
+        {
+            "name": "Damage Vulnerabilities",
+            "description": "Psychic"
+        },
+        {
+            "name": "Advanced Telepathy",
+            "description": "The flumph can perceive the content of any telapathic communication used within 60 feet of it, and it can't be surprised by creatures with any form of telepathy"
+        },
+        {
+            "name": "Prone Deficiency",
+            "description": "If the flumph is knocked prone, roll a die. On an odd result, the flumph lands upside-down and is incapacitated. At the end of each of its turns, the flumph can make a DC 10 Dexterity saving throw, righting itself and ending the incapcitated condition if it succeeds."
+        },
+        {
+            "name": "Telepathic Shroud",
+            "description": "The flumph is immune to any effect that would sense its emotions or read its thoughts, as well as divination spells."
+        }
+    ],
+    "size": "Small",
+    "name": "Flumph",
+    "challenge": "1/8",
+    "alignment": "Lawful Good",
+    "actions": [
+        {
+            "name": "Tendrils",
+            "description": "Melee Weapon Attack:+4 to hit, reach 5ft, one creature\nHit: 1d4 + 2 piercing damage plus 1d4 acid damage. At the end of each of its turns, the target must make a DC10 Constitution saving throw, taking 2 (1d4) acid damage on a failure or ending this effect on a success. A Lesser Restoration spell cast on the target also ends this effect."
+        },
+        {
+            "name": "Stench Spray (1/day)",
+            "description": "Each creature within a 15-foot cone originating from the flumph must succeed on a DC 10 Dexterity saving throw or be coated in a foul smelling liquid. A coated creature exudes a horrible stench for 1d4 hours. THe coated creature is poisoned as long as the stench lasts, and other creatures are poisoned while within 5 feet of the coated creature. Acreature can remove the stench on itself by taking a 1 hour bath in water, alchohol, or vinegar."
+        }
+    ]
+}

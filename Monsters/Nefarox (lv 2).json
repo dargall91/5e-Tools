@@ -1,0 +1,179 @@
+{
+    "ac": "18",
+    "languages": "All",
+    "senses": "Devil's Sight 120 ft., passive perception 18",
+    "scores": [
+        {
+            "score": 18,
+            "stat": "STR",
+            "proficient": false
+        },
+        {
+            "score": 18,
+            "stat": "DEX",
+            "proficient": true
+        },
+        {
+            "score": 14,
+            "stat": "CON",
+            "proficient": false
+        },
+        {
+            "score": 20,
+            "stat": "INT",
+            "proficient": true
+        },
+        {
+            "score": 18,
+            "stat": "WIS",
+            "proficient": false
+        },
+        {
+            "score": 24,
+            "stat": "CHA",
+            "proficient": true
+        }
+    ],
+    "legendaryActions": [],
+    "displayName": "Nefarox",
+    "hp": "110",
+    "legendaryActionCount": 0,
+    "type": "Fiend (Demon)",
+    "speed": "30 ft, fly 40 ft",
+    "skills": [
+        {
+            "skill": "History",
+            "expertise": false,
+            "proficient": true
+        },
+        {
+            "skill": "Perception",
+            "expertise": false,
+            "proficient": true
+        },
+        {
+            "skill": "Performance",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Athletics",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Persuasion",
+            "expertise": false,
+            "proficient": true
+        },
+        {
+            "skill": "Intimidation",
+            "expertise": false,
+            "proficient": true
+        },
+        {
+            "skill": "Insight",
+            "expertise": true,
+            "proficient": true
+        },
+        {
+            "skill": "Religion",
+            "expertise": false,
+            "proficient": true
+        },
+        {
+            "skill": "Sleight of Hand",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Acrobatics",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Arcana",
+            "expertise": true,
+            "proficient": true
+        },
+        {
+            "skill": "Animal Handling",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Deception",
+            "expertise": false,
+            "proficient": true
+        },
+        {
+            "skill": "Medicine",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Stealth",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Survival",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Nature",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Investigation",
+            "expertise": false,
+            "proficient": false
+        }
+    ],
+    "abilities": [
+        {
+            "name": "Damage Resitances",
+            "description": "Cold, Fire, Lightning; Bludgeoning, pierching, and slashing from nonmagical, nonsilvered attacks"
+        },
+        {
+            "name": "Damage Immunities",
+            "description": "Poison"
+        },
+        {
+            "name": "Condition Immunities",
+            "description": "Charmed, exhaustion, frightened, poisoned"
+        },
+        {
+            "name": "Innate Spellcasting",
+            "description": "Nefarox is a 5th level spellcaster. His innate spelllcasting ability is Charisma (spell save DC 19, +11 to hit with spell attacks). He can innately cast the following spells, requiring no material components:\n\nAt will: Dispel Magic, Command, Toll the Dead, Chill Touch, Fog Cloud\n3/day each: Hellish Rebuke, Darkness, Dissonant Whispers, Cause Fear\n1/day: Feeblemind"
+        },
+        {
+            "name": "Legendary Resistance (3/day)",
+            "description": "If Nefarox fails a saving throw, he can choose to succeed instead."
+        },
+        {
+            "name": "Ego Sum Nefarox",
+            "description": "When Nefarox is reduced to 0 hit points, he is instantly revived in the body of one of his followers. He takes over his follower's body, which instantly transforms into his current form. He regains all of his hit points."
+        }
+    ],
+    "size": "Large",
+    "name": "Nefarox (lv 2)",
+    "challenge": "10",
+    "alignment": "Lawful Evil",
+    "actions": [
+        {
+            "name": "Multiattack",
+            "description": "Nefarox makes one claw attack and one sword attack"
+        },
+        {
+            "name": "Claws",
+            "description": "Melee Weapon Attack: +8 to hit, reach 5 ft, one target\nHit: 2d10 + 4 slashing damage"
+        },
+        {
+            "name": "Sword",
+            "description": "Melee Weapon Attack: +8 to hit, reach 5 ft, one target\nHit: 1d12 + 4 slashing damage"
+        }
+    ]
+}

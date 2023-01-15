@@ -1,0 +1,51 @@
+{
+    "name": "Vampire Spawn",
+    "theme": "Combat in the Ruins.mp3",
+    "lairAction": false,
+    "monsterData": [
+        {
+            "quantity": 1,
+            "initiative": 1,
+            "xp": 1800,
+            "reinforcement": false,
+            "minion": false,
+            "monster": "Vampire Spawn"
+        },
+        {
+            "quantity": 1,
+            "initiative": 1,
+            "xp": 1800,
+            "reinforcement": false,
+            "minion": false,
+            "monster": "Vampire Spawn"
+        },
+        {
+            "quantity": 1,
+            "initiative": 1,
+            "xp": 1800,
+            "reinforcement": true,
+            "minion": false,
+            "monster": "Vampire Spawn"
+        },
+        {
+            "quantity": 1,
+            "initiative": 1,
+            "xp": 1800,
+            "reinforcement": true,
+            "minion": false,
+            "monster": "Vampire Spawn"
+        },
+        {
+            "quantity": 1,
+            "initiative": 1,
+            "xp": 13000,
+            "reinforcement": true,
+            "minion": false,
+            "monster": "Sorin Markov"
+        }
+    ],
+    "playerData": [{
+        "level": 10,
+        "players": 4
+    }]
+}

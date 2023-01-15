@@ -1,0 +1,51 @@
+{
+    "name": "Kindercatch",
+    "theme": "Mournweald Encounter.mp3",
+    "lairAction": false,
+    "monsterData": [
+        {
+            "quantity": 1,
+            "initiative": 7,
+            "xp": 700,
+            "reinforcement": false,
+            "minion": false,
+            "monster": "Kindercatch"
+        },
+        {
+            "quantity": 1,
+            "initiative": 4,
+            "xp": 100,
+            "reinforcement": true,
+            "minion": false,
+            "monster": "Marionette"
+        },
+        {
+            "quantity": 1,
+            "initiative": 4,
+            "xp": 700,
+            "reinforcement": true,
+            "minion": false,
+            "monster": "Kindercatch"
+        },
+        {
+            "quantity": 2,
+            "initiative": 11,
+            "xp": 100,
+            "reinforcement": true,
+            "minion": false,
+            "monster": "Marionette"
+        },
+        {
+            "quantity": 1,
+            "initiative": 20,
+            "xp": 100,
+            "reinforcement": true,
+            "minion": false,
+            "monster": "Marionette"
+        }
+    ],
+    "playerData": [{
+        "level": 10,
+        "players": 2
+    }]
+}

@@ -1,0 +1,171 @@
+{
+    "ac": "15",
+    "languages": "Bullywug",
+    "senses": "passive perception 10",
+    "scores": [
+        {
+            "score": 12,
+            "stat": "STR",
+            "proficient": false
+        },
+        {
+            "score": 12,
+            "stat": "DEX",
+            "proficient": false
+        },
+        {
+            "score": 13,
+            "stat": "CON",
+            "proficient": false
+        },
+        {
+            "score": 7,
+            "stat": "INT",
+            "proficient": false
+        },
+        {
+            "score": 10,
+            "stat": "WIS",
+            "proficient": false
+        },
+        {
+            "score": 7,
+            "stat": "CHA",
+            "proficient": false
+        }
+    ],
+    "legendaryActions": [],
+    "displayName": "I'm Feelin' Froggy",
+    "hp": "11",
+    "legendaryActionCount": 0,
+    "type": "Humaoid (bullywug)",
+    "speed": "20 ft, swim 40 ft",
+    "skills": [
+        {
+            "skill": "History",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Perception",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Performance",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Athletics",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Persuasion",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Intimidation",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Insight",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Religion",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Sleight of Hand",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Acrobatics",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Arcana",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Animal Handling",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Deception",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Medicine",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Stealth",
+            "expertise": false,
+            "proficient": true
+        },
+        {
+            "skill": "Survival",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Nature",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Investigation",
+            "expertise": false,
+            "proficient": false
+        }
+    ],
+    "abilities": [
+        {
+            "name": "Amphibious",
+            "description": "The bullywug can breath air and water"
+        },
+        {
+            "name": "Speak with Frogs and Toads",
+            "description": "The bullywig can communicate simple concepts to frogs and toads while it speaks in Bullywug"
+        },
+        {
+            "name": "Swamp Camouflage",
+            "description": "The Bullywug has advantage on Dexterity (Stealth) checks to hide in swampy terrain."
+        },
+        {
+            "name": "Standing Leap",
+            "description": "The Bullywug's long jump is up to 20 feet and its high jump is up to 10 feet, with or without a running start."
+        }
+    ],
+    "size": "Medium",
+    "name": "Bullywug",
+    "challenge": "1/4",
+    "alignment": "Neutral Evil",
+    "actions": [
+        {
+            "name": "Multiattack",
+            "description": "The Bullywug makes two melee attacks: one with its bite and one with its spear."
+        },
+        {
+            "name": "Bite",
+            "description": "Melee Weapon Attack: +3 to hit, reach 5 ft, one target\nHit: 1d4 + 1 bludgeoning damage."
+        },
+        {
+            "name": "Spear",
+            "description": "Melee or Ranged Weapon Attack: +3 to hit, reach 5 ft or range 20/60 ft, one target\nHit: 1d6 + 1 bludgeoningpiercing damage, or 1d8 + 1 piercing damage if used with two hands to make a melee attack."
+        }
+    ]
+}

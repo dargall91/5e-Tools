@@ -1,0 +1,35 @@
+{
+    "name": "Manor - Mastiffs",
+    "theme": "Combat in the Ruins - Hallway.mp3",
+    "lairAction": false,
+    "monsterData": [
+        {
+            "quantity": 2,
+            "initiative": 16,
+            "xp": 450,
+            "reinforcement": false,
+            "minion": false,
+            "monster": "Shadow Mastiff (Alpha)"
+        },
+        {
+            "quantity": 2,
+            "initiative": 2,
+            "xp": 450,
+            "reinforcement": false,
+            "minion": false,
+            "monster": "Shadow Mastiff"
+        },
+        {
+            "quantity": 2,
+            "initiative": 14,
+            "xp": 450,
+            "reinforcement": false,
+            "minion": false,
+            "monster": "Shadow Mastiff"
+        }
+    ],
+    "playerData": [{
+        "level": 10,
+        "players": 4
+    }]
+}

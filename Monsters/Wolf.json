@@ -1,0 +1,153 @@
+{
+    "ac": "13",
+    "languages": "none",
+    "senses": "passive perception 13",
+    "scores": [
+        {
+            "score": 12,
+            "stat": "STR",
+            "proficient": false
+        },
+        {
+            "score": 15,
+            "stat": "DEX",
+            "proficient": false
+        },
+        {
+            "score": 12,
+            "stat": "CON",
+            "proficient": false
+        },
+        {
+            "score": 3,
+            "stat": "INT",
+            "proficient": false
+        },
+        {
+            "score": 12,
+            "stat": "WIS",
+            "proficient": false
+        },
+        {
+            "score": 6,
+            "stat": "CHA",
+            "proficient": false
+        }
+    ],
+    "legendaryActions": [],
+    "displayName": "Wolf",
+    "hp": "11",
+    "legendaryActionCount": 0,
+    "type": "beast",
+    "speed": "40",
+    "skills": [
+        {
+            "skill": "History",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Perception",
+            "expertise": false,
+            "proficient": true
+        },
+        {
+            "skill": "Performance",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Athletics",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Persuasion",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Intimidation",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Insight",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Religion",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Sleight of Hand",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Acrobatics",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Arcana",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Animal Handling",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Deception",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Medicine",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Stealth",
+            "expertise": false,
+            "proficient": true
+        },
+        {
+            "skill": "Survival",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Nature",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Investigation",
+            "expertise": false,
+            "proficient": false
+        }
+    ],
+    "abilities": [
+        {
+            "name": "Keen Healing and Smell",
+            "description": "advantage on Wisdome (Perception) checks that rely on hearing or smell"
+        },
+        {
+            "name": "Pack Tactics",
+            "description": "Advantage on attack rolls against a creature if at least one ally is within 5 ft and ally is not incapacicated"
+        }
+    ],
+    "size": "medium",
+    "name": "Wolf",
+    "challenge": "1/4",
+    "alignment": "unaligned",
+    "actions": [{
+        "name": "Bite",
+        "description": "Melee Weapon Attack: +4 to hit, reach 5ft, one target\nHit: 7 (2d4 + 2) piercing. If target is a creature, succede on DC 11 Str saving throw or be knocked prone"
+    }]
+}
