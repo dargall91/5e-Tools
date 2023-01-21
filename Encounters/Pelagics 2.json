@@ -1,0 +1,49 @@
+{
+    "name": "Pelagics 2",
+    "theme": "Cove Battle.mp3",
+    "lairAction": false,
+    "monsterData": [
+        {
+            "quantity": 2,
+            "initiative": 1,
+            "xp": 200,
+            "reinforcement": false,
+            "minion": false,
+            "monster": "Pelagic Shaman"
+        },
+        {
+            "quantity": 2,
+            "initiative": 1,
+            "xp": 100,
+            "reinforcement": false,
+            "minion": false,
+            "monster": "Pelagic Grouper"
+        },
+        {
+            "quantity": 2,
+            "initiative": 1,
+            "xp": 100,
+            "reinforcement": false,
+            "minion": false,
+            "monster": "Pelagic Grouper"
+        },
+        {
+            "quantity": 2,
+            "initiative": 1,
+            "xp": 100,
+            "reinforcement": false,
+            "minion": false,
+            "monster": "Pelagic Grouper"
+        }
+    ],
+    "playerData": [
+        {
+            "level": 9,
+            "players": 2
+        },
+        {
+            "level": 10,
+            "players": 2
+        }
+    ]
+}

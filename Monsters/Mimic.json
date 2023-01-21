@@ -1,0 +1,175 @@
+{
+    "ac": "12",
+    "languages": "None",
+    "senses": "Darkvision 60 ft, passive perception 11",
+    "scores": [
+        {
+            "score": 17,
+            "stat": "STR",
+            "proficient": false
+        },
+        {
+            "score": 12,
+            "stat": "DEX",
+            "proficient": false
+        },
+        {
+            "score": 15,
+            "stat": "CON",
+            "proficient": false
+        },
+        {
+            "score": 5,
+            "stat": "INT",
+            "proficient": false
+        },
+        {
+            "score": 13,
+            "stat": "WIS",
+            "proficient": false
+        },
+        {
+            "score": 8,
+            "stat": "CHA",
+            "proficient": false
+        }
+    ],
+    "legendaryActions": [],
+    "displayName": "Chest",
+    "hp": "58",
+    "legendaryActionCount": 0,
+    "type": "Monstrosity (shapechanger)",
+    "speed": "15 ft",
+    "skills": [
+        {
+            "skill": "History",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Perception",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Performance",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Athletics",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Persuasion",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Intimidation",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Insight",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Religion",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Sleight of Hand",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Acrobatics",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Arcana",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Animal Handling",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Deception",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Medicine",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Stealth",
+            "expertise": true,
+            "proficient": true
+        },
+        {
+            "skill": "Survival",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Nature",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Investigation",
+            "expertise": false,
+            "proficient": false
+        }
+    ],
+    "abilities": [
+        {
+            "name": "Damage Immunities",
+            "description": "Poison"
+        },
+        {
+            "name": "Condition Immunities",
+            "description": "Prone"
+        },
+        {
+            "name": "Shapechanger",
+            "description": "The mimic can use its action to plymorph into an object or back into its true, amorphous form. Its statstics are the same in each form. Any equipment it is wearing or carrying isn't transformed. It reverts to its true form if it dies."
+        },
+        {
+            "name": "Adhesive (Object form only)",
+            "description": "The mimic adheres to anything that touches it. A Huge or smaller creature adhered to the mimic is also grappled by it (escape DC 13). Ability checks made to escape this grapple had disadvantage."
+        },
+        {
+            "name": "False Appearance (Object form only)",
+            "description": "While the mimic remains motionless, it is indistinguishable from an ordinary object."
+        },
+        {
+            "name": "Grappler",
+            "description": "The mimic had advatage on attack rolls against any greature grappled by it."
+        }
+    ],
+    "size": "Mediu",
+    "name": "Mimic",
+    "challenge": "2",
+    "alignment": "Neutral",
+    "actions": [
+        {
+            "name": "Pseudopod",
+            "description": "Melee Weapon Attack: +5 to hit, reach 5 ft, one target\nHit: 1d8 + 3 bludgeoning damage. If the mimic is in its object form, the target is subjected to its Adhesive trait."
+        },
+        {
+            "name": "Bite",
+            "description": "Melee Weapon Attack: +5 to hit, reach 5 ft, one target\nHit: 1d8 + 3 piercing damage plue 1d8 acid damage."
+        }
+    ]
+}

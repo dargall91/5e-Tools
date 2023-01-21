@@ -1,0 +1,163 @@
+{
+    "ac": "13",
+    "languages": "None",
+    "senses": "Blindsight 20 ft, darkvision 60 ft, passive perception 10",
+    "scores": [
+        {
+            "score": 6,
+            "stat": "STR",
+            "proficient": false
+        },
+        {
+            "score": 14,
+            "stat": "DEX",
+            "proficient": false
+        },
+        {
+            "score": 12,
+            "stat": "CON",
+            "proficient": false
+        },
+        {
+            "score": 2,
+            "stat": "INT",
+            "proficient": false
+        },
+        {
+            "score": 10,
+            "stat": "WIS",
+            "proficient": false
+        },
+        {
+            "score": 3,
+            "stat": "CHA",
+            "proficient": false
+        }
+    ],
+    "legendaryActions": [],
+    "displayName": "Spider",
+    "hp": "9",
+    "legendaryActionCount": 0,
+    "type": "Beast",
+    "speed": "30 ft",
+    "skills": [
+        {
+            "skill": "History",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Perception",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Performance",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Athletics",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Persuasion",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Intimidation",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Insight",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Religion",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Sleight of Hand",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Acrobatics",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Arcana",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Animal Handling",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Deception",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Medicine",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Stealth",
+            "expertise": false,
+            "proficient": true
+        },
+        {
+            "skill": "Survival",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Nature",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Investigation",
+            "expertise": false,
+            "proficient": false
+        }
+    ],
+    "abilities": [
+        {
+            "name": "Spider Climb",
+            "description": "The webber can climb difficult surfaces, including upside down on ceilings, without needing to make an ability check."
+        },
+        {
+            "name": "Web Sense",
+            "description": "While in contact with a web, the webber knows the exact location of any other creature in contact with the same web."
+        },
+        {
+            "name": "Web Walker",
+            "description": "The webber ignores movement restrictions caused by webbing."
+        }
+    ],
+    "size": "Small",
+    "name": "Webber",
+    "challenge": "1/4",
+    "alignment": "Unaligned",
+    "actions": [
+        {
+            "name": "Bite",
+            "description": "Melee Weapon Attack: +4 to hit, reach 5 ft., one target.\nHit: 1d4 + 2 piercing damage plus 1d4 poison damage."
+        },
+        {
+            "name": "Web (Recharge 4-6)",
+            "description": "The Webber fires a web at a creature within 40 ft. of itself. The target must succeed on a DC 11 dexterity saving throw or is restrained by webs. As an action, the restrained target can make a DC 11 Strength check, bursting the webbing on a success. The webbing can also be attacked and destroyed (AC 10; hp 5; vulnerability to fire damage; immunity to bludgeoning, poison, and psychic damage.)"
+        }
+    ]
+}

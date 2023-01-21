@@ -1,0 +1,167 @@
+{
+    "ac": "12",
+    "languages": "Common",
+    "senses": "Darkvision 120 ft, passive perception 14",
+    "scores": [
+        {
+            "score": 15,
+            "stat": "STR",
+            "proficient": false
+        },
+        {
+            "score": 13,
+            "stat": "DEX",
+            "proficient": false
+        },
+        {
+            "score": 14,
+            "stat": "CON",
+            "proficient": false
+        },
+        {
+            "score": 10,
+            "stat": "INT",
+            "proficient": false
+        },
+        {
+            "score": 11,
+            "stat": "WIS",
+            "proficient": false
+        },
+        {
+            "score": 10,
+            "stat": "CHA",
+            "proficient": false
+        }
+    ],
+    "legendaryActions": [],
+    "displayName": "Werewolf",
+    "hp": "58",
+    "legendaryActionCount": 0,
+    "type": "Humanoid (human, shapechanger)",
+    "speed": "30 ft (40 in wolf form)",
+    "skills": [
+        {
+            "skill": "History",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Perception",
+            "expertise": true,
+            "proficient": true
+        },
+        {
+            "skill": "Performance",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Athletics",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Persuasion",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Intimidation",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Insight",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Religion",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Sleight of Hand",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Acrobatics",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Arcana",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Animal Handling",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Deception",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Medicine",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Stealth",
+            "expertise": false,
+            "proficient": true
+        },
+        {
+            "skill": "Survival",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Nature",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Investigation",
+            "expertise": false,
+            "proficient": false
+        }
+    ],
+    "abilities": [
+        {
+            "name": "Damage Immunities",
+            "description": "Bludgeoning, piercing, and slashing from nonmagical attacks not made with silvered weapons"
+        },
+        {
+            "name": "Shapechanger",
+            "description": "The werewolf can use its action to polymorph into a wolf-humanoid hybrid, its wolf form, or back into its true form, which is humaoid. Its statistics other than its AC, are the same in each form. Any equipment it is wearing or carrying isn't transformed. It reverts to its true form when it dies."
+        },
+        {
+            "name": "Keen Hearing and Smell",
+            "description": "The werewolf has advantage on Wisdom (Perception) checks that rely on hearing or smell."
+        }
+    ],
+    "size": "Medium",
+    "name": "Werewolf",
+    "challenge": "3",
+    "alignment": "Chaotic Evil",
+    "actions": [
+        {
+            "name": "Multiattack (Humanoid or Hybrid form only)",
+            "description": "The werewolf makes two attacks: one with its bite and one with its claws or spear"
+        },
+        {
+            "name": "Bite (Wolf of Hybrid form only)\t",
+            "description": "Melee Weapon Attack: +4 to hit, reach 5 ft, one target\nHit: 1d8 + 2 piercing damage. If the target is humanoid, it must succeed on a DC 12 Constitution saving throw or be cursed with werewolf lycanthropy."
+        },
+        {
+            "name": "Claws (Hybrid Form only)",
+            "description": "Melee Weapon Attack: +4 to hit, reach 5 ft, one target\nHit: 2d4 + 2 slashing damage"
+        }
+    ]
+}

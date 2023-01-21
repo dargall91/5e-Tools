@@ -1,0 +1,157 @@
+{
+    "ac": "14",
+    "languages": "None",
+    "senses": "passive perception 10",
+    "scores": [
+        {
+            "score": 21,
+            "stat": "STR",
+            "proficient": false
+        },
+        {
+            "score": 9,
+            "stat": "DEX",
+            "proficient": false
+        },
+        {
+            "score": 17,
+            "stat": "CON",
+            "proficient": false
+        },
+        {
+            "score": 2,
+            "stat": "INT",
+            "proficient": false
+        },
+        {
+            "score": 10,
+            "stat": "WIS",
+            "proficient": false
+        },
+        {
+            "score": 7,
+            "stat": "CHA",
+            "proficient": false
+        }
+    ],
+    "legendaryActions": [],
+    "displayName": "Giant Crocodile",
+    "hp": "85",
+    "legendaryActionCount": 0,
+    "type": "Beast",
+    "speed": "30 ft, swim 50 ft",
+    "skills": [
+        {
+            "skill": "History",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Perception",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Performance",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Athletics",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Persuasion",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Intimidation",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Insight",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Religion",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Sleight of Hand",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Acrobatics",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Arcana",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Animal Handling",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Deception",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Medicine",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Stealth",
+            "expertise": true,
+            "proficient": true
+        },
+        {
+            "skill": "Survival",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Nature",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Investigation",
+            "expertise": false,
+            "proficient": false
+        }
+    ],
+    "abilities": [{
+        "name": "Hold Breath",
+        "description": "The crocodile can hold it's breath for 30 minutes"
+    }],
+    "size": "Huge",
+    "name": "Giant Crocodile",
+    "challenge": "5",
+    "alignment": "Unaligned",
+    "actions": [
+        {
+            "name": "Multiattack",
+            "description": "The crocodile makes two attacks: one with its bite and one with its tail"
+        },
+        {
+            "name": "Bite",
+            "description": "Melee Weapon Attack: +8 to hit, reach 5 ft, one target\nHit: 3d10 + 5 piercing damage, and the target is grappled (escape DC 16). Until this grapple ends, the target is restrained, and the corocodile can't bite another target."
+        },
+        {
+            "name": "Tail",
+            "description": "Melee Weapon Attack: +8 to hit, reach 5 ft, one target not grappled by the crocodile\nHit: 2d8 + 5 bludeoning damage. If the target is a creature, it must succeed on a DC 16 Strength saving throw or be knocked prone."
+        }
+    ]
+}

@@ -1,0 +1,153 @@
+{
+    "ac": "12",
+    "languages": "Common, Draconic",
+    "senses": "Darkvision 60 ft, passive perception 8",
+    "scores": [
+        {
+            "score": 7,
+            "stat": "STR",
+            "proficient": false
+        },
+        {
+            "score": 15,
+            "stat": "DEX",
+            "proficient": false
+        },
+        {
+            "score": 9,
+            "stat": "CON",
+            "proficient": false
+        },
+        {
+            "score": 8,
+            "stat": "INT",
+            "proficient": false
+        },
+        {
+            "score": 7,
+            "stat": "WIS",
+            "proficient": false
+        },
+        {
+            "score": 8,
+            "stat": "CHA",
+            "proficient": false
+        }
+    ],
+    "legendaryActions": [],
+    "displayName": "Kobold",
+    "hp": "5",
+    "legendaryActionCount": 0,
+    "type": "Humanoid",
+    "speed": "30 ft",
+    "skills": [
+        {
+            "skill": "History",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Perception",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Performance",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Athletics",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Persuasion",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Intimidation",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Insight",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Religion",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Sleight of Hand",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Acrobatics",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Arcana",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Animal Handling",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Deception",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Medicine",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Stealth",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Survival",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Nature",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Investigation",
+            "expertise": false,
+            "proficient": false
+        }
+    ],
+    "abilities": [{
+        "name": "Pack Tactics",
+        "description": "The Kobold has advantage on an attack roll against a creature if at least one of its allies is within 5 feet of the creature and the ally isn't incapacitated."
+    }],
+    "size": "Small",
+    "name": "Kobold",
+    "challenge": "1/8",
+    "alignment": "Lawful Evil",
+    "actions": [
+        {
+            "name": "Dagger",
+            "description": "Melee Weapon Attack: +4 to hit, reach 5 ft., one target\nHit: 4 (1d4 + 2) piercing damage"
+        },
+        {
+            "name": "Sling",
+            "description": "Ranged Weapon Attack: +4 to hit, reach 30/120 ft., one target\nHit: 4 (1d4 + 2) bludgeoning damage"
+        }
+    ]
+}

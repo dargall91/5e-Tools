@@ -1,0 +1,73 @@
+{
+    "name": "Zombies",
+    "theme": "Battle in the Warrens.mp3",
+    "lairAction": false,
+    "monsterData": [
+        {
+            "quantity": 2,
+            "initiative": 14,
+            "xp": 50,
+            "reinforcement": false,
+            "minion": false,
+            "monster": "Zombie"
+        },
+        {
+            "quantity": 2,
+            "initiative": 6,
+            "xp": 50,
+            "reinforcement": false,
+            "minion": false,
+            "monster": "Zombie"
+        },
+        {
+            "quantity": 2,
+            "initiative": 4,
+            "xp": 50,
+            "reinforcement": false,
+            "minion": false,
+            "monster": "Zombie"
+        },
+        {
+            "quantity": 2,
+            "initiative": 7,
+            "xp": 50,
+            "reinforcement": false,
+            "minion": false,
+            "monster": "Zombie"
+        },
+        {
+            "quantity": 2,
+            "initiative": 10,
+            "xp": 50,
+            "reinforcement": true,
+            "minion": false,
+            "monster": "Zombie"
+        },
+        {
+            "quantity": 2,
+            "initiative": 5,
+            "xp": 50,
+            "reinforcement": true,
+            "minion": false,
+            "monster": "Zombie"
+        },
+        {
+            "quantity": 2,
+            "initiative": 9,
+            "xp": 50,
+            "reinforcement": true,
+            "minion": false,
+            "monster": "Zombie"
+        }
+    ],
+    "playerData": [
+        {
+            "level": 7,
+            "players": 2
+        },
+        {
+            "level": 8,
+            "players": 2
+        }
+    ]
+}

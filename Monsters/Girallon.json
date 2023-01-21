@@ -1,0 +1,167 @@
+{
+    "ac": "13",
+    "languages": "None",
+    "senses": "Darkvision 60 ft,3passive perception 10",
+    "scores": [
+        {
+            "score": 18,
+            "stat": "STR",
+            "proficient": false
+        },
+        {
+            "score": 16,
+            "stat": "DEX",
+            "proficient": false
+        },
+        {
+            "score": 16,
+            "stat": "CON",
+            "proficient": false
+        },
+        {
+            "score": 5,
+            "stat": "INT",
+            "proficient": false
+        },
+        {
+            "score": 12,
+            "stat": "WIS",
+            "proficient": false
+        },
+        {
+            "score": 7,
+            "stat": "CHA",
+            "proficient": false
+        }
+    ],
+    "legendaryActions": [],
+    "displayName": "Ape",
+    "hp": "59",
+    "legendaryActionCount": 0,
+    "type": "Monstrosity",
+    "speed": "40 ft, climb 40 ft",
+    "skills": [
+        {
+            "skill": "History",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Perception",
+            "expertise": false,
+            "proficient": true
+        },
+        {
+            "skill": "Performance",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Athletics",
+            "expertise": false,
+            "proficient": true
+        },
+        {
+            "skill": "Persuasion",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Intimidation",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Insight",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Religion",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Sleight of Hand",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Acrobatics",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Arcana",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Animal Handling",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Deception",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Medicine",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Stealth",
+            "expertise": false,
+            "proficient": true
+        },
+        {
+            "skill": "Survival",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Nature",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Investigation",
+            "expertise": false,
+            "proficient": false
+        }
+    ],
+    "abilities": [
+        {
+            "name": "Aggressive",
+            "description": "As a bonus action, the girallon can move up to its speed toward a hostile creature that it can see"
+        },
+        {
+            "name": "Keen Smell",
+            "description": "The girallon has advantage on Wisdom (Perception) checks that rely on smell."
+        },
+        {
+            "name": "Improved Grapple",
+            "description": "The girallon can grapple one additional creature. The girallon can also carry one medium or smaller creature at no penality, or two creatures with a penalty of half its movement speed. The girallon can choose to grapple a creature with two hands to prevent it from using any actions that require the use of its arms."
+        }
+    ],
+    "size": "Large",
+    "name": "Girallon",
+    "challenge": "4",
+    "alignment": "Unaligned",
+    "actions": [
+        {
+            "name": "Multiattack",
+            "description": "The girallon makes five attacks: one with its bite, and four with its claws."
+        },
+        {
+            "name": "Bite",
+            "description": "Melee Weapon Attack: +6 to hit, reach 5 ft, one creature\nHit: 1d6 + 4 piercing damage"
+        },
+        {
+            "name": "Claw",
+            "description": "Melee Weapon Attack: +6 to hit, reach 10 ft, one target\nHit: 1d6 + 4 slashing damage"
+        }
+    ]
+}

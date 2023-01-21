@@ -1,0 +1,159 @@
+{
+    "ac": "12",
+    "languages": "Aquan, Deep Speech",
+    "senses": "Darkvision 120 ft, passive perception 14",
+    "scores": [
+        {
+            "score": 8,
+            "stat": "STR",
+            "proficient": false
+        },
+        {
+            "score": 12,
+            "stat": "DEX",
+            "proficient": false
+        },
+        {
+            "score": 12,
+            "stat": "CON",
+            "proficient": false
+        },
+        {
+            "score": 10,
+            "stat": "INT",
+            "proficient": false
+        },
+        {
+            "score": 15,
+            "stat": "WIS",
+            "proficient": false
+        },
+        {
+            "score": 12,
+            "stat": "CHA",
+            "proficient": false
+        }
+    ],
+    "legendaryActions": [],
+    "displayName": "Pelagic",
+    "hp": "22",
+    "legendaryActionCount": 0,
+    "type": "Humanoid",
+    "speed": "30 ft, swim 40 ft",
+    "skills": [
+        {
+            "skill": "History",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Perception",
+            "expertise": false,
+            "proficient": true
+        },
+        {
+            "skill": "Performance",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Athletics",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Persuasion",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Intimidation",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Insight",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Religion",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Sleight of Hand",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Acrobatics",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Arcana",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Animal Handling",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Deception",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Medicine",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Stealth",
+            "expertise": false,
+            "proficient": true
+        },
+        {
+            "skill": "Survival",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Nature",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Investigation",
+            "expertise": false,
+            "proficient": false
+        }
+    ],
+    "abilities": [
+        {
+            "name": "Damage Vulnerabilities",
+            "description": "Poison"
+        },
+        {
+            "name": "Spellcasting",
+            "description": "5th Level Spellcaster, Wis (+4 to hit, DC 12), No Material Components\n\nAt Will: Guidance, Thamaturgy, Toll the Dead, Vicious Mockery\n1st Level (4 Slots): Bless, Cure Wounds, Dissonant Whispers, Healing Word\n2nd Level (3 Slots): Aid, Phantasmal Force, Silence\n3rd Level (2 Slots): Animate Dead, Fear, Mass Healing Word"
+        }
+    ],
+    "size": "Medium",
+    "name": "Pelagic Shaman",
+    "challenge": "1",
+    "alignment": "Neutral Evil",
+    "actions": [
+        {
+            "name": "Stress Wave",
+            "description": "One target creature the Pelagic can see within 120 ft must make a DC 15 Resolve saving throw. On a failed save, the target takes 1d6 psychic damage and gains stress equal to 3d6 + the psychic damage the target took. When the Pelagic uses Stress Wave, roll a d4. On a 4, the pelagic can target an eadditional creature with Stress Wave."
+        },
+        {
+            "name": "Dagger",
+            "description": "Melee or Ranged Weapon Attack: +3 to hit, range 5 ft or 20/60 ft, one target\nHit: 1d4 + 1 piercing damage"
+        }
+    ]
+}

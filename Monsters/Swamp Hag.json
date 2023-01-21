@@ -1,0 +1,183 @@
+{
+    "ac": "17",
+    "languages": "Common, Abyssal",
+    "senses": "Darkvision 60 ft, passive perception 15",
+    "scores": [
+        {
+            "score": 18,
+            "stat": "STR",
+            "proficient": false
+        },
+        {
+            "score": 14,
+            "stat": "DEX",
+            "proficient": false
+        },
+        {
+            "score": 16,
+            "stat": "CON",
+            "proficient": false
+        },
+        {
+            "score": 13,
+            "stat": "INT",
+            "proficient": false
+        },
+        {
+            "score": 14,
+            "stat": "WIS",
+            "proficient": false
+        },
+        {
+            "score": 16,
+            "stat": "CHA",
+            "proficient": false
+        }
+    ],
+    "legendaryActions": [
+        {
+            "cost": 1,
+            "name": "Misty Step (1 Action)",
+            "description": "The hag teleports up to 30 feet to an unnocupied space it can see."
+        },
+        {
+            "cost": 1,
+            "name": "Claws (1 action)",
+            "description": "The hag makes one Claw attack"
+        },
+        {
+            "cost": 1,
+            "name": "Control Water",
+            "description": "The hag maniulates water as described in the Control Water spell."
+        }
+    ],
+    "displayName": "Witch",
+    "hp": "82",
+    "legendaryActionCount": 3,
+    "type": "Humaoid (Fey)",
+    "speed": "30 ft, swim 40 ft",
+    "skills": [
+        {
+            "skill": "History",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Perception",
+            "expertise": false,
+            "proficient": true
+        },
+        {
+            "skill": "Performance",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Athletics",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Persuasion",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Intimidation",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Insight",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Religion",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Sleight of Hand",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Acrobatics",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Arcana",
+            "expertise": false,
+            "proficient": true
+        },
+        {
+            "skill": "Animal Handling",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Deception",
+            "expertise": false,
+            "proficient": true
+        },
+        {
+            "skill": "Medicine",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Stealth",
+            "expertise": false,
+            "proficient": true
+        },
+        {
+            "skill": "Survival",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Nature",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Investigation",
+            "expertise": false,
+            "proficient": false
+        }
+    ],
+    "abilities": [
+        {
+            "name": "Amphibious",
+            "description": "The hag can breathe air and water."
+        },
+        {
+            "name": "Horrific Appearance",
+            "description": "Any Humanoid that starts its turn within 30 feet of the hag and can see the hag's true form must make a DC 15 Resolve saving throw. On a failed save, the creature is Frightened for 1 minute. A creature can repeat the saving throw at the end of each of its turns, with disadvantage if the hag is within Line of Sight, Ending the Effect on itself on a success. If a creature's saving throw is successful or the Effect ends for it, the creature is immune to the hag's Horrific Appearance for the next 24 hours.\nUnless the target is surprised or the revelation of the hag's true form is sudden, the target can avert its eyes and avoid making the initial saving throw. Until the start of its next turn, a creature that averts its eyes has disadvantage on Attack Rolls against the hag."
+        },
+        {
+            "name": "Innate Spellcasting",
+            "description": "The hag is a 9th level spellcaster and its innate spellcasting ability is Charisma (spell save DC 14). She can innately cast the following spells, requiring no material components:\n\nAt will: Eldritch Blast (add cha to damage), Minor Illusion, Vicious Mockery\n3/day each: Magic Missile\n1/day each: Evard's Black Tentacles, Fog Cloud (4th level)"
+        }
+    ],
+    "size": "Medium",
+    "name": "Swamp Hag",
+    "challenge": "5",
+    "alignment": "Chaotic Evil",
+    "actions": [
+        {
+            "name": "Claws",
+            "description": "Melee Weapon Attack: +7 to hit, reach 5ft, one target\nHit: 2d8 + 4 slashing damage"
+        },
+        {
+            "name": "Death Glare",
+            "description": "The hag targets one frightened creature she can see within 30 ft. of her. If the target can see the hag, it must succeed on a DC 15 Resolve saving throw against this magic or take 2d6 + 3 psychic damage and gain half as much stress."
+        },
+        {
+            "name": "Simulacrum (Lair Action)",
+            "description": "The hag choose one humaoid within the lair and instantly creates a simulacrum of that creature. This hideous simulacrum is formed out of seaweed, slime, half-eaten fish, and other garbage, but generally resembles to creature it is imitating. This simulacrum obey's the hags commands and is destroyed on initiative count 20 on the next round."
+        }
+    ]
+}

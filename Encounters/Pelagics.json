@@ -1,0 +1,65 @@
+{
+    "name": "Pelagics",
+    "theme": "Cove Battle.mp3",
+    "lairAction": false,
+    "monsterData": [
+        {
+            "quantity": 2,
+            "initiative": 14,
+            "xp": 100,
+            "reinforcement": false,
+            "minion": false,
+            "monster": "Pelagic Grouper"
+        },
+        {
+            "quantity": 2,
+            "initiative": 11,
+            "xp": 100,
+            "reinforcement": false,
+            "minion": false,
+            "monster": "Pelagic Grouper"
+        },
+        {
+            "quantity": 1,
+            "initiative": 12,
+            "xp": 200,
+            "reinforcement": false,
+            "minion": false,
+            "monster": "Pelagic Shaman"
+        },
+        {
+            "quantity": 1,
+            "initiative": 2,
+            "xp": 200,
+            "reinforcement": false,
+            "minion": false,
+            "monster": "Pelagic Shaman"
+        },
+        {
+            "quantity": 2,
+            "initiative": 9,
+            "xp": 50,
+            "reinforcement": true,
+            "minion": false,
+            "monster": "Oblex Spawn"
+        },
+        {
+            "quantity": 2,
+            "initiative": 15,
+            "xp": 50,
+            "reinforcement": true,
+            "minion": false,
+            "monster": "Oblex Spawn"
+        }
+    ],
+    "playerData": [
+        {
+            "level": 7,
+            "players": 2
+        },
+        {
+            "level": 8,
+            "players": 2
+        }
+    ]
+}

@@ -1,0 +1,68 @@
+[
+    {
+        "ac": 13,
+        "initiative": 5,
+        "bonus": 2,
+        "name": "Willow"
+    },
+    {
+        "ac": 18,
+        "initiative": 7,
+        "bonus": 0,
+        "name": "Quinn"
+    },
+    {
+        "ac": 16,
+        "initiative": 4,
+        "bonus": 3,
+        "name": "Bash"
+    },
+    {
+        "ac": 15,
+        "initiative": 14,
+        "bonus": 2,
+        "name": "Frank"
+    },
+    {
+        "ac": 17,
+        "initiative": 8,
+        "bonus": 2,
+        "name": "Krusk"
+    },
+    {
+        "ac": 17,
+        "initiative": 9,
+        "bonus": 0,
+        "name": "Gorstag"
+    },
+    {
+        "ac": 15,
+        "initiative": 12,
+        "bonus": 2,
+        "name": "Aura"
+    },
+    {
+        "ac": 19,
+        "initiative": 8,
+        "bonus": 0,
+        "name": "Alastor"
+    },
+    {
+        "ac": 18,
+        "initiative": 18,
+        "bonus": 10,
+        "name": "Taran"
+    },
+    {
+        "ac": 16,
+        "initiative": 13,
+        "bonus": 11,
+        "name": "Emuz"
+    },
+    {
+        "ac": 14,
+        "initiative": 12,
+        "bonus": 3,
+        "name": "Podric"
+    }
+]

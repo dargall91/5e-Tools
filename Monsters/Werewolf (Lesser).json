@@ -1,0 +1,171 @@
+{
+    "ac": "11/12",
+    "languages": "passive perception 14, Darkvision 60 ft (can see in magical darkness)",
+    "senses": "passive perception 14, Darkvision 60 ft (can see in magical darkness)",
+    "scores": [
+        {
+            "score": 15,
+            "stat": "STR",
+            "proficient": false
+        },
+        {
+            "score": 13,
+            "stat": "DEX",
+            "proficient": false
+        },
+        {
+            "score": 14,
+            "stat": "CON",
+            "proficient": false
+        },
+        {
+            "score": 10,
+            "stat": "INT",
+            "proficient": false
+        },
+        {
+            "score": 11,
+            "stat": "WIS",
+            "proficient": false
+        },
+        {
+            "score": 10,
+            "stat": "CHA",
+            "proficient": false
+        }
+    ],
+    "legendaryActions": [],
+    "displayName": "Werewolf",
+    "hp": "22",
+    "legendaryActionCount": 0,
+    "type": "Humanoid Shapechanger",
+    "speed": "30 (40 in wolf form)",
+    "skills": [
+        {
+            "skill": "History",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Perception",
+            "expertise": true,
+            "proficient": true
+        },
+        {
+            "skill": "Performance",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Athletics",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Persuasion",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Intimidation",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Insight",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Religion",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Sleight of Hand",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Acrobatics",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Arcana",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Animal Handling",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Deception",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Medicine",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Stealth",
+            "expertise": false,
+            "proficient": true
+        },
+        {
+            "skill": "Survival",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Nature",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Investigation",
+            "expertise": false,
+            "proficient": false
+        }
+    ],
+    "abilities": [
+        {
+            "name": "Damage Resistances",
+            "description": "Resistances: bludgeoning, piercing, and slashing from nonmagical attacks not made with silvered weapons"
+        },
+        {
+            "name": "Shapechanger",
+            "description": "descriptionAs action, polymorph into wolf-human hybrid, wolf, or back to true form. Reverts to true form if it dies"
+        },
+        {
+            "name": "Keen Hearing and Smell",
+            "description": "advantage on all Perception checks that rely on healing or smell"
+        }
+    ],
+    "size": "Medium",
+    "name": "Werewolf (Lesser)",
+    "challenge": "2",
+    "alignment": "Chaotic Evil",
+    "actions": [
+        {
+            "name": "Multiattack",
+            "description": "Human/Hybrid only: Two attacks, one with bite, one with claws/spear"
+        },
+        {
+            "name": "Bite",
+            "description": "Wold/Hybrid only: Melee Weapon Attack: +4 to hit, reach 5ft, one target\nHit: 6 (1d8 + 2) piercing. If target is humaoid, succeed on DC 12 CON or be cursed with lycanthropy"
+        },
+        {
+            "name": "Claws",
+            "description": "Hybrid only: melee weapon attack, +4 to hit, reach 5 ft, one target\nHit: 7 (2d4 + 2) slashing"
+        },
+        {
+            "name": "Spear",
+            "description": "Humanoid only: melee or ranged weapon attacl, +4 to hit or range 20/60f, one creature\nHit: 5 (1d6 + 2) piercing, or 6 (1d8 + 2) [iercing if used with two hands as melee attack"
+        }
+    ]
+}

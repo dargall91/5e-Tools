@@ -1,0 +1,65 @@
+{
+    "name": "Ulvenweald Spiders",
+    "theme": "Terror in the Woods.mp3",
+    "lairAction": false,
+    "monsterData": [
+        {
+            "quantity": 2,
+            "initiative": 3,
+            "xp": 50,
+            "reinforcement": false,
+            "minion": false,
+            "monster": "Giant Wolf Spider"
+        },
+        {
+            "quantity": 2,
+            "initiative": 12,
+            "xp": 50,
+            "reinforcement": false,
+            "minion": false,
+            "monster": "Giant Wolf Spider"
+        },
+        {
+            "quantity": 2,
+            "initiative": 13,
+            "xp": 50,
+            "reinforcement": true,
+            "minion": false,
+            "monster": "Giant Wolf Spider"
+        },
+        {
+            "quantity": 2,
+            "initiative": 12,
+            "xp": 50,
+            "reinforcement": true,
+            "minion": false,
+            "monster": "Giant Wolf Spider"
+        },
+        {
+            "quantity": 2,
+            "initiative": 10,
+            "xp": 200,
+            "reinforcement": true,
+            "minion": true,
+            "monster": "Giant Spider"
+        },
+        {
+            "quantity": 1,
+            "initiative": 10,
+            "xp": 5000,
+            "reinforcement": false,
+            "minion": true,
+            "monster": "Everpup"
+        }
+    ],
+    "playerData": [
+        {
+            "level": 4,
+            "players": 3
+        },
+        {
+            "level": 5,
+            "players": 1
+        }
+    ]
+}

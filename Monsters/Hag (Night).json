@@ -1,0 +1,191 @@
+{
+    "ac": "18",
+    "languages": "Abyssal, Common",
+    "senses": "Darkvision 120 ft, passive perception 15",
+    "scores": [
+        {
+            "score": 18,
+            "stat": "STR",
+            "proficient": false
+        },
+        {
+            "score": 15,
+            "stat": "DEX",
+            "proficient": false
+        },
+        {
+            "score": 16,
+            "stat": "CON",
+            "proficient": false
+        },
+        {
+            "score": 18,
+            "stat": "INT",
+            "proficient": false
+        },
+        {
+            "score": 14,
+            "stat": "WIS",
+            "proficient": false
+        },
+        {
+            "score": 22,
+            "stat": "CHA",
+            "proficient": false
+        }
+    ],
+    "legendaryActions": [
+        {
+            "cost": 1,
+            "name": "Misty Step",
+            "description": "Misty Step"
+        },
+        {
+            "cost": 1,
+            "name": "Claws",
+            "description": "Claw attack"
+        },
+        {
+            "cost": 1,
+            "name": "At Will",
+            "description": "At will spell"
+        }
+    ],
+    "displayName": "Witch",
+    "hp": "112",
+    "legendaryActionCount": 1,
+    "type": "Human",
+    "speed": "30 ft",
+    "skills": [
+        {
+            "skill": "History",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Perception",
+            "expertise": false,
+            "proficient": true
+        },
+        {
+            "skill": "Performance",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Athletics",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Persuasion",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Intimidation",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Insight",
+            "expertise": false,
+            "proficient": true
+        },
+        {
+            "skill": "Religion",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Sleight of Hand",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Acrobatics",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Arcana",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Animal Handling",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Deception",
+            "expertise": false,
+            "proficient": true
+        },
+        {
+            "skill": "Medicine",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Stealth",
+            "expertise": false,
+            "proficient": true
+        },
+        {
+            "skill": "Survival",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Nature",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Investigation",
+            "expertise": false,
+            "proficient": false
+        }
+    ],
+    "abilities": [
+        {
+            "name": "Damage Resistances",
+            "description": "Cold, Fire; bludeoning, piercing, and slashing from nonsilvered weapons"
+        },
+        {
+            "name": "Condition Immunities",
+            "description": "Charmed"
+        },
+        {
+            "name": "Magic Resistance",
+            "description": "Advantage on saving throws against spells and other magical effects"
+        },
+        {
+            "name": "Innate Spellcasting",
+            "description": "Charisma (DC 17, +9 to hit)\n\nAt will: detect magic, magic missile, vicious mockery\n2/day each: plane shit (self only), ray of enfeeblement, sleep"
+        }
+    ],
+    "size": "Medium",
+    "name": "Hag (Night)",
+    "challenge": "7",
+    "alignment": "Neutral Evil",
+    "actions": [
+        {
+            "name": "Claws",
+            "description": "Melee Weapon Attack: +7 to hit, reach 5 ft, one target\nHit: 2d8 +4 slashing damage"
+        },
+        {
+            "name": "Stressful Incantation (recharge 4-6)",
+            "description": "As a bonus action, the hag targets one creature it can see within 60 ft. If that creature can hear the cultist, it must succeed on a Resolve saving throw against the hag's spell save DC. On a failed save, the target takes 1d6 psychic damage and gains stress equal to 3d8 + the psychic damage taken."
+        },
+        {
+            "name": "Invisible Passage",
+            "description": "Invisible Passage"
+        },
+        {
+            "name": "Stress (Lair action)",
+            "description": "Each creature of the hag's choice in the lair must succeed on a DC 15 Resolve Saving throw or gain 2d6 stress."
+        }
+    ]
+}

@@ -1,0 +1,147 @@
+{
+    "ac": "13",
+    "languages": "Common Giant",
+    "senses": "Darkvision 60 ft, passive perception 8",
+    "scores": [
+        {
+            "score": 19,
+            "stat": "STR",
+            "proficient": false
+        },
+        {
+            "score": 8,
+            "stat": "DEX",
+            "proficient": false
+        },
+        {
+            "score": 16,
+            "stat": "CON",
+            "proficient": false
+        },
+        {
+            "score": 5,
+            "stat": "INT",
+            "proficient": false
+        },
+        {
+            "score": 7,
+            "stat": "WIS",
+            "proficient": false
+        },
+        {
+            "score": 7,
+            "stat": "CHA",
+            "proficient": false
+        }
+    ],
+    "legendaryActions": [],
+    "displayName": "Ogre",
+    "hp": "59",
+    "legendaryActionCount": 0,
+    "type": "Giant",
+    "speed": "40 ft",
+    "skills": [
+        {
+            "skill": "History",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Perception",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Performance",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Athletics",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Persuasion",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Intimidation",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Insight",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Religion",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Sleight of Hand",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Acrobatics",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Arcana",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Animal Handling",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Deception",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Medicine",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Stealth",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Survival",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Nature",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Investigation",
+            "expertise": false,
+            "proficient": false
+        }
+    ],
+    "abilities": [{
+        "name": "Howdah",
+        "description": "The ogre carries a compact fort on its back. Up to 4 small creatures can each ride in the forst without squeezing. To make a melee attack from the fort, they must use spears or weapons with reach. Creatures in the fort have three-quarters cover against attacks and effects from outside it. If the ogre dies, creatures in the fort are places in unoccupised spaces within 5 feet of the ogre."
+    }],
+    "size": "Large",
+    "name": "Ogre Howdah",
+    "challenge": "2",
+    "alignment": "Chaotic Evil",
+    "actions": [{
+        "name": "Mace",
+        "description": "Melee Weapon Attack: +6 to hit, reach 5 ft, one target\nHit: 11 (2d6 + 4) Bludgeoning damage"
+    }]
+}

@@ -1,0 +1,159 @@
+{
+    "ac": "13",
+    "languages": "Aquan, Deep Speech",
+    "senses": "Darkvision 120 ft, passive perception 10",
+    "scores": [
+        {
+            "score": 14,
+            "stat": "STR",
+            "proficient": false
+        },
+        {
+            "score": 14,
+            "stat": "DEX",
+            "proficient": false
+        },
+        {
+            "score": 11,
+            "stat": "CON",
+            "proficient": false
+        },
+        {
+            "score": 8,
+            "stat": "INT",
+            "proficient": false
+        },
+        {
+            "score": 12,
+            "stat": "WIS",
+            "proficient": false
+        },
+        {
+            "score": 7,
+            "stat": "CHA",
+            "proficient": false
+        }
+    ],
+    "legendaryActions": [],
+    "displayName": "Pelagic",
+    "hp": "22",
+    "legendaryActionCount": 0,
+    "type": "Humanoid",
+    "speed": "30 ft, swim 40 ft",
+    "skills": [
+        {
+            "skill": "History",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Perception",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Performance",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Athletics",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Persuasion",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Intimidation",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Insight",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Religion",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Sleight of Hand",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Acrobatics",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Arcana",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Animal Handling",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Deception",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Medicine",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Stealth",
+            "expertise": false,
+            "proficient": true
+        },
+        {
+            "skill": "Survival",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Nature",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Investigation",
+            "expertise": false,
+            "proficient": false
+        }
+    ],
+    "abilities": [
+        {
+            "name": "Amphibious",
+            "description": "The plegiac can beathe air and water"
+        },
+        {
+            "name": "Damage Vulnerabilities",
+            "description": "Poison"
+        }
+    ],
+    "size": "Medium",
+    "name": "Pelagic Grouper",
+    "challenge": "1/2",
+    "alignment": "Neutral Evil",
+    "actions": [
+        {
+            "name": "Scimitar",
+            "description": "Melee Weapon Attack: +4 to hit, reach 5 ft, one target\nHit: 1d8 + 2 slashing damage"
+        },
+        {
+            "name": "Harpoon",
+            "description": "Ranged Weapon Attack: +6 to hit, reach 30/60 ft, one target\nHit: 1d8 + 2 piercing damage\nIf the target is a medium or smaller size creature, it must succeed on a DC 12 Strength saving throw or be pulled 5 feet towards the pelagic."
+        }
+    ]
+}

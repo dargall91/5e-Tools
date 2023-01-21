@@ -1,0 +1,161 @@
+{
+    "ac": "15",
+    "languages": "Common, Draconic",
+    "senses": "Darkvision 60 ft, passive perception 10",
+    "scores": [
+        {
+            "score": 7,
+            "stat": "STR",
+            "proficient": false
+        },
+        {
+            "score": 15,
+            "stat": "DEX",
+            "proficient": false
+        },
+        {
+            "score": 14,
+            "stat": "CON",
+            "proficient": false
+        },
+        {
+            "score": 10,
+            "stat": "INT",
+            "proficient": false
+        },
+        {
+            "score": 9,
+            "stat": "WIS",
+            "proficient": false
+        },
+        {
+            "score": 14,
+            "stat": "CHA",
+            "proficient": false
+        }
+    ],
+    "legendaryActions": [],
+    "displayName": "Kobold",
+    "hp": "27",
+    "legendaryActionCount": 0,
+    "type": "Humanoid (Kobold)",
+    "speed": "30 ft",
+    "skills": [
+        {
+            "skill": "History",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Perception",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Performance",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Athletics",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Persuasion",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Intimidation",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Insight",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Religion",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Sleight of Hand",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Acrobatics",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Arcana",
+            "expertise": false,
+            "proficient": true
+        },
+        {
+            "skill": "Animal Handling",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Deception",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Medicine",
+            "expertise": false,
+            "proficient": true
+        },
+        {
+            "skill": "Stealth",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Survival",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Nature",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Investigation",
+            "expertise": false,
+            "proficient": false
+        }
+    ],
+    "abilities": [
+        {
+            "name": "Spellcasting",
+            "description": "The Kobold is a 3rd level spellcaster. It's spellcasting ability is Charisma (Spell Save 12, +4 to hit with spell attacks). It has the following sorcerer spells prepared:\n\nCantrips: Fire Bolt, Mage Hand, Mending, Poison Spray\n1st Level (4 Slots): Charm Person, Chromatic Orb, Expeditious Retreat\n2nd Level (2 Slots): Scorching Ray"
+        },
+        {
+            "name": "Sorcery Points",
+            "description": "The Kobold has 3 Sorcery Points. It regains all spent sorcery points when finishing a long rest. It can spend Sorcery Points on the following options:\n\nHeightened Spell: When it casts a spell that requires a saving throw to resist the spell's effects, the Kobold can spend 3 Sorcery Points to give one target disadvantage on its first saving throw against the spell.\n\nSubtle Spell: When the Kobold casts a spell, it can spend 1 Sorcery Point to cast the spell without somatic or verbal componenents."
+        },
+        {
+            "name": "Pack Tactics",
+            "description": "Advanatge on attack rolls if an ally is within 5 ft of the target and the ally is not incapacitated."
+        },
+        {
+            "name": "Impius Viam",
+            "description": "As a reaction, the Kobold shouts \"Impius Viam\" before impaling itself with it's weapon. One of the Kobold's allies within 120 feet of itself regains hit points equal to the Kobold's current hit point total, then the kobold dies."
+        }
+    ],
+    "size": "Small",
+    "name": "Kobold Sorcerer",
+    "challenge": "1",
+    "alignment": "Lawful Evil",
+    "actions": [{
+        "name": "Dagger",
+        "description": "Melee or Ranged Weapon Attack: +4 to hit, reach 5 ft or range 20/60 ft, one target\nHit: 4 (1d4 + 2) Piercing damage"
+    }]
+}

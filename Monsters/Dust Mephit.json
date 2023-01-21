@@ -1,0 +1,171 @@
+{
+    "ac": "12",
+    "languages": "Aura, Terran",
+    "senses": "Darkvision 60 ft, passive perception 11",
+    "scores": [
+        {
+            "score": 5,
+            "stat": "STR",
+            "proficient": false
+        },
+        {
+            "score": 14,
+            "stat": "DEX",
+            "proficient": false
+        },
+        {
+            "score": 10,
+            "stat": "CON",
+            "proficient": false
+        },
+        {
+            "score": 9,
+            "stat": "INT",
+            "proficient": false
+        },
+        {
+            "score": 11,
+            "stat": "WIS",
+            "proficient": false
+        },
+        {
+            "score": 10,
+            "stat": "CHA",
+            "proficient": false
+        }
+    ],
+    "legendaryActions": [],
+    "displayName": "Dusty Imp",
+    "hp": "17",
+    "legendaryActionCount": 0,
+    "type": "Elemental",
+    "speed": "30 ft, fly 30 ft",
+    "skills": [
+        {
+            "skill": "History",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Perception",
+            "expertise": false,
+            "proficient": true
+        },
+        {
+            "skill": "Performance",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Athletics",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Persuasion",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Intimidation",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Insight",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Religion",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Sleight of Hand",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Acrobatics",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Arcana",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Animal Handling",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Deception",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Medicine",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Stealth",
+            "expertise": false,
+            "proficient": true
+        },
+        {
+            "skill": "Survival",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Nature",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Investigation",
+            "expertise": false,
+            "proficient": false
+        }
+    ],
+    "abilities": [
+        {
+            "name": "Damage Vulnerabilities",
+            "description": "Fire"
+        },
+        {
+            "name": "Damage Immunities",
+            "description": "Poison"
+        },
+        {
+            "name": "Condition Immunities",
+            "description": "Poisoned"
+        },
+        {
+            "name": "Death Burst",
+            "description": "When the mephit dies, it explodes in a burst of dust. Each creature within 5 feet of it must succeed on a DC 10 Constitution saving throw or be blinded for 1 minute. A blinded creature can repeat the saving throw at the end of each of its turns, ending the effect on a success."
+        },
+        {
+            "name": "Innate Spellcasting (1/day)",
+            "description": "The mephit can innately cast sleep. It's innate spellcasting ability is Charisma."
+        }
+    ],
+    "size": "Small",
+    "name": "Dust Mephit",
+    "challenge": "1/2",
+    "alignment": "Neutral Evil",
+    "actions": [
+        {
+            "name": "Claws",
+            "description": "Melee Weapon Attack: +4 to hit, reach 5 ft, one creatire\nHit: 4 (1d4 + 2) Slashing"
+        },
+        {
+            "name": "Blinding Breath (Recharge 6)",
+            "description": "The mephit exhales a 15 foot cone of blinding dust. Each creature in the area must succeed on a DC 10 Dexterity saving throw or be blinded for 1 minute. A creature can repeat the saving throw at the end of each of its turns, ending the effect on a success."
+        }
+    ]
+}

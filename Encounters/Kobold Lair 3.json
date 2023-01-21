@@ -1,0 +1,89 @@
+{
+    "name": "Kobold Lair 3",
+    "theme": "BFG Division.mp3",
+    "lairAction": true,
+    "monsterData": [
+        {
+            "quantity": 2,
+            "initiative": 20,
+            "xp": 25,
+            "invisible": false,
+            "reinforcement": false,
+            "minion": false,
+            "monster": "Kobold"
+        },
+        {
+            "quantity": 2,
+            "initiative": 3,
+            "xp": 25,
+            "invisible": false,
+            "reinforcement": false,
+            "minion": false,
+            "monster": "Kobold"
+        },
+        {
+            "quantity": 2,
+            "initiative": 17,
+            "xp": 100,
+            "invisible": false,
+            "reinforcement": false,
+            "minion": false,
+            "monster": "Kobold - Lv 2"
+        },
+        {
+            "quantity": 2,
+            "initiative": 5,
+            "xp": 100,
+            "invisible": false,
+            "reinforcement": false,
+            "minion": false,
+            "monster": "Kobold - Lv 2"
+        },
+        {
+            "quantity": 2,
+            "initiative": 13,
+            "xp": 200,
+            "invisible": false,
+            "reinforcement": false,
+            "minion": false,
+            "monster": "Kobold Sorcerer"
+        },
+        {
+            "quantity": 2,
+            "initiative": 16,
+            "xp": 200,
+            "invisible": false,
+            "reinforcement": false,
+            "minion": false,
+            "monster": "Kobold Sorcerer"
+        },
+        {
+            "quantity": 2,
+            "initiative": 14,
+            "xp": 25,
+            "invisible": false,
+            "reinforcement": true,
+            "minion": false,
+            "monster": "Kobold"
+        },
+        {
+            "quantity": 2,
+            "initiative": 8,
+            "xp": 25,
+            "invisible": false,
+            "reinforcement": true,
+            "minion": false,
+            "monster": "Kobold"
+        }
+    ],
+    "playerData": [
+        {
+            "level": 11,
+            "players": 3
+        },
+        {
+            "level": 8,
+            "players": 2
+        }
+    ]
+}

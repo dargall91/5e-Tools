@@ -1,0 +1,35 @@
+{
+    "name": "Cultists + Howler",
+    "theme": "Combat in the Ruins.mp3",
+    "lairAction": false,
+    "monsterData": [
+        {
+            "quantity": 2,
+            "initiative": 9,
+            "xp": 3900,
+            "reinforcement": false,
+            "minion": false,
+            "monster": "Cultist Acolyte (Champion)"
+        },
+        {
+            "quantity": 2,
+            "initiative": 3,
+            "xp": 3900,
+            "reinforcement": false,
+            "minion": false,
+            "monster": "Cultist Brawler (Champion)"
+        },
+        {
+            "quantity": 2,
+            "initiative": 8,
+            "xp": 3900,
+            "reinforcement": false,
+            "minion": false,
+            "monster": "Howler"
+        }
+    ],
+    "playerData": [{
+        "level": 10,
+        "players": 4
+    }]
+}

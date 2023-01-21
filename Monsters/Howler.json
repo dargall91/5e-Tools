@@ -1,0 +1,167 @@
+{
+    "ac": "16",
+    "languages": "Understands abyssal but can't speak",
+    "senses": "darkvision 60 ft, passive perception 18",
+    "scores": [
+        {
+            "score": 17,
+            "stat": "STR",
+            "proficient": false
+        },
+        {
+            "score": 16,
+            "stat": "DEX",
+            "proficient": false
+        },
+        {
+            "score": 15,
+            "stat": "CON",
+            "proficient": false
+        },
+        {
+            "score": 5,
+            "stat": "INT",
+            "proficient": false
+        },
+        {
+            "score": 20,
+            "stat": "WIS",
+            "proficient": false
+        },
+        {
+            "score": 6,
+            "stat": "CHA",
+            "proficient": false
+        }
+    ],
+    "legendaryActions": [],
+    "displayName": "Beast",
+    "hp": "90",
+    "legendaryActionCount": 0,
+    "type": "Fiend",
+    "speed": "40 ft",
+    "skills": [
+        {
+            "skill": "History",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Perception",
+            "expertise": false,
+            "proficient": true
+        },
+        {
+            "skill": "Performance",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Athletics",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Persuasion",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Intimidation",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Insight",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Religion",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Sleight of Hand",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Acrobatics",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Arcana",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Animal Handling",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Deception",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Medicine",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Stealth",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Survival",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Nature",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Investigation",
+            "expertise": false,
+            "proficient": false
+        }
+    ],
+    "abilities": [
+        {
+            "name": "Damage Resistances",
+            "description": "Cold, Fire, Lightning; bludgeoning, piercing, and slashing from nonmagical attacks that aren't silvered"
+        },
+        {
+            "name": "Condition Immunities",
+            "description": "Frightened"
+        },
+        {
+            "name": "Pack Tactics",
+            "description": "Advantage if another ally is within 5 ft of target and ally isn't incapacitated"
+        }
+    ],
+    "size": "Large",
+    "name": "Howler",
+    "challenge": "8",
+    "alignment": "Chaotic Evil",
+    "actions": [
+        {
+            "name": "Multiattack",
+            "description": "Two bite attacks"
+        },
+        {
+            "name": "Rending Bite",
+            "description": "Melee Weapon ATtack: +6 to hit, reach 5 ft, one targte\nHit: 2d6 + 3 piercing damage, plus 4d10 psychic damage if the target is frightened.\nThis attack ignores damage resistance"
+        },
+        {
+            "name": "Mind-Breaking Howl (Recharge 6)",
+            "description": "The howler emits a keening howl in a 60-foot cone. Each creature in that area that isn't deafened must succeed on a DC 16 Resolve saving throw or be frightened until the end of the Howler's next turn. While a creature is frightened this way, its speed is halved, and it is incapacitated. A target that successfully saves is immune to the Mind-Breaking How of al howlers for the next 24 hours."
+        }
+    ]
+}

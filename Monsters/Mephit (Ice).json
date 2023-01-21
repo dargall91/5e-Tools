@@ -1,0 +1,175 @@
+{
+    "ac": "11",
+    "languages": "Aquan, Auran",
+    "senses": "darkvision 60 ft, passive perception 12",
+    "scores": [
+        {
+            "score": 7,
+            "stat": "STR",
+            "proficient": false
+        },
+        {
+            "score": 13,
+            "stat": "DEX",
+            "proficient": false
+        },
+        {
+            "score": 10,
+            "stat": "CON",
+            "proficient": false
+        },
+        {
+            "score": 9,
+            "stat": "INT",
+            "proficient": false
+        },
+        {
+            "score": 11,
+            "stat": "WIS",
+            "proficient": false
+        },
+        {
+            "score": 12,
+            "stat": "CHA",
+            "proficient": false
+        }
+    ],
+    "legendaryActions": [],
+    "displayName": "White Imp",
+    "hp": "21",
+    "legendaryActionCount": 0,
+    "type": "Elemental",
+    "speed": "30 ft, fly 30 ft",
+    "skills": [
+        {
+            "skill": "History",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Perception",
+            "expertise": false,
+            "proficient": true
+        },
+        {
+            "skill": "Performance",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Athletics",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Persuasion",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Intimidation",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Insight",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Religion",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Sleight of Hand",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Acrobatics",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Arcana",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Animal Handling",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Deception",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Medicine",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Stealth",
+            "expertise": false,
+            "proficient": true
+        },
+        {
+            "skill": "Survival",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Nature",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Investigation",
+            "expertise": false,
+            "proficient": false
+        }
+    ],
+    "abilities": [
+        {
+            "name": "Damage Vulnerabilities",
+            "description": "Bludeoning, fire"
+        },
+        {
+            "name": "Damage Immunities",
+            "description": "cold, poison"
+        },
+        {
+            "name": "Condition Immunities",
+            "description": "poisoned"
+        },
+        {
+            "name": "Death Burst",
+            "description": "When the mephit dies, it explodes in a burst of jagged ice. Each creature within 5 feet of it must succeed on a DC 10 Dexterity saving throw, taking 1d8 slashing damage on a failed save, or half as much on a successful one."
+        },
+        {
+            "name": "False Appearance",
+            "description": "While the mephit remains motionless, it is indistinguishable from an ordanary shard of ice."
+        },
+        {
+            "name": "Innate Spellcasting (1/Day)",
+            "description": "The mephit can innately cast fog cloud, requiring no material components. Its innate spellcasting ability is Charisma."
+        }
+    ],
+    "size": "Small",
+    "name": "Mephit (Ice)",
+    "challenge": "1/2",
+    "alignment": "Neutral Evil",
+    "actions": [
+        {
+            "name": "Claws",
+            "description": "Melee Weapon Attack: +3 to hit, reach 5 ft, one creature\nHit: 1d4 + 1 Slashing plus 1d4 cold damage"
+        },
+        {
+            "name": "Frost Breath (Recharge 6)",
+            "description": "The mephit exhales a 15-foot cone of cold air. Each creature in that area must succeed on a DC 10 Dexterity saving throw, taking 2d4 cold damage on a failed save, or half as much on a successful one."
+        }
+    ]
+}

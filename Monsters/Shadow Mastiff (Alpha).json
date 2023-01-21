@@ -1,0 +1,175 @@
+{
+    "ac": "13",
+    "languages": "None",
+    "senses": "Darkvision 60 ft, passive perception 14",
+    "scores": [
+        {
+            "score": 18,
+            "stat": "STR",
+            "proficient": false
+        },
+        {
+            "score": 16,
+            "stat": "DEX",
+            "proficient": false
+        },
+        {
+            "score": 14,
+            "stat": "CON",
+            "proficient": false
+        },
+        {
+            "score": 6,
+            "stat": "INT",
+            "proficient": false
+        },
+        {
+            "score": 14,
+            "stat": "WIS",
+            "proficient": false
+        },
+        {
+            "score": 6,
+            "stat": "CHA",
+            "proficient": false
+        }
+    ],
+    "legendaryActions": [],
+    "displayName": "Shadow Dog",
+    "hp": "50",
+    "legendaryActionCount": 0,
+    "type": "Monstrosity",
+    "speed": "40 ft",
+    "skills": [
+        {
+            "skill": "History",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Perception",
+            "expertise": false,
+            "proficient": true
+        },
+        {
+            "skill": "Performance",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Athletics",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Persuasion",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Intimidation",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Insight",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Religion",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Sleight of Hand",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Acrobatics",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Arcana",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Animal Handling",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Deception",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Medicine",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Stealth",
+            "expertise": true,
+            "proficient": true
+        },
+        {
+            "skill": "Survival",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Nature",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Investigation",
+            "expertise": false,
+            "proficient": false
+        }
+    ],
+    "abilities": [
+        {
+            "name": "Damage Resistances",
+            "description": "Bludgeoning, piercing, and slashing from nonmagical attacks while in dim light or darkness"
+        },
+        {
+            "name": "Ethereal Awareness",
+            "description": "The Shadow Mastiff can see ethereal creatures and objects."
+        },
+        {
+            "name": "Keen Hearing and Smell",
+            "description": "The Shadow Mastiff has advantage on Wisdom (Perception)checks thet rely on hearing or smell."
+        },
+        {
+            "name": "Shadow Blend",
+            "description": "While in dim light or darkness, the Shadow Mastiff can use a bonus action to become invisible, along with anything it is wearing or carrying. The invisibility lasts until the Shadow Mastiff uses a bonus action to end it or until the the Shadow Mastiff attacks, is in birght light, or is incapactiated,"
+        },
+        {
+            "name": "Sunlight Weakness",
+            "description": "While in birght light created by sunlight, the Shadow Mastiff had disadvantage on attack rolls, ability checks, and saving throws."
+        },
+        {
+            "name": "Dispel Light (2/day)",
+            "description": "As an action, the Shadow Mastiff turns off all sources of light, both magical and nonmagical, within 30 feet of itself."
+        }
+    ],
+    "size": "Medium",
+    "name": "Shadow Mastiff (Alpha)",
+    "challenge": "2",
+    "alignment": "Neutral Evil",
+    "actions": [
+        {
+            "name": "Bite",
+            "description": "Melee Weapon Attack: +6 to hitm reach 5 ft, one target\nHit: 2d6 +4 piercing damage. If the target is a creature, it must succeed on a DC 13 Strength saving throw or be knocked prone."
+        },
+        {
+            "name": "Terrifying Howl",
+            "description": "The shadow mastiff howls. Any beast or humanoid within 300 feet of the mastiff and able to to hear its howl must succeed on a DC 11 Wisdom saving throw or be frightened for 1 minute. A frightened target can repeat the saving throw at the end of each of its turns, ending the effect on itself on a success. If a target's saving throw is successful or the effect ends for it, the target is immune to any shadow mastiff's Terrifying Howl for the next 24 hours."
+        }
+    ]
+}

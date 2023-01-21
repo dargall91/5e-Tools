@@ -1,0 +1,53 @@
+{
+    "name": "Kobold Skaabs",
+    "theme": "Combat in the Ruins.mp3",
+    "lairAction": false,
+    "monsterData": [
+        {
+            "quantity": 1,
+            "initiative": 0,
+            "xp": 0,
+            "reinforcement": false,
+            "minion": false,
+            "monster": "Kobold Skaab"
+        },
+        {
+            "quantity": 1,
+            "initiative": 0,
+            "xp": 0,
+            "reinforcement": false,
+            "minion": false,
+            "monster": "Kobold Skaab"
+        },
+        {
+            "quantity": 1,
+            "initiative": 0,
+            "xp": 0,
+            "reinforcement": false,
+            "minion": false,
+            "monster": "Kobold Skaab"
+        },
+        {
+            "quantity": 1,
+            "initiative": 0,
+            "xp": 0,
+            "reinforcement": false,
+            "minion": false,
+            "monster": "Kobold Skaab"
+        }
+    ],
+    "playerData": [
+        {
+            "level": 8,
+            "players": 2
+        },
+        {
+            "level": 9,
+            "players": 2
+        },
+        {
+            "level": 10,
+            "players": 1
+        }
+    ]
+}

@@ -1,0 +1,187 @@
+{
+    "ac": "15",
+    "languages": "Understands the languages of its victims",
+    "senses": "Darkvision 120 ft., passive Perception 15",
+    "scores": [
+        {
+            "score": 18,
+            "stat": "STR",
+            "proficient": false
+        },
+        {
+            "score": 10,
+            "stat": "DEX",
+            "proficient": false
+        },
+        {
+            "score": 18,
+            "stat": "CON",
+            "proficient": false
+        },
+        {
+            "score": 18,
+            "stat": "INT",
+            "proficient": false
+        },
+        {
+            "score": 8,
+            "stat": "WIS",
+            "proficient": true
+        },
+        {
+            "score": 22,
+            "stat": "CHA",
+            "proficient": true
+        }
+    ],
+    "legendaryActions": [],
+    "displayName": "False Hydra",
+    "hp": "550",
+    "legendaryActionCount": 0,
+    "type": "Aberration",
+    "speed": "5 ft, Burrow 40 ft",
+    "skills": [
+        {
+            "skill": "History",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Perception",
+            "expertise": false,
+            "proficient": true
+        },
+        {
+            "skill": "Performance",
+            "expertise": false,
+            "proficient": true
+        },
+        {
+            "skill": "Athletics",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Persuasion",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Intimidation",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Insight",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Religion",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Sleight of Hand",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Acrobatics",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Arcana",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Animal Handling",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Deception",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Medicine",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Stealth",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Survival",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Nature",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Investigation",
+            "expertise": false,
+            "proficient": false
+        }
+    ],
+    "abilities": [
+        {
+            "name": "Condition Immunities",
+            "description": "blinded, charmed, deafened, grappled, prone, stunned, knocked unconscious"
+        },
+        {
+            "name": "Blindsong",
+            "description": "All hostile creatures that can hear the Hydra sing must make a DC 15 Wisdom saving throw at the start of their turn. If the Hydra sings with more than one head, all hostile creatures must subtract 1d4 from their saving throw. On a failure, the creature forgets the Hydra is there."
+        },
+        {
+            "name": "Spell Casting",
+            "description": "Charisma, Spell Save DC 20, +12 to hit\n\nDissonant Whispers\nHold Person\nConfusion\nHypnotic Pattern"
+        },
+        {
+            "name": "Damage Resistances",
+            "description": "Bludgeoning, Piercing, and Slashing from Nonmagical, non-silvered Attacks"
+        },
+        {
+            "name": "Sing",
+            "description": "The Hydra can use a bonus action to stop singing or to start its song with an additional head."
+        },
+        {
+            "name": "Regrowth",
+            "description": "The Hydra can use a bonus action to begin regrowing a head that has died. It takes three Regrowth bonus actions to fully regrow a head. It regains 20 hit points each time it uses Regrowth."
+        },
+        {
+            "name": "Multireact",
+            "description": "The Hydra can make two reactions per round as long as it has three or more heads."
+        },
+        {
+            "name": "Wail",
+            "description": "After taking damage, the Hydra can use a reaction to wail. Creatures within 5ft of the Hydra when it wails take 2d4 psychic damage."
+        }
+    ],
+    "size": "Huge",
+    "name": "False Hydra",
+    "challenge": "17",
+    "alignment": "Neutral Evil",
+    "actions": [
+        {
+            "name": "Multiattack",
+            "description": "The Hydra can use a claw attack and a bite attack on its turn for each head it has"
+        },
+        {
+            "name": "Bite",
+            "description": "Melee Weapon Attack: +10 to hit, reach 15 ft., one target.\nHit: 9 (1d10+4) piercing damage. "
+        },
+        {
+            "name": "Claws",
+            "description": "Melee Weapon Attack: +10 to hit, reach 15 ft., one target.\nHit: 8 (1d8+4) slashing damage. If the Hydra succeeds on a claw attack, it can choose to grapple the target instead of dealing damage. (The hydra can only grapple one creature at a time and cannot use its claw attack while grappling a creature.)"
+        }
+    ]
+}

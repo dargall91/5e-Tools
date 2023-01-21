@@ -1,0 +1,167 @@
+{
+    "ac": "7",
+    "languages": "Understands common but can't speak",
+    "senses": "Darkvision 60 ft, passive perception 9",
+    "scores": [
+        {
+            "score": 18,
+            "stat": "STR",
+            "proficient": false
+        },
+        {
+            "score": 4,
+            "stat": "DEX",
+            "proficient": false
+        },
+        {
+            "score": 20,
+            "stat": "CON",
+            "proficient": false
+        },
+        {
+            "score": 3,
+            "stat": "INT",
+            "proficient": false
+        },
+        {
+            "score": 8,
+            "stat": "WIS",
+            "proficient": true
+        },
+        {
+            "score": 6,
+            "stat": "CHA",
+            "proficient": false
+        }
+    ],
+    "legendaryActions": [],
+    "displayName": "Zombie",
+    "hp": "85",
+    "legendaryActionCount": 0,
+    "type": "Undead",
+    "speed": "20 ft",
+    "skills": [
+        {
+            "skill": "History",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Perception",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Performance",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Athletics",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Persuasion",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Intimidation",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Insight",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Religion",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Sleight of Hand",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Acrobatics",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Arcana",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Animal Handling",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Deception",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Medicine",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Stealth",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Survival",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Nature",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Investigation",
+            "expertise": false,
+            "proficient": false
+        }
+    ],
+    "abilities": [
+        {
+            "name": "Damage Immunities",
+            "description": "poison; bludeoning, oiercing, and slashing damage from nonmagical weapons"
+        },
+        {
+            "name": "Condition Immunities",
+            "description": "Blinded, exhaustion, frightened, poisoned"
+        },
+        {
+            "name": "Grappler",
+            "description": "The ReDead has advantage on attack rolls against a creature grappled by it"
+        },
+        {
+            "name": "ReDead's Approach",
+            "description": "As a bonus action, the ReDead moves up to its speed straight towards a creature frightened of it that it can see, and makes a bite attack against it if it is within reach. "
+        }
+    ],
+    "size": "Medium",
+    "name": "ReDead",
+    "challenge": "3",
+    "alignment": "Neutral Evil",
+    "actions": [
+        {
+            "name": "Bite",
+            "description": "Melee Weapon Attack: +6 to hit, reach 5 ft., one target.\nHit: 2d8 + 4 piercing damage, and the target is grappled (escape DC 14). Until this grapple ends, the target is restrained, and the ReDad can't bite another target. "
+        },
+        {
+            "name": "Paralyzing Shriek (Recharge 5-6)",
+            "description": "A horrifying shriek echoes from the ReDead's face. All creatures within 30 feet of it must make a DC 15 Resolve saving throw. The redead can designate one target within range it can see to have disadvantage on this initial saving throw. On a failed save, a target is frightened and paralyzed for 1 minute. An affected creature can repeat the saving throw at the end of each of its turns, ending the effect on itself on a success. "
+        }
+    ]
+}

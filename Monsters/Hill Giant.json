@@ -1,0 +1,157 @@
+{
+    "ac": "13",
+    "languages": "Giant",
+    "senses": "passive perception 12",
+    "scores": [
+        {
+            "score": 21,
+            "stat": "STR",
+            "proficient": false
+        },
+        {
+            "score": 8,
+            "stat": "DEX",
+            "proficient": false
+        },
+        {
+            "score": 19,
+            "stat": "CON",
+            "proficient": false
+        },
+        {
+            "score": 5,
+            "stat": "INT",
+            "proficient": false
+        },
+        {
+            "score": 9,
+            "stat": "WIS",
+            "proficient": false
+        },
+        {
+            "score": 6,
+            "stat": "CHA",
+            "proficient": false
+        }
+    ],
+    "legendaryActions": [],
+    "displayName": "Giant",
+    "hp": "105",
+    "legendaryActionCount": 0,
+    "type": "Giant",
+    "speed": "40 ft",
+    "skills": [
+        {
+            "skill": "History",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Perception",
+            "expertise": false,
+            "proficient": true
+        },
+        {
+            "skill": "Performance",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Athletics",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Persuasion",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Intimidation",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Insight",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Religion",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Sleight of Hand",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Acrobatics",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Arcana",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Animal Handling",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Deception",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Medicine",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Stealth",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Survival",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Nature",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Investigation",
+            "expertise": false,
+            "proficient": false
+        }
+    ],
+    "abilities": [{
+        "name": "Fear Factor",
+        "description": "2d6 + 2"
+    }],
+    "size": "Huge",
+    "name": "Hill Giant",
+    "challenge": "5",
+    "alignment": "Chaotic Evil",
+    "actions": [
+        {
+            "name": "Multiattack",
+            "description": "The giant makes two greatclub attacks"
+        },
+        {
+            "name": "Greatclub",
+            "description": "Melee Weapon Attack: +8 to hit, reach 10 ft., one target\nHit: 3d8 + 5 bludgeoning damage. "
+        },
+        {
+            "name": "Rock Throw",
+            "description": "Ranged Weapon Attack: +8 to hit, reach 60/240 ft., one target.\nHit: 3d10 + 5 bludgeoning damage. "
+        }
+    ]
+}

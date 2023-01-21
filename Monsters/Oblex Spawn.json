@@ -1,0 +1,157 @@
+{
+    "ac": "13",
+    "languages": "None",
+    "senses": "Blindsight 60 ft (blind beyond this distance), passive perception 12",
+    "scores": [
+        {
+            "score": 8,
+            "stat": "STR",
+            "proficient": false
+        },
+        {
+            "score": 16,
+            "stat": "DEX",
+            "proficient": false
+        },
+        {
+            "score": 15,
+            "stat": "CON",
+            "proficient": false
+        },
+        {
+            "score": 14,
+            "stat": "INT",
+            "proficient": true
+        },
+        {
+            "score": 11,
+            "stat": "WIS",
+            "proficient": false
+        },
+        {
+            "score": 10,
+            "stat": "CHA",
+            "proficient": true
+        }
+    ],
+    "legendaryActions": [],
+    "displayName": "Slime",
+    "hp": "18",
+    "legendaryActionCount": 0,
+    "type": "Ooze",
+    "speed": "20 ft",
+    "skills": [
+        {
+            "skill": "History",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Perception",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Performance",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Athletics",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Persuasion",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Intimidation",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Insight",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Religion",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Sleight of Hand",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Acrobatics",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Arcana",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Animal Handling",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Deception",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Medicine",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Stealth",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Survival",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Nature",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Investigation",
+            "expertise": false,
+            "proficient": false
+        }
+    ],
+    "abilities": [
+        {
+            "name": "Condition Immunities",
+            "description": "Blinded, charmed, deafened, exhaustion, prone"
+        },
+        {
+            "name": "Amorphous",
+            "description": "The Oblex can move through a space as narrow as 1 inch wide without squeezing."
+        },
+        {
+            "name": "Aversion to Fire",
+            "description": "If the oblex takes fire damage, it has disadvanatge on attack rolls and ability checks until the end of its next turn."
+        }
+    ],
+    "size": "Tiny",
+    "name": "Oblex Spawn",
+    "challenge": "1/4",
+    "alignment": "Lawful Evi",
+    "actions": [{
+        "name": "Pseudopod",
+        "description": "Melee Weapon Attack: +5 to hit, reach 5 ft, one target\nHit: 1d4 + 3 bludgeoning damage plus 1d4 Psychic damage."
+    }]
+}

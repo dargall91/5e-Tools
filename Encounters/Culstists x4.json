@@ -1,0 +1,27 @@
+{
+    "name": "Culstists x4",
+    "theme": "Combat in the Ruins.mp3",
+    "lairAction": false,
+    "monsterData": [
+        {
+            "quantity": 2,
+            "initiative": 19,
+            "xp": 3900,
+            "reinforcement": false,
+            "minion": false,
+            "monster": "Cultist Acolyte (Champion)"
+        },
+        {
+            "quantity": 2,
+            "initiative": 5,
+            "xp": 3900,
+            "reinforcement": false,
+            "minion": false,
+            "monster": "Cultist Brawler (Champion)"
+        }
+    ],
+    "playerData": [{
+        "level": 10,
+        "players": 4
+    }]
+}

@@ -1,0 +1,153 @@
+{
+    "ac": "12",
+    "languages": "Sylvan, plus the languages known by the soul of the children placed within the marionette",
+    "senses": "passive perception 12",
+    "scores": [
+        {
+            "score": 16,
+            "stat": "STR",
+            "proficient": false
+        },
+        {
+            "score": 14,
+            "stat": "DEX",
+            "proficient": true
+        },
+        {
+            "score": 12,
+            "stat": "CON",
+            "proficient": true
+        },
+        {
+            "score": 6,
+            "stat": "INT",
+            "proficient": false
+        },
+        {
+            "score": 14,
+            "stat": "WIS",
+            "proficient": true
+        },
+        {
+            "score": 6,
+            "stat": "CHA",
+            "proficient": false
+        }
+    ],
+    "legendaryActions": [],
+    "displayName": "Marionettte",
+    "hp": "34",
+    "legendaryActionCount": 0,
+    "type": "Humanoid",
+    "speed": "30 ft",
+    "skills": [
+        {
+            "skill": "History",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Perception",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Performance",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Athletics",
+            "expertise": false,
+            "proficient": true
+        },
+        {
+            "skill": "Persuasion",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Intimidation",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Insight",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Religion",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Sleight of Hand",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Acrobatics",
+            "expertise": false,
+            "proficient": true
+        },
+        {
+            "skill": "Arcana",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Animal Handling",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Deception",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Medicine",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Stealth",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Survival",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Nature",
+            "expertise": false,
+            "proficient": false
+        },
+        {
+            "skill": "Investigation",
+            "expertise": false,
+            "proficient": false
+        }
+    ],
+    "abilities": [{
+        "name": "Inanimate Existence",
+        "description": "The marionette is magically controlled by a Kindercatch. If the Kinderctch controlling the marionette falls unconcious, the marionette becomes a simple lifeless puppet."
+    }],
+    "size": "Medium",
+    "name": "Marionette",
+    "challenge": "1/2",
+    "alignment": "Lawful Evil",
+    "actions": [
+        {
+            "name": "Tangle",
+            "description": "Melee Weapon Attack: +5 to hit, range 15 ft, one target\nThe Marionette lunges it's strings a creature. If it hits, the target is grappled, and must succeed on a DC 11 Athletics or Actobatics saving throw to excape"
+        },
+        {
+            "name": "Hammer",
+            "description": "Melee Weapon Attack: +5 to hit, range 5 ft, one target\nHit: 1d6 + 3 Bludgeoning damage"
+        }
+    ]
+}
