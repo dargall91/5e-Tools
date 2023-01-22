@@ -18,13 +18,13 @@ USE `5eTools`;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `Campaigns`
+-- Table structure for table `Campaign`
 --
 
-DROP TABLE IF EXISTS `Campaigns`;
+DROP TABLE IF EXISTS `Campaign`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `Campaigns` (
+CREATE TABLE `Campaign` (
   `Id` int NOT NULL AUTO_INCREMENT,
   `Name` varchar(60) NOT NULL,
   PRIMARY KEY (`Id`)
@@ -32,23 +32,13 @@ CREATE TABLE `Campaigns` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `Campaigns`
+-- Table structure for table `Class`
 --
 
-LOCK TABLES `Campaigns` WRITE;
-/*!40000 ALTER TABLE `Campaigns` DISABLE KEYS */;
-INSERT INTO `Campaigns` VALUES (1,'Darkest Dungeons & Dragons');
-/*!40000 ALTER TABLE `Campaigns` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `Classes`
---
-
-DROP TABLE IF EXISTS `Classes`;
+DROP TABLE IF EXISTS `Class`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `Classes` (
+CREATE TABLE `Class` (
   `Id` int NOT NULL AUTO_INCREMENT,
   `Name` varchar(45) NOT NULL,
   PRIMARY KEY (`Id`)
@@ -56,44 +46,24 @@ CREATE TABLE `Classes` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `Classes`
+-- Table structure for table `PlayerCharacter`
 --
 
-LOCK TABLES `Classes` WRITE;
-/*!40000 ALTER TABLE `Classes` DISABLE KEYS */;
-INSERT INTO `Classes` VALUES (1,'Artificer'),(2,'Barbarian'),(3,'Bard'),(4,'Cleric'),(5,'Druid'),(6,'Fighter'),(7,'Monk'),(8,'Paladin'),(9,'Ranger'),(10,'Rogue'),(11,'Sorcerer'),(12,'Warlock'),(13,'Wizard');
-/*!40000 ALTER TABLE `Classes` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `PCs`
---
-
-DROP TABLE IF EXISTS `PCs`;
+DROP TABLE IF EXISTS `PlayerCharacter`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `PCs` (
+CREATE TABLE `PlayerCharacter` (
   `Id` int NOT NULL AUTO_INCREMENT,
   `Name` varchar(60) NOT NULL,
   `AC` int DEFAULT '10',
-  `Initiative` int DEFAULT '0',
-  `ClassId` int NOT NULL,
-  `SubclassId` int NOT NULL,
+  `InitiativeBonus` int DEFAULT '0',
+  `RolledInitiative` int DEFAULT '1',
   `CampaignId` int NOT NULL,
   PRIMARY KEY (`Id`),
   KEY `fk_PCs_1_idx` (`CampaignId`),
-  CONSTRAINT `fk_PCs_1` FOREIGN KEY (`CampaignId`) REFERENCES `Campaigns` (`Id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  CONSTRAINT `fk_PCs_1` FOREIGN KEY (`CampaignId`) REFERENCES `Campaign` (`Id`)
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `PCs`
---
-
-LOCK TABLES `PCs` WRITE;
-/*!40000 ALTER TABLE `PCs` DISABLE KEYS */;
-/*!40000 ALTER TABLE `PCs` ENABLE KEYS */;
-UNLOCK TABLES;
 
 --
 -- Dumping routines for database '5eTools'
@@ -108,4 +78,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-01-21 12:42:35
+-- Dump completed on 2023-01-22 14:03:44
