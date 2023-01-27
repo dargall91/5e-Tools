@@ -1,9 +1,6 @@
 package com.server.tools.entities.monster;
 
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.MappedSuperclass;
+import jakarta.persistence.*;
 
 @MappedSuperclass
 public abstract class MonsterFeature {
@@ -29,6 +26,7 @@ public abstract class MonsterFeature {
         this.name = name;
     }
 
+    @Column(length = Integer.MAX_VALUE)
     public String getDescription() {
         return description;
     }

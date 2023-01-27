@@ -20,7 +20,9 @@ public class Monster {
     private int legendaryActionCount;
     private String size;
     private String type;
+    @Column(length = Integer.MAX_VALUE)
     private String senses;
+    @Column(length = Integer.MAX_VALUE)
     private String languages;
     private int armorClass;
     private String speed;
