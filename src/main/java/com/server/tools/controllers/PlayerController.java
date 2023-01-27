@@ -1,4 +1,4 @@
-package com.server.tools.controller;
+package com.server.tools.controllers;
 
 import com.server.tools.entities.PlayerCharacter;
 import com.server.tools.repositories.PlayerCharacterRepository;

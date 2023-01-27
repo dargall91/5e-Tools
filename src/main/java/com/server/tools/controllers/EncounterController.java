@@ -1,4 +1,4 @@
-package com.server.tools.controller;
+package com.server.tools.controllers;
 
 public class EncounterController {
 }
