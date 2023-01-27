@@ -7,12 +7,13 @@ public class PlayerCharacter {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    @Column(updatable = false)
     private String name;
     private int ac;
     private int initiativeBonus;
     private int rolledInitiative;
-    private int campaignId;
+    @OneToOne
+    @JoinColumn(name="id")
+    private Campaign campaign;
 
     protected PlayerCharacter() { }
 
@@ -36,7 +37,7 @@ public class PlayerCharacter {
         return rolledInitiative;
     }
 
-    public int getCampaignId() {
-        return campaignId;
+    public Campaign getCampaign() {
+        return campaign;
     }
 }

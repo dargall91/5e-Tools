@@ -1,5 +1,6 @@
 package com.server.tools.entities.monster;
 
+import com.server.tools.entities.Campaign;
 import com.server.tools.entities.abilityscore.*;
 import jakarta.persistence.*;
 
@@ -10,6 +11,9 @@ public class Monster {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+    @OneToOne
+    @JoinColumn(name="id")
+    private Campaign campaign;
     private String name;
     private String displayName;
     private boolean archived;
@@ -22,26 +26,27 @@ public class Monster {
     private String speed;
     private int hitPoints;
     @OneToOne
+    @JoinColumn(name="id")
     private ChallengeRating challengeRating;
     private String alignment;
     private int bonusInitiative;
     @OneToOne
-    @MapsId
+    @JoinColumn(name="id")
     private Strength strength;
     @OneToOne
-    @MapsId
+    @JoinColumn(name="id")
     private Dexterity dexterity;
     @OneToOne
-    @MapsId
+    @JoinColumn(name="id")
     private Constitution constitution;
     @OneToOne
-    @MapsId
+    @JoinColumn(name="id")
     private Intelligence intelligence;
     @OneToOne
-    @MapsId
+    @JoinColumn(name="id")
     private Wisdom wisdom;
     @OneToOne
-    @MapsId
+    @JoinColumn(name="id")
     private Charisma charisma;
     @OneToMany
     @JoinColumn(name="id")
