@@ -1,37 +1,34 @@
 package com.server.entities.monster;
 
-import com.server.entities.Campaign;
 import com.server.entities.abilityscore.*;
+import com.server.payloads.Payload;
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
 public class Monster {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
-    @OneToOne
-    @JoinColumn(name="id")
-    private Campaign campaign;
+    private Integer id;
+    private int campaignId;
     private String name;
     private String displayName;
-    private boolean archived;
-    private int legendaryActionCount;
-    private String size;
-    private String type;
+    private boolean archived = false;
+    private int legendaryActionCount = 0;
+    private String size = "Medium";
+    private String type = "Humanoid";
     @Column(length = Integer.MAX_VALUE)
-    private String senses;
+    private String senses = "Passive Perception 10";
     @Column(length = Integer.MAX_VALUE)
-    private String languages;
-    private int armorClass;
-    private String speed;
-    private int hitPoints;
-    @OneToOne
-    @JoinColumn(name="id")
-    private ChallengeRating challengeRating;
+    private String languages = "Common";
+    private int armorClass = 10;
+    private String speed = "30 ft";
+    private int hitPoints = 0;
+    private int challengeRatingId = 1;
     private String alignment;
-    private int bonusInitiative;
+    private int bonusInitiative = 0;
     @OneToOne
     @JoinColumn(name="id")
     private Strength strength;
@@ -60,7 +57,20 @@ public class Monster {
     @JoinColumn(name="id")
     private List<LegendaryAction> legendaryActions;
 
-    public int getId() {
+    public Monster() {
+
+    }
+
+    public Monster(Payload.AddMonster addMonster) {
+        name = addMonster.name;
+        campaignId = addMonster.campaignId;
+        displayName = name;
+        abilities = new ArrayList<>();
+        actions = new ArrayList<>();
+        legendaryActions = new ArrayList<>();
+    }
+
+    public Integer getId() {
         return id;
     }
 
@@ -68,12 +78,12 @@ public class Monster {
         this.id = id;
     }
 
-    public Campaign getCampaign() {
-        return campaign;
+    public int getCampaignId() {
+        return campaignId;
     }
 
-    public void setCampaign(Campaign campaign) {
-        this.campaign = campaign;
+    public void setCampaignId(int campaignId) {
+        this.campaignId = campaignId;
     }
 
     public String getName() {
@@ -164,12 +174,12 @@ public class Monster {
         this.hitPoints = hitPoints;
     }
 
-    public ChallengeRating getChallengeRating() {
-        return challengeRating;
+    public int getChallengeRatingId() {
+        return challengeRatingId;
     }
 
-    public void setChallengeRating(ChallengeRating challengeRating) {
-        this.challengeRating = challengeRating;
+    public void setChallengeRatingId(int challengeRatingId) {
+        this.challengeRatingId = challengeRatingId;
     }
 
     public String getAlignment() {

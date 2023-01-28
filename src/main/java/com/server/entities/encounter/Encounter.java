@@ -1,6 +1,5 @@
 package com.server.entities.encounter;
 
-import com.server.entities.Campaign;
 import jakarta.persistence.*;
 
 import java.util.List;
@@ -10,9 +9,7 @@ public class Encounter {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    @OneToOne
-    @JoinColumn(name="id")
-    private Campaign campaign;
+    private int campaignId;
     private String name;
     @OneToOne
     @JoinColumn(name="id")
@@ -21,7 +18,7 @@ public class Encounter {
     private boolean archived;
     @OneToMany
     @JoinColumn(name="id")
-    private List<EncounterMonster> monsters;
+    private List<EncounterMonster> monsterList;
 
     public int getId() {
         return id;
