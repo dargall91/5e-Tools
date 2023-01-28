@@ -30,28 +30,12 @@ jar {
 	manifest {
 		attributes "Main-Class": application.mainClass
 	}
-
-//	from {
-//		configurations.runtimeClasspath.collect{ it.isDirectory() ? it : zipTree(it) }
-//	}
 }
 
 tasks.named('test') {
 	useJUnitPlatform()
 }
 
-tasks.register('deployProd', Jar) {
-	from buildProd
-	from build
-	from jar
-}
-
-tasks.register('buildProd', Copy) {
-	from('src/main/resources/')
-	into('build/resources/main/')
-	include('application.prod.properties')
-
-	rename { String fileName ->
-		fileName.replace('prod.', '')
-	}
+bootRun {
+	args = ["--spring.profiles.active=prod"]
 }
