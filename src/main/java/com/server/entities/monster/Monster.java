@@ -59,9 +59,9 @@ public class Monster {
 
     public Monster() { }
 
-    public Monster(Payload.AddMonster addMonster) {
-        name = addMonster.name;
-        campaignId = addMonster.campaignId;
+    public Monster(String name, int campaignId) {
+        this.name = name;
+        this.campaignId = campaignId;
         displayName = name;
     }
 

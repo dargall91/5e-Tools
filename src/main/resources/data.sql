@@ -37,5 +37,5 @@ INSERT INTO ChallengeRating(id, cr, xp, proficiencyBonus) VALUES
     (35, '30', 155000, 9);
 
 -- campaign
-INSERT INTO Campaign(id, name, madness) VALUES
-    (1, "Darkest Dungeons & Dragons", 1);
+INSERT INTO Campaign(id, name, madness, active) VALUES
+    (1, "Darkest Dungeons & Dragons", 1, 1);
