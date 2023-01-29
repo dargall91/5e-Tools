@@ -10,9 +10,17 @@ import java.util.List;
 public class Campaign {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Integer id;
     private String name;
     private boolean madness;
+    private boolean active = false;
+
+    public Campaign() { }
+
+    public Campaign(String name) {
+        this.name = name;
+    }
+
     @OneToMany
     @JoinColumn(name="campaignId")
     List<Monster> monsterList;
@@ -20,7 +28,7 @@ public class Campaign {
     @JoinColumn(name="campaignId")
     List<Encounter> encounterList;
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
@@ -42,5 +50,13 @@ public class Campaign {
 
     public void setMadness(boolean madness) {
         this.madness = madness;
+    }
+
+    public boolean isActive() {
+        return active;
+    }
+
+    public void setActive(boolean active) {
+        this.active = active;
     }
 }

@@ -2,11 +2,11 @@ package com.server;
 
 import com.server.entities.Campaign;
 
-public class Util {
+public class CampaignManager {
     private static Campaign campaign;
 
     public static void setCampaign(Campaign campaign) {
-        Util.campaign = campaign;
+        CampaignManager.campaign = campaign;
     }
 
     public static Campaign getCampaign() {

@@ -1,5 +1,6 @@
 package com.server.controllers;
 
+import com.server.CampaignManager;
 import com.server.entities.abilityscore.*;
 import com.server.entities.monster.Ability;
 import com.server.entities.monster.Action;
@@ -7,6 +8,7 @@ import com.server.entities.monster.LegendaryAction;
 import com.server.entities.monster.Monster;
 import com.server.payloads.Payload;
 import com.server.repositories.AbilityScoreRepository;
+import com.server.repositories.CampaignRepository;
 import com.server.repositories.MonsterRepository;
 import com.server.repositories.views.monster.NameIdView;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +29,8 @@ public class MonsterController {
     private MonsterRepository monsterRepo;
     @Autowired
     private AbilityScoreRepository<AbilityScore> abilityScoreRepo;
+    @Autowired
+    private CampaignRepository campaignRepo;
 
     /**
      * Gets a monster with the specified id
@@ -46,14 +50,20 @@ public class MonsterController {
 
     /**
      * Adds a new monster to the database
-     *
-     * TODO: update to only take in a name param, campaign id will come from Util (maybe rename to CampaignManager?)
      * @param addMonster
      * @return
      */
     @PutMapping("add")
-    public ResponseEntity<?> addMonster(@RequestBody Payload.AddMonster addMonster) {
-        Monster newMonster = monsterRepo.save(new Monster(addMonster));
+    public ResponseEntity<?> addMonster(@RequestParam String name) {
+        if (CampaignManager.getCampaign() == null) {
+            CampaignManager.setCampaign(campaignRepo.findOneByActive(true));
+        }
+
+        if (CampaignManager.getCampaign() == null) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("No active campaign found.");
+        }
+
+        Monster newMonster = monsterRepo.save(new Monster(name, CampaignManager.getCampaign().getId()));
         String requestMap = this.getClass().getAnnotation(RequestMapping.class).value()[0];
         URI uri = ServletUriComponentsBuilder.fromCurrentContextPath()
                 .pathSegment(requestMap, newMonster.getId().toString())
@@ -63,11 +73,11 @@ public class MonsterController {
     }
 
     /**
-     * Delets the monster with he specified id
+     * Deletes the monster with he specified id
      * @param monsterId
      * @return
      */
-    @DeleteMapping("{monsterId}/delete")
+    @DeleteMapping("{monsterId}")
     public ResponseEntity<?> deleteMonster(@PathVariable int monsterId) {
         try {
             monsterRepo.deleteById(monsterId);
@@ -186,11 +196,18 @@ public class MonsterController {
 
     /**
      * Gets a list of al monsters in the specified campaign id
-     * @param campaignId
      * @return
      */
-    @GetMapping("list/{campaignId}")
-    public List<NameIdView> getMonsterList(@PathVariable int campaignId) {
-        return monsterRepo.findAllByCampaignId(campaignId);
+    @GetMapping("list")
+    public ResponseEntity<?> getMonsterList() {
+        if (CampaignManager.getCampaign() == null) {
+            CampaignManager.setCampaign(campaignRepo.findOneByActive(true));
+        }
+
+        if (CampaignManager.getCampaign() == null) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("No active campaign found.");
+        }
+
+        return ResponseEntity.ok(monsterRepo.findAllByCampaignId(CampaignManager.getCampaign().getId()));
     }
 }
