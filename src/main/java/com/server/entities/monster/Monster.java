@@ -1,66 +1,71 @@
 package com.server.entities.monster;
 
-import com.server.entities.Campaign;
 import com.server.entities.abilityscore.*;
+import com.server.payloads.Payload;
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
 public class Monster {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
-    @OneToOne
-    @JoinColumn(name="id")
-    private Campaign campaign;
+    private Integer id;
+    private int campaignId;
     private String name;
     private String displayName;
-    private boolean archived;
-    private int legendaryActionCount;
-    private String size;
-    private String type;
+    private boolean archived = false;
+    private int legendaryActionCount = 0;
+    private String size = "Medium";
+    private String type = "Humanoid";
     @Column(length = Integer.MAX_VALUE)
-    private String senses;
+    private String senses = "Passive Perception 10";
     @Column(length = Integer.MAX_VALUE)
-    private String languages;
-    private int armorClass;
-    private String speed;
-    private int hitPoints;
-    @OneToOne
+    private String languages = "Common";
+    private int armorClass = 10;
+    private String speed = "30 ft";
+    private int hitPoints = 0;
+    private int challengeRatingId = 1;
+    private String alignment = "Neutral";
+    private int bonusInitiative = 0;
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name="id")
-    private ChallengeRating challengeRating;
-    private String alignment;
-    private int bonusInitiative;
-    @OneToOne
+    private Strength strength = new Strength();
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name="id")
-    private Strength strength;
-    @OneToOne
+    private Dexterity dexterity = new Dexterity();
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name="id")
-    private Dexterity dexterity;
-    @OneToOne
+    private Constitution constitution = new Constitution();
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name="id")
-    private Constitution constitution;
-    @OneToOne
+    private Intelligence intelligence = new Intelligence();
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name="id")
-    private Intelligence intelligence;
-    @OneToOne
+    private Wisdom wisdom = new Wisdom();
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name="id")
-    private Wisdom wisdom;
-    @OneToOne
-    @JoinColumn(name="id")
-    private Charisma charisma;
-    @OneToMany
-    @JoinColumn(name="id")
-    private List<Ability> abilities;
-    @OneToMany
-    @JoinColumn(name="id")
-    private List<Action> actions;
-    @OneToMany
-    @JoinColumn(name="id")
-    private List<LegendaryAction> legendaryActions;
+    private Charisma charisma = new Charisma();
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "monsterId")
+    private List<Ability> abilities = new ArrayList<>();
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "monsterId")
+    private List<Action> actions = new ArrayList<>();
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "monsterId")
+    private List<LegendaryAction> legendaryActions = new ArrayList<>();
 
-    public int getId() {
+    public Monster() { }
+
+    public Monster(Payload.AddMonster addMonster) {
+        name = addMonster.name;
+        campaignId = addMonster.campaignId;
+        displayName = name;
+    }
+
+    public Integer getId() {
         return id;
     }
 
@@ -68,12 +73,12 @@ public class Monster {
         this.id = id;
     }
 
-    public Campaign getCampaign() {
-        return campaign;
+    public int getCampaignId() {
+        return campaignId;
     }
 
-    public void setCampaign(Campaign campaign) {
-        this.campaign = campaign;
+    public void setCampaignId(int campaignId) {
+        this.campaignId = campaignId;
     }
 
     public String getName() {
@@ -164,12 +169,12 @@ public class Monster {
         this.hitPoints = hitPoints;
     }
 
-    public ChallengeRating getChallengeRating() {
-        return challengeRating;
+    public int getChallengeRatingId() {
+        return challengeRatingId;
     }
 
-    public void setChallengeRating(ChallengeRating challengeRating) {
-        this.challengeRating = challengeRating;
+    public void setChallengeRatingId(int challengeRatingId) {
+        this.challengeRatingId = challengeRatingId;
     }
 
     public String getAlignment() {

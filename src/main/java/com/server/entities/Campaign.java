@@ -1,9 +1,10 @@
 package com.server.entities;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import com.server.entities.encounter.Encounter;
+import com.server.entities.monster.Monster;
+import jakarta.persistence.*;
+
+import java.util.List;
 
 @Entity
 public class Campaign {
@@ -12,6 +13,12 @@ public class Campaign {
     private int id;
     private String name;
     private boolean madness;
+    @OneToMany
+    @JoinColumn(name="campaignId")
+    List<Monster> monsterList;
+    @OneToMany
+    @JoinColumn(name="campaignId")
+    List<Encounter> encounterList;
 
     public int getId() {
         return id;

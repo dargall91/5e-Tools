@@ -4,6 +4,7 @@ import com.server.entities.PlayerCharacter;
 import com.server.repositories.PlayerCharacterRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
@@ -28,9 +29,14 @@ public class PlayerController {
      * @return the player character or null if not found
      */
     @GetMapping("{id}")
-    public PlayerCharacter getPlayerCharacter(@PathVariable int id) {
+    public ResponseEntity<?> getPlayerCharacter(@PathVariable int id) {
         Optional<PlayerCharacter> result = playerRepo.findById(id);
-        return result.orElse(null);
+
+        if (result.isEmpty()) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("PC with id " + id + " not found.");
+        }
+
+        return ResponseEntity.ok(result.get());
     }
 
     /**
@@ -38,7 +44,7 @@ public class PlayerController {
      * @param pc a PlayerCharacter object
      * @return uri of new character
      */
-    @PutMapping("addCharacter")
+    @PutMapping("new")
     public ResponseEntity<?> addPlayerCharacter(@RequestBody PlayerCharacter pc) {
         PlayerCharacter added = playerRepo.save(pc);
 
@@ -52,15 +58,16 @@ public class PlayerController {
 
     /**
      * Deletes a player character
-     * @param id id of the pc to delete
+     * @param pcId id of the pc to delete
      * @return bad request if id does not exit, no content if it does
      */
     @DeleteMapping("delete")
-    public ResponseEntity<?> deletePlayerCharacter(@RequestParam int id) {
+    public ResponseEntity<?> deletePlayerCharacter(@RequestParam int pcId) {
         try {
-            playerRepo.deleteById(id);
+            playerRepo.deleteById(pcId);
         } catch (EmptyResultDataAccessException | IllegalArgumentException e) {
-            return ResponseEntity.badRequest().body("Character not found");
+            return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                    .body("PC with id " + pcId + " not found.");
         }
 
         return ResponseEntity.noContent().build();
@@ -74,8 +81,9 @@ public class PlayerController {
     @PostMapping("update")
     public ResponseEntity<?> updatePlayerCharacter(@RequestBody PlayerCharacter pc) {
         //pc not found
-        if (playerRepo.findById(pc.getId()).isEmpty()) {
-            return ResponseEntity.badRequest().body("Character not found");
+        if (!playerRepo.existsById(pc.getId())) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                    .body("PC with id " + pc.getId() + " not found.");
         }
 
         playerRepo.save(pc);
@@ -87,7 +95,7 @@ public class PlayerController {
      * Gets the list of player characters
      * @return the list of all pcs in the specified campaign
      */
-    @GetMapping("list/{campaignId}")
+    @GetMapping("campaign/{campaignId}")
     public List<PlayerCharacter> getPlayerCharacterList(@PathVariable int campaignId) {
         return playerRepo.findAllByCampaignId(campaignId);
     }

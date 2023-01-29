@@ -1,15 +1,13 @@
 package com.server.entities.abilityscore;
 
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.MappedSuperclass;
+import com.server.entities.monster.Monster;
+import jakarta.persistence.*;
 
 @MappedSuperclass
 public abstract class AbilityScore {
     private int id;
-    private int score;
-    private boolean proficiency;
+    private int score = 10;
+    private boolean proficient = false;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -29,11 +27,11 @@ public abstract class AbilityScore {
         this.score = score;
     }
 
-    public boolean isProficiency() {
-        return proficiency;
+    public boolean isProficient() {
+        return proficient;
     }
 
-    public void setProficiency(boolean proficiency) {
-        this.proficiency = proficiency;
+    public void setProficient(boolean proficient) {
+        this.proficient = proficient;
     }
 }

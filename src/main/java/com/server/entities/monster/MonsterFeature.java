@@ -5,8 +5,9 @@ import jakarta.persistence.*;
 @MappedSuperclass
 public abstract class MonsterFeature {
     private int id;
-    private String name;
-    private String description;
+    private String name = "Name";
+    private String description = "Description";
+    //private int monsterId;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
