@@ -58,16 +58,16 @@ public class PlayerController {
 
     /**
      * Deletes a player character
-     * @param id id of the pc to delete
+     * @param pcId id of the pc to delete
      * @return bad request if id does not exit, no content if it does
      */
     @DeleteMapping("delete")
-    public ResponseEntity<?> deletePlayerCharacter(@RequestParam int id) {
+    public ResponseEntity<?> deletePlayerCharacter(@RequestParam int pcId) {
         try {
-            playerRepo.deleteById(id);
+            playerRepo.deleteById(pcId);
         } catch (EmptyResultDataAccessException | IllegalArgumentException e) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND)
-                    .body("PC with id " + id + " not found.");
+                    .body("PC with id " + pcId + " not found.");
         }
 
         return ResponseEntity.noContent().build();
@@ -95,7 +95,7 @@ public class PlayerController {
      * Gets the list of player characters
      * @return the list of all pcs in the specified campaign
      */
-    @GetMapping("list/{campaignId}")
+    @GetMapping("campaign/{campaignId}")
     public List<PlayerCharacter> getPlayerCharacterList(@PathVariable int campaignId) {
         return playerRepo.findAllByCampaignId(campaignId);
     }

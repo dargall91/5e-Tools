@@ -27,47 +27,42 @@ public class Monster {
     private String speed = "30 ft";
     private int hitPoints = 0;
     private int challengeRatingId = 1;
-    private String alignment;
+    private String alignment = "Neutral";
     private int bonusInitiative = 0;
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name="id")
-    private Strength strength;
-    @OneToOne
+    private Strength strength = new Strength();
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name="id")
-    private Dexterity dexterity;
-    @OneToOne
+    private Dexterity dexterity = new Dexterity();
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name="id")
-    private Constitution constitution;
-    @OneToOne
+    private Constitution constitution = new Constitution();
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name="id")
-    private Intelligence intelligence;
-    @OneToOne
+    private Intelligence intelligence = new Intelligence();
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name="id")
-    private Wisdom wisdom;
-    @OneToOne
+    private Wisdom wisdom = new Wisdom();
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name="id")
-    private Charisma charisma;
-    @OneToMany
-    @JoinColumn(name="id")
-    private List<Ability> abilities;
-    @OneToMany
-    @JoinColumn(name="id")
-    private List<Action> actions;
-    @OneToMany
-    @JoinColumn(name="id")
-    private List<LegendaryAction> legendaryActions;
+    private Charisma charisma = new Charisma();
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "monsterId")
+    private List<Ability> abilities = new ArrayList<>();
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "monsterId")
+    private List<Action> actions = new ArrayList<>();
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "monsterId")
+    private List<LegendaryAction> legendaryActions = new ArrayList<>();
 
-    public Monster() {
-
-    }
+    public Monster() { }
 
     public Monster(Payload.AddMonster addMonster) {
         name = addMonster.name;
         campaignId = addMonster.campaignId;
         displayName = name;
-        abilities = new ArrayList<>();
-        actions = new ArrayList<>();
-        legendaryActions = new ArrayList<>();
     }
 
     public Integer getId() {
