@@ -17,7 +17,7 @@ public class Encounter {
     private boolean lairAction;
     private boolean archived;
     @OneToMany
-    @JoinColumn(name="id")
+    @JoinColumn(name="encounterId")
     private List<EncounterMonster> monsterList;
 
     public int getId() {
@@ -26,5 +26,53 @@ public class Encounter {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public int getCampaignId() {
+        return campaignId;
+    }
+
+    public void setCampaignId(int campaignId) {
+        this.campaignId = campaignId;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public Music getMusic() {
+        return music;
+    }
+
+    public void setMusic(Music music) {
+        this.music = music;
+    }
+
+    public boolean isLairAction() {
+        return lairAction;
+    }
+
+    public void setLairAction(boolean lairAction) {
+        this.lairAction = lairAction;
+    }
+
+    public boolean isArchived() {
+        return archived;
+    }
+
+    public void setArchived(boolean archived) {
+        this.archived = archived;
+    }
+
+    public List<EncounterMonster> getMonsterList() {
+        return monsterList;
+    }
+
+    public void setMonsterList(List<EncounterMonster> monsterList) {
+        this.monsterList = monsterList;
     }
 }

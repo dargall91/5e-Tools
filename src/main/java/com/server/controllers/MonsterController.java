@@ -6,11 +6,9 @@ import com.server.entities.monster.Ability;
 import com.server.entities.monster.Action;
 import com.server.entities.monster.LegendaryAction;
 import com.server.entities.monster.Monster;
-import com.server.payloads.Payload;
 import com.server.repositories.AbilityScoreRepository;
 import com.server.repositories.CampaignRepository;
 import com.server.repositories.MonsterRepository;
-import com.server.repositories.views.monster.NameIdView;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.http.HttpStatus;
@@ -19,7 +17,6 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.net.URI;
-import java.util.List;
 import java.util.Optional;
 
 @RequestMapping("5eTools/api/monster")
