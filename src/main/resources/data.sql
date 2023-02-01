@@ -39,3 +39,6 @@ INSERT INTO ChallengeRating(id, cr, xp, proficiencyBonus) VALUES
 -- campaign
 INSERT INTO Campaign(id, name, madness, active) VALUES
     (1, "Darkest Dungeons & Dragons", 1, 1);
+
+INSERT INTO Music(id, name, fileName) VALUES
+    (1, "BFG - Division", "BFG-Division.mp3");
