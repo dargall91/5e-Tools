@@ -131,7 +131,7 @@ public class CampaignController {
      */
     @DeleteMapping("{campaignId}")
     public ResponseEntity<?> deleteCampaign(@PathVariable int campaignId) {
-        if (CampaignManager.getCampaign() != null && CampaignManager.getCampaign().getId() == campaignId) {
+        if (CampaignManager.getCampaign() != null && CampaignManager.getCampaignId() == campaignId) {
             return ResponseEntity.badRequest().body("Cannot delete active campaign");
         }
         try {

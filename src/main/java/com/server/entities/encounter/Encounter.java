@@ -2,25 +2,33 @@ package com.server.entities.encounter;
 
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
 public class Encounter {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Integer id;
     private int campaignId;
     private String name;
     @OneToOne
-    @JoinColumn(name="id")
+    @JoinColumn(name="musicId")
     private Music music;
-    private boolean lairAction;
-    private boolean archived;
-    @OneToMany
+    private boolean lairAction = false;
+    private boolean archived = false;
+    @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name="encounterId")
-    private List<EncounterMonster> monsterList;
+    private List<EncounterMonster> monsterList = new ArrayList<>();
 
-    public int getId() {
+    public Encounter() { }
+
+    public Encounter(String name, int campaignId) {
+        this.name = name;
+        this.campaignId = campaignId;
+    }
+
+    public Integer getId() {
         return id;
     }
 

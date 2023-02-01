@@ -26,7 +26,9 @@ public class Monster {
     private int armorClass = 10;
     private String speed = "30 ft";
     private int hitPoints = 0;
-    private int challengeRatingId = 1;
+    @OneToOne
+    @JoinColumn(name="challengeRatingId")
+    private ChallengeRating challengeRating;
     private String alignment = "Neutral";
     private int bonusInitiative = 0;
     @OneToOne(cascade = CascadeType.ALL)
@@ -59,10 +61,11 @@ public class Monster {
 
     public Monster() { }
 
-    public Monster(String name, int campaignId) {
+    public Monster(String name, int campaignId, ChallengeRating challengeRating) {
         this.name = name;
         this.campaignId = campaignId;
         displayName = name;
+        this.challengeRating = challengeRating;
     }
 
     public Integer getId() {
@@ -169,12 +172,12 @@ public class Monster {
         this.hitPoints = hitPoints;
     }
 
-    public int getChallengeRatingId() {
-        return challengeRatingId;
+    public ChallengeRating getChallengeRating() {
+        return challengeRating;
     }
 
-    public void setChallengeRatingId(int challengeRatingId) {
-        this.challengeRatingId = challengeRatingId;
+    public void setChallengeRating(ChallengeRating challengeRating) {
+        this.challengeRating = challengeRating;
     }
 
     public String getAlignment() {

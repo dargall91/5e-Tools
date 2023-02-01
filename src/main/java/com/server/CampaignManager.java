@@ -12,4 +12,8 @@ public class CampaignManager {
     public static Campaign getCampaign() {
         return campaign;
     }
+
+    public static int getCampaignId() {
+        return campaign.getId();
+    }
 }
