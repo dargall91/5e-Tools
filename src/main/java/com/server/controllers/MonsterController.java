@@ -2,15 +2,11 @@ package com.server.controllers;
 
 import com.server.CampaignManager;
 import com.server.entities.abilityscore.*;
-import com.server.entities.monster.Ability;
-import com.server.entities.monster.Action;
-import com.server.entities.monster.LegendaryAction;
-import com.server.entities.monster.Monster;
-import com.server.payloads.Payload;
+import com.server.entities.monster.*;
 import com.server.repositories.AbilityScoreRepository;
 import com.server.repositories.CampaignRepository;
+import com.server.repositories.ChallengeRatingRepository;
 import com.server.repositories.MonsterRepository;
-import com.server.repositories.views.monster.NameIdView;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.http.HttpStatus;
@@ -19,7 +15,6 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.net.URI;
-import java.util.List;
 import java.util.Optional;
 
 @RequestMapping("5eTools/api/monster")
@@ -31,6 +26,8 @@ public class MonsterController {
     private AbilityScoreRepository<AbilityScore> abilityScoreRepo;
     @Autowired
     private CampaignRepository campaignRepo;
+    @Autowired
+    private ChallengeRatingRepository crRepo;
 
     /**
      * Gets a monster with the specified id
@@ -63,7 +60,14 @@ public class MonsterController {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("No active campaign found.");
         }
 
-        Monster newMonster = monsterRepo.save(new Monster(name, CampaignManager.getCampaign().getId()));
+        //default CR is index 1
+        Optional<ChallengeRating> cr = crRepo.findById(1);
+
+        if (cr.isEmpty()) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("ERROR: No challenge ratings found in database.");
+        }
+
+        Monster newMonster = monsterRepo.save(new Monster(name, CampaignManager.getCampaignId(), cr.get()));
         String requestMap = this.getClass().getAnnotation(RequestMapping.class).value()[0];
         URI uri = ServletUriComponentsBuilder.fromCurrentContextPath()
                 .pathSegment(requestMap, newMonster.getId().toString())
@@ -208,6 +212,6 @@ public class MonsterController {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("No active campaign found.");
         }
 
-        return ResponseEntity.ok(monsterRepo.findAllByCampaignId(CampaignManager.getCampaign().getId()));
+        return ResponseEntity.ok(monsterRepo.findAllByCampaignId(CampaignManager.getCampaignId()));
     }
 }

@@ -14,19 +14,18 @@ public class Campaign {
     private String name;
     private boolean madness;
     private boolean active = false;
-
-    public Campaign() { }
-
-    public Campaign(String name) {
-        this.name = name;
-    }
-
     @OneToMany
     @JoinColumn(name="campaignId")
     List<Monster> monsterList;
     @OneToMany
     @JoinColumn(name="campaignId")
     List<Encounter> encounterList;
+
+    public Campaign() { }
+
+    public Campaign(String name) {
+        this.name = name;
+    }
 
     public Integer getId() {
         return id;

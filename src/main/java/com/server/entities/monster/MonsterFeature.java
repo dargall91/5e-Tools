@@ -7,7 +7,6 @@ public abstract class MonsterFeature {
     private int id;
     private String name = "Name";
     private String description = "Description";
-    //private int monsterId;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

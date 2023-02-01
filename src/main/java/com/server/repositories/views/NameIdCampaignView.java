@@ -1,4 +1,4 @@
-package com.server.repositories.views.monster;
+package com.server.repositories.views;
 
 public interface NameIdCampaignView {
     int getId();
