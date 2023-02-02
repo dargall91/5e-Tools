@@ -199,7 +199,7 @@ public class MonsterController {
     }
 
     /**
-     * Gets a list of al monsters in the specified campaign id
+     * Gets a list of all monsters that are part of the currently selected campaign
      * @return
      */
     @GetMapping("list")
