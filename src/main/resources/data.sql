@@ -34,11 +34,20 @@ INSERT INTO ChallengeRating(id, cr, xp, proficiencyBonus) VALUES
     (32, '27', 105000, 8),
     (33, '28', 120000, 8),
     (34, '29', 135000, 9),
-    (35, '30', 155000, 9);
+    (35, '30', 155000, 9)
+ONE DUPLICATE KEY
+UPDATE cr = VALUES(cr), xp = VALUES(xp), proficiencyBonus = VALUES(proficiencyBonus);
 
--- campaign
+-- campaign - deactivate all campaigns aside from index 1
 INSERT INTO Campaign(id, name, madness, active) VALUES
-    (1, "Darkest Dungeons & Dragons", 1, 1);
+    (1, "Darkest Dungeons & Dragons", 1, 1)
+UPDATE name = VALUES(name), madness = VALUES(madness), active = VALUES(active);
 
+UPDATE Campaign
+SET active = 0
+WHERE id > 1;
+
+-- make sure at least one music track exists
 INSERT INTO Music(id, name, fileName) VALUES
-    (1, "BFG - Division", "BFG-Division.mp3");
+    (1, "BFG - Division", "BFG-Division.mp3")
+ON DUPLICATE KEY UPDATE name = VALUES(name);

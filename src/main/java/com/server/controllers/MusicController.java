@@ -6,10 +6,7 @@ import javazoom.jl.player.Player;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.io.BufferedInputStream;
 import java.io.File;
@@ -29,8 +26,13 @@ public class MusicController {
     private boolean playing;
     private FileInputStream fis;
 
-    @PostMapping("{musicId}/play")
-    public ResponseEntity<?> playMusic(@PathVariable int musicId) {
+    /**
+     * Plays the music file with the specified musicId.
+     * @param musicId
+     * @return
+     */
+    @PostMapping("play")
+    public ResponseEntity<?> playMusic(@RequestParam int musicId) {
         Optional<Music> result = musicRepo.findById(musicId);
 
         if (result.isEmpty()) {
@@ -71,20 +73,33 @@ public class MusicController {
         return ResponseEntity.ok().build();
     }
 
-    private void pauseMusic() {
+    @PostMapping("pause")
+    public ResponseEntity<?> pauseMusic() {
         try {
             playing = false;
             trackPos = trackLength - fis.available();
             musicPlayer.close();
         } catch (IOException e) {
             e.printStackTrace();
+            return ResponseEntity.internalServerError().body("AN error occured while pausing the music");
         }
+
+        return ResponseEntity.noContent().build();
     }
 
-    private void stopMusic() {
+    @PostMapping("stop")
+    public ResponseEntity<?> stopMusic() {
         playing = false;
         musicPlayer.close();
         trackPos = 0;
         musicFile = null;
+
+        return ResponseEntity.noContent().build();
+    }
+
+    @GetMapping("list")
+    public ResponseEntity<?> getList() {
+
+        return ResponseEntity.ok(musicRepo.findBy());
     }
 }

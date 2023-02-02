@@ -1,9 +1,6 @@
 package com.server.entities.encounter;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 @Entity
 public class Music {
@@ -11,6 +8,7 @@ public class Music {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String name;
+    @Column(unique=true)
     private String fileName;
 
     public int getId() {
