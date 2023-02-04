@@ -22,10 +22,18 @@ public class CombatController {
     @Autowired
     private EncounterRepository encounterRepo;
     private Encounter loadedEncounter;
+    private List<Combatant> combatantList;
 
     @GetMapping("/")
     public String combatView(Model model) {
-        model.addAttribute("campaignName", CampaignManager.getCampaign().getName());
+        if (CampaignManager.getCampaign() != null) {
+            model.addAttribute("campaignName", CampaignManager.getCampaign().getName());
+        } else {
+            model.addAttribute("campaignName", "No Campaign Selected");
+        }
+
+        model.addAttribute("combatantList", combatantList);
+
         return "combat";
     }
 
@@ -42,37 +50,14 @@ public class CombatController {
         return ResponseEntity.noContent().build();
     }
 
-    /**
-     * Starts an encounter with the specified id - this overrides any previously loaded encounters
-     * @param encounterId
-     * @return
-     */
-    @PostMapping("start")
-    public ResponseEntity<?> startCombat(@RequestParam(required = false) Integer encounterId) {
-        //no encounter id provided and no encounter loaded
-        if (encounterId == null && loadedEncounter == null) {
-            return ResponseEntity.badRequest().body("No encounter loaded or specified.");
-        }
-
-        //if a new encounterId was provided, load that encounter
-        if (encounterId != null) {
-            ResponseEntity loadResponse = loadEncounter((encounterId));
-
-            //load not successful
-            if (!loadEncounter(encounterId).getStatusCode().is2xxSuccessful()) {
-                return loadResponse;
-            }
-        }
-
-        //todo: play music
-
-        return ResponseEntity.noContent().build();
-    }
-
     @PostMapping("setCombatants")
     public ResponseEntity<?> setCombatanats(@RequestBody List<Combatant> combatants, Model model) {
-        model.addAttribute("campaignName", CampaignManager.getCampaign().getName());
-        model.addAttribute("combatantList", combatants);
+        combatantList = combatants;
+
+        for (int i =0 ; i < combatantList.size(); i++) {
+            combatantList.get(i).setId(i + 1);
+        }
+
         return ResponseEntity.noContent().build();
     }
 
@@ -83,12 +68,5 @@ public class CombatController {
     @GetMapping("loaded")
     public ResponseEntity<?> getLoadedEncounter() {
         return ResponseEntity.ok(loadedEncounter);
-    }
-
-    @PostMapping("stop")
-    public String stopCombat() {
-        //todo: stop music
-        loadedEncounter = null;
-        return null;
     }
 }

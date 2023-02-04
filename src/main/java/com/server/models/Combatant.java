@@ -1,12 +1,21 @@
 package com.server.models;
 
 public class Combatant implements Comparable<Combatant> {
+    int id;
     private boolean reinforcement;
     private String name;
     private int initiative;
     private int weight;
 
     public Combatant() { }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public boolean isReinforcement() {
         return reinforcement;
