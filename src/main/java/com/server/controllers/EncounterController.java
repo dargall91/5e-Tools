@@ -7,6 +7,7 @@ import com.server.entities.monster.Monster;
 import com.server.repositories.CampaignRepository;
 import com.server.repositories.EncounterRepository;
 import com.server.repositories.MonsterRepository;
+import com.server.repositories.XpThresholdsRepository;
 import com.server.repositories.views.NameIdView;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
@@ -28,6 +29,8 @@ public class EncounterController {
     private CampaignRepository campaignRepo;
     @Autowired
     private MonsterRepository monsterRepo;
+    @Autowired
+    private XpThresholdsRepository xpRepo;
 
     @GetMapping("{encounterId}")
     public ResponseEntity<?> getEncounter(@PathVariable int encounterId) {
@@ -151,5 +154,10 @@ public class EncounterController {
         }
 
         return ResponseEntity.ok(encounterRepo.findAllByCampaignId(CampaignManager.getCampaignId()));
+    }
+
+    @GetMapping("xp")
+    public ResponseEntity<?> getXpThresholds() {
+        return ResponseEntity.ok(xpRepo.findAll());
     }
 }

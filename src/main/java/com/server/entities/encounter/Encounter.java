@@ -83,4 +83,44 @@ public class Encounter {
     public void setMonsterList(List<EncounterMonster> monsterList) {
         this.monsterList = monsterList;
     }
+
+    public int getXpTotal() {
+        int rawTotal = 0;
+        int quanity = 0;
+
+        for (EncounterMonster monster : monsterList) {
+            if (!monster.isMinion()) {
+                rawTotal += monster.getMonster().getChallengeRating().getXp() * monster.getQuantity();
+                quanity += monster.getQuantity();
+            }
+        }
+
+        //1 monster (or 0, for cases where a monster has yet to be added to the encounter)
+        if (quanity <= 1) {
+            return rawTotal;
+        }
+
+        //2 monsters
+        if (quanity <= 2) {
+            return (int) (rawTotal * 1.5);
+        }
+
+        //3-6 monsters
+        if (quanity <= 6) {
+            return rawTotal * 2;
+        }
+
+        //7-10 monsters
+        if (quanity <= 10) {
+            return (int) (rawTotal * 2.5);
+        }
+
+        //11-14 monsters
+        if (quanity <= 14) {
+            return rawTotal * 3;
+        }
+
+        //15+ monsters
+        return rawTotal * 4;
+    }
 }
