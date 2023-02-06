@@ -32,8 +32,8 @@ public abstract class AbilityScore {
     }
 
     /**
-     * THis method does nothing because the bonus is a calculated value, it cannot be set. But JPA complains if this
-     * method is not here, so here it is
+     * This method does nothing because the bonus is a calculated value, it cannot be set. But JPA complains if this
+     * method is not included, so here it is
      * @param bonus
      */
     public void setBonus(int bonus) { }

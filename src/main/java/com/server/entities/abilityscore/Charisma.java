@@ -4,7 +4,6 @@ import com.server.entities.monster.Monster;
 import jakarta.persistence.Entity;
 
 @Entity
-
 public class Charisma extends AbilityScore {
     private int deception;
     private int intimidation;

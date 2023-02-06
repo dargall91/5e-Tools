@@ -44,7 +44,7 @@ public class PlayerController {
      * @param pc a PlayerCharacter object
      * @return uri of new character
      */
-    @PutMapping("new")
+    @PutMapping("add")
     public ResponseEntity<?> addPlayerCharacter(@RequestBody PlayerCharacter pc) {
         PlayerCharacter added = playerRepo.save(pc);
 
@@ -95,7 +95,7 @@ public class PlayerController {
      * Gets the list of player characters
      * @return the list of all pcs in the specified campaign
      */
-    @GetMapping("campaign/{campaignId}")
+    @GetMapping("campaignList/{campaignId}")
     public List<PlayerCharacter> getPlayerCharacterList(@PathVariable int campaignId) {
         return playerRepo.findAllByCampaignId(campaignId);
     }

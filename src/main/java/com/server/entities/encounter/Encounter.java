@@ -1,5 +1,6 @@
 package com.server.entities.encounter;
 
+import com.server.entities.Music;
 import jakarta.persistence.*;
 
 import java.util.ArrayList;

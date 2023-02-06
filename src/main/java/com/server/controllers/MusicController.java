@@ -1,6 +1,6 @@
 package com.server.controllers;
 
-import com.server.entities.encounter.Music;
+import com.server.entities.Music;
 import com.server.repositories.MusicRepository;
 import javazoom.jl.player.Player;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -99,7 +99,6 @@ public class MusicController {
 
     @GetMapping("list")
     public ResponseEntity<?> getList() {
-
-        return ResponseEntity.ok(musicRepo.findBy());
+        return ResponseEntity.ok(musicRepo.findByOrderByNameAsc());
     }
 }
