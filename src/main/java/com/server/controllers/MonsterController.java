@@ -212,6 +212,6 @@ public class MonsterController {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("No active campaign found.");
         }
 
-        return ResponseEntity.ok(monsterRepo.findAllByCampaignId(CampaignManager.getCampaignId()));
+        return ResponseEntity.ok(monsterRepo.findAllByCampaignIdOrderByNameAsc(CampaignManager.getCampaignId()));
     }
 }

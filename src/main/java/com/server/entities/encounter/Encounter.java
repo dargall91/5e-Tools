@@ -1,5 +1,7 @@
 package com.server.entities.encounter;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.server.entities.Music;
 import jakarta.persistence.*;
 
@@ -85,6 +87,7 @@ public class Encounter {
         this.monsterList = monsterList;
     }
 
+    @JsonIgnore
     public int getXpTotal() {
         int rawTotal = 0;
         int quanity = 0;
