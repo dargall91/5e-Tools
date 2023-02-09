@@ -67,6 +67,55 @@ public class Monster {
         this.challengeRating = challengeRating;
     }
 
+    /**
+     * Creates a new monster using an existing monster as a template
+     * @param template the source monster to copy
+     * @param name the new monster's name
+     */
+    public Monster(Monster template, String name) {
+        this.name = name;
+        displayName = name;
+        campaignId = template.getCampaignId();
+        legendaryActionCount = template.getLegendaryActionCount();
+        size = template.getSize();
+        type = template.getType();
+        senses = template.getSenses();
+        languages = template.getLanguages();
+        armorClass = template.getArmorClass();
+        hitPoints = template.getHitPoints();
+        challengeRating = template.getChallengeRating();
+        alignment = template.getAlignment();
+        bonusInitiative = template.getBonusInitiative();
+        strength = new Strength(template.getStrength());
+        dexterity = new Dexterity(template.getDexterity());
+        constitution = new Constitution(template.getConstitution());
+        intelligence = new Intelligence(template.getIntelligence());
+        wisdom = new Wisdom(template.getWisdom());
+        charisma = new Charisma(template.getCharisma());
+
+        for (Ability ability : template.getAbilities()) {
+            Ability copy = new Ability();
+            copy.setName(ability.getName());
+            copy.setDescription(ability.getDescription());
+            abilities.add(copy);
+        }
+
+        for (Action action : template.getActions()) {
+            Action copy = new Action();
+            copy.setName(action.getName());
+            copy.setDescription(action.getDescription());
+            actions.add(copy);
+        }
+
+        for (LegendaryAction legendaryAction : template.getLegendaryActions()) {
+            LegendaryAction copy = new LegendaryAction();
+            copy.setName(legendaryAction.getName());
+            copy.setDescription(legendaryAction.getDescription());
+            copy.setCost(legendaryAction.getCost());
+            legendaryActions.add(copy);
+        }
+    }
+
     public Integer getId() {
         return id;
     }

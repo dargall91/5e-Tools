@@ -11,6 +11,17 @@ public class Wisdom extends AbilityScore {
     private int perception;
     private int survival;
 
+    public Wisdom() { }
+
+    public Wisdom(Wisdom wisdom) {
+        super(wisdom);
+        animalHandling = wisdom.getAnimalHandling();
+        insight = wisdom.getInsight();
+        medicine = wisdom.getMedicine();
+        perception = wisdom.getPerception();
+        survival = wisdom.getSurvival();
+    }
+
     public int getAnimalHandling() {
         return animalHandling;
     }

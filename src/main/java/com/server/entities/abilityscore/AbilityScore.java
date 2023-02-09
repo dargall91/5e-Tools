@@ -1,13 +1,21 @@
 package com.server.entities.abilityscore;
 
-import com.server.entities.monster.Monster;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 
 @MappedSuperclass
+@JsonIgnoreProperties(ignoreUnknown = true)
 public abstract class AbilityScore {
     private int id;
     private int score = 10;
     private boolean proficient = false;
+
+    public AbilityScore() { }
+
+    public AbilityScore(AbilityScore abilityScore) {
+        score = abilityScore.getScore();
+        proficient = abilityScore.isProficient();
+    }
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -27,16 +35,16 @@ public abstract class AbilityScore {
         this.score = score;
     }
 
-    public int getBonus() {
+    public int getScoreModifier() {
         return (int) Math.floor((score - 10) / 2.0);
     }
 
     /**
      * This method does nothing because the bonus is a calculated value, it cannot be set. But JPA complains if this
      * method is not included, so here it is
-     * @param bonus
+     * @param scoreModifier
      */
-    public void setBonus(int bonus) { }
+    public void setScoreModifier(int scoreModifier) { }
 
     public boolean isProficient() {
         return proficient;

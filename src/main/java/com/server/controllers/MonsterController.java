@@ -214,4 +214,24 @@ public class MonsterController {
 
         return ResponseEntity.ok(monsterRepo.findAllByCampaignIdOrderByNameAsc(CampaignManager.getCampaignId()));
     }
+
+    /**
+     * Copis an existing monster and makes a new one
+     * @param monsterId the id of the monster to copy
+     * @param name the name of the new monster
+     * @return The new monster object
+     */
+    @PutMapping("{monsterId}/copy")
+    public ResponseEntity<?> copyMonster(@PathVariable int monsterId, @RequestParam String name) {
+        Optional<Monster> monster = monsterRepo.findById(monsterId);
+
+        if (monster.isEmpty()) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Monster with id " + monsterId + " not found.");
+        }
+
+        Monster copy = new Monster(monster.get(), name);
+        monsterRepo.save(copy);
+
+        return ResponseEntity.ok(copy);
+    }
 }

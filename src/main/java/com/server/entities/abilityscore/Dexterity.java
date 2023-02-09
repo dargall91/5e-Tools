@@ -9,6 +9,15 @@ public class Dexterity extends AbilityScore {
     private int sleightOfHand;
     private int stealth;
 
+    public Dexterity() { }
+
+    public Dexterity(Dexterity dexterity) {
+        super(dexterity);
+        acrobatics = dexterity.getAcrobatics();
+        sleightOfHand = dexterity.getSleightOfHand();
+        stealth = dexterity.getStealth();
+    }
+
     public int getAcrobatics() {
         return acrobatics;
     }
