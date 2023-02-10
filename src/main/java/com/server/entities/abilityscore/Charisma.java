@@ -17,7 +17,7 @@ public class Charisma extends AbilityScore {
         deception = charisma.getDeception();
         intimidation = charisma.getIntimidation();
         performance = charisma.getPerformance();
-        performance = charisma.getPerformance();
+        persuasion = charisma.getPersuasion();
     }
 
     public int getDeception() {

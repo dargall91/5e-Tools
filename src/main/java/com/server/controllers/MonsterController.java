@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.net.URI;
+import java.util.List;
 import java.util.Optional;
 
 @RequestMapping("5eTools/api/monster")
@@ -233,5 +234,16 @@ public class MonsterController {
         monsterRepo.save(copy);
 
         return ResponseEntity.ok(copy);
+    }
+
+    /**
+     * Gets the list of all challenge ratings in the database
+     * @return
+     */
+    @GetMapping("crList")
+    public ResponseEntity<?> getChallengeRatingList() {
+        List<ChallengeRating> crList = crRepo.findAll();
+
+        return ResponseEntity.ok(crList);
     }
 }
