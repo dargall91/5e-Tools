@@ -180,7 +180,7 @@ public class EncounterController {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("No active campaign found.");
         }
 
-        return ResponseEntity.ok(encounterRepo.findAllByCampaignIdOrderByNameAsc(CampaignManager.getCampaignId()));
+        return ResponseEntity.ok(encounterRepo.findAllActiveByCampaignId(CampaignManager.getCampaignId()));
     }
 
     @GetMapping("xp")

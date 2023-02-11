@@ -11,11 +11,11 @@ public class PlayerCharacter {
     private int ac;
     private int initiativeBonus;
     private int rolledInitiative;
-    @OneToOne
-    @JoinColumn(name="id")
-    private Campaign campaign;
+    private int campaignId;
+    private boolean dead;
+    private boolean combatant = false;
 
-    protected PlayerCharacter() { }
+    public PlayerCharacter() { }
 
     public Integer getId() {
         return id;
@@ -37,7 +37,23 @@ public class PlayerCharacter {
         return rolledInitiative;
     }
 
-    public Campaign getCampaign() {
-        return campaign;
+    public void setDead(boolean dead) {
+        this.dead = dead;
+    }
+
+    public boolean isDead() {
+        return dead;
+    }
+
+    public boolean isCombatant() {
+        return combatant;
+    }
+
+    public void setCombatant(boolean combatant) {
+        this.combatant = combatant;
+    }
+
+    public int getCampaignId() {
+        return campaignId;
     }
 }
