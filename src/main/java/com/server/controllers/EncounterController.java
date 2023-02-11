@@ -2,12 +2,14 @@ package com.server.controllers;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
-import com.server.CampaignManager;
+import com.server.util.CampaignManager;
 import com.server.entities.encounter.Encounter;
 import com.server.entities.encounter.EncounterMonster;
 import com.server.entities.monster.Monster;
 import com.server.repositories.*;
-import com.server.repositories.views.NameIdView;
+import com.server.repositories.encounter.EncounterRepository;
+import com.server.repositories.monster.MonsterRepository;
+import com.server.repositories.encounter.XpThresholdsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.http.HttpStatus;

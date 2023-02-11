@@ -1,11 +1,11 @@
-package com.server.repositories;
+package com.server.repositories.encounter;
 
 import com.server.entities.encounter.Encounter;
-import com.server.repositories.views.NameIdView;
+import com.server.repositories.projections.NameIdProjection;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
 
 public interface EncounterRepository extends JpaRepository<Encounter, Integer> {
-    List<NameIdView> findAllByCampaignIdOrderByNameAsc(int campaignId);
+    List<NameIdProjection> findAllByCampaignIdOrderByNameAsc(int campaignId);
 }

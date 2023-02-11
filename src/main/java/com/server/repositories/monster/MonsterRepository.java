@@ -1,11 +1,11 @@
-package com.server.repositories;
+package com.server.repositories.monster;
 
 import com.server.entities.monster.Monster;
-import com.server.repositories.views.NameIdView;
+import com.server.repositories.projections.NameIdProjection;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
 
 public interface MonsterRepository extends JpaRepository<Monster, Integer> {
-    List<NameIdView> findAllByCampaignIdOrderByNameAsc(int campaignId);
+    List<NameIdProjection> findAllByCampaignIdOrderByNameAsc(int campaignId);
 }

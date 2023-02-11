@@ -1,6 +1,6 @@
 package com.server.controllers;
 
-import com.server.CampaignManager;
+import com.server.util.CampaignManager;
 import com.server.entities.Campaign;
 import com.server.repositories.CampaignRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.net.URI;
-import java.util.List;
 import java.util.Optional;
 
 @RequestMapping("5eTools/api/campaign")
