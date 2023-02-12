@@ -21,7 +21,7 @@ import java.util.Optional;
 public class CombatController {
     @Autowired
     private EncounterRepository encounterRepo;
-    private List<NameIdProjection> combatantList = new ArrayList<>();
+    private List<Combatant> combatantList;
 
     @GetMapping("/")
     public String combatView(Model model) {
@@ -37,7 +37,7 @@ public class CombatController {
     }
 
     @PostMapping("setCombatants")
-    public ResponseEntity<?> setCombatanats(@RequestBody List<NameIdProjection> combatants, Model model) {
+    public ResponseEntity<?> setCombatanats(@RequestBody List<Combatant> combatants) {
         combatantList = combatants;
 
         return ResponseEntity.noContent().build();
