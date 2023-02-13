@@ -1,4 +1,4 @@
-package com.server.repositories;
+package com.server.repositories.encounter;
 
 import com.server.entities.encounter.XpThresholds;
 import org.springframework.data.jpa.repository.JpaRepository;

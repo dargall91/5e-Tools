@@ -35,12 +35,13 @@ INSERT INTO ChallengeRating(id, cr, xp, proficiencyBonus) VALUES
     (33, '28', 120000, 8),
     (34, '29', 135000, 9),
     (35, '30', 155000, 9)
-ONE DUPLICATE KEY
+ON DUPLICATE KEY
 UPDATE cr = VALUES(cr), xp = VALUES(xp), proficiencyBonus = VALUES(proficiencyBonus);
 
 -- campaign - deactivate all campaigns aside from index 1
 INSERT INTO Campaign(id, name, madness, active) VALUES
     (1, "Darkest Dungeons & Dragons", 1, 1)
+ON DUPLICATE KEY
 UPDATE name = VALUES(name), madness = VALUES(madness), active = VALUES(active);
 
 UPDATE Campaign
@@ -53,24 +54,24 @@ INSERT INTO Music(id, name, fileName) VALUES
 ON DUPLICATE KEY UPDATE name = VALUES(name);
 
 -- xp thresholds
-INSERT INTO XpThresholds(level, easy, medium, hard, deadly) VALUES
-    (1, 25, 50, 75, 100),
-    (2, 50, 100, 150, 200),
-    (3, 75, 150, 225, 400),
-    (4, 125, 250, 375, 500),
-    (5, 250, 500, 750, 1100),
-    (6, 300, 600, 900, 1400),
-    (7, 350, 750, 1100, 1700),
-    (8, 450, 900, 1400, 2100),
-    (9, 550, 1100, 1600, 2400),
-    (10, 600, 1200, 1900, 2800),
-    (11, 800, 1600, 2400, 3600),
-    (12, 1000, 2000, 3000, 4500),
-    (13, 1100, 2200, 3400, 5100),
-    (14, 1250, 2500, 3800, 5700),
-    (15, 1400, 2800, 4300, 6400),
-    (16, 1600, 3200, 4800, 7200),
-    (17, 2000, 3900, 5900, 8800),
-    (18, 2100, 4200, 6300, 9500),
-    (19, 2400, 4900, 7300, 10900),
-    (20, 2800, 5700, 8500, 12700)
+INSERT INTO XpThresholds(level, easy, medium, hard, deadly, budget) VALUES
+    (1, 25, 50, 75, 100, 300),
+    (2, 50, 100, 150, 200, 600),
+    (3, 75, 150, 225, 400, 1200),
+    (4, 125, 250, 375, 500, 1700),
+    (5, 250, 500, 750, 1100, 3500),
+    (6, 300, 600, 900, 1400, 4000),
+    (7, 350, 750, 1100, 1700, 5000),
+    (8, 450, 900, 1400, 2100, 6000),
+    (9, 550, 1100, 1600, 2400, 7500),
+    (10, 600, 1200, 1900, 2800, 9000),
+    (11, 800, 1600, 2400, 3600, 10500),
+    (12, 1000, 2000, 3000, 4500, 11500),
+    (13, 1100, 2200, 3400, 5100, 13500),
+    (14, 1250, 2500, 3800, 5700, 15000),
+    (15, 1400, 2800, 4300, 6400, 18000),
+    (16, 1600, 3200, 4800, 7200, 20000),
+    (17, 2000, 3900, 5900, 8800, 25000),
+    (18, 2100, 4200, 6300, 9500, 27000),
+    (19, 2400, 4900, 7300, 10900, 30000),
+    (20, 2800, 5700, 8500, 12700, 40000);

@@ -11,6 +11,17 @@ public class Intelligence extends AbilityScore {
     private int nature;
     private int religion;
 
+    public Intelligence() { }
+
+    public Intelligence(Intelligence intelligence) {
+        super(intelligence);
+        arcana = intelligence.getArcana();
+        history = intelligence.getHistory();
+        investigation = intelligence.getInvestigation();
+        nature = intelligence.getNature();
+        religion = intelligence.getReligion();
+    }
+
     public int getArcana() {
         return arcana;
     }

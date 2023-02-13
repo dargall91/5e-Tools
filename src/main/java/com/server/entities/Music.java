@@ -1,4 +1,4 @@
-package com.server.entities.encounter;
+package com.server.entities;
 
 import jakarta.persistence.*;
 

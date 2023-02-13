@@ -1,6 +1,7 @@
 package com.server.entities.abilityscore;
 
 import jakarta.persistence.Entity;
+
 @Entity
 public class Resolve extends AbilityScore {
     /**

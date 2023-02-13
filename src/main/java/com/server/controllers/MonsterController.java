@@ -1,12 +1,10 @@
 package com.server.controllers;
 
-import com.server.CampaignManager;
+import com.server.repositories.monster.*;
+import com.server.util.CampaignManager;
 import com.server.entities.abilityscore.*;
 import com.server.entities.monster.*;
-import com.server.repositories.AbilityScoreRepository;
 import com.server.repositories.CampaignRepository;
-import com.server.repositories.ChallengeRatingRepository;
-import com.server.repositories.MonsterRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.http.HttpStatus;
@@ -15,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.net.URI;
+import java.util.List;
 import java.util.Optional;
 
 @RequestMapping("5eTools/api/monster")
@@ -28,6 +27,12 @@ public class MonsterController {
     private CampaignRepository campaignRepo;
     @Autowired
     private ChallengeRatingRepository crRepo;
+    @Autowired
+    private AbilityRepository abilityRepo;
+    @Autowired
+    private ActionRepository actionRepo;
+    @Autowired
+    private LegendaryActionRepository legendaryActionRepo;
 
     /**
      * Gets a monster with the specified id
@@ -108,6 +113,7 @@ public class MonsterController {
             }
 
             monster.get().setArchived(true);
+            monsterRepo.save(monster.get());
         } catch (EmptyResultDataAccessException | IllegalArgumentException e) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Monster with id " + monsterId + " not found.");
         }
@@ -130,6 +136,7 @@ public class MonsterController {
             }
 
             monster.get().setArchived(false);
+            monsterRepo.save(monster.get());
         } catch (EmptyResultDataAccessException | IllegalArgumentException e) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Monster with id " + monsterId + " not found.");
         }
@@ -150,50 +157,64 @@ public class MonsterController {
     }
 
     /**
-     * Adds a new feature of the specified type to the monster with the specified id
+     * Adds an ability to the monster with the specified id
      * @param monsterId
-     * @param type "ability", "action", or "legendaryAction"
      * @return
      */
-    @PostMapping("{monsterId}/addFeature")
-    public ResponseEntity<?> addFeature(@PathVariable int monsterId, @RequestParam String type) {
+    @PutMapping("{monsterId}/addAbility")
+    public ResponseEntity<?> addFeature(@PathVariable int monsterId) {
         Optional<Monster> monster = monsterRepo.findById(monsterId);
 
         if (monster.isEmpty()) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Monster with id " + monsterId + " not found.");
         }
 
-        //add specified feature to monster
-        int index = 0;
+        //add ability to monster
+        int index = monster.get().getAbilities().size();
+        monster.get().getAbilities().add(new Ability());
 
-        switch (type) {
-            case "ability" -> {
-                index = monster.get().getAbilities().size();
-                monster.get().getAbilities().add(new Ability());
-            }
-            case "action" -> {
-                index = monster.get().getActions().size();
-                monster.get().getActions().add(new Action());
-            }
-            case "legendaryAction" -> {
-                index = monster.get().getLegendaryActions().size();
-                monster.get().getLegendaryActions().add(new LegendaryAction());
-            }
-            default -> {
-                return ResponseEntity.badRequest().body("Invalid feature type");
-            }
-        }
         //save and return added feature
         monsterRepo.save(monster.get());
 
-        ///return newly added feature
-        if (type.equals("ability")) {
-            return ResponseEntity.ok(monster.get().getAbilities().get(index));
+        //return newly added feature
+        return ResponseEntity.ok(monster.get().getAbilities().get(index));
+    }
+
+    /**
+     * Adds an action to the monster with the specified id
+     * @param monsterId
+     * @return
+     */
+    @PutMapping("{monsterId}/addAction")
+    public ResponseEntity<?> addAction(@PathVariable int monsterId) {
+        Optional<Monster> monster = monsterRepo.findById(monsterId);
+
+        if (monster.isEmpty()) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Monster with id " + monsterId + " not found.");
         }
 
-        if (type.equals("action")) {
-            return ResponseEntity.ok(monster.get().getActions().get(index));
+        int index = monster.get().getActions().size();
+        monster.get().getActions().add(new Action());
+        monsterRepo.save(monster.get());
+
+        return ResponseEntity.ok(monster.get().getActions().get(index));
+    }
+
+    /**
+     * Adds a legendary action to the monster with the specified id
+     * @return
+     */
+    @PutMapping("{monsterId}/addLegendaryAction")
+    public ResponseEntity<?> addLegendaryAction(@PathVariable int monsterId) {
+        Optional<Monster> monster = monsterRepo.findById(monsterId);
+
+        if (monster.isEmpty()) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Monster with id " + monsterId + " not found.");
         }
+
+        int index = monster.get().getLegendaryActions().size();
+        monster.get().getLegendaryActions().add(new LegendaryAction());
+        monsterRepo.save(monster.get());
 
         return ResponseEntity.ok(monster.get().getLegendaryActions().get(index));
     }
@@ -212,6 +233,100 @@ public class MonsterController {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("No active campaign found.");
         }
 
-        return ResponseEntity.ok(monsterRepo.findAllByCampaignId(CampaignManager.getCampaignId()));
+        return ResponseEntity.ok(monsterRepo.findAllActiveByCampaignId(CampaignManager.getCampaignId()));
+    }
+
+    /**
+     * Copis an existing monster and makes a new one
+     * @param monsterId the id of the monster to copy
+     * @param name the name of the new monster
+     * @return The new monster object
+     */
+    @PutMapping("{monsterId}/copy")
+    public ResponseEntity<?> copyMonster(@PathVariable int monsterId, @RequestParam String name) {
+        Optional<Monster> monster = monsterRepo.findById(monsterId);
+
+        if (monster.isEmpty()) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Monster with id " + monsterId + " not found.");
+        }
+
+        Monster copy = new Monster(monster.get(), name);
+        monsterRepo.save(copy);
+
+        return ResponseEntity.ok(copy);
+    }
+
+    /**
+     * Deletes the ability with the specified index from the monster with the specified id
+     * @param monsterId
+     * @param index
+     * @return
+     */
+    @DeleteMapping("{monsterId}/abilities/{abilityId}")
+    public ResponseEntity<?> deleteAbility(@PathVariable int monsterId, @PathVariable int index) {
+        Optional<Monster> monster = monsterRepo.findById(monsterId);
+
+        if (monster.isEmpty()) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Monster with id " + monsterId + " not found.");
+        }
+
+        Ability removed = monster.get().getAbilities().remove(index);
+        monsterRepo.save(monster.get());
+        abilityRepo.deleteById(removed.getId());
+
+        return ResponseEntity.noContent().build();
+    }
+
+    /**
+     * Deletes the ability with the specified index from the monster with the specified id
+     * @param monsterId
+     * @param index
+     * @return
+     */
+    @DeleteMapping("{monsterId}/actions/{actionId}")
+    public ResponseEntity<?> deleteAction(@PathVariable int monsterId, @PathVariable int index) {
+        Optional<Monster> monster = monsterRepo.findById(monsterId);
+
+        if (monster.isEmpty()) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Monster with id " + monsterId + " not found.");
+        }
+
+        Action removed = monster.get().getActions().remove(index);
+        monsterRepo.save(monster.get());
+        actionRepo.deleteById(removed.getId());
+
+        return ResponseEntity.noContent().build();
+    }
+
+    /**
+     * Deletes the legendary action with the specified index from the monster with the specified id
+     * @param monsterId
+     * @param index
+     * @return
+     */
+    @DeleteMapping("{monsterId}/legendaryActions/{legendaryActionId}")
+    public ResponseEntity<?> deleteLegendaryAction(@PathVariable int monsterId, @PathVariable int index) {
+        Optional<Monster> monster = monsterRepo.findById(monsterId);
+
+        if (monster.isEmpty()) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Monster with id " + monsterId + " not found.");
+        }
+
+        LegendaryAction removed = monster.get().getLegendaryActions().remove(index);
+        monsterRepo.save(monster.get());
+        legendaryActionRepo.deleteById(removed.getId());
+
+        return ResponseEntity.noContent().build();
+    }
+
+    /**
+     * Gets the list of all challenge ratings in the database
+     * @return
+     */
+    @GetMapping("crList")
+    public ResponseEntity<?> getChallengeRatingList() {
+        List<ChallengeRating> crList = crRepo.findAll();
+
+        return ResponseEntity.ok(crList);
     }
 }

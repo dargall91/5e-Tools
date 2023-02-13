@@ -1,6 +1,6 @@
 package com.server.controllers;
 
-import com.server.entities.encounter.Music;
+import com.server.entities.Music;
 import com.server.repositories.MusicRepository;
 import javazoom.jl.player.Player;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -61,6 +61,11 @@ public class MusicController {
                         BufferedInputStream bis = new BufferedInputStream(fis);
                         musicPlayer = new Player(bis);
                         musicPlayer.play();
+
+                        //on complete, reset track pos to 0, otherwise it will resume from last pause point
+                        if (musicPlayer.isComplete()) {
+                            trackPos = 0;
+                        }
                     }
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -75,13 +80,17 @@ public class MusicController {
 
     @PostMapping("pause")
     public ResponseEntity<?> pauseMusic() {
+        if (!playing) {
+            return ResponseEntity.noContent().build();
+        }
+
         try {
             playing = false;
             trackPos = trackLength - fis.available();
             musicPlayer.close();
         } catch (IOException e) {
             e.printStackTrace();
-            return ResponseEntity.internalServerError().body("AN error occured while pausing the music");
+            return ResponseEntity.internalServerError().body("An error occured while pausing the music");
         }
 
         return ResponseEntity.noContent().build();
@@ -89,6 +98,10 @@ public class MusicController {
 
     @PostMapping("stop")
     public ResponseEntity<?> stopMusic() {
+        if (!playing) {
+            return ResponseEntity.noContent().build();
+        }
+
         playing = false;
         musicPlayer.close();
         trackPos = 0;
@@ -99,7 +112,6 @@ public class MusicController {
 
     @GetMapping("list")
     public ResponseEntity<?> getList() {
-
-        return ResponseEntity.ok(musicRepo.findBy());
+        return ResponseEntity.ok(musicRepo.findByOrderByNameAsc());
     }
 }

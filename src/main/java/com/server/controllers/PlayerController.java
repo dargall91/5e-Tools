@@ -25,15 +25,15 @@ public class PlayerController {
 
     /**
      * Gets the data for a specified character
-     * @param id id of the character in the table
+     * @param pcId id of the character in the table
      * @return the player character or null if not found
      */
-    @GetMapping("{id}")
-    public ResponseEntity<?> getPlayerCharacter(@PathVariable int id) {
-        Optional<PlayerCharacter> result = playerRepo.findById(id);
+    @GetMapping("{pcId}")
+    public ResponseEntity<?> getPlayerCharacter(@PathVariable int pcId) {
+        Optional<PlayerCharacter> result = playerRepo.findById(pcId);
 
         if (result.isEmpty()) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("PC with id " + id + " not found.");
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("PC with id " + pcId + " not found.");
         }
 
         return ResponseEntity.ok(result.get());
@@ -44,7 +44,7 @@ public class PlayerController {
      * @param pc a PlayerCharacter object
      * @return uri of new character
      */
-    @PutMapping("new")
+    @PutMapping("add")
     public ResponseEntity<?> addPlayerCharacter(@RequestBody PlayerCharacter pc) {
         PlayerCharacter added = playerRepo.save(pc);
 
@@ -95,8 +95,48 @@ public class PlayerController {
      * Gets the list of player characters
      * @return the list of all pcs in the specified campaign
      */
-    @GetMapping("campaign/{campaignId}")
-    public List<PlayerCharacter> getPlayerCharacterList(@PathVariable int campaignId) {
-        return playerRepo.findAllByCampaignId(campaignId);
+    @GetMapping("campaignList/{campaignId}")
+    public ResponseEntity<?> getPlayerCharacterList(@PathVariable int campaignId) {
+        List<PlayerCharacter> list = playerRepo.findAllAliveByCampaignId(campaignId);
+        Integer.compare(1, 2);
+        return ResponseEntity.ok(playerRepo.findAllAliveByCampaignId(campaignId));
+    }
+
+    /**
+     * Kill a player character
+     * @param pcId
+     * @return
+     */
+    @PostMapping("{pcId}/kill")
+    public ResponseEntity<?> killPlayerCharacter(@PathVariable int pcId) {
+        Optional<PlayerCharacter> pc = playerRepo.findById(pcId);
+
+        if (pc.isEmpty()) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("PC with id " + pcId + " not found.");
+        }
+
+        pc.get().setDead(true);
+        playerRepo.save(pc.get());
+
+        return ResponseEntity.ok().build();
+    }
+
+    /**
+     * Revive a player character
+     * @param pcId
+     * @return
+     */
+    @PostMapping("{pcId}/revive")
+    public ResponseEntity<?> revivePlayerCharacter(@PathVariable int pcId) {
+        Optional<PlayerCharacter> pc = playerRepo.findById(pcId);
+
+        if (pc.isEmpty()) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("PC with id " + pcId + " not found.");
+        }
+
+        pc.get().setDead(false);
+        playerRepo.save(pc.get());
+
+        return ResponseEntity.ok().build();
     }
 }
