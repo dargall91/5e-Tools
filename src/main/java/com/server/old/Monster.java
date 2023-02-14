@@ -1,4 +1,4 @@
-package monster;
+package com.server.old;
 
 import java.io.*;
 import java.util.*;
@@ -527,7 +527,7 @@ public class Monster implements Serializable {
 			
 			Set<String> keys = skills.keySet();
 			Iterator<String> itr = keys.iterator();
-			
+
 			while(itr.hasNext()) {
 				skillsArr.put(skills.get(itr.next()).toJson());
 			}
@@ -578,5 +578,25 @@ public class Monster implements Serializable {
 		}
 		
 		return result;
+	}
+
+	public com.server.entities.monster.Monster toNewMonster() {
+		com.server.entities.monster.Monster monster = new com.server.entities.monster.Monster();
+		monster.setCampaignId(1);
+		monster.setName(name);
+		monster.setDisplayName(displayName);
+		monster.setLegendaryActionCount(legendaryActionCount);
+		monster.setSize(size);
+		monster.setType(type);
+		monster.setSenses(senses);
+		monster.setLanguages(languages);
+		monster.setArmorClass(Integer.parseInt(ac));
+		monster.setSpeed(speed);
+		monster.setHitPoints(Integer.parseInt(hp));
+		monster.setAlignment(alignment);
+
+		//todo: challenge rating conversion
+
+		return monster;
 	}
 }

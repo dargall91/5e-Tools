@@ -1,12 +1,8 @@
-package server;
+package com.server.old;
 
-import library.*;
-import monster.*;
-import encounter.*;
-import tracker.*;
+
 import java.net.*;
 import java.io.*;
-import java.util.*;
 
 public class DNDServer extends Thread {
 	private static final int buffSize = 1024;

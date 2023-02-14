@@ -1,8 +1,6 @@
-package library;
+package com.server.old;
 
-import monster.*;
-import encounter.*;
-import player.*;
+
 import java.util.ArrayList;
 
 public interface DNDLibrary {

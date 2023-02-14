@@ -1,14 +1,13 @@
-package tracker;
+package com.server.old;
 
-import encounter.*;
-import monster.Monster;
-import library.*;
 import java.util.*;
 import java.io.*;
 import java.awt.event.*;
 import java.awt.*;
 import javax.swing.*;
 import javax.swing.event.*;
+
+import org.json.JSONException;
 import org.json.JSONObject;
 import org.json.JSONArray;
 import javazoom.jl.decoder.JavaLayerException;
@@ -177,7 +176,7 @@ public class ServerCombatScreen extends JFrame {
      *
      * @param jsonCombat the list of comabatants
      */
-    public void updateEncounter(JSONArray jsonCombat) {
+    public void updateEncounter(JSONArray jsonCombat) throws JSONException {
         combatants.clear();
 
         for (int i = 0; i < jsonCombat.length(); i++)

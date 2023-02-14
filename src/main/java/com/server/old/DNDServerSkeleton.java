@@ -1,11 +1,6 @@
-package server;
+package com.server.old;
 
-import library.*;
-import monster.*;
-import encounter.*;
-import player.*;
-import tracker.ServerCombatScreen;
-import java.net.*;
+
 import java.io.*;
 import java.util.*;
 import org.json.JSONObject;
