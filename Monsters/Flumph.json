@@ -1,6 +1,6 @@
 {
-    "ac": "15/24",
-    "languages": "Understands common but can;'t speak, telepathy 60 ft",
+    "ac": "15",
+    "languages": "Understands common but can't speak, telepathy 60 ft",
     "senses": "Darkvision 60 ft, passive perception 12",
     "scores": [
         {
@@ -39,7 +39,7 @@
     "hp": "24",
     "legendaryActionCount": 0,
     "type": "Aberration",
-    "speed": "5ft, fly 30 ft",
+    "speed": "5 ft, fly 30 ft",
     "skills": [
         {
             "skill": "History",

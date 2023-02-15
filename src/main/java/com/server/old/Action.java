@@ -1,28 +1,30 @@
-package monster;
+package com.server.old;
 
 import java.io.Serializable;
+
+import org.json.JSONException;
 import org.json.JSONObject;
 
-public class Ability implements Serializable {
+public class Action implements Serializable {
 	private String name;
 	private String description;
 	
-	public Ability() {
+	public Action() {
 		name = "name";
 		description = "description";
 	}
 	
 	/**
-	 * Constructs a monster ability from json styled string
+	 * Constructs a monster action from json styled string
 	 */
-	Ability(String jsonString) {
+	Action(String jsonString) throws JSONException {
 		this(new JSONObject(jsonString));
 	}
 	
 	/**
-	 * Constructs a monster ability from json object
+	 * Constructs a monster action from json object
 	 */
-	Ability(JSONObject jsonObj) {
+	Action(JSONObject jsonObj) {
 		try {
 			name = jsonObj.getString("name");
 			description = jsonObj.getString("description");
@@ -32,25 +34,31 @@ public class Ability implements Serializable {
 	}
 	
 	/**
-	 * Gets the name of this ability
+	 * Gets the name of this action
 	 */
 	public String getName() {
 		return name;
 	}
 	
 	/**
-	 * Gets the descripton of this ability
+	 * Gets the descripton of this action
 	 */
 	public String getDescription() {
 		return description;
 	}
 	
+	/**
+	 * Sets the name of this action
+	 */
 	public void setName(String name) {
 		this.name = name;
 	}
 	
-	public void setDescription(String desc) {
-		description = desc;
+	/**
+	 * Sets the descripton of this action
+	 */
+	public void setDescription(String description) {
+		this.description = description;
 	}
 	
 	public JSONObject toJson() {
@@ -60,7 +68,7 @@ public class Ability implements Serializable {
 			obj.put("name", name);
 			obj.put("description", description);
 		} catch (Exception e) {
-			System.out.println("Error in Ability.toJson: " + e.getMessage());
+			System.out.println("Error in Action.toJson: " + e.getMessage());
 		}
 		
 		return obj;

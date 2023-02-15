@@ -1,6 +1,8 @@
-package monster;
+package com.server.old;
 
 import java.io.Serializable;
+
+import org.json.JSONException;
 import org.json.JSONObject;
 
 public class AbilityScore implements Serializable {
@@ -16,7 +18,7 @@ public class AbilityScore implements Serializable {
 	/**
 	 * Constructs a monster ability score from json styled string
 	 */
-	AbilityScore(String jsonString) {
+	AbilityScore(String jsonString) throws JSONException {
 		this(new JSONObject(jsonString));
 	}
 	

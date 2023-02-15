@@ -1,5 +1,6 @@
 package com.server.entities.abilityscore;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 
@@ -35,16 +36,10 @@ public abstract class AbilityScore {
         this.score = score;
     }
 
+    @Transient
     public int getScoreModifier() {
         return (int) Math.floor((score - 10) / 2.0);
     }
-
-    /**
-     * This method does nothing because the bonus is a calculated value, it cannot be set. But JPA complains if this
-     * method is not included, so here it is
-     * @param scoreModifier
-     */
-    public void setScoreModifier(int scoreModifier) { }
 
     public boolean isProficient() {
         return proficient;

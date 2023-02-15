@@ -12,9 +12,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import java.io.File;
 import java.net.URI;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 @RequestMapping("5eTools/api/monster")
 @RestController
@@ -328,5 +328,22 @@ public class MonsterController {
         List<ChallengeRating> crList = crRepo.findAll();
 
         return ResponseEntity.ok(crList);
+    }
+
+    @PutMapping("convert")
+    public ResponseEntity<?> convertOldMonsters() {
+        File file = new File("Monsters/");
+        String[] fileNames = file.list();
+        String name;
+
+        Collections.sort(Arrays.asList(fileNames));
+
+        for (int i = 0; i < fileNames.length; i++) {
+            name = fileNames[i].substring(0, Math.min(fileNames[i].length(), fileNames[i].length() - 5));
+            Monster monster = new com.server.old.Monster(name).toNewMonster();
+            monsterRepo.save(monster);
+        }
+
+        return ResponseEntity.created(null).build();
     }
 }

@@ -1,8 +1,6 @@
-package tracker;
+package com.server.old;
 
-import monster.Monster;
-import player.*;
-import encounter.MonsterData;
+
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;

@@ -1,8 +1,10 @@
-package monster;
+package com.server.old;
 
 import java.io.*;
 import java.util.*;
 //import java.net.URL;
+import com.server.entities.abilityscore.*;
+import com.server.entities.monster.ChallengeRating;
 import org.json.JSONObject;
 import org.json.JSONArray;
 import org.json.JSONTokener;
@@ -527,7 +529,7 @@ public class Monster implements Serializable {
 			
 			Set<String> keys = skills.keySet();
 			Iterator<String> itr = keys.iterator();
-			
+
 			while(itr.hasNext()) {
 				skillsArr.put(skills.get(itr.next()).toJson());
 			}
@@ -578,5 +580,197 @@ public class Monster implements Serializable {
 		}
 		
 		return result;
+	}
+
+	public com.server.entities.monster.Monster toNewMonster() {
+		com.server.entities.monster.Monster monster = new com.server.entities.monster.Monster();
+		monster.setCampaignId(1);
+		monster.setName(name);
+		monster.setDisplayName(displayName);
+		monster.setLegendaryActionCount(legendaryActionCount);
+		monster.setSize(size);
+		monster.setType(type);
+		monster.setSenses(senses);
+		monster.setLanguages(languages);
+		monster.setArmorClass(Integer.parseInt(ac));
+		monster.setSpeed(speed);
+		monster.setHitPoints(Integer.parseInt(hp));
+		monster.setAlignment(alignment);
+
+		Strength strength = new Strength();
+		strength.setScore(scores.get("STR").getScore());
+		strength.setProficient(scores.get("STR").getProficient());
+		strength.setAthletics(convertSkill("Athletics"));
+		monster.setStrength(strength);
+
+		Dexterity dexterity = new Dexterity();
+		dexterity.setScore(scores.get("DEX").getScore());
+		dexterity.setProficient(scores.get("DEX").getProficient());
+		dexterity.setAcrobatics(convertSkill("Acrobatics"));
+		dexterity.setStealth(convertSkill("Stealth"));
+		dexterity.setSleightOfHand(convertSkill("Sleight of Hand"));
+		monster.setDexterity(dexterity);
+
+		Constitution constitution = new Constitution();
+		constitution.setScore(scores.get("CON").getScore());
+		constitution.setProficient(scores.get("CON").getProficient());
+		monster.setConstitution(constitution);
+
+		Intelligence intelligence = new Intelligence();
+		intelligence.setScore(scores.get("INT").getScore());
+		intelligence.setProficient(scores.get("INT").getProficient());
+		intelligence.setArcana(convertSkill("Arcana"));
+		intelligence.setHistory(convertSkill("History"));
+		intelligence.setInvestigation(convertSkill("Investigation"));
+		intelligence.setNature(convertSkill("Nature"));
+		intelligence.setReligion(convertSkill("Religion"));
+		monster.setIntelligence(intelligence);
+
+		Wisdom wisdom = new Wisdom();
+		wisdom.setScore(scores.get("WIS").getScore());
+		wisdom.setProficient(scores.get("WIS").getProficient());
+		wisdom.setAnimalHandling(convertSkill("Animal Handling"));
+		wisdom.setInsight(convertSkill("Insight"));
+		wisdom.setMedicine(convertSkill("Medicine"));
+		wisdom.setPerception(convertSkill("Perception"));
+		wisdom.setSurvival(convertSkill("Survival"));
+		monster.setWisdom(wisdom);
+
+		Charisma charisma = new Charisma();
+		charisma.setScore(scores.get("CHA").getScore());
+		charisma.setProficient(scores.get("CHA").getProficient());
+		charisma.setDeception(convertSkill("Deception"));
+		charisma.setIntimidation(convertSkill("Intimidation"));
+		charisma.setPerformance(convertSkill("Performance"));
+		charisma.setPersuasion(convertSkill("Persuasion"));
+		monster.setCharisma(charisma);
+
+		List<com.server.entities.monster.Ability> abilityList = new ArrayList<>();
+
+		for (Ability oldAbility : abilities) {
+			com.server.entities.monster.Ability ability = new com.server.entities.monster.Ability();
+			ability.setName(oldAbility.getName());
+			ability.setDescription(oldAbility.getDescription());
+			abilityList.add(ability);
+		}
+
+		monster.setAbilities(abilityList);
+
+		List<com.server.entities.monster.Action> actionList = new ArrayList<>();
+
+		for (Action oldAction : actions) {
+			com.server.entities.monster.Action action = new com.server.entities.monster.Action();
+			action.setName(oldAction.getName());
+			action.setDescription(oldAction.getDescription());
+			actionList.add(action);
+		}
+
+		monster.setActions(actionList);
+
+		List<com.server.entities.monster.LegendaryAction> legendaryActionList = new ArrayList<>();
+
+		for (LegendaryAction oldLegendaryAction : legendaryActions) {
+			com.server.entities.monster.LegendaryAction legendaryAction = new com.server.entities.monster.LegendaryAction();
+			legendaryAction.setName(oldLegendaryAction.getName());
+			legendaryAction.setDescription(oldLegendaryAction.getDescription());
+			legendaryAction.setCost(oldLegendaryAction.getCost());
+			legendaryActionList.add(legendaryAction);
+		}
+
+		monster.setLegendaryActions(legendaryActionList);
+
+		//todo: challenge rating conversion
+		ChallengeRating cr = new ChallengeRating();
+		cr.setId(convertCrToId());
+		monster.setChallengeRating(cr);
+
+		return monster;
+	}
+
+	private int convertSkill(String skill) {
+		if (skills.get(skill).getExpertise()) {
+			return 2;
+		} else if (skills.get(skill).getProficient()) {
+			return 1;
+		} else {
+			return 0;
+		}
+	}
+
+	private int convertCrToId() {
+		switch (challenge) {
+			case "-1":
+				return 1;
+			case "0":
+				return 2;
+			case "1/8":
+				return 3;
+			case "1/4":
+				return 4;
+			case "1/2":
+				return 5;
+			case "1":
+				return 6;
+			case "2":
+				return 7;
+			case "3":
+				return 8;
+			case "4":
+				return 9;
+			case "5":
+				return 10;
+			case "6":
+				return 11;
+			case "7":
+				return 12;
+			case "8":
+				return 13;
+			case "9":
+				return 14;
+			case "10":
+				return 15;
+			case "11":
+				return 16;
+			case "12":
+				return 17;
+			case "13":
+				return 18;
+			case "14":
+				return 19;
+			case "15":
+				return 20;
+			case "16":
+				return 21;
+			case "17":
+				return 22;
+			case "18":
+				return 23;
+			case "19":
+				return 24;
+			case "20":
+				return 25;
+			case "21":
+				return 26;
+			case "22":
+				return 27;
+			case "23":
+				return 28;
+			case "24":
+				return 29;
+			case "25":
+				return 30;
+			case "26":
+				return 31;
+			case "27":
+				return 32;
+			case "28":
+				return 33;
+			case "29":
+				return 34;
+			case "30":
+				return 35;
+			default:
+				return 1;
+		}
 	}
 }
