@@ -1,5 +1,7 @@
 package com.server.controllers;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.server.repositories.monster.*;
 import com.server.util.CampaignManager;
 import com.server.entities.abilityscore.*;
@@ -78,7 +80,12 @@ public class MonsterController {
                 .pathSegment(requestMap, newMonster.getId().toString())
                 .build().toUri();
 
-        return ResponseEntity.created(uri).build();
+        ObjectMapper mapper = new ObjectMapper();
+        ObjectNode rootNode = mapper.createObjectNode();
+        rootNode.put("id", newMonster.getId());
+        rootNode.put("name", newMonster.getName());
+
+        return ResponseEntity.created(uri).body(rootNode);
     }
 
     /**
