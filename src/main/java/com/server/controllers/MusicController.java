@@ -12,7 +12,7 @@ import java.io.BufferedInputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
-import java.util.Optional;
+import java.util.*;
 
 @RequestMapping("5eTools/api/music")
 @RestController
@@ -113,5 +113,26 @@ public class MusicController {
     @GetMapping("list")
     public ResponseEntity<?> getList() {
         return ResponseEntity.ok(musicRepo.findByOrderByNameAsc());
+    }
+
+    @GetMapping("scan")
+    public ResponseEntity<?> scanForNewMusicFiles() {
+        File file = new File("/home/derek/Music/");
+        String[] fileNameList = file.list();
+
+        Collections.sort(Arrays.asList(fileNameList));
+        
+        List<Music> musicList = new ArrayList<>();
+
+        for (String fileName : fileNameList) {
+            if (musicRepo.findByFileName(fileName) == null) {
+                Music newTrack = new Music();
+                newTrack.setName(fileName);
+                newTrack.setFileName(fileName);
+                musicList.add(newTrack);
+            }
+        }
+        
+        return ResponseEntity.ok(musicList);
     }
 }

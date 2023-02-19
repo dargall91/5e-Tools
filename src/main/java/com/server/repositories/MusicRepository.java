@@ -8,4 +8,5 @@ import java.util.List;
 
 public interface MusicRepository extends JpaRepository<Music, Integer> {
     List<NameIdProjection> findByOrderByNameAsc();
+    Music findByFileName(String fileName);
 }
