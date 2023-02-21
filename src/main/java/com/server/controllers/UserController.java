@@ -16,9 +16,11 @@ import java.util.Optional;
 public class UserController {
     @Autowired
     private UserRepository userRepository;
+
     @PostMapping("login")
     public ResponseEntity<?> login(@RequestBody User userLogin) {
         LoginResultProjection result = userRepository.findByUsername(userLogin.getUsername());
+
         if (result == null) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("username");
         } else if (!result.getPassword().equals(userLogin.getPassword())) {
@@ -26,5 +28,23 @@ public class UserController {
         }
 
         return ResponseEntity.ok(result);
+    }
+
+    @PutMapping("register")
+    public ResponseEntity<?> register(@RequestBody User userLogin) {
+        LoginResultProjection exists = userRepository.findByUsername(userLogin.getUsername());
+
+        if (exists == null) {
+            return ResponseEntity.badRequest().body("username");
+        }
+
+        //first user registered is an admin until I decide how I want to do it
+        if (userRepository.findAll().isEmpty()) {
+            userLogin.setAdmin(true);
+        }
+
+        User user = userRepository.save(userLogin);
+
+        return ResponseEntity.ok(user);
     }
 }

@@ -7,4 +7,5 @@ public interface LoginResultProjection {
     String getUsername();
     @JsonIgnore
     String getPassword();
+    boolean isAdmin();
 }
