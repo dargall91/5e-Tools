@@ -1,19 +1,20 @@
 <template>
-  <NavigationComponent />
+  <NavigationBar />
   <LoginForm />
 </template>
 
-<script>
-import NavigationComponent from './components/NavigationComponent.vue';
+<script lang="ts">
+import { Options, Vue } from 'vue-class-component';
+import NavigationBar from './components/NavigationBar.vue';
 import LoginForm from './components/LoginForm.vue';
 
-export default {
-  name: 'App',
+@Options({
   components: {
-    NavigationComponent,
+    NavigationBar,
     LoginForm
-  }
-}
+  },
+})
+export default class App extends Vue {}
 </script>
 
 <style>
