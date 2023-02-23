@@ -5,8 +5,9 @@ import App from './App.vue'
 
 import "bootstrap/dist/css/bootstrap.min.css"
 import "bootstrap"
+import router from './router'
 
-const app = createApp(App);
+const app = createApp(App).use(router);
 const pinia = createPinia();
 pinia.use(piniaPluginPersistedstate);
 

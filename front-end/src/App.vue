@@ -1,6 +1,8 @@
 <template>
   <NavigationBar />
-  <LoginForm />
+  <div class="container">
+    <RouterView />
+  </div>
 </template>
 
 <script lang="ts">
