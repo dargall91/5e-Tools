@@ -75,3 +75,10 @@ INSERT INTO XpThresholds(level, easy, medium, hard, deadly, budget) VALUES
     (18, 2100, 4200, 6300, 9500, 27000),
     (19, 2400, 4900, 7300, 10900, 30000),
     (20, 2800, 5700, 8500, 12700, 40000);
+
+    --test users
+    INSERT INTO User(id, username, password, admin) VALUES
+        (1, 'admin', 'admin', 1),
+        (2, 'user', 'user', 0)
+    ON DUPLICATE KEY
+    UPDATE username = VALUES(username), password = VALUES(password), admin = VALUES(admin);

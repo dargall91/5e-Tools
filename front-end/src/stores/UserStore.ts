@@ -1,12 +1,29 @@
+import { LoginRegisterRequest } from '@/models/LoginRegisterRequest';
 import { defineStore } from 'pinia'
 import { User } from 'src/models/User'
+import agent from '@/api/agent';
 
-export const userStore = defineStore({
+export const useUserStore = defineStore({
     id: 'user',
-    state: () => ({user: null}),
+    state: () => ({
+        user: null as User | null
+    }),
     actions: {
-        login(username: string, password: string) {
-
-        }
-    }
+        async login(request: LoginRegisterRequest) {
+            await agent.user.login(request).then((data) => {
+                this.user = data;
+            });
+        },
+        logout() {
+            console.log("logout");
+            this.user = null;
+        },
+        async register(request: LoginRegisterRequest) {
+            console.log("register");
+            agent.user.register(request).then((data) => {
+                this.user = data;
+            });
+        },
+    },
+    persist: true
 })

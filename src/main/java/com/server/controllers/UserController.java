@@ -32,7 +32,7 @@ public class UserController {
     public ResponseEntity<?> register(@RequestBody User userLogin) {
         LoginResultProjection exists = userRepository.findByUsername(userLogin.getUsername());
 
-        if (exists == null) {
+        if (exists != null) {
             return ResponseEntity.badRequest().body("username");
         }
 
