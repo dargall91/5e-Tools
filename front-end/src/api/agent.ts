@@ -1,3 +1,4 @@
+import { Campaign } from "@/models/Campaign";
 import { LoginRegisterRequest } from "@/models/LoginRegisterRequest";
 import { User } from "@/models/User";
 import { AxiosResponse } from "axios";
@@ -20,8 +21,18 @@ const user = {
     }
 };
 
+const campaign = {
+    getCampaignList() {
+        return requests.get<Campaign[]>('campaign/list');
+    },
+    getActiveCampaign() {
+        return requests.get<Campaign>('campaign/getActive');
+    }
+}
+
 const agent = {
-    user
+    user,
+    campaign
 };
 
 export default agent;

@@ -66,7 +66,6 @@
                 } else {
                     await this.register(request);
                 }
-                // console.log("logged in " + this.loggedIn())
             },
             loginClicked() {
                 this.userLogin = true;

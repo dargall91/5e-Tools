@@ -1,11 +1,46 @@
 <template>
-    <h2>Manage Characters</h2>
+    <h2 class="mt-2">Manage Characters</h2>
+
+    <CFormSelect>
+        <option>Select a Campaign</option>
+        <option v-for="(item) in campaign.campaignList.value" value="{{ item.id }}" :key="item.id">{{ item.name }}</option>
+    </CFormSelect>
 </template>
 
 <script lang="ts">
     import { defineComponent } from 'vue'
+    import { storeToRefs } from 'pinia'
+    import { useUserStore } from '@/stores/UserStore'
+    import { useCampaignStore } from '@/stores/CampaignStore'
+    import { CFormSelect } from '@coreui/vue'
     
     export default defineComponent ({
-        name: "ManageCharacters"
+        name: "ManageCharacters",
+        components: { CFormSelect },
+        setup() {
+            return {
+                user: storeToRefs(useUserStore()),
+                campaign: storeToRefs(useCampaignStore())
+            };
+        },
+        data () {
+            return {
+                list: ["one", "two"],
+                getCampaignList: useCampaignStore().getCampaignList,
+                getActiveCampaign: useCampaignStore().getActiveCampaign,
+            }
+        },
+        methods: {
+            
+        },
+        mounted() {
+            this.getCampaignList();
+            this.getActiveCampaign();
+            console.log(this.campaign.campaignList)
+
+            for (var i = 0; i < this.campaign.campaignList.value.length; i++) {
+                console.log(this.campaign.campaignList.value);
+            }
+        }
     });
 </script>
