@@ -15,11 +15,9 @@ export const useUserStore = defineStore({
             });
         },
         logout() {
-            console.log("logout");
             this.user = null;
         },
         async register(request: LoginRegisterRequest) {
-            console.log("register");
             agent.user.register(request).then((data) => {
                 this.user = data;
             });

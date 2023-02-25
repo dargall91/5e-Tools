@@ -13,4 +13,5 @@ public interface PlayerCharacterRepository extends JpaRepository<PlayerCharacter
             "ORDER BY pc.name ASC")
     List<PlayerCharacter> findAllAliveByCampaignId(@Param("campaignId") int campaignId);
     List<PlayerCharacter> findAllByCampaignId(int campaignId);
+    List<PlayerCharacter> findAllByUserIdAndCampaignId(int userId, int campaignId);
 }
