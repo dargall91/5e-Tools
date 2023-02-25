@@ -21,8 +21,7 @@ export interface PlayerCharacter {
 interface AbilityScore {
     id: number,
     score: number,
-    proficient: boolean,
-    scoreModifer: number,
+    proficient: boolean
 }
 
 export interface Strength extends AbilityScore {
