@@ -1,6 +1,5 @@
-package com.server.entities.abilityscore;
+package com.server.entities.monster.abilityscore;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 

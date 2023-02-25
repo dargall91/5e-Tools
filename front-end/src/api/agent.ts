@@ -1,6 +1,7 @@
 import { Campaign } from "@/models/Campaign";
 import { LoginRegisterRequest } from "@/models/LoginRegisterRequest";
 import { User } from "@/models/User";
+import { CharacterClass} from "@/models/PlayerCharacter";
 import { AxiosResponse } from "axios";
 import axiosInstance from "./axiosInstance";
 
@@ -30,9 +31,16 @@ const campaign = {
     }
 }
 
+const playerCharacter = {
+    getClassList() {
+        return requests.get<CharacterClass[]>('pc/classList');
+    }
+}
+
 const agent = {
     user,
-    campaign
+    campaign,
+    playerCharacter
 };
 
 export default agent;

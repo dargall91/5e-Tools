@@ -82,3 +82,21 @@ INSERT INTO User(id, username, password, admin) VALUES
     (2, 'user', 'user', 0)
 ON DUPLICATE KEY
 UPDATE username = VALUES(username), password = VALUES(password), admin = VALUES(admin);
+
+-- classes
+INSERT INTO CharacterClass(id, name, hitDie) VALUES
+    (1, 'Artificer', 8),
+    (2, 'Barbarian', 12),
+    (3, 'Bard', 8),
+    (4, 'Cleric', 8),
+    (5, 'Druid', 8),
+    (6, 'Fighter', 10),
+    (7, 'Monk', 8),
+    (8, 'Paladin', 10),
+    (9, 'Ranger', 10),
+    (10, 'Rogue', 8),
+    (11, 'Sorcerer', 6),
+    (12, 'Warlock', 8),
+    (13, 'Wizard', 6)
+ON DUPLICATE KEY
+UPDATE name = VALUES(name), hitDie = VALUES(hitDie);

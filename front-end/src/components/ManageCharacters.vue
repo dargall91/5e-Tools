@@ -23,9 +23,8 @@
                 campaign: storeToRefs(useCampaignStore())
             };
         },
-        data () {
+        data() {
             return {
-                list: ["one", "two"],
                 getCampaignList: useCampaignStore().getCampaignList,
                 getActiveCampaign: useCampaignStore().getActiveCampaign,
             }
@@ -36,11 +35,6 @@
         mounted() {
             this.getCampaignList();
             this.getActiveCampaign();
-            console.log(this.campaign.campaignList)
-
-            for (var i = 0; i < this.campaign.campaignList.value.length; i++) {
-                console.log(this.campaign.campaignList.value);
-            }
         }
     });
 </script>

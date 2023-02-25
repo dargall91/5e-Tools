@@ -2,9 +2,9 @@ package com.server.controllers;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
+import com.server.entities.monster.abilityscore.AbilityScore;
 import com.server.repositories.monster.*;
 import com.server.util.CampaignManager;
-import com.server.entities.abilityscore.*;
 import com.server.entities.monster.*;
 import com.server.repositories.CampaignRepository;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,7 +1,6 @@
-package com.server.repositories;
+package com.server.repositories.playercharacter;
 
-import com.server.entities.PlayerCharacter;
-import com.server.repositories.projections.NameIdProjection;
+import com.server.entities.playercharacter.PlayerCharacter;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;

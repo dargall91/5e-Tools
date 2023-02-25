@@ -1,9 +1,9 @@
-package com.server.entities.abilityscore;
+package com.server.entities.playercharacter.abilityscore;
 
 import jakarta.persistence.Entity;
 
 @Entity
-public class Resolve extends AbilityScore {
+public class Resolve extends PCAbilityScore {
     /**
      * Players cannot have proficiency in Resolve
      * @param proficient

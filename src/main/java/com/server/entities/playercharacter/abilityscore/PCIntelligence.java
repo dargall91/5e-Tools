@@ -1,26 +1,16 @@
-package com.server.entities.abilityscore;
+package com.server.entities.playercharacter.abilityscore;
 
-import com.server.entities.monster.Monster;
 import jakarta.persistence.Entity;
 
 @Entity
-public class Intelligence extends AbilityScore {
+public class PCIntelligence extends PCAbilityScore {
     private int arcana;
     private int history;
     private int investigation;
     private int nature;
     private int religion;
 
-    public Intelligence() { }
-
-    public Intelligence(Intelligence intelligence) {
-        super(intelligence);
-        arcana = intelligence.getArcana();
-        history = intelligence.getHistory();
-        investigation = intelligence.getInvestigation();
-        nature = intelligence.getNature();
-        religion = intelligence.getReligion();
-    }
+    public PCIntelligence() { }
 
     public int getArcana() {
         return arcana;
