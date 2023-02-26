@@ -155,25 +155,6 @@ public class PlayerCharacterController {
         return ResponseEntity.ok(pcList);
     }
 
-    @PutMapping("{userId}/{campaignId}")
-    public ResponseEntity<?> addPlayerCharacterToCampaign(@PathVariable int userId, @PathVariable int campaignId,
-                                                          @RequestBody PlayerCharacter playerCharacter) {
-        Optional<Campaign> campaign = campaignRepo.findById(campaignId);
-
-        if (campaign.isEmpty()) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Campaign with id " + campaignId + " not found.");
-        }
-
-//        PlayerCharacter newPlayerCharacter = playerRepo.save(new PlayerCharacter(userId, campaignId,
-//                campaign.get().isMadness(), playerCharacter.getName()));
-
-        PlayerCharacter pc = playerRepo.save(playerCharacter);
-
-        List<PlayerCharacter> pcList = playerRepo.findAllByUserIdAndCampaignId(userId, campaignId);
-
-        return ResponseEntity.ok(pcList);
-    }
-
     @GetMapping("classList")
     public ResponseEntity<?> getClassList() {
         return ResponseEntity.ok(classRepo.findAllByOrderByNameAsc());

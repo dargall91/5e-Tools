@@ -10,7 +10,7 @@ export interface PlayerCharacter {
     combatant: boolean,
     strength: Strength,
     dexterity: Dexterity,
-    consitution: Constitution,
+    constitution: Constitution,
     intelligence: Intelligence,
     wisdom: Wisdom,
     charisma: Charisma,

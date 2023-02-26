@@ -15,6 +15,7 @@ public class PlayerCharacter {
     private int initiativeBonus;
     private int rolledInitiative;
     private int campaignId;
+    private int userId;
     private boolean dead;
     private boolean combatant = false;
     @OneToOne(cascade = CascadeType.ALL)
@@ -37,8 +38,7 @@ public class PlayerCharacter {
     private PCCharisma charisma = new PCCharisma();
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "id")
-    private Resolve resolve;
-    private int userId;
+    private Resolve resolve = new Resolve();
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "playerCharacterId")
     private List<ClassLevel> classLevelList;
