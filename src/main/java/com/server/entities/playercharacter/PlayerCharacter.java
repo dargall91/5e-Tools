@@ -1,7 +1,9 @@
-package com.server.entities;
+package com.server.entities.playercharacter;
 
-import com.server.entities.abilityscore.*;
+import com.server.entities.playercharacter.abilityscore.*;
 import jakarta.persistence.*;
+
+import java.util.List;
 
 @Entity
 public class PlayerCharacter {
@@ -13,34 +15,45 @@ public class PlayerCharacter {
     private int initiativeBonus;
     private int rolledInitiative;
     private int campaignId;
+    private int userId;
     private boolean dead;
     private boolean combatant = false;
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name="id")
-    private Strength strength = new Strength();
+    private PCStrength strength = new PCStrength();
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name="id")
-    private Dexterity dexterity = new Dexterity();
+    private PCDexterity dexterity = new PCDexterity();
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name="id")
-    private Constitution constitution = new Constitution();
+    private PCConstitution constitution = new PCConstitution();
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name="id")
-    private Intelligence intelligence = new Intelligence();
+    private PCIntelligence intelligence = new PCIntelligence();
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name="id")
-    private Wisdom wisdom = new Wisdom();
+    private PCWisdom wisdom = new PCWisdom();
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name="id")
-    private Charisma charisma = new Charisma();
+    private PCCharisma charisma = new PCCharisma();
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "id")
-    private Resolve resolve;
-    @OneToOne
-    @JoinColumn(name = "userId")
-    private User user;
+    private Resolve resolve = new Resolve();
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "playerCharacterId")
+    private List<ClassLevel> classLevelList;
 
     public PlayerCharacter() { }
+
+    public PlayerCharacter(int userId, int campaignId, boolean madness, String name) {
+        this.name = name;
+        this.userId = userId;
+        this.campaignId = campaignId;
+
+        if (madness) {
+            resolve = new Resolve();
+        }
+    }
 
     public Integer getId() {
         return id;
@@ -82,27 +95,27 @@ public class PlayerCharacter {
         return campaignId;
     }
 
-    public Strength getStrength() {
+    public PCStrength getStrength() {
         return strength;
     }
 
-    public Dexterity getDexterity() {
+    public PCDexterity getDexterity() {
         return dexterity;
     }
 
-    public Constitution getConstitution() {
+    public PCConstitution getConstitution() {
         return constitution;
     }
 
-    public Intelligence getIntelligence() {
+    public PCIntelligence getIntelligence() {
         return intelligence;
     }
 
-    public Wisdom getWisdom() {
+    public PCWisdom getWisdom() {
         return wisdom;
     }
 
-    public Charisma getCharisma() {
+    public PCCharisma getCharisma() {
         return charisma;
     }
 
@@ -114,7 +127,11 @@ public class PlayerCharacter {
         this.resolve = resolve;
     }
 
-    public User getUser() {
-        return user;
+    public int getUserId() {
+        return userId;
+    }
+
+    public List<ClassLevel> getClassLevelList() {
+        return classLevelList;
     }
 }

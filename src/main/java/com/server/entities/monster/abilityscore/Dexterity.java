@@ -1,6 +1,5 @@
-package com.server.entities.abilityscore;
+package com.server.entities.monster.abilityscore;
 
-import com.server.entities.monster.Monster;
 import jakarta.persistence.Entity;
 
 @Entity

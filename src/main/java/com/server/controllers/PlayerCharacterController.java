@@ -1,7 +1,10 @@
 package com.server.controllers;
 
-import com.server.entities.PlayerCharacter;
-import com.server.repositories.PlayerCharacterRepository;
+import com.server.entities.Campaign;
+import com.server.entities.playercharacter.PlayerCharacter;
+import com.server.repositories.CampaignRepository;
+import com.server.repositories.playercharacter.CharacterClassRepository;
+import com.server.repositories.playercharacter.PlayerCharacterRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.http.HttpStatus;
@@ -15,14 +18,19 @@ import java.util.Optional;
 
 /**
  * The PlayerController class houses all the endpoints for the DM to access necessary player data
- * TODO: when the player front-end is made, will they need a separate controller, or can they use this one?
  */
 @RequestMapping("5eTools/api/pc")
 @RestController
-public class PlayerController {
+@CrossOrigin(origins = "https://localhost:3000")
+public class PlayerCharacterController {
     @Autowired
     private PlayerCharacterRepository playerRepo;
+    @Autowired
+    private CampaignRepository campaignRepo;
+    @Autowired
+    private CharacterClassRepository classRepo;
 
+    //TODO: add methods for android to update ONLY the fields it has uses (init, combatant, etc)
     /**
      * Gets the data for a specified character
      * @param pcId id of the character in the table
@@ -40,7 +48,7 @@ public class PlayerController {
     }
 
     /**
-     * Adds a player character
+     * Adds a player character. For putting from the android client
      * @param pc a PlayerCharacter object
      * @return uri of new character
      */
@@ -143,7 +151,12 @@ public class PlayerController {
     @GetMapping("{userId}/{campaignId}")
     public ResponseEntity<?> getUsersCharactersInCampaign(@PathVariable int userId, @PathVariable int campaignId) {
         List<PlayerCharacter> pcList = playerRepo.findAllByUserIdAndCampaignId(userId, campaignId);
-        
+
         return ResponseEntity.ok(pcList);
+    }
+
+    @GetMapping("classList")
+    public ResponseEntity<?> getClassList() {
+        return ResponseEntity.ok(classRepo.findAllByOrderByNameAsc());
     }
 }

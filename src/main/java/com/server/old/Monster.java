@@ -2,9 +2,8 @@ package com.server.old;
 
 import java.io.*;
 import java.util.*;
-//import java.net.URL;
-import com.server.entities.abilityscore.*;
 import com.server.entities.monster.ChallengeRating;
+import com.server.entities.monster.abilityscore.*;
 import org.json.JSONObject;
 import org.json.JSONArray;
 import org.json.JSONTokener;

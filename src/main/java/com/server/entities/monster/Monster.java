@@ -1,6 +1,6 @@
 package com.server.entities.monster;
 
-import com.server.entities.abilityscore.*;
+import com.server.entities.monster.abilityscore.*;
 import jakarta.persistence.*;
 
 import java.util.ArrayList;
