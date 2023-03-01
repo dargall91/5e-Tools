@@ -148,7 +148,7 @@ public class PlayerCharacterController {
         return ResponseEntity.ok().build();
     }
 
-    @GetMapping("{userId}/{campaignId}")
+    @GetMapping("list/{userId}/{campaignId}")
     public ResponseEntity<?> getUsersCharactersInCampaign(@PathVariable int userId, @PathVariable int campaignId) {
         List<PlayerCharacter> pcList = playerRepo.findAllByUserIdAndCampaignId(userId, campaignId);
 

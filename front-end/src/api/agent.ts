@@ -37,6 +37,9 @@ const playerCharacter = {
     },
     addPlayerCharacter(playerCharacter: PlayerCharacter) {
         return requests.put('pc/add', playerCharacter);
+    },
+    getCharacterList(userId: number, campaignId: number) {
+        return requests.get<PlayerCharacter[]>(`pc/list/${userId}/${campaignId}`);
     }
 }
 
