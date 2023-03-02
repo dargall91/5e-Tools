@@ -65,13 +65,14 @@ export interface Resolve extends AbilityScore {
 
 export interface ClassLevel {
     id: number,
-    firstLevel: boolean,
+    baseClass: boolean,
     levels: number,
+    usedHitDice: number,
     characterClass: CharacterClass
-}
+};
 
 export interface CharacterClass {
     id: number,
     name: string,
     hitDie: number
-}
+};

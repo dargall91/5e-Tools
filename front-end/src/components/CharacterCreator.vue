@@ -485,7 +485,7 @@
   import { useUserStore } from '@/stores/UserStore'
   import { useCampaignStore } from '@/stores/CampaignStore'
   import { CButton, CCard, CCardBody, CCardHeader, CCol, CForm, CFormInput, CFormLabel, CFormSelect, CRow, CToast, CToastBody, CToaster, CToastHeader } from '@coreui/vue'
-  import { CharacterClass, PlayerCharacter, Resolve } from '@/models/PlayerCharacter'
+  import { CharacterClass, ClassLevel, PlayerCharacter, Resolve } from '@/models/PlayerCharacter'
   import agent from '@/api/agent';
   
   export default defineComponent ({
@@ -714,7 +714,7 @@
           },
           resolve: null,
           classLevelList: [
-            { firstLevel: true, levels: 1, characterClass: { id: 0 } }
+            { baseClass: true, levels: 1, characterClass: { id: 0 } }
         ]
         } as PlayerCharacter;
       },
@@ -784,6 +784,23 @@
         }
 
         if (!error) {
+          this.multiClassList.forEach((multiclass) => {
+            var newClassLevel: ClassLevel;
+            newClassLevel = {
+              id: 0,
+              baseClass: false,
+              levels: this.multiClassLevelList[this.multiClassList.indexOf(multiclass)],
+              usedHitDice: 0,
+              characterClass: {
+                id: multiclass,
+                name: "",
+                hitDie: 0
+              }
+            }
+
+            this.playerCharacter.classLevelList.push(newClassLevel);
+          });
+
           await agent.playerCharacter.addPlayerCharacter(this.playerCharacter).then(() => {
             this.successToasts.push(
               { title: "Success!", body: `${this.playerCharacter.name} created`}

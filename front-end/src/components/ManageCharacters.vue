@@ -13,13 +13,45 @@
     </CCol>
   </CRow>
 
-  <CAccordion always-open>
-    <CAccordionItem  v-for="(character, index) in characterList" :key="index" :item-key="index">
-      <CAccordionHeader >
+  <CAccordion class="mt-2" accordion-color="black" always-open>
+    <CAccordionItem v-for="(character, index) in characterList" :key="index" :item-key="index">
+      <CAccordionHeader style="{color: #00FF00;}">
         {{ character.name }}
       </CAccordionHeader>
       <CAccordionBody>
-        Some Body
+        <CRow v-for="classLevel in character.classLevelList" :key="classLevel.id">
+          <CCol v-if="classLevel.baseClass">
+            <strong>Base Class:</strong> {{ classLevel.characterClass.name }}
+          </CCol>
+          <CCol v-else>
+            <strong>Multiclass:</strong> {{ classLevel.characterClass.name }}
+          </CCol>
+          <CCol>
+            <strong>Level:</strong> {{ classLevel.levels }}
+          </CCol>
+          <CCol>
+            <strong>Used Hit Dice:</strong> {{ classLevel.usedHitDice }} / {{ classLevel.levels }}
+          </CCol>
+        </CRow>
+        <CRow>
+          <CCol>
+            <strong>Hit Points:</strong> {{ character.ac }} / MAX
+          </CCol>
+          <CCol>
+            <strong>AC:</strong> {{ character.ac }}
+          </CCol>
+        </CRow>
+        <CRow>
+          <CCol>
+            <strong>Death Saving Throws:</strong>
+          </CCol>
+          <CCol>
+            <strong>Successes:</strong> {{ character.ac }}
+          </CCol>
+          <CCol>
+            <strong>Failures:</strong> {{ character.ac }}
+          </CCol>
+        </CRow>
       </CAccordionBody>
     </CAccordionItem>
   </CAccordion>
@@ -72,3 +104,23 @@
     }
   });
 </script>
+
+<style>
+  .accordion-button:focus {
+      box-shadow: none;
+      border-color: rgba(0,0,0,.125);
+  }
+
+  .accordion-button.collapsed {
+    background: lightgray;
+  }
+
+  .accordion-button:not(.collapsed) {
+      color: black;
+      background-color: darkgray;
+  }
+
+  .accordion-button:after {
+    background-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23000000'><path fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/></svg>") !important;
+  }
+</style>
