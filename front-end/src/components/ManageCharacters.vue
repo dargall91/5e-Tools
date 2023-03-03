@@ -6,7 +6,7 @@
       <CFormLabel for="campaign" class="fw-bold align-text-bottom">Campaign:</CFormLabel>
     </CCol>
     <CCol sm="8" md="6">
-      <CFormSelect @change="setCampaign(parseInt($event.target.value))" id="campaign" :modelValue="'0'">
+      <CFormSelect @change="onCampaignChanged(parseInt($event.target.value))" id="campaign" :model-value="campaign.selectedCampaign.value.toString()">
         <option :value="0">Select a Campaign</option>
         <option v-for="(item) in campaign.campaignList.value" :value="item.id" :key="item.id">{{ item.name }}</option>
       </CFormSelect>
@@ -14,8 +14,8 @@
   </CRow>
 
   <CAccordion class="mt-2" accordion-color="black" always-open>
-    <CAccordionItem v-for="(character, index) in characterList" :key="index" :item-key="index">
-      <CAccordionHeader style="{color: #00FF00;}">
+    <CAccordionItem v-for="(character, index) in characters.characterList.value" :key="index" :item-key="index">
+      <CAccordionHeader>
         {{ character.name }}
       </CAccordionHeader>
       <CAccordionBody>
@@ -30,7 +30,7 @@
             <strong>Level:</strong> {{ classLevel.levels }}
           </CCol>
           <CCol>
-            <strong>Used Hit Dice:</strong> {{ classLevel.usedHitDice }} / {{ classLevel.levels }}
+            <strong>Used Hit Dice:</strong> {{ classLevel.usedHitDice }} / {{ classLevel.levels }}d{{ classLevel.characterClass.hitDie }}
           </CCol>
         </CRow>
         <CRow>
@@ -38,7 +38,7 @@
             <strong>Hit Points:</strong> {{ character.ac }} / MAX
           </CCol>
           <CCol>
-            <strong>AC:</strong> {{ character.ac }}
+            <strong>AC:</strong> {{ character.ac }} <strong>Bonuses:</strong> {{ character.ac }} 
           </CCol>
         </CRow>
         <CRow>
@@ -62,45 +62,45 @@
   import { storeToRefs } from 'pinia'
   import { useUserStore } from '@/stores/UserStore'
   import { useCampaignStore } from '@/stores/CampaignStore'
+  import { useCharacterStore } from '@/stores/CharacterStore'
   import { CAccordion, CAccordionBody, CAccordionHeader, CAccordionItem, CCol, CFormLabel, CFormSelect, CRow } from '@coreui/vue'
-  import { PlayerCharacter } from '@/models/PlayerCharacter'
-  import agent from '@/api/agent'
-  import { reactive } from 'vue'
   
-  export default defineComponent ({
+  export default defineComponent({
     name: "ManageCharacters",
     components: { CFormSelect, CAccordion, CRow, CCol, CFormLabel, CAccordionHeader, CAccordionBody, CAccordionItem },
     setup() {
       return {
         user: storeToRefs(useUserStore()),
         campaign: storeToRefs(useCampaignStore()),
-        selectedCampaign: 0,
-        characterList: reactive([] as PlayerCharacter[])
+        characters: storeToRefs(useCharacterStore())
       };
     },
     data() {
       return {
         getCampaignList: useCampaignStore().getCampaignList,
         getActiveCampaign: useCampaignStore().getActiveCampaign,
+        getCharacterList: useCharacterStore().getCharacterList,
+        setSelectedCampaign: useCampaignStore().setSelectedCampaign,
+        clearCharacterList: useCharacterStore().clearCharacterList
       }
     },
     methods: {
-      async setCampaign(id: number) {
-        this.selectedCampaign = id;
-
-        if (this.selectedCampaign != 0) {
-          await agent.playerCharacter.getCharacterList(this.user.user.value?.id as number, this.selectedCampaign)
-            .then((data) => {
-              Object.assign(this.characterList, data);
-            });
+      async onCampaignChanged(id: number) {
+        this.setSelectedCampaign(id);
+        if (id != 0) {
+          await this.getCharacterList(this.user.user.value?.id as number, this.campaign.activeCampaign.value.id);
         } else {
-          this.characterList = [];
+          this.clearCharacterList();
         }
       },
     },
     async mounted() {
-      this.getCampaignList();
-      this.getActiveCampaign();
+      if (this.campaign.activeCampaign.value.id === 0) {
+        await this.getCampaignList();
+        await this.getActiveCampaign();
+      }
+      
+      await this.getCharacterList(this.user.user.value.id as number, this.campaign.selectedCampaign.value);
     }
   });
 </script>

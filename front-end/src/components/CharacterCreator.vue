@@ -488,7 +488,7 @@
   import { CharacterClass, ClassLevel, PlayerCharacter, Resolve } from '@/models/PlayerCharacter'
   import agent from '@/api/agent';
   
-  export default defineComponent ({
+  export default defineComponent({
     name: "CharacterCreator",
     components: { CFormSelect, CFormLabel, CRow, CCol, CButton, CCard, CCardBody, CCardHeader, CForm, CFormInput, CToast, CToaster, CToastHeader, CToastBody },
     setup() {
