@@ -40,6 +40,9 @@ const playerCharacter = {
     },
     getCharacterList(userId: number, campaignId: number) {
         return requests.get<PlayerCharacter[]>(`pc/list/${userId}/${campaignId}`);
+    },
+    updatePlayerCharacter(playerCharacter: PlayerCharacter) {
+        return requests.post<PlayerCharacter>('pc/update', playerCharacter);
     }
 }
 

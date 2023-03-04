@@ -584,7 +584,7 @@
         this.playerCharacter.dexterity.acrobatics = level;
       },
       setSleightOfHand(level: number) {
-        this.playerCharacter.dexterity.sleightofHand = level;
+        this.playerCharacter.dexterity.sleightOfHand = level;
       },
       setStealth(level: number) {
         this.playerCharacter.dexterity.stealth = level;
@@ -666,9 +666,15 @@
           userId: this.user.user.value?.id,
           name: "",
           ac: 10,
+          acBonus: 0,
+          temporaryHitPoints: 0,
           initiativeBonus: 0,
           rolledInitiative: 0,
           dead: false,
+          deathSaveSuccesses: 0,
+          deathSaveFailures: 0,
+          stress: 0,
+          stressStatus: { id: 1 },
           combatant: false,
           strength: { 
             score: 10,
@@ -679,7 +685,7 @@
             score: 10,
             proficient: false,
             acrobatics: 0,
-            sleightofHand: 0,
+            sleightOfHand: 0,
             stealth: 0
           },
           constitution: { 
@@ -791,6 +797,7 @@
               baseClass: false,
               levels: this.multiClassLevelList[this.multiClassList.indexOf(multiclass)],
               usedHitDice: 0,
+              thirdCaster: false,
               characterClass: {
                 id: multiclass,
                 name: "",

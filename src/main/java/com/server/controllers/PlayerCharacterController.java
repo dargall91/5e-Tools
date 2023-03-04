@@ -2,9 +2,11 @@ package com.server.controllers;
 
 import com.server.entities.Campaign;
 import com.server.entities.playercharacter.PlayerCharacter;
+import com.server.entities.playercharacter.StressStatus;
 import com.server.repositories.CampaignRepository;
 import com.server.repositories.playercharacter.CharacterClassRepository;
 import com.server.repositories.playercharacter.PlayerCharacterRepository;
+import com.server.repositories.playercharacter.StressStatusRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.http.HttpStatus;
@@ -29,6 +31,8 @@ public class PlayerCharacterController {
     private CampaignRepository campaignRepo;
     @Autowired
     private CharacterClassRepository classRepo;
+    @Autowired
+    private StressStatusRepository stressRepo;
 
     //TODO: add methods for android to update ONLY the fields it has uses (init, combatant, etc)
     /**
@@ -54,6 +58,8 @@ public class PlayerCharacterController {
      */
     @PutMapping("add")
     public ResponseEntity<?> addPlayerCharacter(@RequestBody PlayerCharacter pc) {
+        Optional<StressStatus> stressStatus = stressRepo.findById(1);
+        pc.setStressStatus(stressStatus.get());
         PlayerCharacter added = playerRepo.save(pc);
 
         String requestMap = this.getClass().getAnnotation(RequestMapping.class).value()[0];
@@ -94,9 +100,9 @@ public class PlayerCharacterController {
                     .body("PC with id " + pc.getId() + " not found.");
         }
 
-        playerRepo.save(pc);
+        PlayerCharacter updated = playerRepo.save(pc);
 
-        return ResponseEntity.ok().build();
+        return ResponseEntity.ok(updated);
     }
 
     /**

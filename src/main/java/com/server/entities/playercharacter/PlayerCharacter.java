@@ -12,10 +12,19 @@ public class PlayerCharacter {
     private Integer id;
     private String name;
     private int ac;
+    private int acBonus;
+    private int damage = 0;
+    private int temporaryHitPoints;
     private int initiativeBonus;
     private int rolledInitiative;
     private int campaignId;
     private int userId;
+    private int deathSaveSuccesses;
+    private int deathSaveFailures;
+    private int stress;
+    @ManyToOne
+    @JoinColumn(name = "stressStatusId")
+    private StressStatus stressStatus;
     private boolean dead;
     private boolean combatant = false;
     @OneToOne(cascade = CascadeType.ALL)
@@ -45,16 +54,6 @@ public class PlayerCharacter {
 
     public PlayerCharacter() { }
 
-    public PlayerCharacter(int userId, int campaignId, boolean madness, String name) {
-        this.name = name;
-        this.userId = userId;
-        this.campaignId = campaignId;
-
-        if (madness) {
-            resolve = new Resolve();
-        }
-    }
-
     public Integer getId() {
         return id;
     }
@@ -65,6 +64,18 @@ public class PlayerCharacter {
 
     public int getAc() {
         return ac;
+    }
+
+    public int getAcBonus() {
+        return acBonus;
+    }
+
+    public int getDamage() {
+        return damage;
+    }
+
+    public int getTemporaryHitPoints() {
+        return temporaryHitPoints;
     }
 
     public int getInitiativeBonus() {
@@ -81,6 +92,14 @@ public class PlayerCharacter {
 
     public boolean isDead() {
         return dead;
+    }
+
+    public int getDeathSaveSuccesses() {
+        return deathSaveSuccesses;
+    }
+
+    public int getDeathSaveFailures() {
+        return deathSaveFailures;
     }
 
     public boolean isCombatant() {
@@ -133,5 +152,17 @@ public class PlayerCharacter {
 
     public List<ClassLevel> getClassLevelList() {
         return classLevelList;
+    }
+
+    public int getStress() {
+        return stress;
+    }
+
+    public StressStatus getStressStatus() {
+        return stressStatus;
+    }
+
+    public void setStressStatus(StressStatus stressStatus) {
+        this.stressStatus = stressStatus;
     }
 }

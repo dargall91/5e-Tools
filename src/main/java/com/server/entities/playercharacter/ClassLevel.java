@@ -9,7 +9,8 @@ public class ClassLevel {
     private int id;
     private boolean baseClass;
     private int levels;
-    private int usedHitDice;
+    private int usedHitDice = 0;
+    private boolean thirdCaster;
     @OneToOne
     @JoinColumn(name = "classId")
     private CharacterClass characterClass;
@@ -32,5 +33,9 @@ public class ClassLevel {
 
     public CharacterClass getCharacterClass() {
         return characterClass;
+    }
+
+    public boolean isThirdCaster() {
+        return thirdCaster;
     }
 }
