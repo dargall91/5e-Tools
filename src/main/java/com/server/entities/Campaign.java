@@ -14,6 +14,7 @@ public class Campaign {
     private String name;
     private boolean madness;
     private boolean active = false;
+    private boolean inflatedHitPoints;
     @OneToMany
     @JoinColumn(name="campaignId")
     List<Monster> monsterList;
@@ -57,5 +58,9 @@ public class Campaign {
 
     public void setActive(boolean active) {
         this.active = active;
+    }
+
+    public boolean isInflatedHitPoints() {
+        return inflatedHitPoints;
     }
 }

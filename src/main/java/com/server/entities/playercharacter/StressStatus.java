@@ -2,8 +2,6 @@ package com.server.entities.playercharacter;
 
 import jakarta.persistence.*;
 
-import java.util.List;
-
 @Entity
 public class StressStatus {
     @Id

@@ -1,6 +1,7 @@
 import { defineStore } from 'pinia'
 import agent from '@/api/agent';
 import { PlayerCharacter } from '@/models/PlayerCharacter';
+import { Campaign } from '@/models/Campaign';
 
 export const useCharacterStore = defineStore({
   id: 'character',
@@ -17,6 +18,12 @@ export const useCharacterStore = defineStore({
       await agent.playerCharacter.getCharacterList(userId, campaignId)
         .then((data) => {
           this.characterList = data;
+        });
+    },
+    async saveCharacter(index: number) {
+      await agent.playerCharacter.updatePlayerCharacter(this.characterList[index])
+        .then((data) => {
+          this.characterList[index] = data;
         });
     },
     clearCharacterList() {
@@ -117,12 +124,143 @@ export const useCharacterStore = defineStore({
         this.characterList[index].resolve!.score = score;
       }
     },
-    async saveCharacter(index: number) {
-      await agent.playerCharacter.updatePlayerCharacter(this.characterList[index])
-        .then((data) => {
-          this.characterList[index] = data;
-        });
+    getMaxHitPoints(index: number, campaign: Campaign): number {
+      const conModifier = Math.floor((this.characterList[index].constitution.score - 10) / 2.0);
+      let maxHitPoints = 0;
+
+      this.characterList[index].classLevelList.forEach((classLevel) => {
+        if (classLevel.baseClass) {
+          maxHitPoints += (classLevel.characterClass.hitDie + conModifier) + (classLevel.levels - 1) * (classLevel.characterClass.averageHitDie + conModifier);
+        } else {
+          maxHitPoints += (classLevel.levels) * (classLevel.characterClass.averageHitDie + conModifier);
+          
+        }
+
+        if (this.characterList[index].dwarvenToughness) {
+          maxHitPoints += classLevel.levels;
+        }
+
+        if (this.characterList[index].toughFeat) {
+          maxHitPoints += 2 * classLevel.levels;
+        }
+      });
+
+      if (campaign.inflatedHitPoints) {
+        maxHitPoints = Math.ceil(1.5 * maxHitPoints);
+      }
+      
+      return maxHitPoints;
+    },
+    adjustHitDie(characterIndex: number, classLevelindex: number, amount: number) {
+      this.characterList[characterIndex].classLevelList[classLevelindex].usedHitDice += amount;
+
+      if (this.characterList[characterIndex].classLevelList[classLevelindex].usedHitDice >= this.characterList[characterIndex].classLevelList[classLevelindex].levels) {
+        this.characterList[characterIndex].classLevelList[classLevelindex].usedHitDice = this.characterList[characterIndex].classLevelList[classLevelindex].levels;
+      }
+
+      if (this.characterList[characterIndex].classLevelList[classLevelindex].usedHitDice < 0) {
+        this.characterList[characterIndex].classLevelList[classLevelindex].usedHitDice = 0;
+      }
+    },
+    adjustDamage(index: number, damage: number, campaign: Campaign) {
+      if (this.characterList[index].temporaryHitPoints > 0 && damage > 0) {
+        this.characterList[index].temporaryHitPoints -= damage;
+        if (this.characterList[index].temporaryHitPoints < 0) {
+          damage = this.characterList[index].temporaryHitPoints * -1;
+          this.characterList[index].temporaryHitPoints = 0;
+        } else {
+          return;
+        }
+      }
+
+      this.characterList[index].damage += damage;
+      const maxHitPoints = this.getMaxHitPoints(index, campaign);
+      if (this.characterList[index].damage > maxHitPoints) {
+        this.characterList[index].damage = maxHitPoints;
+      }
+
+      if (this.characterList[index].damage < 0) {
+        this.characterList[index].damage = 0;
+      }
+    },
+    adjustTemporyHitPoints(index: number, amount: number) {
+      this.characterList[index].temporaryHitPoints += amount;
+
+      if (this.characterList[index].temporaryHitPoints < 0) {
+        this.characterList[index].temporaryHitPoints = 0;
+      }
+    },
+    adjustAc(index: number, amount: number) {
+      this.characterList[index].ac += amount;
+
+      if (this.characterList[index].ac < 1) {
+        this.characterList[index].ac = 1;
+      }
+    },
+    adjustAcBonus(index: number, amount: number) {
+      this.characterList[index].acBonus += amount;
+
+      if (this.characterList[index].acBonus < 0) {
+        this.characterList[index].acBonus = 0;
+      }
+    },
+    resetDeathSaves(index: number) {
+      this.characterList[index].deathSaveFailures = 0;
+      this.characterList[index].deathSaveSuccesses = 0;
+    },
+    adjustDeathSaveSuccesses(index: number, amount: number) {
+      this.characterList[index].deathSaveSuccesses += amount;
+
+      if (this.characterList[index].deathSaveSuccesses < 0) {
+        this.characterList[index].deathSaveSuccesses = 0;
+      }
+
+      if (this.characterList[index].deathSaveSuccesses > 3) {
+        this.characterList[index].deathSaveSuccesses = 3;
+      }
+    },
+    adjustDeathSaveFailures(index: number, amount: number) {
+      this.characterList[index].deathSaveFailures += amount;
+
+      if (this.characterList[index].deathSaveFailures < 0) {
+        this.characterList[index].deathSaveFailures = 0;
+      }
+
+      if (this.characterList[index].deathSaveFailures > 3) {
+        this.characterList[index].deathSaveFailures = 3;
+      }
+    },
+    adjustStress(index: number, amount: number, campaign: Campaign) {
+      if (!campaign.madness) {
+        return;
+      }
+      this.characterList[index].stress += amount;
+
+      const stressMaximum = this.getStressMaximum(index, campaign)
+
+      if (this.characterList[index].stress < 0) {
+        this.characterList[index].stress = 0;
+      }
+
+      if (this.characterList[index].stress > stressMaximum) {
+        this.characterList[index].stress = stressMaximum;
+      }
+    },
+    getStressThreshold(index: number, campaign: Campaign) {
+      if (!campaign.madness) {
+        return 0;
+      }
+
+      const resModifier = Math.floor((this.characterList[index].resolve!.score - 10) / 2.0);
+
+      return 100 + 5 * resModifier;
+    },
+    getStressMaximum(index: number, campaign: Campaign) {
+      return this.getStressThreshold(index, campaign) * 2;
+    },
+    longRest(index: number) {
+      
     }
   },
   persist: true
-})
+});

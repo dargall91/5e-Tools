@@ -13,6 +13,8 @@ export interface PlayerCharacter {
 	deathSaveSuccesses: number,
 	deathSaveFailures: number,
 	stress: number,
+	dwarvenToughness: boolean,
+	toughFeat: boolean,
 	stressStatus: StressStatus,
 	combatant: boolean,
 	strength: Strength,
@@ -82,14 +84,15 @@ export interface ClassLevel {
 export interface CharacterClass {
 	id: number,
 	name: string,
-	hitDie: number
+	hitDie: number,
+	averageHitDie: number
 };
 
 export interface StressStatus {
-	id: number;
-	name: string;
-	type: string;
-	description: string;
-	minRoll: number;
-	maxRoll: number;
+	id: number,
+	name: string,
+	type: string,
+	description: string,
+	minRoll: number,
+	maxRoll: number
 };

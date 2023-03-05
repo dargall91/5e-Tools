@@ -11,6 +11,7 @@ public class ClassLevel {
     private int levels;
     private int usedHitDice = 0;
     private boolean thirdCaster;
+    private boolean beastMaster;
     @OneToOne
     @JoinColumn(name = "classId")
     private CharacterClass characterClass;
@@ -37,5 +38,9 @@ public class ClassLevel {
 
     public boolean isThirdCaster() {
         return thirdCaster;
+    }
+
+    public boolean isBeastMaster() {
+        return beastMaster;
     }
 }

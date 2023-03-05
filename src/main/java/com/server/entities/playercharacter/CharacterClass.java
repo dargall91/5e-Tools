@@ -12,6 +12,7 @@ public class CharacterClass {
     private int id;
     private String name;
     private int hitDie;
+    private int averageHitDie;
 
     public int getId() {
         return id;
@@ -23,5 +24,9 @@ public class CharacterClass {
 
     public int getHitDie() {
         return hitDie;
+    }
+
+    public int getAverageHitDie() {
+        return averageHitDie;
     }
 }

@@ -801,7 +801,8 @@
               characterClass: {
                 id: multiclass,
                 name: "",
-                hitDie: 0
+                hitDie: 0,
+                averageHitDie: 0
               }
             }
 

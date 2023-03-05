@@ -39,10 +39,10 @@ ON DUPLICATE KEY
 UPDATE cr = VALUES(cr), xp = VALUES(xp), proficiencyBonus = VALUES(proficiencyBonus);
 
 -- campaign - deactivate all campaigns aside from index 1
-INSERT INTO Campaign(id, name, madness, active) VALUES
-    (1, "Darkest Dungeons & Dragons", 1, 1)
+INSERT INTO Campaign(id, name, madness, active, inflatedHitPoints) VALUES
+    (1, "Darkest Dungeons & Dragons", 1, 1, 1)
 ON DUPLICATE KEY
-UPDATE name = VALUES(name), madness = VALUES(madness), active = VALUES(active);
+UPDATE name = VALUES(name), madness = VALUES(madness), active = VALUES(active), inflatedHitPoints = VALUES(inflatedHitPoints);
 
 UPDATE Campaign
 SET active = 0
@@ -74,7 +74,9 @@ INSERT INTO XpThresholds(level, easy, medium, hard, deadly, budget) VALUES
     (17, 2000, 3900, 5900, 8800, 25000),
     (18, 2100, 4200, 6300, 9500, 27000),
     (19, 2400, 4900, 7300, 10900, 30000),
-    (20, 2800, 5700, 8500, 12700, 40000);
+    (20, 2800, 5700, 8500, 12700, 40000)
+ON DUPLICATE KEY
+UPDATE easy = VALUES(easy), medium = VALUES(medium), hard = VALUES(hard), deadly = VALUES(deadly), budget = VALUES(budget);
 
 --test users
 INSERT INTO User(id, username, password, admin) VALUES
@@ -84,38 +86,37 @@ ON DUPLICATE KEY
 UPDATE username = VALUES(username), password = VALUES(password), admin = VALUES(admin);
 
 -- classes
-INSERT INTO CharacterClass(id, name, hitDie) VALUES
-    (1, 'Artificer', 8),
-    (2, 'Barbarian', 12),
-    (3, 'Bard', 8),
-    (4, 'Cleric', 8),
-    (5, 'Druid', 8),
-    (6, 'Fighter', 10),
-    (7, 'Monk', 8),
-    (8, 'Paladin', 10),
-    (9, 'Ranger', 10),
-    (10, 'Rogue', 8),
-    (11, 'Sorcerer', 6),
-    (12, 'Warlock', 8),
-    (13, 'Wizard', 6)
+INSERT INTO CharacterClass(id, name, hitDie, averageHitDie) VALUES
+    (1, 'Artificer', 8, 5),
+    (2, 'Barbarian', 12, 7),
+    (3, 'Bard', 8, 5),
+    (4, 'Cleric', 8, 5),
+    (5, 'Druid', 8, 5),
+    (6, 'Fighter', 10, 6),
+    (7, 'Monk', 8, 5),
+    (8, 'Paladin', 10, 6),
+    (9, 'Ranger', 10, 6),
+    (10, 'Rogue', 8, 5),
+    (11, 'Sorcerer', 6, 4),
+    (12, 'Warlock', 8, 5),
+    (13, 'Wizard', 6, 4)
 ON DUPLICATE KEY
-UPDATE name = VALUES(name), hitDie = VALUES(hitDie);
+UPDATE name = VALUES(name), hitDie = VALUES(hitDie), averageHitDie = VALUES(averageHitDie);
 
 -- stress statuses
 INSERT INTO StressStatus(id, name, type, description, minRoll, maxRoll) VALUES
     (1, 'Normal', 'None', '', 0, 0),
-    (2, 'Irrational', 'Affliction', 'At the start of your turn, roll on the Afflictions & Virtues table and use that result for this turn. If the result is Irrational a Virtue, the DM chooses one of the following effects:<ul><li>You must move as far as possible towards your nearest ally, and make a single melee weapon attack on that ally, if able.</li> <li>You must move as far as possible towards your nearest ally, stopping just before entering melee range, and make a single ranged weapon attack on that ally, if able.</li></ul>Regardless of the DM’s choice, if multiple allies are equally close to you, choose one at random.', 1, 15),
-    (3, 'Paranoid', 'Affliction', 'You cannot be the target of, or gain any benefits of, your allies\' spells, actions, abilities, or items.', 16, 25),
+    (2, 'Irrational', 'Affliction', 'At the start of your turn, roll on the Afflictions & Virtues table and use that result for this turn. If the result is Irrational or a Virtue, the DM chooses one of the following effects:<ul><li>You must move as far as possible towards your nearest ally, and make a single melee weapon attack on that ally, if able.</li> <li>You must move as far as possible towards your nearest ally, stopping just before entering melee range, and make a single ranged weapon attack on that ally, if able.</li></ul>Regardless of the DM\'s choice, if multiple allies are equally close to you, choose one at random.', 1, 15),
+    (3, 'Paranoid', 'Affliction', 'You cannot be the target of, or gain any benefits of, your allies\' spells, actions, abilities, or items. You cannot end your turn within 30 feet of an ally, using as much movement as possible to try to get away from them.', 16, 25),
     (4, 'Selfish', 'Affliction', 'You cannot cast spells targeting allies other than spells that cause damage, you may not use the help action, you cannot give items to your allies, and you cannot use non-damaging items on your allies.', 26, 35),
     (5, 'Abusive', 'Affliction', 'At the start of your turn, all allies within 50 feet of you that can hear you gain 1d6 stress points. If a character rolls a 6 on this roll, they suffer disadvantage on their next attack roll, saving throw, or ability check.', 36, 45),
     (6, 'Fearful', 'Affliction', 'At the start of your turn, randomly select one enemy creature. Until the end of your  turn, you are afraid of that creature. Gaining the frightened condition as a result of this affliction does not cause you to gain stress (though other affects of stress as a result of fear still apply).', 46, 55),
     (7, 'Hopeless', 'Affliction', 'You cannot have or gain advantage on any rolls. When you gain stress points, you gain an additional 1d6 stress. When you lose stress points, the amount lost is reduced by 1d4 (to a minimum of 1).', 56, 65),
     (8, 'Masochistic', 'Affliction', 'You may not attempt to disengage from combat. Attacks made against you may re-roll one damage die.', 66, 75),
     (9, 'Powerful', 'Virtue', 'Add your proficiency bonus and your Resolve modifier to all your damage rolls. At the start of your turn, roll 1d4. On a 4, all allies currently within 20 feet of you add their proficiency bonus and their Resolve modifier to their damage rolls until the beginning of your next turn.', 76, 80),
-    (10, 'Courageous', 'Virtue', 'Whenever you gain stress, reduce the amount of stress gained by 1d4 + your Resolve modifier (to a minimum of 1). At the start of each of your turns, roll 1d4. On a 4, you and all allies within 20 feet of you lose stress equal to 1d4 + your Resolve modifier + your proficiency bonus.', 81, 85)
-    (11, 'Stalwart', 'Virtue', 'All damage dealt to you is reduced by your proficiency bonus + your Resolve modifier, to a minimum of 1. This reduction is applied before any other damage modifiers, such as the Rouge’s Uncanny Dodge class feature. At the start of your turn, roll 1d4. On a 4, all allies currently within 20 feet of you reduce all damage dealt to them by their resolve modifier + their proficiency bonus until the beginning of your next turn.', 86, 90)
-    (12, 'Vigorous', 'Virtue', 'You have advantage on all initiative rolls. You add your Resolve modifier (minimum of 1) to your AC and to all non-Resolve saving throws. At the start of your turn, roll 1d4. On a 4, you and allies within 20 feet of you gain temporary hit points equal to 1d8 + your proficiency modifier + your Resolve modifier.', 91, 95)
+    (10, 'Courageous', 'Virtue', 'Whenever you gain stress, reduce the amount of stress gained by 1d4 + your Resolve modifier (to a minimum of 1). At the start of each of your turns, roll 1d4. On a 4, you and all allies within 20 feet of you lose stress equal to 1d4 + your Resolve modifier + your proficiency bonus.', 81, 85),
+    (11, 'Stalwart', 'Virtue', 'All damage dealt to you is reduced by your proficiency bonus + your Resolve modifier, to a minimum of 1. This reduction is applied before any other damage modifiers, such as the Rouge\'s Uncanny Dodge class feature. At the start of your turn, roll 1d4. On a 4, all allies currently within 20 feet of you reduce all damage dealt to them by their resolve modifier + their proficiency bonus until the beginning of your next turn.', 86, 90),
+    (12, 'Vigorous', 'Virtue', 'You have advantage on all initiative rolls. You add your Resolve modifier (minimum of 1) to your AC and to all non-Resolve saving throws. At the start of your turn, roll 1d4. On a 4, you and allies within 20 feet of you gain temporary hit points equal to 1d8 + your proficiency modifier + your Resolve modifier.', 91, 95),
     (13, 'Focused', 'Virtue', 'Add your proficiency bonus to all of your attack rolls and your Spell Save DC. In addition, the number you need to roll on the d20 on attack rolls to land a critical hit is reduced by 1. At the start of your turn, roll 1d4. On a 4, all allies currently within 20 feet of you add their proficiency bonus to their attack rolls and their Spell Save DC and the number they need to roll on the d20 on attack rolls to land a critical hit is reduced by 1.', 96, 100)
 ON DUPLICATE KEY
-UPDATE name = VALUES(name), type = VALUES(type), description = VALUES(description),
-minRoll = VALUES(minRoll), maxRoll = VALUES(maxRol);
+UPDATE name = VALUES(name), type = VALUES(type), description = VALUES(description), minRoll = VALUES(minRoll), maxRoll = VALUES(maxRoll);

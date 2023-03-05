@@ -22,6 +22,8 @@ public class PlayerCharacter {
     private int deathSaveSuccesses;
     private int deathSaveFailures;
     private int stress;
+    private boolean dwarvenToughness;
+    private boolean toughFeat;
     @ManyToOne
     @JoinColumn(name = "stressStatusId")
     private StressStatus stressStatus;
@@ -164,5 +166,13 @@ public class PlayerCharacter {
 
     public void setStressStatus(StressStatus stressStatus) {
         this.stressStatus = stressStatus;
+    }
+
+    public boolean isDwarvenToughness() {
+        return dwarvenToughness;
+    }
+
+    public boolean isToughFeat() {
+        return toughFeat;
     }
 }
