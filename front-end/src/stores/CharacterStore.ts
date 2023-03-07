@@ -259,7 +259,10 @@ export const useCharacterStore = defineStore({
       return this.getStressThreshold(index, campaign) * 2;
     },
     longRest(index: number) {
-      
+
+    },
+    levelUp(characterIndex: number, classLevelIndex: number) {
+      this.characterList[characterIndex].classLevelList[classLevelIndex].levels++;
     }
   },
   persist: true

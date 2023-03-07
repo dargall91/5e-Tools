@@ -546,12 +546,17 @@
       },
       setClass(id: number) {
         this.playerCharacter.classLevelList[0].characterClass.id = id;
+        if (id === 1) {
+          this.playerCharacter.classLevelList[0].thirdCaster = true;
+        } else {
+          this.playerCharacter.classLevelList[0].thirdCaster = false;
+        }
       },
       setBaseLevel(level: number) {
         this.playerCharacter.classLevelList[0].levels = level;
       },
       addMulticlass() {
-        if (this.multiClassList.length < 12) {
+        if (this.multiClassList.length < this.classList.length - 1) {
           this.multiClassList.push(0);
         }
       },

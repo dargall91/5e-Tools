@@ -20,6 +20,7 @@
         {{ character.name }}
       </CAccordionHeader>
       <CAccordionBody>
+        <!-- Class Info -->
         <CRow class="mt-1" v-for="classLevel, classLevelIndex in character.classLevelList" :key="classLevel.id">
           <CCol xs="6" md="4" lg="3" v-if="classLevel.baseClass">
             <strong>Base Class:</strong> {{ classLevel.characterClass.name }}
@@ -37,9 +38,447 @@
           </CCol>
         </CRow>
 
-        <CButton class="me-1" size="sm" color="dark">Long Rest</CButton>
-        <CButton size="sm" color="dark">Level Up</CButton>
+        <CButton class="me-1" size="sm" color="dark" @click="() => { longRest = true; }">Long Rest</CButton>
+        <CButton size="sm" color="dark" @click="() => { editCharacter = true; }">Edit</CButton>
 
+        <!-- Long Rest Modal -->
+        <CModal :visible="longRest" @close="() => { longRest = false; }">
+          <CModalHeader>
+            <CModalTitle>Long Rest</CModalTitle>
+          </CModalHeader>
+          <CModalBody>
+            Long rest to automatically apply the following actions to {{ character.name }}:
+            <ul>
+              <li>Recover all hit points (any temporary hit points will be lost)</li>
+              <li>Recver half of your hit dice restored (if multiclassed, largest hit dice are prioritized)</li>
+              <li>Recover all expended spell slots</li>
+              <li v-if="campaignStore.selectedCampaign.value.madness">If your stress level is greater than your stress threshold, it becomes equal to your threshold</li>
+              <li v-if="campaignStore.selectedCampaign.value.madness">If your stress level is less than or equal to your stress threshold, you lose 50 stress</li>
+              <li v-if="campaignStore.selectedCampaign.value.madness">Recover 5 meditation dice</li>
+            </ul>
+          </CModalBody>
+          <CModalFooter>
+            <CButton color="secondary" @click="() => { longRest = false; }">Cancel</CButton>
+            <CButton color="dark" @click="() => { characterStoreFunctions.longRest(characterIndex); longRest = false; }">Long Rest</CButton>
+          </CModalFooter>
+        </CModal>
+
+        <!-- Edit Modal -->
+        <CModal size="xl" :visible="editCharacter" @close="closeEditor()">
+          <CModalHeader>
+            <CModalTitle>Edit {{ character.name }}</CModalTitle>
+          </CModalHeader>
+          <CModalBody>
+            <!-- Classes -->
+            <CRow class="mb-1" v-for="classLevel, classLevelIndex in character.classLevelList" :key="classLevel.id">
+              <CCol xs="4" v-if="classLevel.baseClass">
+                <strong>Base Class:</strong> {{ classLevel.characterClass.name }}
+              </CCol>
+              <CCol xs="4" v-else>
+                <strong>Multiclass:</strong> {{ classLevel.characterClass.name }}
+              </CCol>
+              <CCol xs="4">
+                <strong>Level:</strong> {{ classLevel.levels }}
+              </CCol>
+              <CCol xs="4" v-if="canBeEldritchNight(classLevel) && levelUp === false">
+                <CFormCheck label="Eldtritch Knight" />
+              </CCol>
+              <CCol xs="4" v-if="canBeArcaneTrickster(classLevel) && levelUp === false">
+                <CFormCheck label="Arcane Trickster" v-model="classLevel.thirdCaster" value="true" />
+              </CCol>
+              <CCol xs="4" v-if="!levelUp">
+                <CButton size="sm" color="dark" @click="() => { levelUp = true; characterStoreFunctions.levelUp(characterIndex, classLevelIndex)}">Level Up</CButton>
+              </CCol>
+            </CRow>
+            <CButton size="sm"  v-if="!levelUp && character.classLevelList.length < classList.length && newMulticlass.characterClass.id === 0" color="dark" 
+              @click="setNewMulticlass(1)">Add Multiclass</CButton>
+            <CRow v-if="newMulticlass.characterClass.id != 0">
+              <CCol xs="3" lg="2" xl="1">
+                <strong>Multiclass: </strong>
+              </CCol>
+              <CCol xs="5" sm="3">
+                <CFormSelect @change="setNewMulticlass(parseInt($event.target.value))" :id="'multiClass'">
+                  <option v-for="(item) in classList" :value="item.id" :key="item.id">{{ item.name }}</option>
+                </CFormSelect>
+              </CCol>
+              <CCol>
+                <strong>Level:</strong> {{ newMulticlass.levels }}
+              </CCol>
+            </CRow>
+
+            <!-- Ability Scores -->
+            <CRow>
+              <!-- Strength -->
+              <CCol xs="6" sm="4">
+                <CCard class="mt-2">
+                  <CCardHeader>Strength (STR)</CCardHeader>
+                  <CCardBody>
+                    <CRow>
+                      <CCol class="mt-2">
+                        <CFormLabel class="fw-bold">Score:</CFormLabel>
+                      </CCol>
+                      <CCol sm="auto">
+                        <CFormSelect @change="characterStoreFunctions.setStrength(parseInt($event.target.value), characterIndex)" :modelValue="character.strength.score.toString()">
+                          <option v-for="score in numberList" :value="score" :key="score">{{ score }}</option>
+                        </CFormSelect>
+                      </CCol>
+                    </CRow>
+                    <CRow>
+                      <CCol class="mt-2">
+                        <CFormLabel class="fw-bold">Saving Throws:</CFormLabel>
+                      </CCol>
+                      <CCol sm="auto">
+                        <CFormSelect @change="characterStoreFunctions.setStrengthSave($event.target.value, characterIndex)" :modelValue="character.strength.proficient.toString()">
+                          <option v-for="proficiency in savingThrowLevels" :value="proficiency.proficient" :key="proficiency.proficient.toString()">{{ proficiency.value }}</option>
+                        </CFormSelect>
+                      </CCol>
+                    </CRow>
+                    <CRow>
+                      <CCol class="mt-2">
+                        <CFormLabel class="fw-bold">Athletics:</CFormLabel>
+                      </CCol>
+                      <CCol sm="auto">
+                        <CFormSelect @change="characterStoreFunctions.setAthletics(parseInt($event.target.value), characterIndex)" :modelValue="character.strength.athletics.toString()">
+                          <option v-for="profciency in skillProficiencyLevel" :value="profciency.level" :key="profciency.level">{{ profciency.value }}</option>
+                        </CFormSelect>
+                      </CCol>
+                    </CRow>
+                  </CCardBody>
+                </CCard>
+              </CCol>
+
+              <!-- Dexterity -->
+              <CCol xs="6" sm="4">
+                <CCard class="mt-2">
+                  <CCardHeader>Dexterity (DEX)</CCardHeader>
+                  <CCardBody>
+                    <CRow>
+                      <CCol class="mt-2">
+                        <CFormLabel class="fw-bold">Score:</CFormLabel>
+                      </CCol>
+                      <CCol sm="auto">
+                        <CFormSelect @change="characterStoreFunctions.setDexterity(parseInt($event.target.value), characterIndex)" :modelValue="character.dexterity.score.toString()">
+                          <option v-for="score in numberList" :value="score" :key="score">{{ score }}</option>
+                        </CFormSelect>
+                      </CCol>
+                    </CRow>
+                    <CRow>
+                      <CCol class="mt-2">
+                        <CFormLabel class="fw-bold">Saving Throws:</CFormLabel>
+                      </CCol>
+                      <CCol sm="auto">
+                        <CFormSelect @change="characterStoreFunctions.setDexteritySave($event.target.value, characterIndex)" :modelValue="character.dexterity.proficient.toString()">
+                          <option v-for="proficiency in savingThrowLevels" :value="proficiency.proficient" :key="proficiency.proficient.toString">{{ proficiency.value }}</option>
+                        </CFormSelect>
+                      </CCol>
+                    </CRow>
+                    <CRow>
+                      <CCol class="mt-2">
+                        <CFormLabel class="fw-bold">Acrobatics:</CFormLabel>
+                      </CCol>
+                      <CCol sm="auto">
+                        <CFormSelect @change="characterStoreFunctions.setAcrobatics(parseInt($event.target.value), characterIndex)" :modelValue="character.dexterity.acrobatics.toString()">
+                          <option v-for="profciency in skillProficiencyLevel" :value="profciency.level" :key="profciency.level">{{ profciency.value }}</option>
+                        </CFormSelect>
+                      </CCol>
+                    </CRow>
+                    <CRow>
+                      <CCol class="mt-2">
+                        <CFormLabel class="fw-bold">Sleight of Hand:</CFormLabel>
+                      </CCol>
+                      <CCol sm="auto">
+                        <CFormSelect @change="characterStoreFunctions.setSleightOfHand(parseInt($event.target.value), characterIndex)" :modelValue="character.dexterity.sleightOfHand.toString()">
+                          <option v-for="profciency in skillProficiencyLevel" :value="profciency.level" :key="profciency.level">{{ profciency.value }}</option>
+                        </CFormSelect>
+                      </CCol>
+                    </CRow>
+                    <CRow>
+                      <CCol class="mt-2">
+                        <CFormLabel class="fw-bold">Stealth:</CFormLabel>
+                      </CCol>
+                      <CCol sm="auto">
+                        <CFormSelect @change="characterStoreFunctions.setStealth(parseInt($event.target.value), characterIndex)" :modelValue="character.dexterity.stealth.toString()">
+                          <option v-for="profciency in skillProficiencyLevel" :value="profciency.level" :key="profciency.level">{{ profciency.value }}</option>
+                        </CFormSelect>
+                      </CCol>
+                    </CRow>
+                  </CCardBody>
+                </CCard>
+              </CCol>
+
+              <!-- Constitution -->
+              <CCol xs="6" sm="4">
+                <CCard class="mt-2">
+                  <CCardHeader>Constitution (CON)</CCardHeader>
+                  <CCardBody>
+                    <CRow>
+                      <CCol class="mt-2">
+                        <CFormLabel class="fw-bold">Score:</CFormLabel>
+                      </CCol>
+                      <CCol sm="auto">
+                        <CFormSelect @change="characterStoreFunctions.setConstitution(parseInt($event.target.value), characterIndex)" :modelValue="character.constitution.score.toString()">
+                          <option v-for="score in numberList" :value="score" :key="score">{{ score }}</option>
+                        </CFormSelect>
+                      </CCol>
+                    </CRow>
+                    <CRow>
+                      <CCol class="mt-2">
+                        <CFormLabel class="fw-bold">Saving Throws:</CFormLabel>
+                      </CCol>
+                      <CCol sm="auto">
+                        <CFormSelect @change="characterStoreFunctions.setConstitutionSave($event.target.value, characterIndex)" :modelValue="character.constitution.proficient.toString()">
+                          <option v-for="proficiency in savingThrowLevels" :value="proficiency.proficient" :key="proficiency.proficient.toString">{{ proficiency.value }}</option>
+                        </CFormSelect>
+                      </CCol>
+                    </CRow>
+                  </CCardBody>
+                </CCard>
+              </CCol>
+
+              <!-- Intelligence  -->
+              <CCol xs="6" sm="4">
+              <CCard class="mt-2">
+              <CCardHeader>Intelligence (INT)</CCardHeader>
+              <CCardBody>
+                <CRow>
+                  <CCol class="mt-2">
+                    <CFormLabel class="fw-bold">Score:</CFormLabel>
+                  </CCol>
+                  <CCol sm="auto">
+                    <CFormSelect @change="characterStoreFunctions.setIntelligence(parseInt($event.target.value), characterIndex)" :modelValue="character.intelligence.score.toString()">
+                      <option v-for="score in numberList" :value="score" :key="score">{{ score }}</option>
+                    </CFormSelect>
+                  </CCol>
+                </CRow>
+                <CRow>
+                  <CCol class="mt-2">
+                    <CFormLabel class="fw-bold">Saving Throws:</CFormLabel>
+                  </CCol>
+                  <CCol sm="auto">
+                    <CFormSelect @change="characterStoreFunctions.setIntelligenceSave($event.target.value, characterIndex)" :modelValue="character.intelligence.proficient.toString()">
+                      <option v-for="proficiency in savingThrowLevels" :value="proficiency.proficient" :key="proficiency.proficient.toString">{{ proficiency.value }}</option>
+                    </CFormSelect>
+                  </CCol>
+                </CRow>
+                <CRow>
+                  <CCol class="mt-2">
+                    <CFormLabel class="fw-bold">Arcana:</CFormLabel>
+                  </CCol>
+                  <CCol sm="auto">
+                    <CFormSelect @change="characterStoreFunctions.setArcana(parseInt($event.target.value), characterIndex)" :modelValue="character.intelligence.arcana.toString()">
+                      <option v-for="profciency in skillProficiencyLevel" :value="profciency.level" :key="profciency.level">{{ profciency.value }}</option>
+                    </CFormSelect>
+                  </CCol>
+                </CRow>
+                <CRow>
+                  <CCol class="mt-2">
+                    <CFormLabel class="fw-bold">History:</CFormLabel>
+                  </CCol>
+                  <CCol sm="auto">
+                    <CFormSelect @change="characterStoreFunctions.setHistory(parseInt($event.target.value), characterIndex)" :modelValue="character.intelligence.history.toString()">
+                      <option v-for="profciency in skillProficiencyLevel" :value="profciency.level" :key="profciency.level">{{ profciency.value }}</option>
+                    </CFormSelect>
+                  </CCol>
+                </CRow>
+                <CRow>
+                  <CCol class="mt-2">
+                    <CFormLabel class="fw-bold">Investigation:</CFormLabel>
+                  </CCol>
+                  <CCol sm="auto">
+                    <CFormSelect @change="characterStoreFunctions.setInvestigation(parseInt($event.target.value), characterIndex)" :modelValue="character.intelligence.investigation.toString()">
+                      <option v-for="profciency in skillProficiencyLevel" :value="profciency.level" :key="profciency.level">{{ profciency.value }}</option>
+                    </CFormSelect>
+                  </CCol>
+                </CRow>
+                <CRow>
+                  <CCol class="mt-2">
+                    <CFormLabel class="fw-bold">Nature:</CFormLabel>
+                  </CCol>
+                  <CCol sm="auto">
+                    <CFormSelect @change="characterStoreFunctions.setNature(parseInt($event.target.value), characterIndex)" :modelValue="character.intelligence.nature.toString()">
+                      <option v-for="profciency in skillProficiencyLevel" :value="profciency.level" :key="profciency.level">{{ profciency.value }}</option>
+                    </CFormSelect>
+                  </CCol>
+                </CRow>
+                <CRow>
+                  <CCol class="mt-2">
+                    <CFormLabel class="fw-bold">Religion:</CFormLabel>
+                  </CCol>
+                  <CCol sm="auto">
+                    <CFormSelect @change="characterStoreFunctions.setReligion(parseInt($event.target.value), characterIndex)" :modelValue="character.intelligence.religion.toString()">
+                      <option v-for="profciency in skillProficiencyLevel" :value="profciency.level" :key="profciency.level">{{ profciency.value }}</option>
+                    </CFormSelect>
+                  </CCol>
+                </CRow>
+              </CCardBody>
+              </CCard>
+              </CCol>
+
+              <!-- Wisdom -->
+              <CCol xs="6" sm="4">
+                <CCard class="mt-2">
+                    <CCardHeader>Wisdom (WIS)</CCardHeader>
+                  <CCardBody>
+                    <CRow>
+                      <CCol class="mt-2">
+                        <CFormLabel class="fw-bold">Score:</CFormLabel>
+                      </CCol>
+                      <CCol sm="auto">
+                        <CFormSelect @change="characterStoreFunctions.setWisdom(parseInt($event.target.value), characterIndex)" :modelValue="character.wisdom.score.toString()">
+                          <option v-for="score in numberList" :value="score" :key="score">{{ score }}</option>
+                        </CFormSelect>
+                      </CCol>
+                    </CRow>
+                    <CRow>
+                      <CCol class="mt-2">
+                        <CFormLabel class="fw-bold">Saving Throws:</CFormLabel>
+                      </CCol>
+                      <CCol sm="auto">
+                        <CFormSelect @change="characterStoreFunctions.setWisdomSave($event.target.value, characterIndex)" :modelValue="character.wisdom.proficient.toString()">
+                          <option v-for="proficiency in savingThrowLevels" :value="proficiency.proficient" :key="proficiency.proficient.toString">{{ proficiency.value }}</option>
+                        </CFormSelect>
+                      </CCol>
+                    </CRow>
+                    <CRow>
+                      <CCol class="mt-2">
+                        <CFormLabel class="fw-bold">Animal Handling:</CFormLabel>
+                      </CCol>
+                      <CCol sm="auto">
+                        <CFormSelect @change="characterStoreFunctions.setAnimalHandling(parseInt($event.target.value), characterIndex)" :modelValue="character.wisdom.animalHandling.toString()">
+                          <option v-for="profciency in skillProficiencyLevel" :value="profciency.level" :key="profciency.level">{{ profciency.value }}</option>
+                        </CFormSelect>
+                      </CCol>
+                    </CRow>
+                    <CRow>
+                      <CCol class="mt-2">
+                        <CFormLabel class="fw-bold">Insight:</CFormLabel>
+                      </CCol>
+                      <CCol sm="auto">
+                        <CFormSelect @change="characterStoreFunctions.setInsight(parseInt($event.target.value), characterIndex)" :modelValue="character.wisdom.insight.toString()">
+                          <option v-for="profciency in skillProficiencyLevel" :value="profciency.level" :key="profciency.level">{{ profciency.value }}</option>
+                        </CFormSelect>
+                      </CCol>
+                    </CRow>
+                    <CRow>
+                      <CCol class="mt-2">
+                        <CFormLabel class="fw-bold">Medicine:</CFormLabel>
+                      </CCol>
+                      <CCol sm="auto">
+                        <CFormSelect @change="characterStoreFunctions.setMedicine(parseInt($event.target.value), characterIndex)" :modelValue="character.wisdom.medicine.toString()">
+                          <option v-for="profciency in skillProficiencyLevel" :value="profciency.level" :key="profciency.level">{{ profciency.value }}</option>
+                        </CFormSelect>
+                      </CCol>
+                    </CRow>
+                    <CRow>
+                      <CCol class="mt-2">
+                        <CFormLabel class="fw-bold">Survival:</CFormLabel>
+                      </CCol>
+                      <CCol sm="auto">
+                        <CFormSelect @change="characterStoreFunctions.setSurvival(parseInt($event.target.value), characterIndex)" :modelValue="character.wisdom.survival.toString()">
+                          <option v-for="profciency in skillProficiencyLevel" :value="profciency.level" :key="profciency.level">{{ profciency.value }}</option>
+                        </CFormSelect>
+                      </CCol>
+                    </CRow>
+                  </CCardBody>
+                </CCard>
+              </CCol>
+
+              <!-- Charisma -->
+              <CCol xs="6" sm="4">
+                <CCard class="mt-2">
+                  <CCardHeader>Charisma (CHA)</CCardHeader>
+                  <CCardBody>
+                    <CRow>
+                      <CCol class="mt-2">
+                        <CFormLabel class="fw-bold">Score:</CFormLabel>
+                      </CCol>
+                      <CCol sm="auto">
+                        <CFormSelect @change="characterStoreFunctions.setCharisma(parseInt($event.target.value), characterIndex)" :modelValue="character.charisma.score.toString()">
+                          <option v-for="score in numberList" :value="score" :key="score">{{ score }}</option>
+                        </CFormSelect>
+                      </CCol>
+                    </CRow>
+                    <CRow>
+                      <CCol class="mt-2">
+                        <CFormLabel class="fw-bold">Saving Throws:</CFormLabel>
+                      </CCol>
+                      <CCol sm="auto">
+                        <CFormSelect @change="characterStoreFunctions.setCharismaSave($event.target.value, characterIndex)" :modelValue="character.charisma.proficient.toString()">
+                          <option v-for="proficiency in savingThrowLevels" :value="proficiency.proficient" :key="proficiency.proficient.toString">{{ proficiency.value }}</option>
+                        </CFormSelect>
+                      </CCol>
+                    </CRow>
+                    <CRow>
+                      <CCol class="mt-2">
+                        <CFormLabel class="fw-bold">Deception:</CFormLabel>
+                      </CCol>
+                      <CCol sm="auto">
+                        <CFormSelect @change="characterStoreFunctions.setDeception(parseInt($event.target.value), characterIndex)" :modelValue="character.charisma.deception.toString()">
+                          <option v-for="profciency in skillProficiencyLevel" :value="profciency.level" :key="profciency.level">{{ profciency.value }}</option>
+                        </CFormSelect>
+                      </CCol>
+                    </CRow>
+                    <CRow>
+                      <CCol class="mt-2">
+                        <CFormLabel class="fw-bold">Intimidation:</CFormLabel>
+                      </CCol>
+                      <CCol sm="auto">
+                        <CFormSelect @change="characterStoreFunctions.setIntimidation(parseInt($event.target.value), characterIndex)" :modelValue="character.charisma.intimidation.toString()">
+                          <option v-for="profciency in skillProficiencyLevel" :value="profciency.level" :key="profciency.level">{{ profciency.value }}</option>
+                        </CFormSelect>
+                      </CCol>
+                    </CRow>
+                    <CRow>
+                      <CCol class="mt-2">
+                        <CFormLabel class="fw-bold">Performance:</CFormLabel>
+                      </CCol>
+                      <CCol sm="auto">
+                        <CFormSelect @change="characterStoreFunctions.setPerformance(parseInt($event.target.value), characterIndex)" :modelValue="character.charisma.performance.toString()">
+                          <option v-for="profciency in skillProficiencyLevel" :value="profciency.level" :key="profciency.level">{{ profciency.value }}</option>
+                        </CFormSelect>
+                      </CCol>
+                    </CRow>
+                    <CRow>
+                      <CCol class="mt-2">
+                        <CFormLabel class="fw-bold">Persuasion:</CFormLabel>
+                      </CCol>
+                      <CCol sm="auto">
+                        <CFormSelect @change="characterStoreFunctions.setPersuasion(parseInt($event.target.value), characterIndex)" :modelValue="character.charisma.persuasion.toString()">
+                          <option v-for="profciency in skillProficiencyLevel" :value="profciency.level" :key="profciency.level">{{ profciency.value }}</option>
+                        </CFormSelect>
+                      </CCol>
+                    </CRow>
+                  </CCardBody>
+                </CCard>
+              </CCol>
+
+              <!-- Resolve -->
+              <CCol xs="6" sm="4" v-if="campaignStore.selectedCampaign.value.madness">
+                <CCard class="mt-2">
+                  <CCardHeader>Resolve (RES)</CCardHeader>
+                  <CCardBody>
+                    <CRow>
+                      <CCol  class="mt-2">
+                        <CFormLabel class="fw-bold">Score:</CFormLabel>
+                      </CCol>
+                      <CCol sm="auto">
+                        <CFormSelect @change="characterStoreFunctions.setResolve(parseInt($event.target.value), characterIndex)" :modelValue="character.resolve?.score.toString()">
+                          <option v-for="score in numberList" :value="score" :key="score">{{ score }}</option>
+                        </CFormSelect>
+                      </CCol>
+                    </CRow>
+                  </CCardBody>
+                </CCard>
+              </CCol>
+            </CRow>
+          </CModalBody>
+          <CModalFooter>
+            <CButton color="secondary" @click="closeEditor()">Cancel</CButton>
+            <CButton color="dark" @click="closeEditor()">Save</CButton>
+          </CModalFooter>
+        </CModal>
+
+        <!-- Hit Points -->
         <CRow class="mt-1">
           <CCol xs="7" md="5" lg="4">
             <strong>Hit Points:</strong> {{ characterStoreFunctions.getMaxHitPoints(characterIndex, campaignStore.selectedCampaign.value) - character.damage }} / {{ characterStoreFunctions.getMaxHitPoints(characterIndex, campaignStore.selectedCampaign.value) }}
@@ -49,6 +488,7 @@
           </CCol>
         </CRow>
 
+        <!-- Damage -->
         <CRow>
           <CCol xs="7" md="5" lg="4">
             <CButton size="sm" color="danger" @click="characterStoreFunctions.adjustDamage(characterIndex, 10, campaignStore.selectedCampaign.value)">-10</CButton>
@@ -66,6 +506,7 @@
           </CCol>
         </CRow>
 
+        <!-- AC -->
         <CRow class="mt-1">
           <CCol xs="5" sm="4" md="3" lg="2">
             <strong>AC:</strong> {{ character.ac }} 
@@ -82,6 +523,7 @@
           </CCol>
         </CRow>
 
+        <!-- Death Saves -->
         <CRow class="mt-1">
           <CCol md="12" lg="4" xl="3">
             <strong>Death Saving Throws: </strong>
@@ -99,6 +541,7 @@
           </CCol>
         </CRow>
 
+        <!-- Stress -->
         <div  v-if="campaignStore.selectedCampaign.value.madness">
           <CRow class="mt-1">
             <CCol xs="4" md="4" lg="4">
@@ -133,6 +576,7 @@
           </CCard>
         </div>
 
+        <!-- Ability Scores -->
         <CAccordion class="mt-1">
           <CAccordionItem>
             <CAccordionHeader>
@@ -518,12 +962,13 @@
   import { useUserStore } from '@/stores/UserStore'
   import { useCampaignStore } from '@/stores/CampaignStore'
   import { useCharacterStore } from '@/stores/CharacterStore'
-  import { CAccordion, CAccordionBody, CAccordionHeader, CAccordionItem, CButton, CCard, CCardBody, CCardHeader, CCol, CFormLabel, CFormSelect, CRow } from '@coreui/vue'
-  import { CharacterClass } from '@/models/PlayerCharacter'
+  import { CAccordion, CAccordionBody, CAccordionHeader, CAccordionItem, CButton, CCard, CCardBody, CCardHeader, CCol, CFormCheck, CFormLabel, CFormSelect, CModal, CModalBody, CModalFooter, CModalHeader, CModalTitle, CRow } from '@coreui/vue'
+  import { CharacterClass, ClassLevel } from '@/models/PlayerCharacter'
+import agent from '@/api/agent'
   
   export default defineComponent({
     name: "ManageCharacters",
-    components: { CFormSelect, CAccordion, CRow, CCol, CFormLabel, CAccordionHeader, CAccordionBody, CAccordionItem, CButton, CCard, CCardHeader, CCardBody },
+    components: { CFormSelect, CAccordion, CRow, CCol, CFormLabel, CAccordionHeader, CAccordionBody, CAccordionItem, CButton, CCard, CCardHeader, CCardBody, CModal, CModalHeader, CModalTitle, CModalBody, CModalFooter, CFormCheck },
     setup() {
       return {
         userStore: storeToRefs(useUserStore()),
@@ -551,6 +996,10 @@
           { level: 1, value: "Proficient"},
           { level: 2, value: "Expertise"},
         ],
+        longRest: false,
+        editCharacter: false,
+        levelUp: false,
+        newMulticlass: { characterClass: { id: 0 } as CharacterClass } as ClassLevel
       }
     },
     methods: {
@@ -561,6 +1010,33 @@
         } else {
           this.clearCharacterList();
         }
+      },
+      canBeEldritchNight(classLevel: ClassLevel) {
+        return classLevel.characterClass.name === "Fighter" && classLevel.levels === 3;
+      },
+      canBeArcaneTrickster(classLevel: ClassLevel) {
+        return classLevel.characterClass.name === "Warlock" && classLevel.levels === 3;
+      },
+      setNewMulticlass(classId: number) {
+        this.levelUp = true;
+        this.newMulticlass.characterClass = { id: classId } as CharacterClass;
+        this.newMulticlass.levels = 1;
+        this.newMulticlass.baseClass = false;
+        if (classId === 1) {
+          this.newMulticlass.thirdCaster = true;
+        } else {
+          this.newMulticlass.thirdCaster = false;
+        }
+      },
+      async getClassList() {
+        await agent.playerCharacter.getClassList().then((data) => {
+          this.classList = data;
+        })
+      },
+      closeEditor() {
+        this.editCharacter = false;
+        this.levelUp = false;
+        this.newMulticlass = { characterClass: { id: 0 } as CharacterClass } as ClassLevel
       }
     },
     async mounted() {
@@ -570,6 +1046,7 @@
       }
 
       await this.getCharacterList(this.userStore.user.value.id as number, this.campaignStore.selectedCampaign.value.id);
+      await this.getClassList();
     }
   });
 </script>
