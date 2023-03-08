@@ -547,9 +547,9 @@
       setClass(id: number) {
         this.playerCharacter.classLevelList[0].characterClass.id = id;
         if (id === 1) {
-          this.playerCharacter.classLevelList[0].thirdCaster = true;
+          this.playerCharacter.classLevelList[0].eldtritchKnight = true;
         } else {
-          this.playerCharacter.classLevelList[0].thirdCaster = false;
+          this.playerCharacter.classLevelList[0].eldtritchKnight = false;
         }
       },
       setBaseLevel(level: number) {
@@ -796,20 +796,18 @@
 
         if (!error) {
           this.multiClassList.forEach((multiclass) => {
-            var newClassLevel: ClassLevel;
-            newClassLevel = {
+            var newClassLevel = {
               id: 0,
               baseClass: false,
               levels: this.multiClassLevelList[this.multiClassList.indexOf(multiclass)],
               usedHitDice: 0,
-              thirdCaster: false,
               characterClass: {
                 id: multiclass,
                 name: "",
                 hitDie: 0,
                 averageHitDie: 0
-              }
-            }
+              } as CharacterClass
+            } as ClassLevel;
 
             this.playerCharacter.classLevelList.push(newClassLevel);
           });

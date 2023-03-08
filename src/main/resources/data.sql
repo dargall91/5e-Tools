@@ -86,20 +86,20 @@ ON DUPLICATE KEY
 UPDATE username = VALUES(username), password = VALUES(password), admin = VALUES(admin);
 
 -- classes
-INSERT INTO CharacterClass(id, name, hitDie, averageHitDie) VALUES
-    (1, 'Artificer', 8, 5),
-    (2, 'Barbarian', 12, 7),
-    (3, 'Bard', 8, 5),
-    (4, 'Cleric', 8, 5),
-    (5, 'Druid', 8, 5),
-    (6, 'Fighter', 10, 6),
-    (7, 'Monk', 8, 5),
-    (8, 'Paladin', 10, 6),
-    (9, 'Ranger', 10, 6),
-    (10, 'Rogue', 8, 5),
-    (11, 'Sorcerer', 6, 4),
-    (12, 'Warlock', 8, 5),
-    (13, 'Wizard', 6, 4)
+INSERT INTO CharacterClass(id, name, hitDie, averageHitDie, fullCaster, halfCaster, artificer, warlock) VALUES
+    (1, 'Artificer', 8, 5, 0, 0, 1, 0),
+    (2, 'Barbarian', 12, 7, 0, 0, 0, 0),
+    (3, 'Bard', 8, 5, 1, 0, 0, 0),
+    (4, 'Cleric', 8, 5, 1, 0, 0, 0),
+    (5, 'Druid', 8, 5, 1, 0, 0, 0),
+    (6, 'Fighter', 10, 6, 0, 0, 0, 0),
+    (7, 'Monk', 8, 5, 0, 0, 0, 0),
+    (8, 'Paladin', 10, 6, 0, 1, 0, 0),
+    (9, 'Ranger', 10, 6, 0, 1, 0, 0),
+    (10, 'Rogue', 8, 5, 0, 0, 0, 0),
+    (11, 'Sorcerer', 6, 4, 1, 0, 0, 0),
+    (12, 'Warlock', 8, 5, 0, 0, 0, 1),
+    (13, 'Wizard', 6, 4, 1, 0, 0, 0)
 ON DUPLICATE KEY
 UPDATE name = VALUES(name), hitDie = VALUES(hitDie), averageHitDie = VALUES(averageHitDie);
 
@@ -120,3 +120,28 @@ INSERT INTO StressStatus(id, name, type, description, minRoll, maxRoll) VALUES
     (13, 'Focused', 'Virtue', 'Add your proficiency bonus to all of your attack rolls and your Spell Save DC. In addition, the number you need to roll on the d20 on attack rolls to land a critical hit is reduced by 1. At the start of your turn, roll 1d4. On a 4, all allies currently within 20 feet of you add their proficiency bonus to their attack rolls and their Spell Save DC and the number they need to roll on the d20 on attack rolls to land a critical hit is reduced by 1.', 96, 100)
 ON DUPLICATE KEY
 UPDATE name = VALUES(name), type = VALUES(type), description = VALUES(description), minRoll = VALUES(minRoll), maxRoll = VALUES(maxRoll);
+
+-- proficiency bonus table
+INSERT INTO ProficiencyBonus(level, bonus) VALUES
+    (1, 2),
+    (2, 2),
+    (3, 2),
+    (4, 2),
+    (5, 3),
+    (6, 3),
+    (7, 3),
+    (8, 3),
+    (9, 4),
+    (10, 4),
+    (11, 4),
+    (12, 4),
+    (13, 5),
+    (14, 5),
+    (15, 5),
+    (16, 5),
+    (17, 6),
+    (18, 6),
+    (19, 6),
+    (20, 6)
+ON DUPLICATE KEY
+UPDATE bonus = VALUES(bonus);

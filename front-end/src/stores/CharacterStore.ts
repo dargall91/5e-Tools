@@ -1,14 +1,23 @@
 import { defineStore } from 'pinia'
 import agent from '@/api/agent';
-import { PlayerCharacter } from '@/models/PlayerCharacter';
+import { PlayerCharacter, PlayerCharacterMasterData } from '@/models/PlayerCharacter';
 import { Campaign } from '@/models/Campaign';
+
+const updateDelay = 2000;
+let updateTimer: number | undefined;
 
 export const useCharacterStore = defineStore({
   id: 'character',
   state: () => ({
-    characterList: [] as PlayerCharacter[]
+    characterList: [] as PlayerCharacter[],
+    masterData: {} as PlayerCharacterMasterData
   }),
   actions: {
+    async getMasterData() {
+      await agent.playerCharacter.getMasterData().then((data) => {
+        this.masterData = data;
+      })
+    },
     async getCharacterList(userId: number, campaignId: number) {
       if (userId === 0 || campaignId === 0) {
         this.clearCharacterList();
@@ -161,6 +170,8 @@ export const useCharacterStore = defineStore({
       if (this.characterList[characterIndex].classLevelList[classLevelindex].usedHitDice < 0) {
         this.characterList[characterIndex].classLevelList[classLevelindex].usedHitDice = 0;
       }
+
+      this.setUpdateTimer(characterIndex);
     },
     adjustDamage(index: number, damage: number, campaign: Campaign) {
       if (this.characterList[index].temporaryHitPoints > 0 && damage > 0) {
@@ -182,6 +193,8 @@ export const useCharacterStore = defineStore({
       if (this.characterList[index].damage < 0) {
         this.characterList[index].damage = 0;
       }
+
+      this.setUpdateTimer(index);
     },
     adjustTemporyHitPoints(index: number, amount: number) {
       this.characterList[index].temporaryHitPoints += amount;
@@ -189,6 +202,8 @@ export const useCharacterStore = defineStore({
       if (this.characterList[index].temporaryHitPoints < 0) {
         this.characterList[index].temporaryHitPoints = 0;
       }
+
+      this.setUpdateTimer(index);
     },
     adjustAc(index: number, amount: number) {
       this.characterList[index].ac += amount;
@@ -196,6 +211,8 @@ export const useCharacterStore = defineStore({
       if (this.characterList[index].ac < 1) {
         this.characterList[index].ac = 1;
       }
+
+      this.setUpdateTimer(index);
     },
     adjustAcBonus(index: number, amount: number) {
       this.characterList[index].acBonus += amount;
@@ -203,10 +220,13 @@ export const useCharacterStore = defineStore({
       if (this.characterList[index].acBonus < 0) {
         this.characterList[index].acBonus = 0;
       }
+
+      this.setUpdateTimer(index);
     },
     resetDeathSaves(index: number) {
       this.characterList[index].deathSaveFailures = 0;
       this.characterList[index].deathSaveSuccesses = 0;
+      this.setUpdateTimer(index);
     },
     adjustDeathSaveSuccesses(index: number, amount: number) {
       this.characterList[index].deathSaveSuccesses += amount;
@@ -218,6 +238,8 @@ export const useCharacterStore = defineStore({
       if (this.characterList[index].deathSaveSuccesses > 3) {
         this.characterList[index].deathSaveSuccesses = 3;
       }
+
+      this.setUpdateTimer(index);
     },
     adjustDeathSaveFailures(index: number, amount: number) {
       this.characterList[index].deathSaveFailures += amount;
@@ -229,6 +251,8 @@ export const useCharacterStore = defineStore({
       if (this.characterList[index].deathSaveFailures > 3) {
         this.characterList[index].deathSaveFailures = 3;
       }
+
+      this.setUpdateTimer(index);
     },
     adjustStress(index: number, amount: number, campaign: Campaign) {
       if (!campaign.madness) {
@@ -245,6 +269,8 @@ export const useCharacterStore = defineStore({
       if (this.characterList[index].stress > stressMaximum) {
         this.characterList[index].stress = stressMaximum;
       }
+
+      this.setUpdateTimer(index);
     },
     getStressThreshold(index: number, campaign: Campaign) {
       if (!campaign.madness) {
@@ -258,11 +284,31 @@ export const useCharacterStore = defineStore({
     getStressMaximum(index: number, campaign: Campaign) {
       return this.getStressThreshold(index, campaign) * 2;
     },
+    getTotalLevels(index: number) {
+      let totalLevels = 0;
+      this.characterList[index].classLevelList.forEach((classLevel) => {
+        totalLevels += classLevel.levels;
+      });
+
+      return totalLevels;
+    },
     longRest(index: number) {
 
+      this.setUpdateTimer(index);
     },
     levelUp(characterIndex: number, classLevelIndex: number) {
       this.characterList[characterIndex].classLevelList[classLevelIndex].levels++;
+    },
+    async cancelEdits(index: number) {
+      await agent.playerCharacter.getCharacter(this.characterList[index].id).then((data) => {
+        this.characterList[index] = data;
+      });
+    },
+    setUpdateTimer(characterIndex: number) {
+      clearTimeout(updateTimer);
+      updateTimer = setTimeout(() => {
+        this.saveCharacter(characterIndex);
+      }, updateDelay)
     }
   },
   persist: true

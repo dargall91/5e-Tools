@@ -1,3 +1,9 @@
+export interface PlayerCharacterMasterData {
+	characterClasses: CharacterClass[],
+	proficiencyBonuses: ProficiencyBonus[],
+	stressStatuses: StressStatus[]
+}
+
 export interface PlayerCharacter {
 	id: number,
 	campaignId: number,
@@ -77,7 +83,9 @@ export interface ClassLevel {
 	baseClass: boolean,
 	levels: number,
 	usedHitDice: number,
-	thirdCaster: boolean,
+	eldtritchKnight: boolean,
+	aracneTrickster: boolean,
+	beastMaster: boolean,
 	characterClass: CharacterClass
 };
 
@@ -85,7 +93,11 @@ export interface CharacterClass {
 	id: number,
 	name: string,
 	hitDie: number,
-	averageHitDie: number
+	averageHitDie: number,
+	fullCaster: boolean,
+	halfCaster: boolean,
+	artificer: boolean,
+	warlock: boolean
 };
 
 export interface StressStatus {
@@ -96,3 +108,8 @@ export interface StressStatus {
 	minRoll: number,
 	maxRoll: number
 };
+
+export interface ProficiencyBonus {
+	level: number,
+	bonus: number
+}

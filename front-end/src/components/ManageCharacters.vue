@@ -64,7 +64,7 @@
         </CModal>
 
         <!-- Edit Modal -->
-        <CModal size="xl" :visible="editCharacter" @close="closeEditor()">
+        <CModal size="xl" :visible="editCharacter" @close="closeEditorAndCancelEdits(characterIndex)">
           <CModalHeader>
             <CModalTitle>Edit {{ character.name }}</CModalTitle>
           </CModalHeader>
@@ -81,16 +81,20 @@
                 <strong>Level:</strong> {{ classLevel.levels }}
               </CCol>
               <CCol xs="4" v-if="canBeEldritchNight(classLevel) && levelUp === false">
-                <CFormCheck label="Eldtritch Knight" />
+                <CFormCheck label="Eldtritch Knight" v-model="classLevel.eldtritchKnight" value="true"/>
               </CCol>
               <CCol xs="4" v-if="canBeArcaneTrickster(classLevel) && levelUp === false">
-                <CFormCheck label="Arcane Trickster" v-model="classLevel.thirdCaster" value="true" />
+                <CFormCheck label="Arcane Trickster" v-model="classLevel.aracneTrickster" value="true" />
               </CCol>
-              <CCol xs="4" v-if="!levelUp">
+              <CCol xs="4" v-if="canBeBeastmaster(classLevel) && levelUp === false">
+                <CFormCheck label="Beastmaster" v-model="classLevel.beastMaster" value="true" />
+              </CCol>
+              <CCol xs="4" v-if="!levelUp && characterStoreFunctions.getTotalLevels(characterIndex) < 20">
                 <CButton size="sm" color="dark" @click="() => { levelUp = true; characterStoreFunctions.levelUp(characterIndex, classLevelIndex)}">Level Up</CButton>
               </CCol>
             </CRow>
-            <CButton size="sm"  v-if="!levelUp && character.classLevelList.length < classList.length && newMulticlass.characterClass.id === 0" color="dark" 
+            <CButton size="sm"  v-if="!levelUp && character.classLevelList.length < classList.length &&
+                                      newMulticlass.characterClass.id === 0 && characterStoreFunctions.getTotalLevels(characterIndex) < 20" color="dark" 
               @click="setNewMulticlass(1)">Add Multiclass</CButton>
             <CRow v-if="newMulticlass.characterClass.id != 0">
               <CCol xs="3" lg="2" xl="1">
@@ -105,6 +109,8 @@
                 <strong>Level:</strong> {{ newMulticlass.levels }}
               </CCol>
             </CRow>
+
+            <CFormCheck class="mt-1" label="Tough Feat" v-model="character.toughFeat" value="true" />
 
             <!-- Ability Scores -->
             <CRow>
@@ -473,8 +479,8 @@
             </CRow>
           </CModalBody>
           <CModalFooter>
-            <CButton color="secondary" @click="closeEditor()">Cancel</CButton>
-            <CButton color="dark" @click="closeEditor()">Save</CButton>
+            <CButton color="secondary" @click="closeEditorAndCancelEdits(characterIndex)">Cancel</CButton>
+            <CButton color="dark" @click="closeEditorAndSaveEdits(characterIndex)">Save</CButton>
           </CModalFooter>
         </CModal>
 
@@ -1015,7 +1021,10 @@ import agent from '@/api/agent'
         return classLevel.characterClass.name === "Fighter" && classLevel.levels === 3;
       },
       canBeArcaneTrickster(classLevel: ClassLevel) {
-        return classLevel.characterClass.name === "Warlock" && classLevel.levels === 3;
+        return classLevel.characterClass.name === "Rogue" && classLevel.levels === 3;
+      },
+      canBeBeastmaster(classLevel: ClassLevel) {
+        return classLevel.characterClass.name === "Ranger" && classLevel.levels === 3;
       },
       setNewMulticlass(classId: number) {
         this.levelUp = true;
@@ -1023,9 +1032,9 @@ import agent from '@/api/agent'
         this.newMulticlass.levels = 1;
         this.newMulticlass.baseClass = false;
         if (classId === 1) {
-          this.newMulticlass.thirdCaster = true;
+          this.newMulticlass.eldtritchKnight = true;
         } else {
-          this.newMulticlass.thirdCaster = false;
+          this.newMulticlass.eldtritchKnight = false;
         }
       },
       async getClassList() {
@@ -1033,10 +1042,17 @@ import agent from '@/api/agent'
           this.classList = data;
         })
       },
-      closeEditor() {
+      async closeEditorAndCancelEdits(index: number) {
         this.editCharacter = false;
         this.levelUp = false;
-        this.newMulticlass = { characterClass: { id: 0 } as CharacterClass } as ClassLevel
+        this.newMulticlass = { characterClass: { id: 0 } as CharacterClass } as ClassLevel,
+        await this.characterStoreFunctions.cancelEdits(index);
+      },
+      async closeEditorAndSaveEdits(index: number) {
+        this.editCharacter = false;
+        this.levelUp = false;
+        this.newMulticlass = { characterClass: { id: 0 } as CharacterClass } as ClassLevel,
+        await this.characterStoreFunctions.saveCharacter(index);
       }
     },
     async mounted() {
@@ -1044,7 +1060,8 @@ import agent from '@/api/agent'
         await this.getCampaignList();
         await this.getActiveCampaign();
       }
-
+      
+      await this.characterStoreFunctions.getMasterData();
       await this.getCharacterList(this.userStore.user.value.id as number, this.campaignStore.selectedCampaign.value.id);
       await this.getClassList();
     }

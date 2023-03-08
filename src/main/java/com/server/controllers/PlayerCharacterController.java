@@ -2,10 +2,12 @@ package com.server.controllers;
 
 import com.server.entities.Campaign;
 import com.server.entities.playercharacter.PlayerCharacter;
+import com.server.entities.playercharacter.PlayerCharacterMasterData;
 import com.server.entities.playercharacter.StressStatus;
 import com.server.repositories.CampaignRepository;
 import com.server.repositories.playercharacter.CharacterClassRepository;
 import com.server.repositories.playercharacter.PlayerCharacterRepository;
+import com.server.repositories.playercharacter.ProficiencyBonusRepository;
 import com.server.repositories.playercharacter.StressStatusRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
@@ -33,8 +35,22 @@ public class PlayerCharacterController {
     private CharacterClassRepository classRepo;
     @Autowired
     private StressStatusRepository stressRepo;
+    @Autowired
+    private ProficiencyBonusRepository proficiencyRepo;
 
     //TODO: add methods for android to update ONLY the fields it has uses (init, combatant, etc)
+
+    @GetMapping("masterdata")
+    public ResponseEntity<?> getMasterData() {
+        PlayerCharacterMasterData masterData = new PlayerCharacterMasterData();
+        masterData.setCharacterClasses(classRepo.findAllByOrderByNameAsc());
+        masterData.setProficiencyBonuses(proficiencyRepo.findAllByOrderByLevelAsc());
+        masterData.setStressStatuses(stressRepo.findAll());
+
+        return ResponseEntity.ok(masterData);
+    }
+
+
     /**
      * Gets the data for a specified character
      * @param pcId id of the character in the table
