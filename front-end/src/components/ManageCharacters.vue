@@ -376,6 +376,16 @@
                       </CCol>
                     </CRow>
                     <CRow>
+                    <CCol class="mt-2">
+                      <CFormLabel class="fw-bold">Perception:</CFormLabel>
+                    </CCol>
+                    <CCol sm="auto">
+                      <CFormSelect @change="characterStoreFunctions.setPerception(parseInt($event.target.value), characterIndex)" :modelValue="'0'">
+                        <option v-for="profciency in skillProficiencyLevel" :value="profciency.level" :key="profciency.level">{{ profciency.value }}</option>
+                      </CFormSelect>
+                    </CCol>
+                  </CRow>
+                    <CRow>
                       <CCol class="mt-2">
                         <CFormLabel class="fw-bold">Survival:</CFormLabel>
                       </CCol>
@@ -593,36 +603,18 @@
                 <!-- Strength -->
                 <CCol xs="6" sm="4">
                   <CCard class="mt-2">
-                    <CCardHeader>Strength (STR)</CCardHeader>
+                    <CCardHeader>Strength (STR): {{ character.strength.score }} ({{ getScoreModifierString(character.strength.score) }})</CCardHeader>
                     <CCardBody>
                       <CRow>
-                        <CCol class="mt-2">
-                          <CFormLabel class="fw-bold">Score:</CFormLabel>
-                        </CCol>
-                        <CCol sm="auto">
-                          <CFormSelect @change="characterStoreFunctions.setStrength(parseInt($event.target.value), characterIndex)" :modelValue="character.strength.score.toString()">
-                            <option v-for="score in numberList" :value="score" :key="score">{{ score }}</option>
-                          </CFormSelect>
+                        <CCol>
+                          <strong>Saving Throws: </strong> {{ getSavingThrowBonus(character.strength.score, character.strength.proficient, 
+                                  characterStoreFunctions.getProficiencyBonus(characterIndex)) }}
                         </CCol>
                       </CRow>
                       <CRow>
-                        <CCol class="mt-2">
-                          <CFormLabel class="fw-bold">Saving Throws:</CFormLabel>
-                        </CCol>
-                        <CCol sm="auto">
-                          <CFormSelect @change="characterStoreFunctions.setStrengthSave($event.target.value, characterIndex)" :modelValue="character.strength.proficient.toString()">
-                            <option v-for="proficiency in savingThrowLevels" :value="proficiency.proficient" :key="proficiency.proficient.toString()">{{ proficiency.value }}</option>
-                          </CFormSelect>
-                        </CCol>
-                      </CRow>
-                      <CRow>
-                        <CCol class="mt-2">
-                          <CFormLabel class="fw-bold">Athletics:</CFormLabel>
-                        </CCol>
-                        <CCol sm="auto">
-                          <CFormSelect @change="characterStoreFunctions.setAthletics(parseInt($event.target.value), characterIndex)" :modelValue="character.strength.athletics.toString()">
-                            <option v-for="profciency in skillProficiencyLevel" :value="profciency.level" :key="profciency.level">{{ profciency.value }}</option>
-                          </CFormSelect>
+                        <CCol class="mt-1">
+                          <strong>Athletics: </strong> {{ getSkillBonus(character.strength.score, character.strength.athletics, 
+                                  characterStoreFunctions.getProficiencyBonus(characterIndex), characterStoreFunctions.isJackOfAllTrades(characterIndex)) }}
                         </CCol>
                       </CRow>
                     </CCardBody>
@@ -632,56 +624,30 @@
                 <!-- Dexterity -->
                 <CCol xs="6" sm="4">
                   <CCard class="mt-2">
-                    <CCardHeader>Dexterity (DEX)</CCardHeader>
+                    <CCardHeader>Dexterity (DEX): {{ character.dexterity.score }} ({{ getScoreModifierString(character.dexterity.score) }})</CCardHeader>
                     <CCardBody>
                       <CRow>
-                        <CCol class="mt-2">
-                          <CFormLabel class="fw-bold">Score:</CFormLabel>
-                        </CCol>
-                        <CCol sm="auto">
-                          <CFormSelect @change="characterStoreFunctions.setDexterity(parseInt($event.target.value), characterIndex)" :modelValue="character.dexterity.score.toString()">
-                            <option v-for="score in numberList" :value="score" :key="score">{{ score }}</option>
-                          </CFormSelect>
+                        <CCol>
+                          <strong>Saving Throws: </strong> {{ getSavingThrowBonus(character.dexterity.score, character.dexterity.proficient, 
+                                  characterStoreFunctions.getProficiencyBonus(characterIndex)) }}
                         </CCol>
                       </CRow>
                       <CRow>
-                        <CCol class="mt-2">
-                          <CFormLabel class="fw-bold">Saving Throws:</CFormLabel>
-                        </CCol>
-                        <CCol sm="auto">
-                          <CFormSelect @change="characterStoreFunctions.setDexteritySave($event.target.value, characterIndex)" :modelValue="character.dexterity.proficient.toString()">
-                            <option v-for="proficiency in savingThrowLevels" :value="proficiency.proficient" :key="proficiency.proficient.toString">{{ proficiency.value }}</option>
-                          </CFormSelect>
+                        <CCol class="mt-1">
+                          <strong>Acrobatics: </strong> {{ getSkillBonus(character.dexterity.score, character.dexterity.acrobatics, 
+                                  characterStoreFunctions.getProficiencyBonus(characterIndex), characterStoreFunctions.isJackOfAllTrades(characterIndex)) }}
                         </CCol>
                       </CRow>
                       <CRow>
-                        <CCol class="mt-2">
-                          <CFormLabel class="fw-bold">Acrobatics:</CFormLabel>
-                        </CCol>
-                        <CCol sm="auto">
-                          <CFormSelect @change="characterStoreFunctions.setAcrobatics(parseInt($event.target.value), characterIndex)" :modelValue="character.dexterity.acrobatics.toString()">
-                            <option v-for="profciency in skillProficiencyLevel" :value="profciency.level" :key="profciency.level">{{ profciency.value }}</option>
-                          </CFormSelect>
+                        <CCol class="mt-1">
+                          <strong>Sleight of Hand: </strong> {{ getSkillBonus(character.dexterity.score, character.dexterity.sleightOfHand, 
+                                  characterStoreFunctions.getProficiencyBonus(characterIndex), characterStoreFunctions.isJackOfAllTrades(characterIndex)) }}
                         </CCol>
                       </CRow>
                       <CRow>
-                        <CCol class="mt-2">
-                          <CFormLabel class="fw-bold">Sleight of Hand:</CFormLabel>
-                        </CCol>
-                        <CCol sm="auto">
-                          <CFormSelect @change="characterStoreFunctions.setSleightOfHand(parseInt($event.target.value), characterIndex)" :modelValue="character.dexterity.sleightOfHand.toString()">
-                            <option v-for="profciency in skillProficiencyLevel" :value="profciency.level" :key="profciency.level">{{ profciency.value }}</option>
-                          </CFormSelect>
-                        </CCol>
-                      </CRow>
-                      <CRow>
-                        <CCol class="mt-2">
-                          <CFormLabel class="fw-bold">Stealth:</CFormLabel>
-                        </CCol>
-                        <CCol sm="auto">
-                          <CFormSelect @change="characterStoreFunctions.setStealth(parseInt($event.target.value), characterIndex)" :modelValue="character.dexterity.stealth.toString()">
-                            <option v-for="profciency in skillProficiencyLevel" :value="profciency.level" :key="profciency.level">{{ profciency.value }}</option>
-                          </CFormSelect>
+                        <CCol class="mt-1">
+                          <strong>Stealth: </strong> {{ getSkillBonus(character.dexterity.score, character.dexterity.stealth, 
+                                  characterStoreFunctions.getProficiencyBonus(characterIndex), characterStoreFunctions.isJackOfAllTrades(characterIndex)) }}
                         </CCol>
                       </CRow>
                     </CCardBody>
@@ -691,26 +657,12 @@
                 <!-- Constitution -->
                 <CCol xs="6" sm="4">
                   <CCard class="mt-2">
-                    <CCardHeader>Constitution (CON)</CCardHeader>
+                    <CCardHeader>Constitution (CON): {{ character.constitution.score }} ({{ getScoreModifierString(character.constitution.score) }})</CCardHeader>
                     <CCardBody>
                       <CRow>
-                        <CCol class="mt-2">
-                          <CFormLabel class="fw-bold">Score:</CFormLabel>
-                        </CCol>
-                        <CCol sm="auto">
-                          <CFormSelect @change="characterStoreFunctions.setConstitution(parseInt($event.target.value), characterIndex)" :modelValue="character.constitution.score.toString()">
-                            <option v-for="score in numberList" :value="score" :key="score">{{ score }}</option>
-                          </CFormSelect>
-                        </CCol>
-                      </CRow>
-                      <CRow>
-                        <CCol class="mt-2">
-                          <CFormLabel class="fw-bold">Saving Throws:</CFormLabel>
-                        </CCol>
-                        <CCol sm="auto">
-                          <CFormSelect @change="characterStoreFunctions.setConstitutionSave($event.target.value, characterIndex)" :modelValue="character.constitution.proficient.toString()">
-                            <option v-for="proficiency in savingThrowLevels" :value="proficiency.proficient" :key="proficiency.proficient.toString">{{ proficiency.value }}</option>
-                          </CFormSelect>
+                        <CCol>
+                          <strong>Saving Throws: </strong> {{ getSavingThrowBonus(character.constitution.score, character.constitution.proficient, 
+                                  characterStoreFunctions.getProficiencyBonus(characterIndex)) }}
                         </CCol>
                       </CRow>
                     </CCardBody>
@@ -719,146 +671,94 @@
 
                 <!-- Intelligence  -->
                 <CCol xs="6" sm="4">
-                <CCard class="mt-2">
-                <CCardHeader>Intelligence (INT)</CCardHeader>
-                <CCardBody>
-                  <CRow>
-                    <CCol class="mt-2">
-                      <CFormLabel class="fw-bold">Score:</CFormLabel>
-                    </CCol>
-                    <CCol sm="auto">
-                      <CFormSelect @change="characterStoreFunctions.setIntelligence(parseInt($event.target.value), characterIndex)" :modelValue="character.intelligence.score.toString()">
-                        <option v-for="score in numberList" :value="score" :key="score">{{ score }}</option>
-                      </CFormSelect>
-                    </CCol>
-                  </CRow>
-                  <CRow>
-                    <CCol class="mt-2">
-                      <CFormLabel class="fw-bold">Saving Throws:</CFormLabel>
-                    </CCol>
-                    <CCol sm="auto">
-                      <CFormSelect @change="characterStoreFunctions.setIntelligenceSave($event.target.value, characterIndex)" :modelValue="character.intelligence.proficient.toString()">
-                        <option v-for="proficiency in savingThrowLevels" :value="proficiency.proficient" :key="proficiency.proficient.toString">{{ proficiency.value }}</option>
-                      </CFormSelect>
-                    </CCol>
-                  </CRow>
-                  <CRow>
-                    <CCol class="mt-2">
-                      <CFormLabel class="fw-bold">Arcana:</CFormLabel>
-                    </CCol>
-                    <CCol sm="auto">
-                      <CFormSelect @change="characterStoreFunctions.setArcana(parseInt($event.target.value), characterIndex)" :modelValue="character.intelligence.arcana.toString()">
-                        <option v-for="profciency in skillProficiencyLevel" :value="profciency.level" :key="profciency.level">{{ profciency.value }}</option>
-                      </CFormSelect>
-                    </CCol>
-                  </CRow>
-                  <CRow>
-                    <CCol class="mt-2">
-                      <CFormLabel class="fw-bold">History:</CFormLabel>
-                    </CCol>
-                    <CCol sm="auto">
-                      <CFormSelect @change="characterStoreFunctions.setHistory(parseInt($event.target.value), characterIndex)" :modelValue="character.intelligence.history.toString()">
-                        <option v-for="profciency in skillProficiencyLevel" :value="profciency.level" :key="profciency.level">{{ profciency.value }}</option>
-                      </CFormSelect>
-                    </CCol>
-                  </CRow>
-                  <CRow>
-                    <CCol class="mt-2">
-                      <CFormLabel class="fw-bold">Investigation:</CFormLabel>
-                    </CCol>
-                    <CCol sm="auto">
-                      <CFormSelect @change="characterStoreFunctions.setInvestigation(parseInt($event.target.value), characterIndex)" :modelValue="character.intelligence.investigation.toString()">
-                        <option v-for="profciency in skillProficiencyLevel" :value="profciency.level" :key="profciency.level">{{ profciency.value }}</option>
-                      </CFormSelect>
-                    </CCol>
-                  </CRow>
-                  <CRow>
-                    <CCol class="mt-2">
-                      <CFormLabel class="fw-bold">Nature:</CFormLabel>
-                    </CCol>
-                    <CCol sm="auto">
-                      <CFormSelect @change="characterStoreFunctions.setNature(parseInt($event.target.value), characterIndex)" :modelValue="character.intelligence.nature.toString()">
-                        <option v-for="profciency in skillProficiencyLevel" :value="profciency.level" :key="profciency.level">{{ profciency.value }}</option>
-                      </CFormSelect>
-                    </CCol>
-                  </CRow>
-                  <CRow>
-                    <CCol class="mt-2">
-                      <CFormLabel class="fw-bold">Religion:</CFormLabel>
-                    </CCol>
-                    <CCol sm="auto">
-                      <CFormSelect @change="characterStoreFunctions.setReligion(parseInt($event.target.value), characterIndex)" :modelValue="character.intelligence.religion.toString()">
-                        <option v-for="profciency in skillProficiencyLevel" :value="profciency.level" :key="profciency.level">{{ profciency.value }}</option>
-                      </CFormSelect>
-                    </CCol>
-                  </CRow>
-                </CCardBody>
-                </CCard>
+                  <CCard class="mt-2">
+                    <CCardHeader>Intelligence (INT): {{ character.intelligence.score }} ({{ getScoreModifierString(character.intelligence.score) }})</CCardHeader>
+                    <CCardBody>
+                      <CRow>
+                        <CCol>
+                          <strong>Saving Throws: </strong> {{ getSavingThrowBonus(character.intelligence.score, character.intelligence.proficient, 
+                                  characterStoreFunctions.getProficiencyBonus(characterIndex)) }}
+                        </CCol>
+                      </CRow>
+                      <CRow>
+                        <CCol class="mt-1">
+                          <strong>Arcana: </strong> {{ getSkillBonus(character.intelligence.score, character.intelligence.arcana, 
+                                  characterStoreFunctions.getProficiencyBonus(characterIndex), characterStoreFunctions.isJackOfAllTrades(characterIndex)) }}
+                        </CCol>
+                      </CRow>
+                      <CRow>
+                        <CCol class="mt-1">
+                          <strong>History: </strong> {{ getSkillBonus(character.intelligence.score, character.intelligence.history, 
+                                  characterStoreFunctions.getProficiencyBonus(characterIndex), characterStoreFunctions.isJackOfAllTrades(characterIndex)) }}
+                        </CCol>
+                      </CRow>
+                      <CRow>
+                        <CCol class="mt-1">
+                          <strong>Investigation: </strong> {{ getSkillBonus(character.intelligence.score, character.intelligence.investigation, 
+                                  characterStoreFunctions.getProficiencyBonus(characterIndex), characterStoreFunctions.isJackOfAllTrades(characterIndex)) }}
+                        </CCol>
+                      </CRow>
+                      <CRow>
+                        <CCol class="mt-1">
+                          <strong>Nature: </strong> {{ getSkillBonus(character.intelligence.score, character.intelligence.nature, 
+                                  characterStoreFunctions.getProficiencyBonus(characterIndex), characterStoreFunctions.isJackOfAllTrades(characterIndex)) }}
+                        </CCol>
+                      </CRow>
+                      <CRow>
+                        <CCol class="mt-1">
+                          <strong>Religion: </strong> {{ getSkillBonus(character.intelligence.score, character.intelligence.religion, 
+                                  characterStoreFunctions.getProficiencyBonus(characterIndex), characterStoreFunctions.isJackOfAllTrades(characterIndex)) }}
+                        </CCol>
+                      </CRow>
+                    </CCardBody>
+                  </CCard>
                 </CCol>
 
                 <!-- Wisdom -->
                 <CCol xs="6" sm="4">
                   <CCard class="mt-2">
-                      <CCardHeader>Wisdom (WIS)</CCardHeader>
+                    <CCardHeader>Wisdom (WIS): {{ character.wisdom.score }} ({{ getScoreModifierString(character.wisdom.score) }})</CCardHeader>
                     <CCardBody>
                       <CRow>
-                        <CCol class="mt-2">
-                          <CFormLabel class="fw-bold">Score:</CFormLabel>
-                        </CCol>
-                        <CCol sm="auto">
-                          <CFormSelect @change="characterStoreFunctions.setWisdom(parseInt($event.target.value), characterIndex)" :modelValue="character.wisdom.score.toString()">
-                            <option v-for="score in numberList" :value="score" :key="score">{{ score }}</option>
-                          </CFormSelect>
+                        <CCol>
+                          <strong>Saving Throws: </strong> {{ getSavingThrowBonus(character.wisdom.score, character.wisdom.proficient, 
+                                  characterStoreFunctions.getProficiencyBonus(characterIndex)) }}
                         </CCol>
                       </CRow>
                       <CRow>
-                        <CCol class="mt-2">
-                          <CFormLabel class="fw-bold">Saving Throws:</CFormLabel>
-                        </CCol>
-                        <CCol sm="auto">
-                          <CFormSelect @change="characterStoreFunctions.setWisdomSave($event.target.value, characterIndex)" :modelValue="character.wisdom.proficient.toString()">
-                            <option v-for="proficiency in savingThrowLevels" :value="proficiency.proficient" :key="proficiency.proficient.toString">{{ proficiency.value }}</option>
-                          </CFormSelect>
+                        <CCol class="mt-1">
+                          <strong>Animal Handling: </strong> {{ getSkillBonus(character.wisdom.score, character.wisdom.animalHandling, 
+                                  characterStoreFunctions.getProficiencyBonus(characterIndex), characterStoreFunctions.isJackOfAllTrades(characterIndex)) }}
                         </CCol>
                       </CRow>
                       <CRow>
-                        <CCol class="mt-2">
-                          <CFormLabel class="fw-bold">Animal Handling:</CFormLabel>
-                        </CCol>
-                        <CCol sm="auto">
-                          <CFormSelect @change="characterStoreFunctions.setAnimalHandling(parseInt($event.target.value), characterIndex)" :modelValue="character.wisdom.animalHandling.toString()">
-                            <option v-for="profciency in skillProficiencyLevel" :value="profciency.level" :key="profciency.level">{{ profciency.value }}</option>
-                          </CFormSelect>
+                        <CCol class="mt-1">
+                          <strong>Insight: </strong> {{ getSkillBonus(character.wisdom.score, character.wisdom.insight, 
+                                  characterStoreFunctions.getProficiencyBonus(characterIndex), characterStoreFunctions.isJackOfAllTrades(characterIndex)) }}
                         </CCol>
                       </CRow>
                       <CRow>
-                        <CCol class="mt-2">
-                          <CFormLabel class="fw-bold">Insight:</CFormLabel>
-                        </CCol>
-                        <CCol sm="auto">
-                          <CFormSelect @change="characterStoreFunctions.setInsight(parseInt($event.target.value), characterIndex)" :modelValue="character.wisdom.insight.toString()">
-                            <option v-for="profciency in skillProficiencyLevel" :value="profciency.level" :key="profciency.level">{{ profciency.value }}</option>
-                          </CFormSelect>
+                        <CCol class="mt-1">
+                          <strong>Medicine: </strong> {{ getSkillBonus(character.wisdom.score, character.wisdom.medicine, 
+                                  characterStoreFunctions.getProficiencyBonus(characterIndex), characterStoreFunctions.isJackOfAllTrades(characterIndex)) }}
                         </CCol>
                       </CRow>
                       <CRow>
-                        <CCol class="mt-2">
-                          <CFormLabel class="fw-bold">Medicine:</CFormLabel>
-                        </CCol>
-                        <CCol sm="auto">
-                          <CFormSelect @change="characterStoreFunctions.setMedicine(parseInt($event.target.value), characterIndex)" :modelValue="character.wisdom.medicine.toString()">
-                            <option v-for="profciency in skillProficiencyLevel" :value="profciency.level" :key="profciency.level">{{ profciency.value }}</option>
-                          </CFormSelect>
+                        <CCol class="mt-1">
+                          <strong>Perception: </strong> {{ getSkillBonus(character.wisdom.score, character.wisdom.perception, 
+                                  characterStoreFunctions.getProficiencyBonus(characterIndex), characterStoreFunctions.isJackOfAllTrades(characterIndex)) }}
                         </CCol>
                       </CRow>
                       <CRow>
-                        <CCol class="mt-2">
-                          <CFormLabel class="fw-bold">Survival:</CFormLabel>
+                        <CCol class="mt-1">
+                          <strong>Survival: </strong> {{ getSkillBonus(character.wisdom.score, character.wisdom.survival, 
+                                  characterStoreFunctions.getProficiencyBonus(characterIndex), characterStoreFunctions.isJackOfAllTrades(characterIndex)) }}
                         </CCol>
-                        <CCol sm="auto">
-                          <CFormSelect @change="characterStoreFunctions.setSurvival(parseInt($event.target.value), characterIndex)" :modelValue="character.wisdom.survival.toString()">
-                            <option v-for="profciency in skillProficiencyLevel" :value="profciency.level" :key="profciency.level">{{ profciency.value }}</option>
-                          </CFormSelect>
+                      </CRow>
+                      <CRow>
+                        <CCol class="mt-1">
+                          <strong>Passive Perception: </strong> {{ getPassiveTotal(character.wisdom.score, character.wisdom.survival, 
+                                  characterStoreFunctions.getProficiencyBonus(characterIndex), characterStoreFunctions.isJackOfAllTrades(characterIndex)) }}
                         </CCol>
                       </CRow>
                     </CCardBody>
@@ -868,66 +768,36 @@
                 <!-- Charisma -->
                 <CCol xs="6" sm="4">
                   <CCard class="mt-2">
-                    <CCardHeader>Charisma (CHA)</CCardHeader>
+                    <CCardHeader>Charisma (CHAR): {{ character.charisma.score }} ({{ getScoreModifierString(character.charisma.score) }})</CCardHeader>
                     <CCardBody>
                       <CRow>
-                        <CCol class="mt-2">
-                          <CFormLabel class="fw-bold">Score:</CFormLabel>
-                        </CCol>
-                        <CCol sm="auto">
-                          <CFormSelect @change="characterStoreFunctions.setCharisma(parseInt($event.target.value), characterIndex)" :modelValue="character.charisma.score.toString()">
-                            <option v-for="score in numberList" :value="score" :key="score">{{ score }}</option>
-                          </CFormSelect>
+                        <CCol>
+                          <strong>Saving Throws: </strong> {{ getSavingThrowBonus(character.charisma.score, character.charisma.proficient, 
+                                  characterStoreFunctions.getProficiencyBonus(characterIndex)) }}
                         </CCol>
                       </CRow>
                       <CRow>
-                        <CCol class="mt-2">
-                          <CFormLabel class="fw-bold">Saving Throws:</CFormLabel>
-                        </CCol>
-                        <CCol sm="auto">
-                          <CFormSelect @change="characterStoreFunctions.setCharismaSave($event.target.value, characterIndex)" :modelValue="character.charisma.proficient.toString()">
-                            <option v-for="proficiency in savingThrowLevels" :value="proficiency.proficient" :key="proficiency.proficient.toString">{{ proficiency.value }}</option>
-                          </CFormSelect>
+                        <CCol class="mt-1">
+                          <strong>Deception: </strong> {{ getSkillBonus(character.charisma.score, character.charisma.deception, 
+                                  characterStoreFunctions.getProficiencyBonus(characterIndex), characterStoreFunctions.isJackOfAllTrades(characterIndex)) }}
                         </CCol>
                       </CRow>
                       <CRow>
-                        <CCol class="mt-2">
-                          <CFormLabel class="fw-bold">Deception:</CFormLabel>
-                        </CCol>
-                        <CCol sm="auto">
-                          <CFormSelect @change="characterStoreFunctions.setDeception(parseInt($event.target.value), characterIndex)" :modelValue="character.charisma.deception.toString()">
-                            <option v-for="profciency in skillProficiencyLevel" :value="profciency.level" :key="profciency.level">{{ profciency.value }}</option>
-                          </CFormSelect>
+                        <CCol class="mt-1">
+                          <strong>Intimidation: </strong> {{ getSkillBonus(character.charisma.score, character.charisma.intimidation, 
+                                  characterStoreFunctions.getProficiencyBonus(characterIndex), characterStoreFunctions.isJackOfAllTrades(characterIndex)) }}
                         </CCol>
                       </CRow>
                       <CRow>
-                        <CCol class="mt-2">
-                          <CFormLabel class="fw-bold">Intimidation:</CFormLabel>
-                        </CCol>
-                        <CCol sm="auto">
-                          <CFormSelect @change="characterStoreFunctions.setIntimidation(parseInt($event.target.value), characterIndex)" :modelValue="character.charisma.intimidation.toString()">
-                            <option v-for="profciency in skillProficiencyLevel" :value="profciency.level" :key="profciency.level">{{ profciency.value }}</option>
-                          </CFormSelect>
+                        <CCol class="mt-1">
+                          <strong>Performance: </strong> {{ getSkillBonus(character.charisma.score, character.charisma.performance, 
+                                  characterStoreFunctions.getProficiencyBonus(characterIndex), characterStoreFunctions.isJackOfAllTrades(characterIndex)) }}
                         </CCol>
                       </CRow>
                       <CRow>
-                        <CCol class="mt-2">
-                          <CFormLabel class="fw-bold">Performance:</CFormLabel>
-                        </CCol>
-                        <CCol sm="auto">
-                          <CFormSelect @change="characterStoreFunctions.setPerformance(parseInt($event.target.value), characterIndex)" :modelValue="character.charisma.performance.toString()">
-                            <option v-for="profciency in skillProficiencyLevel" :value="profciency.level" :key="profciency.level">{{ profciency.value }}</option>
-                          </CFormSelect>
-                        </CCol>
-                      </CRow>
-                      <CRow>
-                        <CCol class="mt-2">
-                          <CFormLabel class="fw-bold">Persuasion:</CFormLabel>
-                        </CCol>
-                        <CCol sm="auto">
-                          <CFormSelect @change="characterStoreFunctions.setPersuasion(parseInt($event.target.value), characterIndex)" :modelValue="character.charisma.persuasion.toString()">
-                            <option v-for="profciency in skillProficiencyLevel" :value="profciency.level" :key="profciency.level">{{ profciency.value }}</option>
-                          </CFormSelect>
+                        <CCol class="mt-1">
+                          <strong>Persuasion: </strong> {{ getSkillBonus(character.charisma.score, character.charisma.persuasion, 
+                                  characterStoreFunctions.getProficiencyBonus(characterIndex), characterStoreFunctions.isJackOfAllTrades(characterIndex)) }}
                         </CCol>
                       </CRow>
                     </CCardBody>
@@ -937,16 +807,12 @@
                 <!-- Resolve -->
                 <CCol xs="6" sm="4" v-if="campaignStore.selectedCampaign.value.madness">
                   <CCard class="mt-2">
-                    <CCardHeader>Resolve (RES)</CCardHeader>
+                    <CCardHeader>Resolve (RES): {{ character.resolve!.score }} ({{ getScoreModifierString(character.resolve!.score) }})</CCardHeader>
                     <CCardBody>
                       <CRow>
-                        <CCol  class="mt-2">
-                          <CFormLabel class="fw-bold">Score:</CFormLabel>
-                        </CCol>
-                        <CCol sm="auto">
-                          <CFormSelect @change="characterStoreFunctions.setResolve(parseInt($event.target.value), characterIndex)" :modelValue="character.resolve?.score.toString()">
-                            <option v-for="score in numberList" :value="score" :key="score">{{ score }}</option>
-                          </CFormSelect>
+                        <CCol>
+                          <strong>Saving Throws: </strong> {{ getSavingThrowBonus(character.resolve!.score, character.resolve!.proficient, 
+                                  characterStoreFunctions.getProficiencyBonus(characterIndex)) }}
                         </CCol>
                       </CRow>
                     </CCardBody>
@@ -956,7 +822,6 @@
             </CAccordionBody>
           </CAccordionItem>
         </CAccordion>
-        
       </CAccordionBody>
     </CAccordionItem>
   </CAccordion>
@@ -1053,6 +918,71 @@ import agent from '@/api/agent'
         this.levelUp = false;
         this.newMulticlass = { characterClass: { id: 0 } as CharacterClass } as ClassLevel,
         await this.characterStoreFunctions.saveCharacter(index);
+      },
+      getScoreModifier(score: number) {
+        return Math.floor((score - 10) / 2.0);
+      },
+      getScoreModifierString(score: number) {
+        let modNum = this.getScoreModifier(score);
+
+        var modString: string;
+
+        if (modNum < 0) {
+          modString = modNum.toString();
+        } else {
+          modString = "+" + modNum;
+        }
+
+        return modString;
+      },
+      getSavingThrowBonus(score: number, proficient: boolean, proficiencyBonus: number) {
+        var bonus = this.getScoreModifier(score);
+        var bonusString: string;
+
+        if (proficient) {
+          bonus += proficiencyBonus;
+        }
+
+        if (bonus < 0) {
+          bonusString = bonus.toString();
+        } else {
+          bonusString = "+" + bonus;
+        }
+
+        return bonusString;
+      },
+      getSkillBonus(score: number, proficiencyLevel: number, proficiencyBonus: number, jackOfAllTrades: boolean) {
+        var bonus = this.getScoreModifier(score);
+        var bonusString: string;
+
+        if (proficiencyLevel === 2) {
+          bonus += proficiencyBonus * 2;
+        } else if (proficiencyLevel === 1) {
+          bonus += proficiencyBonus;
+        } else if (jackOfAllTrades) {
+          bonus += Math.floor(proficiencyBonus / 2);
+        }
+
+        if (bonus < 0) {
+          bonusString = bonus.toString();
+        } else {
+          bonusString = "+" + bonus;
+        }
+
+        return bonusString;
+      },
+      getPassiveTotal(score: number, proficiencyLevel: number, proficiencyBonus: number, jackOfAllTrades: boolean) {
+        var bonus = 10 + this.getScoreModifier(score);
+        
+        if (proficiencyLevel === 2) {
+          bonus += proficiencyBonus * 2;
+        } else if (proficiencyLevel === 1) {
+          bonus += proficiencyBonus;
+        } else if (jackOfAllTrades) {
+          bonus += Math.floor(proficiencyBonus / 2);
+        }
+
+        return bonus;
       }
     },
     async mounted() {
@@ -1079,8 +1009,9 @@ import agent from '@/api/agent'
   }
 
   .accordion-button:not(.collapsed) {
-      color: black;
-      background-color: darkgray;
+      color: white;
+      background-color: black;
+
   }
 
   .accordion-button:after {

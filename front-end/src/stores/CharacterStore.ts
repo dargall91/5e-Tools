@@ -292,6 +292,26 @@ export const useCharacterStore = defineStore({
 
       return totalLevels;
     },
+    getProficiencyBonus(index: number) {
+      const totalLevels = this.getTotalLevels(index);
+      let bonus = 0;
+      this.masterData.proficiencyBonuses.forEach((profBonus) => {
+        if (profBonus.level === totalLevels) {
+          bonus = profBonus.bonus;
+        }
+      });
+
+      return bonus;
+    },
+    isJackOfAllTrades(index: number) {
+      this.characterList[index].classLevelList.forEach((classLevel) => {
+        if (classLevel.characterClass.name === "Bard" && classLevel.levels > 1) {
+          return true;
+        }
+      });
+
+      return false;
+    },
     longRest(index: number) {
 
       this.setUpdateTimer(index);
