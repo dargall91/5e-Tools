@@ -22,8 +22,19 @@ public class PlayerCharacter {
     private int deathSaveSuccesses;
     private int deathSaveFailures;
     private int stress;
+    private int meditationDiceUsed;
     private boolean dwarvenToughness;
     private boolean toughFeat;
+    private int firstSlotsUsed = 0;
+    private int secondSlotsUsed = 0;
+    private int thirdSlotsUsed = 0;
+    private int fourthSlotsUsed = 0;
+    private int fifthSlotsUsed = 0;
+    private int sixthSlotsUsed = 0;
+    private int seventhSlotsUsed = 0;
+    private int eighthSlotsUsed = 0;
+    private int ninthSlotsUsed = 0;
+    private int warlockSlotsUsed = 0;
     @ManyToOne
     @JoinColumn(name = "stressStatusId")
     private StressStatus stressStatus;
@@ -174,5 +185,49 @@ public class PlayerCharacter {
 
     public boolean isToughFeat() {
         return toughFeat;
+    }
+
+    public int getFirstSlotsUsed() {
+        return firstSlotsUsed;
+    }
+
+    public int getSecondSlotsUsed() {
+        return secondSlotsUsed;
+    }
+
+    public int getThirdSlotsUsed() {
+        return thirdSlotsUsed;
+    }
+
+    public int getFourthSlotsUsed() {
+        return fourthSlotsUsed;
+    }
+
+    public int getFifthSlotsUsed() {
+        return fifthSlotsUsed;
+    }
+
+    public int getSixthSlotsUsed() {
+        return sixthSlotsUsed;
+    }
+
+    public int getSeventhSlotsUsed() {
+        return seventhSlotsUsed;
+    }
+
+    public int getEighthSlotsUsed() {
+        return eighthSlotsUsed;
+    }
+
+    public int getNinthSlotsUsed() {
+        return ninthSlotsUsed;
+    }
+
+    public int getWarlockSlotsUsed() {
+        return warlockSlotsUsed;
+    }
+
+    public int getMeditationDiceUsed() {
+        return meditationDiceUsed;
     }
 }

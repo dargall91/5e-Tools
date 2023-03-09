@@ -1,6 +1,6 @@
 import { defineStore } from 'pinia'
 import agent from '@/api/agent';
-import { PlayerCharacter, PlayerCharacterMasterData } from '@/models/PlayerCharacter';
+import { PlayerCharacter, PlayerCharacterMasterData, SpellSlots, StressStatus, WarlockSpellSlots } from '@/models/PlayerCharacter';
 import { Campaign } from '@/models/Campaign';
 
 const updateDelay = 2000;
@@ -28,11 +28,44 @@ export const useCharacterStore = defineStore({
         .then((data) => {
           this.characterList = data;
         });
+
+      this.characterList.forEach((character) => {
+        this.setSpellSlots(character);
+      });
+    },
+    setSpellSlots(character: PlayerCharacter) {
+      let spellCasterLevel = 0;
+      character.classLevelList.forEach((classLevel) => {
+        if (classLevel.aracneTrickster || classLevel.eldtritchKnight) {
+          spellCasterLevel += Math.floor(classLevel.levels / 3);
+        }
+
+        if (classLevel.characterClass.fullCaster) {
+          spellCasterLevel += classLevel.levels;
+        }
+
+        if (classLevel.characterClass.halfCaster) {
+          spellCasterLevel += Math.floor(classLevel.levels / 2);
+        }
+
+        if (classLevel.characterClass.artificer) {
+          spellCasterLevel += Math.ceil(classLevel.levels / 2);
+        }
+
+        if (spellCasterLevel > 0) {
+          character.spellSlots = this.masterData.spellSlots.find(x => x.casterLevel === spellCasterLevel) as SpellSlots;
+        }
+
+        if (classLevel.characterClass.warlock) {
+          character.warlockSpellSlots = this.masterData.warlockSpellSlots.find(x => x.warlockLevel === classLevel.levels) as WarlockSpellSlots;
+        }
+      });
     },
     async saveCharacter(index: number) {
       await agent.playerCharacter.updatePlayerCharacter(this.characterList[index])
         .then((data) => {
           this.characterList[index] = data;
+          this.setSpellSlots(this.characterList[index]);
         });
     },
     clearCharacterList() {
@@ -176,6 +209,7 @@ export const useCharacterStore = defineStore({
     adjustDamage(index: number, damage: number, campaign: Campaign) {
       if (this.characterList[index].temporaryHitPoints > 0 && damage > 0) {
         this.characterList[index].temporaryHitPoints -= damage;
+
         if (this.characterList[index].temporaryHitPoints < 0) {
           damage = this.characterList[index].temporaryHitPoints * -1;
           this.characterList[index].temporaryHitPoints = 0;
@@ -186,6 +220,7 @@ export const useCharacterStore = defineStore({
 
       this.characterList[index].damage += damage;
       const maxHitPoints = this.getMaxHitPoints(index, campaign);
+
       if (this.characterList[index].damage > maxHitPoints) {
         this.characterList[index].damage = maxHitPoints;
       }
@@ -258,6 +293,7 @@ export const useCharacterStore = defineStore({
       if (!campaign.madness) {
         return;
       }
+
       this.characterList[index].stress += amount;
 
       const stressMaximum = this.getStressMaximum(index, campaign)
@@ -272,6 +308,23 @@ export const useCharacterStore = defineStore({
 
       this.setUpdateTimer(index);
     },
+    adjustMeditationDice(index: number, amount: number, campaign: Campaign) {
+      if (!campaign.madness) {
+        return;
+      }
+
+      this.characterList[index].meditationDiceUsed += amount;
+
+      if (this.characterList[index].meditationDiceUsed < 0) {
+        this.characterList[index].meditationDiceUsed = 0;
+      }
+
+      if (this.characterList[index].meditationDiceUsed > 10) {
+        this.characterList[index].meditationDiceUsed = 10;
+      }
+
+      this.setUpdateTimer(index);
+    },
     getStressThreshold(index: number, campaign: Campaign) {
       if (!campaign.madness) {
         return 0;
@@ -280,6 +333,185 @@ export const useCharacterStore = defineStore({
       const resModifier = Math.floor((this.characterList[index].resolve!.score - 10) / 2.0);
 
       return 100 + 5 * resModifier;
+    },
+    applyAfflictionOrVirtue(index: number, roll: number, campaign: Campaign) {
+      if (!campaign.madness) {
+        return;
+      }
+
+      this.characterList[index].stressStatus = this.masterData.stressStatuses.find(x => x.minRoll <= roll && x.maxRoll >= roll) as StressStatus;
+
+      this.setUpdateTimer(index);
+    },
+    adjustFirstSlotsUsed(index: number, amount: number) {
+      if (this.characterList[index].spellSlots === null) {
+        return;
+      }
+
+      this.characterList[index].firstSlotsUsed += amount;
+
+      if (this.characterList[index].firstSlotsUsed < 0) {
+        this.characterList[index].firstSlotsUsed = 0;
+      }
+
+      if (this.characterList[index].firstSlotsUsed > this.characterList[index].spellSlots!.first) {
+        this.characterList[index].firstSlotsUsed = this.characterList[index].spellSlots!.first;
+      }
+
+      this.setUpdateTimer(index);
+    },
+    adjustSecondSlotsUsed(index: number, amount: number) {
+      if (this.characterList[index].spellSlots === null) {
+        return;
+      }
+
+      this.characterList[index].secondSlotsUsed += amount;
+
+      if (this.characterList[index].secondSlotsUsed < 0) {
+        this.characterList[index].secondSlotsUsed = 0;
+      }
+
+      if (this.characterList[index].secondSlotsUsed > this.characterList[index].spellSlots!.second) {
+        this.characterList[index].secondSlotsUsed = this.characterList[index].spellSlots!.second;
+      }
+
+      this.setUpdateTimer(index);
+    },
+    adjustThirdSlotsUsed(index: number, amount: number) {
+      if (this.characterList[index].spellSlots === null) {
+        return;
+      }
+
+      this.characterList[index].thirdSlotsUsed += amount;
+
+      if (this.characterList[index].thirdSlotsUsed < 0) {
+        this.characterList[index].thirdSlotsUsed = 0;
+      }
+
+      if (this.characterList[index].thirdSlotsUsed > this.characterList[index].spellSlots!.third) {
+        this.characterList[index].thirdSlotsUsed = this.characterList[index].spellSlots!.third;
+      }
+
+      this.setUpdateTimer(index);
+    },
+    adjustFourthSlotsUsed(index: number, amount: number) {
+      if (this.characterList[index].spellSlots === null) {
+        return;
+      }
+
+      this.characterList[index].fourthSlotsUsed += amount;
+
+      if (this.characterList[index].fourthSlotsUsed < 0) {
+        this.characterList[index].fourthSlotsUsed = 0;
+      }
+
+      if (this.characterList[index].fourthSlotsUsed > this.characterList[index].spellSlots!.fourth) {
+        this.characterList[index].fourthSlotsUsed = this.characterList[index].spellSlots!.fourth;
+      }
+
+      this.setUpdateTimer(index);
+    },
+    adjustFifthSlotsUsed(index: number, amount: number) {
+      if (this.characterList[index].spellSlots === null) {
+        return;
+      }
+
+      this.characterList[index].fifthSlotsUsed += amount;
+
+      if (this.characterList[index].fifthSlotsUsed < 0) {
+        this.characterList[index].fifthSlotsUsed = 0;
+      }
+
+      if (this.characterList[index].fifthSlotsUsed > this.characterList[index].spellSlots!.fifth) {
+        this.characterList[index].fifthSlotsUsed = this.characterList[index].spellSlots!.fifth;
+      }
+
+      this.setUpdateTimer(index);
+    },
+    adjustSixthSlotsUsed(index: number, amount: number) {
+      if (this.characterList[index].spellSlots === null) {
+        return;
+      }
+
+      this.characterList[index].sixthSlotsUsed += amount;
+
+      if (this.characterList[index].sixthSlotsUsed < 0) {
+        this.characterList[index].sixthSlotsUsed = 0;
+      }
+
+      if (this.characterList[index].sixthSlotsUsed > this.characterList[index].spellSlots!.sixth) {
+        this.characterList[index].sixthSlotsUsed = this.characterList[index].spellSlots!.sixth;
+      }
+
+      this.setUpdateTimer(index);
+    },
+    adjustSeventhSlotsUsed(index: number, amount: number) {
+      if (this.characterList[index].spellSlots === null) {
+        return;
+      }
+
+      this.characterList[index].seventhSlotsUsed += amount;
+
+      if (this.characterList[index].seventhSlotsUsed < 0) {
+        this.characterList[index].seventhSlotsUsed = 0;
+      }
+
+      if (this.characterList[index].seventhSlotsUsed > this.characterList[index].spellSlots!.seventh) {
+        this.characterList[index].seventhSlotsUsed = this.characterList[index].spellSlots!.seventh;
+      }
+
+      this.setUpdateTimer(index);
+    },
+    adjustEighthSlotsUsed(index: number, amount: number) {
+      if (this.characterList[index].spellSlots === null) {
+        return;
+      }
+
+      this.characterList[index].eighthSlotsUsed += amount;
+
+      if (this.characterList[index].eighthSlotsUsed < 0) {
+        this.characterList[index].eighthSlotsUsed = 0;
+      }
+
+      if (this.characterList[index].eighthSlotsUsed > this.characterList[index].spellSlots!.eighth) {
+        this.characterList[index].eighthSlotsUsed = this.characterList[index].spellSlots!.eighth;
+      }
+
+      this.setUpdateTimer(index);
+    },
+    adjustNinthSlotsUsed(index: number, amount: number) {
+      if (this.characterList[index].spellSlots === null) {
+        return;
+      }
+
+      this.characterList[index].ninthSlotsUsed += amount;
+
+      if (this.characterList[index].ninthSlotsUsed < 0) {
+        this.characterList[index].ninthSlotsUsed = 0;
+      }
+
+      if (this.characterList[index].ninthSlotsUsed > this.characterList[index].spellSlots!.ninth) {
+        this.characterList[index].ninthSlotsUsed = this.characterList[index].spellSlots!.ninth;
+      }
+
+      this.setUpdateTimer(index);
+    },
+    adjustWarlockSlotsUsed(index: number, amount: number) {
+      if (this.characterList[index].spellSlots === null) {
+        return;
+      }
+
+      this.characterList[index].warlockSlotsUsed += amount;
+
+      if (this.characterList[index].warlockSlotsUsed < 0) {
+        this.characterList[index].warlockSlotsUsed = 0;
+      }
+
+      if (this.characterList[index].warlockSlotsUsed > this.characterList[index].warlockSpellSlots!.quantity) {
+        this.characterList[index].warlockSlotsUsed = this.characterList[index].warlockSpellSlots!.quantity;
+      }
+
+      this.setUpdateTimer(index);
     },
     getStressMaximum(index: number, campaign: Campaign) {
       return this.getStressThreshold(index, campaign) * 2;
@@ -312,9 +544,20 @@ export const useCharacterStore = defineStore({
 
       return false;
     },
-    longRest(index: number) {
+    longRest(index: number, campaign: Campaign) {
+      this.characterList[index].damage = 0;
+      this.characterList[index].temporaryHitPoints = 0;
 
-      this.setUpdateTimer(index);
+      const stressThreshold = this.getStressThreshold(index, campaign);
+      
+      if (this.characterList[index].stress <= stressThreshold) {
+        this.adjustStress(index, -50, campaign);
+      } else {
+        this.characterList[index].stress = stressThreshold;
+      }
+
+      this.characterList[index].stressStatus = this.masterData.stressStatuses.find(x => x.id === 1) as StressStatus;
+      this.adjustMeditationDice(index, -5, campaign);
     },
     levelUp(characterIndex: number, classLevelIndex: number) {
       this.characterList[characterIndex].classLevelList[classLevelIndex].levels++;
@@ -322,6 +565,7 @@ export const useCharacterStore = defineStore({
     async cancelEdits(index: number) {
       await agent.playerCharacter.getCharacter(this.characterList[index].id).then((data) => {
         this.characterList[index] = data;
+        this.setSpellSlots(this.characterList[index]);
       });
     },
     setUpdateTimer(characterIndex: number) {

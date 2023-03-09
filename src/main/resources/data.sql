@@ -145,3 +145,52 @@ INSERT INTO ProficiencyBonus(level, bonus) VALUES
     (20, 6)
 ON DUPLICATE KEY
 UPDATE bonus = VALUES(bonus);
+
+INSERT INTO SpellSlots(casterLevel, first, second, third, fourth, fifth, sixth, seventh, eighth, ninth) VALUES
+    (1, 2, 0, 0, 0, 0, 0, 0, 0, 0),
+    (2, 3, 0, 0, 0, 0, 0, 0, 0, 0),
+    (3, 4, 2, 0, 0, 0, 0, 0, 0, 0),
+    (4, 4, 3, 0, 0, 0, 0, 0, 0, 0),
+    (5, 4, 3, 2, 0, 0, 0, 0, 0, 0),
+    (6, 4, 3, 3, 0, 0, 0, 0, 0, 0),
+    (7, 4, 3, 3, 1, 0, 0, 0, 0, 0),
+    (8, 4, 3, 3, 2, 0, 0, 0, 0, 0),
+    (9, 4, 3, 3, 3, 1, 0, 0, 0, 0),
+    (10, 4, 3, 3, 3, 2, 0, 0, 0, 0),
+    (11, 4, 3, 3, 3, 2, 1, 0, 0, 0),
+    (12, 4, 3, 3, 3, 2, 1, 0, 0, 0),
+    (13, 4, 3, 3, 3, 2, 1, 1, 0, 0),
+    (14, 4, 3, 3, 3, 2, 1, 1, 0, 0),
+    (15, 4, 3, 3, 3, 2, 1, 1, 1, 0),
+    (16, 4, 3, 3, 3, 2, 1, 1, 1, 0),
+    (17, 4, 3, 3, 3, 2, 1, 1, 1, 1),
+    (18, 4, 3, 3, 3, 2, 1, 1, 1, 1),
+    (19, 4, 3, 3, 3, 2, 2, 1, 1, 1),
+    (20, 4, 3, 3, 3, 2, 2, 2, 1, 1)
+ON DUPLICATE KEY
+UPDATE first = VALUES(first), second = VALUES(second), third = VALUES(third), fourth = VALUES(fourth),
+fifth = VALUES(fifth), sixth = VALUES(sixth), seventh = VALUES(seventh), eighth = VALUES(eighth), ninth = VALUES(ninth);
+
+INSERT INTO WarlockSpellSlots(warlockLevel, quantity, slotLevel) VALUES
+    (1, 1, 1),
+    (2, 2, 1),
+    (3, 2, 2),
+    (4, 2, 2),
+    (5, 2, 3),
+    (6, 2, 3),
+    (7, 2, 4),
+    (8, 2, 4),
+    (9, 2, 5),
+    (10, 2, 5),
+    (11, 3, 5),
+    (12, 3, 5),
+    (13, 3, 5),
+    (14, 3, 5),
+    (15, 3, 5),
+    (16, 3, 5),
+    (17, 4, 5),
+    (18, 4, 5),
+    (19, 4, 5),
+    (20, 4, 5)
+ON DUPLICATE KEY UPDATE
+quantity = VALUES(quantity), slotLevel = VALUES(slotLevel);

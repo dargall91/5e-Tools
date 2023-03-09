@@ -32,7 +32,7 @@
             <strong>Level:</strong> {{ classLevel.levels }}
           </CCol>
           <CCol xs="12" md="5" lg="7">
-            <strong>Used Hit Dice:</strong> {{ classLevel.usedHitDice }} / {{ classLevel.levels }}d{{ classLevel.characterClass.hitDie }}
+            <strong>Hit Dice Used:</strong> {{ classLevel.usedHitDice }} / {{ classLevel.levels }}d{{ classLevel.characterClass.hitDie }}
             <CButton size="sm" color="danger" @click="characterStoreFunctions.adjustHitDie(characterIndex, classLevelIndex, -1)">-1</CButton>
             <CButton size="sm" color="success" @click="characterStoreFunctions.adjustHitDie(characterIndex, classLevelIndex, 1)">+1</CButton>
           </CCol>
@@ -54,12 +54,13 @@
               <li>Recover all expended spell slots</li>
               <li v-if="campaignStore.selectedCampaign.value.madness">If your stress level is greater than your stress threshold, it becomes equal to your threshold</li>
               <li v-if="campaignStore.selectedCampaign.value.madness">If your stress level is less than or equal to your stress threshold, you lose 50 stress</li>
+              <li v-if="campaignStore.selectedCampaign.value.madness">Lose your Affliction or Virtue if you have one</li>
               <li v-if="campaignStore.selectedCampaign.value.madness">Recover 5 meditation dice</li>
             </ul>
           </CModalBody>
           <CModalFooter>
             <CButton color="secondary" @click="() => { longRest = false; }">Cancel</CButton>
-            <CButton color="dark" @click="() => { characterStoreFunctions.longRest(characterIndex); longRest = false; }">Long Rest</CButton>
+            <CButton color="dark" @click="() => { characterStoreFunctions.longRest(characterIndex, campaignStore.selectedCampaign.value); longRest = false; }">Long Rest</CButton>
           </CModalFooter>
         </CModal>
 
@@ -559,26 +560,51 @@
 
         <!-- Stress -->
         <div  v-if="campaignStore.selectedCampaign.value.madness">
-          <CRow class="mt-1">
-            <CCol xs="4" md="4" lg="4">
-              <strong>Stress:</strong> {{ character.stress }} / {{ characterStoreFunctions.getStressThreshold(characterIndex, campaignStore.selectedCampaign.value) }}
-            </CCol>
-            <!-- <CCol xs="4">
-              <strong>Threshold:</strong> {{ getCharacterStore.getStressThreshold(characterIndex, campaignStore.selectedCampaign.value) }}
-            </CCol>
-            <CCol xs="4">
-              <strong>Maximum:</strong> {{ getCharacterStore.getStressMaximum(characterIndex, campaignStore.selectedCampaign.value) }}
-            </CCol> -->
-          </CRow>
-
           <CRow>
-            <CCol xs="7" md="5" lg="4">
-              <CButton size="sm" color="danger" @click="characterStoreFunctions.adjustStress(characterIndex, -10, campaignStore.selectedCampaign.value)">-10</CButton>
-              <CButton size="sm" color="danger" @click="characterStoreFunctions.adjustStress(characterIndex, -5, campaignStore.selectedCampaign.value)">-5</CButton>
-              <CButton size="sm" color="danger" @click="characterStoreFunctions.adjustStress(characterIndex, -1, campaignStore.selectedCampaign.value)">-1</CButton>
-              <CButton size="sm" color="success" @click="characterStoreFunctions.adjustStress(characterIndex, 1, campaignStore.selectedCampaign.value)">+1</CButton>
-              <CButton size="sm" color="success" @click="characterStoreFunctions.adjustStress(characterIndex, 5, campaignStore.selectedCampaign.value)">+5</CButton>
-              <CButton size="sm" color="success" @click="characterStoreFunctions.adjustStress(characterIndex, 10, campaignStore.selectedCampaign.value)">+10</CButton>
+            <CCol class="mt-1" xs="7" md="5" lg="4" xl="3">
+              <CRow>
+                <CCol>
+                  <strong>Stress:</strong> {{ character.stress }} / {{ characterStoreFunctions.getStressThreshold(characterIndex, campaignStore.selectedCampaign.value) }}
+                </CCol>
+              </CRow>
+              <CRow>
+                <CCol>
+                  <CButton size="sm" color="danger" @click="characterStoreFunctions.adjustStress(characterIndex, -10, campaignStore.selectedCampaign.value)">-10</CButton>
+                  <CButton size="sm" color="danger" @click="characterStoreFunctions.adjustStress(characterIndex, -5, campaignStore.selectedCampaign.value)">-5</CButton>
+                  <CButton size="sm" color="danger" @click="characterStoreFunctions.adjustStress(characterIndex, -1, campaignStore.selectedCampaign.value)">-1</CButton>
+                  <CButton size="sm" color="success" @click="characterStoreFunctions.adjustStress(characterIndex, 1, campaignStore.selectedCampaign.value)">+1</CButton>
+                  <CButton size="sm" color="success" @click="characterStoreFunctions.adjustStress(characterIndex, 5, campaignStore.selectedCampaign.value)">+5</CButton>
+                  <CButton size="sm" color="success" @click="characterStoreFunctions.adjustStress(characterIndex, 10, campaignStore.selectedCampaign.value)">+10</CButton>
+                </CCol>
+              </CRow>
+            </CCol>
+            <CCol class="mt-1" xs="5" md="3"  v-if="character.stress >= characterStoreFunctions.getStressThreshold(characterIndex, campaignStore.selectedCampaign.value) && character.stressStatus.id === 1">
+              <CRow>
+                <CCol>
+                  <CFormLabel for="stressRoll" class="fw-bold">d100 Roll:</CFormLabel>
+                </CCol>
+              </CRow>
+              <CRow>
+                <CCol>
+                  <CFormInput id="stressRoll" min="1" max="100" v-model.number="stressRoll" type="number"></CFormInput>
+                </CCol>
+                <CCol>
+                  <CButton size="sm" color="dark" @click="characterStoreFunctions.applyAfflictionOrVirtue(characterIndex, stressRoll, campaignStore.selectedCampaign.value); stressRoll = 1;">Enter</CButton>
+                </CCol>
+              </CRow>
+            </CCol>
+            <CCol class="mt-1" xs="12" lg="4">
+              <CRow>
+                <CCol>
+                  <strong>Meditation Dice Used: </strong> {{ character.meditationDiceUsed }} / 10
+                </CCol>
+              </CRow>
+              <CRow>
+                <CCol>
+                  <CButton size="sm" color="danger" @click="characterStoreFunctions.adjustMeditationDice(characterIndex, -1, campaignStore.selectedCampaign.value)">-1</CButton>
+                  <CButton size="sm" color="success" @click="characterStoreFunctions.adjustMeditationDice(characterIndex, 1, campaignStore.selectedCampaign.value)">+1</CButton>
+                </CCol>
+              </CRow>
             </CCol>
           </CRow>
             
@@ -592,12 +618,11 @@
           </CCard>
         </div>
 
-        <!-- Ability Scores -->
-        <CAccordion class="mt-1">
+        <!-- Ability Scores + Spelll Slots -->
+        <CAccordion class="mt-1" always-open>
+          <!-- Ability Scores -->
           <CAccordionItem>
-            <CAccordionHeader>
-              Ability Scores
-            </CAccordionHeader>
+            <CAccordionHeader>Ability Scores</CAccordionHeader>
             <CAccordionBody>
               <CRow>
                 <!-- Strength -->
@@ -768,7 +793,7 @@
                 <!-- Charisma -->
                 <CCol xs="6" sm="4">
                   <CCard class="mt-2">
-                    <CCardHeader>Charisma (CHAR): {{ character.charisma.score }} ({{ getScoreModifierString(character.charisma.score) }})</CCardHeader>
+                    <CCardHeader>Charisma (CHA): {{ character.charisma.score }} ({{ getScoreModifierString(character.charisma.score) }})</CCardHeader>
                     <CCardBody>
                       <CRow>
                         <CCol>
@@ -821,6 +846,209 @@
               </CRow>
             </CAccordionBody>
           </CAccordionItem>
+
+          <!-- Spell Slots -->
+          <CAccordionItem v-if="character.spellSlots != null || character.warlockSpellSlots != null">
+            <CAccordionHeader>Spell Slots</CAccordionHeader>
+            <CAccordionBody>
+              <CRow>
+                <CCol xs="6" sm="6" md="4" lg="3" xl="2" class="mb-1" v-if="character.spellSlots != null && character.spellSlots.first > 0">
+                  <CCard>
+                    <CCardHeader>1st-Level</CCardHeader>
+                    <CCardBody>
+                      <CRow>
+                        <CCol>
+                          <strong>Remaining: </strong> {{ character.spellSlots.first - character.firstSlotsUsed }} / {{ character.spellSlots.first }}
+                        </CCol>
+                      </CRow>
+                      <CRow>
+                        <CCol>
+                          <CButton size="sm" color="danger" @click="characterStoreFunctions.adjustFirstSlotsUsed(characterIndex, 1)">-1</CButton>
+                          <CButton size="sm" color="success" @click="characterStoreFunctions.adjustFirstSlotsUsed(characterIndex, -1)">+1</CButton>
+                        </CCol>
+                      </CRow>
+                    </CCardBody>
+                  </CCard>
+                </CCol>
+
+                <CCol xs="6" sm="6" md="4" lg="3" xl="2" class="mb-1" v-if="character.spellSlots != null && character.spellSlots.second > 0">
+                  <CCard>
+                    <CCardHeader>2nd-Level</CCardHeader>
+                    <CCardBody>
+                      <CRow>
+                        <CCol>
+                          <strong>Remaining: </strong> {{ character.spellSlots.second - character.secondSlotsUsed }} / {{ character.spellSlots.second }}
+                        </CCol>
+                      </CRow>
+                      <CRow>
+                        <CCol>
+                          <CButton size="sm" color="danger" @click="characterStoreFunctions.adjustSecondSlotsUsed(characterIndex, 1)">-1</CButton>
+                          <CButton size="sm" color="success" @click="characterStoreFunctions.adjustSecondSlotsUsed(characterIndex, -1)">+1</CButton>
+                        </CCol>
+                      </CRow>
+                    </CCardBody>
+                  </CCard>
+                </CCol>
+
+                <CCol xs="6" sm="6" md="4" lg="3" xl="2" class="mb-1" v-if="character.spellSlots != null && character.spellSlots.third > 0">
+                  <CCard>
+                    <CCardHeader>3rd-Level</CCardHeader>
+                    <CCardBody>
+                      <CRow>
+                        <CCol>
+                          <strong>Remaining: </strong> {{ character.spellSlots.third - character.thirdSlotsUsed }} / {{ character.spellSlots.third }}
+                        </CCol>
+                      </CRow>
+                      <CRow>
+                        <CCol>
+                          <CButton size="sm" color="danger" @click="characterStoreFunctions.adjustThirdSlotsUsed(characterIndex, 1)">-1</CButton>
+                          <CButton size="sm" color="success" @click="characterStoreFunctions.adjustThirdSlotsUsed(characterIndex, -1)">+1</CButton>
+                        </CCol>
+                      </CRow>
+                    </CCardBody>
+                  </CCard>
+                </CCol>
+
+                <CCol xs="6" sm="6" md="4" lg="3" xl="2" class="mb-1" v-if="character.spellSlots != null && character.spellSlots.fourth > 0">
+                  <CCard>
+                    <CCardHeader>4th-Level</CCardHeader>
+                    <CCardBody>
+                      <CRow>
+                        <CCol>
+                          <strong>Remaining: </strong> {{ character.spellSlots.fourth - character.fourthSlotsUsed }} / {{ character.spellSlots.fourth }}
+                        </CCol>
+                      </CRow>
+                      <CRow>
+                        <CCol>
+                          <CButton size="sm" color="danger" @click="characterStoreFunctions.adjustFourthSlotsUsed(characterIndex, 1)">-1</CButton>
+                          <CButton size="sm" color="success" @click="characterStoreFunctions.adjustFourthSlotsUsed(characterIndex, -1)">+1</CButton>
+                        </CCol>
+                      </CRow>
+                    </CCardBody>
+                  </CCard>
+                </CCol>
+
+                <CCol xs="6" sm="6" md="4" lg="3" xl="2" class="mb-1" v-if="character.spellSlots != null && character.spellSlots.fifth > 0">
+                  <CCard>
+                    <CCardHeader>5th-Level</CCardHeader>
+                    <CCardBody>
+                      <CRow>
+                        <CCol>
+                          <strong>Remaining: </strong> {{ character.spellSlots.fifth - character.fifthSlotsUsed }} / {{ character.spellSlots.fifth }}
+                        </CCol>
+                      </CRow>
+                      <CRow>
+                        <CCol>
+                          <CButton size="sm" color="danger" @click="characterStoreFunctions.adjustFifthSlotsUsed(characterIndex, 1)">-1</CButton>
+                          <CButton size="sm" color="success" @click="characterStoreFunctions.adjustFifthSlotsUsed(characterIndex, -1)">+1</CButton>
+                        </CCol>
+                      </CRow>
+                    </CCardBody>
+                  </CCard>
+                </CCol>
+
+                <CCol xs="6" sm="6" md="4" lg="3" xl="2" class="mb-1" v-if="character.spellSlots != null && character.spellSlots.sixth > 0">
+                  <CCard>
+                    <CCardHeader>6th-Level</CCardHeader>
+                    <CCardBody>
+                      <CRow>
+                        <CCol>
+                          <strong>Remaining: </strong> {{ character.spellSlots.sixth - character.sixthSlotsUsed }} / {{ character.spellSlots.sixth }}
+                        </CCol>
+                      </CRow>
+                      <CRow>
+                        <CCol>
+                          <CButton size="sm" color="danger" @click="characterStoreFunctions.adjustSixthSlotsUsed(characterIndex, 1)">-1</CButton>
+                          <CButton size="sm" color="success" @click="characterStoreFunctions.adjustSixthSlotsUsed(characterIndex, -1)">+1</CButton>
+                        </CCol>
+                      </CRow>
+                    </CCardBody>
+                  </CCard>
+                </CCol>
+
+                <CCol xs="6" sm="6" md="4" lg="3" xl="2" class="mb-1" v-if="character.spellSlots != null && character.spellSlots.seventh > 0">
+                  <CCard>
+                    <CCardHeader>7th-Level</CCardHeader>
+                    <CCardBody>
+                      <CRow>
+                        <CCol>
+                          <strong>Remaining: </strong> {{ character.spellSlots.seventh - character.seventhSlotsUsed }} / {{ character.spellSlots.seventh }}
+                        </CCol>
+                      </CRow>
+                      <CRow>
+                        <CCol>
+                          <CButton size="sm" color="danger" @click="characterStoreFunctions.adjustSeventhSlotsUsed(characterIndex, 1)">-1</CButton>
+                          <CButton size="sm" color="success" @click="characterStoreFunctions.adjustSeventhSlotsUsed(characterIndex, -1)">+1</CButton>
+                        </CCol>
+                      </CRow>
+                    </CCardBody>
+                  </CCard>
+                </CCol>
+
+                <CCol xs="6" sm="6" md="4" lg="3" xl="2" class="mb-1" v-if="character.spellSlots != null && character.spellSlots.eighth > 0">
+                  <CCard>
+                    <CCardHeader>8th-Level</CCardHeader>
+                    <CCardBody>
+                      <CRow>
+                        <CCol>
+                          <strong>Remaining: </strong> {{ character.spellSlots.eighth - character.eighthSlotsUsed }} / {{ character.spellSlots.eighth }}
+                        </CCol>
+                      </CRow>
+                      <CRow>
+                        <CCol>
+                          <CButton size="sm" color="danger" @click="characterStoreFunctions.adjustEighthSlotsUsed(characterIndex, 1)">-1</CButton>
+                          <CButton size="sm" color="success" @click="characterStoreFunctions.adjustEighthSlotsUsed(characterIndex, -1)">+1</CButton>
+                        </CCol>
+                      </CRow>
+                    </CCardBody>
+                  </CCard>
+                </CCol>
+
+                <CCol xs="6" sm="6" md="4" lg="3" xl="2" class="mb-1" v-if="character.spellSlots != null  && character.spellSlots.ninth > 0">
+                  <CCard>
+                    <CCardHeader>9th-Level</CCardHeader>
+                    <CCardBody>
+                      <CRow>
+                        <CCol>
+                          <strong>Remaining: </strong> {{ character.spellSlots.ninth - character.ninthSlotsUsed }} / {{ character.spellSlots.ninth }}
+                        </CCol>
+                      </CRow>
+                      <CRow>
+                        <CCol>
+                          <CButton size="sm" color="danger" @click="characterStoreFunctions.adjustNinthSlotsUsed(characterIndex, 1)">-1</CButton>
+                          <CButton size="sm" color="success" @click="characterStoreFunctions.adjustNinthSlotsUsed(characterIndex, -1)">+1</CButton>
+                        </CCol>
+                      </CRow>
+                    </CCardBody>
+                  </CCard>
+                </CCol>
+
+                <CCol xs="6" sm="6" md="4" lg="3" xl="2" v-if="character.warlockSpellSlots != null">
+                  <CCard>
+                    <CCardHeader>Warlock Slots</CCardHeader>
+                    <CCardBody>
+                      <CRow>
+                        <CCol>
+                          <strong>Slot Level: </strong> {{ character.warlockSpellSlots.slotLevel }}
+                        </CCol>
+                      </CRow>
+                      <CRow>
+                        <CCol>
+                          <strong>Remaining: </strong> {{ character.warlockSpellSlots.quantity - character.warlockSlotsUsed }} / {{ character.warlockSpellSlots.quantity }}
+                        </CCol>
+                      </CRow>
+                        <CRow>
+                          <CCol>
+                          <CButton size="sm" color="danger" @click="characterStoreFunctions.adjustWarlockSlotsUsed(characterIndex, 1)">-1</CButton>
+                          <CButton size="sm" color="success" @click="characterStoreFunctions.adjustWarlockSlotsUsed(characterIndex, -1)">+1</CButton>
+                        </CCol>
+                      </CRow>
+                    </CCardBody>
+                  </CCard>
+                </CCol>
+              </CRow>
+            </CAccordionBody>
+          </CAccordionItem>
         </CAccordion>
       </CAccordionBody>
     </CAccordionItem>
@@ -833,13 +1061,13 @@
   import { useUserStore } from '@/stores/UserStore'
   import { useCampaignStore } from '@/stores/CampaignStore'
   import { useCharacterStore } from '@/stores/CharacterStore'
-  import { CAccordion, CAccordionBody, CAccordionHeader, CAccordionItem, CButton, CCard, CCardBody, CCardHeader, CCol, CFormCheck, CFormLabel, CFormSelect, CModal, CModalBody, CModalFooter, CModalHeader, CModalTitle, CRow } from '@coreui/vue'
+  import { CAccordion, CAccordionBody, CAccordionHeader, CAccordionItem, CButton, CCard, CCardBody, CCardHeader, CCol, CFormCheck, CFormInput, CFormLabel, CFormSelect, CModal, CModalBody, CModalFooter, CModalHeader, CModalTitle, CRow } from '@coreui/vue'
   import { CharacterClass, ClassLevel } from '@/models/PlayerCharacter'
 import agent from '@/api/agent'
   
   export default defineComponent({
     name: "ManageCharacters",
-    components: { CFormSelect, CAccordion, CRow, CCol, CFormLabel, CAccordionHeader, CAccordionBody, CAccordionItem, CButton, CCard, CCardHeader, CCardBody, CModal, CModalHeader, CModalTitle, CModalBody, CModalFooter, CFormCheck },
+    components: { CFormSelect, CAccordion, CRow, CCol, CFormLabel, CAccordionHeader, CAccordionBody, CAccordionItem, CButton, CCard, CCardHeader, CCardBody, CModal, CModalHeader, CModalTitle, CModalBody, CModalFooter, CFormCheck, CFormInput },
     setup() {
       return {
         userStore: storeToRefs(useUserStore()),
@@ -870,7 +1098,8 @@ import agent from '@/api/agent'
         longRest: false,
         editCharacter: false,
         levelUp: false,
-        newMulticlass: { characterClass: { id: 0 } as CharacterClass } as ClassLevel
+        newMulticlass: { characterClass: { id: 0 } as CharacterClass } as ClassLevel,
+        stressRoll: 1
       }
     },
     methods: {
@@ -1024,5 +1253,16 @@ import agent from '@/api/agent'
 
   .card-header {
     font-weight: bold;
+  }
+
+  input::-webkit-outer-spin-button,
+  input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+
+  input[type=number] {
+    -moz-appearance: textfield;
+    appearance: textfield;
   }
 </style>

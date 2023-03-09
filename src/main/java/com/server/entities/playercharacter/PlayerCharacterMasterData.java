@@ -6,6 +6,8 @@ public class PlayerCharacterMasterData {
     private List<ProficiencyBonus> proficiencyBonuses;
     private List<CharacterClass> characterClasses;
     private List<StressStatus> stressStatuses;
+    private List<SpellSlots> spellSlots;
+    private List<WarlockSpellSlots> warlockSpellSlots;
 
     public List<ProficiencyBonus> getProficiencyBonuses() {
         return proficiencyBonuses;
@@ -29,5 +31,21 @@ public class PlayerCharacterMasterData {
 
     public void setStressStatuses(List<StressStatus> stressStatuses) {
         this.stressStatuses = stressStatuses;
+    }
+
+    public List<SpellSlots> getSpellSlots() {
+        return spellSlots;
+    }
+
+    public void setSpellSlots(List<SpellSlots> spellSlots) {
+        this.spellSlots = spellSlots;
+    }
+
+    public List<WarlockSpellSlots> getWarlockSpellSlots() {
+        return warlockSpellSlots;
+    }
+
+    public void setWarlockSpellSlots(List<WarlockSpellSlots> warlockSpellSlots) {
+        this.warlockSpellSlots = warlockSpellSlots;
     }
 }

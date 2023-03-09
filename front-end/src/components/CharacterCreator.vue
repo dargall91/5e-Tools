@@ -22,7 +22,7 @@
           <CFormLabel for="name" class="fw-bold align-text-bottom">Name:</CFormLabel>
         </CCol>
         <CCol sm="8" md="6">
-          <CFormInput id="name" v-model="playerCharacter.name" type="text" min="1"></CFormInput>
+          <CFormInput id="name" v-model="playerCharacter.name" type="text"></CFormInput>
         </CCol>
       </CRow>
     
@@ -342,6 +342,16 @@
                 </CCol>
                 <CCol sm="auto">
                   <CFormSelect @change="setMedicine(parseInt($event.target.value))" :modelValue="'0'">
+                    <option v-for="profciency in skillProficiencyLevel" :value="profciency.level" :key="profciency.level">{{ profciency.value }}</option>
+                  </CFormSelect>
+                </CCol>
+              </CRow>
+              <CRow>
+                <CCol class="mt-2">
+                  <CFormLabel class="fw-bold">Perception:</CFormLabel>
+                </CCol>
+                <CCol sm="auto">
+                  <CFormSelect @change="setPerception(parseInt($event.target.value))" :modelValue="'0'">
                     <option v-for="profciency in skillProficiencyLevel" :value="profciency.level" :key="profciency.level">{{ profciency.value }}</option>
                   </CFormSelect>
                 </CCol>

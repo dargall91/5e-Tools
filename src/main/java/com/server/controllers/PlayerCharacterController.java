@@ -5,10 +5,7 @@ import com.server.entities.playercharacter.PlayerCharacter;
 import com.server.entities.playercharacter.PlayerCharacterMasterData;
 import com.server.entities.playercharacter.StressStatus;
 import com.server.repositories.CampaignRepository;
-import com.server.repositories.playercharacter.CharacterClassRepository;
-import com.server.repositories.playercharacter.PlayerCharacterRepository;
-import com.server.repositories.playercharacter.ProficiencyBonusRepository;
-import com.server.repositories.playercharacter.StressStatusRepository;
+import com.server.repositories.playercharacter.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.http.HttpStatus;
@@ -37,6 +34,10 @@ public class PlayerCharacterController {
     private StressStatusRepository stressRepo;
     @Autowired
     private ProficiencyBonusRepository proficiencyRepo;
+    @Autowired
+    private SpellSlotsRepository spellSlotsRepo;
+    @Autowired
+    private WarlockSpellSlotsRepository warlockSpellSlotsRepo;
 
     //TODO: add methods for android to update ONLY the fields it has uses (init, combatant, etc)
 
@@ -46,6 +47,8 @@ public class PlayerCharacterController {
         masterData.setCharacterClasses(classRepo.findAllByOrderByNameAsc());
         masterData.setProficiencyBonuses(proficiencyRepo.findAllByOrderByLevelAsc());
         masterData.setStressStatuses(stressRepo.findAll());
+        masterData.setSpellSlots(spellSlotsRepo.findAll());
+        masterData.setWarlockSpellSlots(warlockSpellSlotsRepo.findAll());
 
         return ResponseEntity.ok(masterData);
     }

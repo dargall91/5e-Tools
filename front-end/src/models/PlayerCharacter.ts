@@ -1,7 +1,9 @@
 export interface PlayerCharacterMasterData {
 	characterClasses: CharacterClass[],
 	proficiencyBonuses: ProficiencyBonus[],
-	stressStatuses: StressStatus[]
+	stressStatuses: StressStatus[],
+	spellSlots: SpellSlots[],
+	warlockSpellSlots: WarlockSpellSlots[]
 }
 
 export interface PlayerCharacter {
@@ -19,6 +21,7 @@ export interface PlayerCharacter {
 	deathSaveSuccesses: number,
 	deathSaveFailures: number,
 	stress: number,
+	meditationDiceUsed: number,
 	dwarvenToughness: boolean,
 	toughFeat: boolean,
 	stressStatus: StressStatus,
@@ -30,7 +33,19 @@ export interface PlayerCharacter {
 	wisdom: Wisdom,
 	charisma: Charisma,
 	resolve: Resolve | null,
-	classLevelList: ClassLevel[]
+	classLevelList: ClassLevel[],
+	spellSlots: SpellSlots | null,
+	warlockSpellSlots: WarlockSpellSlots | null
+	firstSlotsUsed: number,
+	secondSlotsUsed: number,
+	thirdSlotsUsed: number,
+	fourthSlotsUsed: number,
+	fifthSlotsUsed: number,
+	sixthSlotsUsed: number,
+	seventhSlotsUsed: number,
+	eighthSlotsUsed: number,
+	ninthSlotsUsed: number,
+	warlockSlotsUsed: number,
 };
 
 interface AbilityScore {
@@ -112,4 +127,23 @@ export interface StressStatus {
 export interface ProficiencyBonus {
 	level: number,
 	bonus: number
+}
+
+export interface SpellSlots {
+	casterLevel: number,
+	first: number,
+	second: number,
+	third: number,
+	fourth: number,
+	fifth: number,
+	sixth: number,
+	seventh: number,
+	eighth: number,
+	ninth: number
+}
+
+export interface WarlockSpellSlots {
+	warlockLevel: number,
+	quantity: number,
+	slotLevel: number
 }
