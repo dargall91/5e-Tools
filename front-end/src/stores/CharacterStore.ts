@@ -1,6 +1,6 @@
 import { defineStore } from 'pinia'
 import agent from '@/api/agent';
-import { PlayerCharacter, PlayerCharacterMasterData, SpellSlots, StressStatus, WarlockSpellSlots } from '@/models/PlayerCharacter';
+import { ClassLevel, PlayerCharacter, PlayerCharacterMasterData, SpellSlots, StressStatus, WarlockSpellSlots } from '@/models/PlayerCharacter';
 import { Campaign } from '@/models/Campaign';
 
 const updateDelay = 2000;
@@ -191,7 +191,7 @@ export const useCharacterStore = defineStore({
         maxHitPoints = Math.ceil(1.5 * maxHitPoints);
       }
       
-      return maxHitPoints;
+      return maxHitPoints - this.characterList[index].maxHpReduction;
     },
     adjustHitDie(characterIndex: number, classLevelindex: number, amount: number) {
       this.characterList[characterIndex].classLevelList[classLevelindex].usedHitDice += amount;
@@ -547,6 +547,52 @@ export const useCharacterStore = defineStore({
     longRest(index: number, campaign: Campaign) {
       this.characterList[index].damage = 0;
       this.characterList[index].temporaryHitPoints = 0;
+
+      let totalHitDiceToRestore = Math.floor(this.getTotalLevels(index) / 2);
+
+      if (totalHitDiceToRestore < 1) {
+        totalHitDiceToRestore = 1;
+      }
+
+      let classesToRestoreHitDie = [] as ClassLevel[];
+
+      this.characterList[index].classLevelList.forEach((classLevel) => {
+        if (classLevel.usedHitDice > 0) {
+          classesToRestoreHitDie.push(classLevel);
+        }
+      });
+
+      //sort class list by largest hit die to smallest
+      classesToRestoreHitDie = classesToRestoreHitDie.sort((a, b) => b.characterClass.hitDie - a.characterClass.hitDie);
+
+      classesToRestoreHitDie.forEach((classLevel) => {
+        if (totalHitDiceToRestore > 0) {
+          if (totalHitDiceToRestore <= classLevel.usedHitDice) {
+            this.adjustHitDie(index, this.characterList[index].classLevelList.indexOf(classLevel), totalHitDiceToRestore * -1);
+            totalHitDiceToRestore = 0;
+          } else {
+            const classHitDiceToRestore = classLevel.usedHitDice;
+            this.adjustHitDie(index, this.characterList[index].classLevelList.indexOf(classLevel), classHitDiceToRestore * -1);
+            totalHitDiceToRestore -= classHitDiceToRestore;
+          }
+        }
+      });
+
+      if (this.characterList[index].spellSlots != null) {
+        this.characterList[index].firstSlotsUsed = 0;
+        this.characterList[index].secondSlotsUsed = 0;
+        this.characterList[index].thirdSlotsUsed = 0;
+        this.characterList[index].fourthSlotsUsed = 0;
+        this.characterList[index].fifthSlotsUsed = 0;
+        this.characterList[index].sixthSlotsUsed = 0;
+        this.characterList[index].seventhSlotsUsed = 0;
+        this.characterList[index].eighthSlotsUsed = 0;
+        this.characterList[index].ninthSlotsUsed = 0;
+      }
+
+      if (this.characterList[index].warlockSpellSlots != null) {
+        this.characterList[index].warlockSlotsUsed = 0;
+      }
 
       const stressThreshold = this.getStressThreshold(index, campaign);
       

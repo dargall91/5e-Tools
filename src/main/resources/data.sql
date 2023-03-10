@@ -146,6 +146,7 @@ INSERT INTO ProficiencyBonus(level, bonus) VALUES
 ON DUPLICATE KEY
 UPDATE bonus = VALUES(bonus);
 
+-- spell slots
 INSERT INTO SpellSlots(casterLevel, first, second, third, fourth, fifth, sixth, seventh, eighth, ninth) VALUES
     (1, 2, 0, 0, 0, 0, 0, 0, 0, 0),
     (2, 3, 0, 0, 0, 0, 0, 0, 0, 0),
@@ -171,6 +172,7 @@ ON DUPLICATE KEY
 UPDATE first = VALUES(first), second = VALUES(second), third = VALUES(third), fourth = VALUES(fourth),
 fifth = VALUES(fifth), sixth = VALUES(sixth), seventh = VALUES(seventh), eighth = VALUES(eighth), ninth = VALUES(ninth);
 
+-- warlock spell slots
 INSERT INTO WarlockSpellSlots(warlockLevel, quantity, slotLevel) VALUES
     (1, 1, 1),
     (2, 2, 1),
@@ -194,3 +196,14 @@ INSERT INTO WarlockSpellSlots(warlockLevel, quantity, slotLevel) VALUES
     (20, 4, 5)
 ON DUPLICATE KEY UPDATE
 quantity = VALUES(quantity), slotLevel = VALUES(slotLevel);
+
+-- primal companion types
+INSERT INTO PrimalCompanionType(id, name, size, speed, baseHitPoints, hitDie, strength, dexterity, constitution,
+intelligence, wisdom, charisma, abilityName, abilityDescription, actionName, actionDescription) VALUES
+    (1, 'Beast of the Land', 'Medium', '40 ft., climb 40 ft.', 5, 8, 14, 14, 15, 8, 14, 11,
+    'Charge', 'If the beast moves at least 20 feet straight toward a target and then hits it with a maul attack on the same turn, the target takes an extra ld6 slashing damage. If the target is a creature, it must succeed on a {{ 8 + characterStoreFunctions.getScoreModifier(character.wisdom) + characterStoreFunctions.getProficiencyBonus(characterIndex) }} DC Strength saving throw or be knocked prone.',
+    'Maul', '<em>Melee Weapon Attack:</em> +{{ characterStoreFunctions.getScoreModifier(character.wisdom) + characterStoreFunctions.getProficiencyBonus(characterIndex) }} to hit, reach 5 ft., one target. Hit: 1d8 + {{ 2 +  characterStoreFunctions.getProficiencyBonus(characterIndex) }} slashing damage.')
+ON DUPLICATE KEY UPDATE
+name = VALUES(name), strength = VALUES(strength), dexterity = VALUES(dexterity), constitution = VALUES(constitution),
+intelligence = VALUES(intelligence), wisdom = VALUES(wisdom), charisma = VALUES(charisma), abilityName = VALUES(abilityName),
+abilityDescription = VALUES(abilityDescription), actionName = VALUES(actionName), actionDescription = VALUES(actionDescription);

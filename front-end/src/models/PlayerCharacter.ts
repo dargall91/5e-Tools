@@ -15,6 +15,7 @@ export interface PlayerCharacter {
 	acBonus: number,
 	damage: number,
 	temporaryHitPoints: number,
+	maxHpReduction: number,
 	initiativeBonus: number,
 	rolledInitiative: number,
 	dead: boolean,

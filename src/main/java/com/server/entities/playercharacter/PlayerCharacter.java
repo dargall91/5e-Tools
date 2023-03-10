@@ -15,6 +15,7 @@ public class PlayerCharacter {
     private int acBonus;
     private int damage = 0;
     private int temporaryHitPoints;
+    private int maxHpReduction;
     private int initiativeBonus;
     private int rolledInitiative;
     private int campaignId;
@@ -64,6 +65,9 @@ public class PlayerCharacter {
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "playerCharacterId")
     private List<ClassLevel> classLevelList;
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name="id")
+    private PrimalCompanion primalCompanion = null;
 
     public PlayerCharacter() { }
 
@@ -89,6 +93,10 @@ public class PlayerCharacter {
 
     public int getTemporaryHitPoints() {
         return temporaryHitPoints;
+    }
+
+    public int getMaxHpReduction() {
+        return maxHpReduction;
     }
 
     public int getInitiativeBonus() {
@@ -229,5 +237,13 @@ public class PlayerCharacter {
 
     public int getMeditationDiceUsed() {
         return meditationDiceUsed;
+    }
+
+    public PrimalCompanion getPrimalCompanion() {
+        return primalCompanion;
+    }
+
+    public void setPrimalCompanion(PrimalCompanion primalCompanion) {
+        this.primalCompanion = primalCompanion;
     }
 }
