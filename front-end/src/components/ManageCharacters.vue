@@ -1,6 +1,5 @@
 <template>
   <h2 class="mt-2">Manage Characters</h2>
-
   <CRow>
     <CCol sm="3" md="2" class="mt-2">
       <CFormLabel for="campaign" class="fw-bold align-text-bottom">Campaign:</CFormLabel>
@@ -43,7 +42,7 @@
         
         <!-- Hit Points -->
         <CRow class="mt-1">
-          <CCol xs="7" md="5" lg="4">
+          <CCol xs="7" md="5" lg="4" xl="3">
             <strong>Hit Points:</strong> {{ characterStoreFunctions.getMaxHitPoints(characterIndex, campaignStore.selectedCampaign.value) - character.damage }} / {{ characterStoreFunctions.getMaxHitPoints(characterIndex, campaignStore.selectedCampaign.value) }}
           </CCol>
           <CCol xs="5">
@@ -53,7 +52,7 @@
 
         <!-- Damage -->
         <CRow>
-          <CCol xs="7" md="5" lg="4">
+          <CCol xs="7" md="5" lg="4" xl="3">
             <CButton size="sm" color="danger" @click="characterStoreFunctions.adjustDamage(characterIndex, 10, campaignStore.selectedCampaign.value)">-10</CButton>
             <CButton size="sm" color="danger" @click="characterStoreFunctions.adjustDamage(characterIndex, 5, campaignStore.selectedCampaign.value)">-5</CButton>
             <CButton size="sm" color="danger" @click="characterStoreFunctions.adjustDamage(characterIndex, 1, campaignStore.selectedCampaign.value)">-1</CButton>
@@ -601,13 +600,15 @@
           <CAccordionItem v-if="character.primalCompanion != null && characterStoreFunctions.isBeastmaster(characterIndex)">
             <CAccordionHeader>Primal Companion - {{ character.primalCompanion.name }}</CAccordionHeader>
             <CAccordionBody>
-              <CButton class="me-1" size="sm" color="dark" @click="showLongRest(characterIndex)">Long Rest</CButton>
-              <CButton size="sm" color="dark" @click="showEditCharacter(characterIndex)">Edit</CButton>
+              <CButton size="sm" color="dark" @click="showEditCompanion(characterIndex)">Edit</CButton>
 
               <!-- Description -->
               <CRow class="mt-1">
-                <CCol sm="12" lg="4">
-                  <strong>Companion Type:</strong> {{ character.primalCompanion.primalCompanionType.name }}
+                <CCol xs="12" sm="6" lg="3">
+                  <strong>Type:</strong> {{ character.primalCompanion.primalCompanionType.name }}
+                </CCol>
+                <CCol xs="12" sm="6" lg="3">
+                  <strong>Speed:</strong> {{ character.primalCompanion.primalCompanionType.speed }}
                 </CCol>
                 <CCol sm="6" lg="3">
                   <strong>Size:</strong> {{ character.primalCompanion.primalCompanionType.size }} {{ character.primalCompanion.type }}
@@ -627,50 +628,58 @@
 
               <!-- Hit Points -->
               <CRow>
-                <CCol xs="12" md="5" lg="7">
+                <CCol>
                   <strong>Hit Dice Used:</strong> {{ character.primalCompanion.hitDiceUsed }} / {{ characterStoreFunctions.getBeastmasterLevel(characterIndex) }}d{{ character.primalCompanion.primalCompanionType.hitDie }}
                   <CButton size="sm" color="danger" @click="characterStoreFunctions.adjustCompanionHitDie(characterIndex, -1)">-1</CButton>
                   <CButton size="sm" color="success" @click="characterStoreFunctions.adjustCompanionHitDie(characterIndex, 1)">+1</CButton>
                 </CCol>
               </CRow>
               <CRow class="mt-1">
-                <CCol xs="7" md="5" lg="4">
-                  <strong>Hit Points:</strong> {{ characterStoreFunctions.getCompanionMaxHitPoints(characterIndex) - character.primalCompanion.damage }} / {{ characterStoreFunctions.getCompanionMaxHitPoints(characterIndex)! }}
+                <CCol xs="12" md="5" lg="4" xl="3">
+                  <CRow>
+                    <CCol>
+                      <strong>Hit Points:</strong> {{ characterStoreFunctions.getCompanionMaxHitPoints(characterIndex) - character.primalCompanion.damage }} / {{ characterStoreFunctions.getCompanionMaxHitPoints(characterIndex)! }}
+                    </CCol>
+                  </CRow>
+                  <CRow>
+                    <CCol>
+                      <CButton size="sm" color="danger" @click="characterStoreFunctions.adjustCompanionDamage(characterIndex, 10)">-10</CButton>
+                      <CButton size="sm" color="danger" @click="characterStoreFunctions.adjustCompanionDamage(characterIndex, 5)">-5</CButton>
+                      <CButton size="sm" color="danger" @click="characterStoreFunctions.adjustCompanionDamage(characterIndex, 1)">-1</CButton>
+                      <CButton size="sm" color="success" @click="characterStoreFunctions.adjustCompanionDamage(characterIndex, -1)">+1</CButton>
+                      <CButton size="sm" color="success" @click="characterStoreFunctions.adjustCompanionDamage(characterIndex, -5)">+5</CButton>
+                      <CButton size="sm" color="success" @click="characterStoreFunctions.adjustCompanionDamage(characterIndex, -10)">+10</CButton>
+                    </CCol>
+                  </CRow>
                 </CCol>
-                <CCol xs="5">
-                  <strong>Temporary HP:</strong> {{ character.primalCompanion.temporaryHitPoints }}
-                </CCol>
-              </CRow>
-
-              <!-- Damage -->
-              <CRow>
-                <CCol xs="7" md="5" lg="4">
-                  <CButton size="sm" color="danger" @click="characterStoreFunctions.adjustCompanionDamage(characterIndex, 10)">-10</CButton>
-                  <CButton size="sm" color="danger" @click="characterStoreFunctions.adjustCompanionDamage(characterIndex, 5)">-5</CButton>
-                  <CButton size="sm" color="danger" @click="characterStoreFunctions.adjustCompanionDamage(characterIndex, 1)">-1</CButton>
-                  <CButton size="sm" color="success" @click="characterStoreFunctions.adjustCompanionDamage(characterIndex, -1)">+1</CButton>
-                  <CButton size="sm" color="success" @click="characterStoreFunctions.adjustCompanionDamage(characterIndex, -5)">+5</CButton>
-                  <CButton size="sm" color="success" @click="characterStoreFunctions.adjustCompanionDamage(characterIndex, -10)">+10</CButton>
-                </CCol>
-                <CCol xs="5">
-                  <CButton size="sm" color="danger" @click="characterStoreFunctions.adjustCompanionTemporaryHitPoints(characterIndex, -5)">-5</CButton>
-                  <CButton size="sm" color="danger" @click="characterStoreFunctions.adjustCompanionTemporaryHitPoints(characterIndex, -1)">-1</CButton>
-                  <CButton size="sm" color="success" @click="characterStoreFunctions.adjustCompanionTemporaryHitPoints(characterIndex, 1)">+1</CButton>
-                  <CButton size="sm" color="success" @click="characterStoreFunctions.adjustCompanionTemporaryHitPoints(characterIndex, 5)">+5</CButton>
+                <CCol xs="12" sm="5">
+                  <CRow>
+                    <CCol>
+                      <strong>Temporary HP:</strong> {{ character.primalCompanion.temporaryHitPoints }}
+                    </CCol>
+                  </CRow>
+                  <CRow>
+                    <CCol>
+                      <CButton size="sm" color="danger" @click="characterStoreFunctions.adjustCompanionTemporaryHitPoints(characterIndex, -5)">-5</CButton>
+                      <CButton size="sm" color="danger" @click="characterStoreFunctions.adjustCompanionTemporaryHitPoints(characterIndex, -1)">-1</CButton>
+                      <CButton size="sm" color="success" @click="characterStoreFunctions.adjustCompanionTemporaryHitPoints(characterIndex, 1)">+1</CButton>
+                      <CButton size="sm" color="success" @click="characterStoreFunctions.adjustCompanionTemporaryHitPoints(characterIndex, 5)">+5</CButton>
+                    </CCol>
+                  </CRow>
                 </CCol>
               </CRow>
 
               <!-- AC -->
               <CRow class="mt-1">
-                <CCol sm="3" md="3" lg="2">
+                <CCol class="mt-1" xs="4" sm="4" md="4" lg="2">
                   <strong>Base AC:</strong> {{ characterStoreFunctions.getCompanionBaseAc(characterIndex) }} 
                 </CCol>
-                <CCol xs="7" sm="5" md="4" lg="3">
+                <CCol xs="7" sm="6" md="4" lg="3">
                   <strong>AC Bonuses:</strong> {{ character.primalCompanion.acBonus }} 
                   <CButton size="sm" color="danger" @click="characterStoreFunctions.adjustCompanionAcBonus(characterIndex, -1)">-1</CButton>
                   <CButton size="sm" color="success" @click="characterStoreFunctions.adjustCompanionAcBonus(characterIndex, 1)">+1</CButton>
                 </CCol>
-                <CCol class="mt-1" xs="12" sm="4">
+                <CCol class="mt-1" xs="12" md="4">
                   <strong>Total AC:</strong> {{ characterStoreFunctions.getCompanionBaseAc(characterIndex) + character.primalCompanion.acBonus }} 
                 </CCol>
               </CRow>
@@ -693,6 +702,28 @@
                 </CCol>
               </CRow>
 
+              <!-- Ability -->
+              <CRow class="mt-1">
+                <CCol>
+                  <strong>Ability:</strong>
+                </CCol>
+                <CCol xs="12">
+                  <strong>{{ character.primalCompanion.primalCompanionType.abilityName }}:</strong> {{ characterStoreFunctions.getCompanionAbilityDescription(characterIndex) }} 
+                </CCol>
+              </CRow>
+
+              <!-- Action -->
+              <CRow class="mt-1">
+                <CCol xs="12">
+                  <strong>Action:</strong>
+                </CCol>
+                <CCol>
+                  <strong>{{ character.primalCompanion.primalCompanionType.actionName }}:</strong> <span v-html="characterStoreFunctions.getCompanionActionDescription(characterIndex)" ></span>
+                </CCol>
+
+              </CRow>
+
+              <!-- Ability Scores -->
               <CRow>
                 <!-- Strength -->
                 <CCol xs="6" sm="4">
@@ -715,7 +746,7 @@
                 <!-- Constitution -->
                 <CCol xs="6" sm="4">
                   <CCard class="mt-2">
-                    <CCardHeader>STR: {{ character.primalCompanion.primalCompanionType.constitution }} ({{ getScoreModifierString(character.primalCompanion.primalCompanionType.constitution) }})</CCardHeader>
+                    <CCardHeader>CON: {{ character.primalCompanion.primalCompanionType.constitution }} ({{ getScoreModifierString(character.primalCompanion.primalCompanionType.constitution) }})</CCardHeader>
                     <CCardBody>
                       <strong>Skill/Save Bonus:</strong> {{ getCompanionSkillSaveBonus(characterIndex, character.primalCompanion.primalCompanionType.constitution) }}
                     </CCardBody>
@@ -724,7 +755,7 @@
                 <!-- Intelligence -->
                 <CCol  xs="6" sm="4">
                   <CCard class="mt-2">
-                    <CCardHeader>DEX: {{ character.primalCompanion.primalCompanionType.intelligence }} ({{ getScoreModifierString(character.primalCompanion.primalCompanionType.intelligence) }})</CCardHeader>
+                    <CCardHeader>INT: {{ character.primalCompanion.primalCompanionType.intelligence }} ({{ getScoreModifierString(character.primalCompanion.primalCompanionType.intelligence) }})</CCardHeader>
                     <CCardBody>
                       <strong>Skill/Save Bonus:</strong> {{ getCompanionSkillSaveBonus(characterIndex, character.primalCompanion.primalCompanionType.intelligence) }}
                     </CCardBody>
@@ -733,7 +764,7 @@
                 <!-- Wisdom -->
                 <CCol xs="6" sm="4">
                   <CCard class="mt-2">
-                    <CCardHeader>STR: {{ character.primalCompanion.primalCompanionType.wisdom }} ({{ getScoreModifierString(character.primalCompanion.primalCompanionType.wisdom) }})</CCardHeader>
+                    <CCardHeader>WIS: {{ character.primalCompanion.primalCompanionType.wisdom }} ({{ getScoreModifierString(character.primalCompanion.primalCompanionType.wisdom) }})</CCardHeader>
                     <CCardBody>
                       <strong>Skill/Save Bonus:</strong> {{ getCompanionSkillSaveBonus(characterIndex, character.primalCompanion.primalCompanionType.wisdom) }}
                     </CCardBody>
@@ -742,7 +773,7 @@
                 <!-- Charisma -->
                 <CCol  xs="6" sm="4">
                   <CCard class="mt-2">
-                    <CCardHeader>DEX: {{ character.primalCompanion.primalCompanionType.charisma }} ({{ getScoreModifierString(character.primalCompanion.primalCompanionType.charisma) }})</CCardHeader>
+                    <CCardHeader>CHA: {{ character.primalCompanion.primalCompanionType.charisma }} ({{ getScoreModifierString(character.primalCompanion.primalCompanionType.charisma) }})</CCardHeader>
                     <CCardBody>
                       <strong>Skill/Save Bonus:</strong> {{ getCompanionSkillSaveBonus(characterIndex, character.primalCompanion.primalCompanionType.charisma) }}
                     </CCardBody>
@@ -762,16 +793,20 @@
       <CModalTitle>Long Rest</CModalTitle>
     </CModalHeader>
     <CModalBody>
-      Long rest to automatically apply the following actions to {{ characterStore.characterList.value[indexToEditOrRest].name }}:
+      Long rest to automatically apply the following effects to {{ characterStore.characterList.value[indexToEditOrRest].name }}:
       <ul>
         <li>Recover all hit points (any temporary hit points will be lost)</li>
-        <li>Recover hit dice equal to hald of your total level (minimum of 1, if multiclassed your largest hit dice are prioritized)</li>
+        <li v-if="characterStore.characterList.value[indexToEditOrRest].primalCompanion != null">Your Primal Companion recovers all hit points (any temporary hit points will be lost)</li>
+        <li>Recover hit dice equal to half of your total level (minimum of 1, if multiclassed your largest hit dice are prioritized)</li>
+        <li v-if="characterStore.characterList.value[indexToEditOrRest].primalCompanion != null">Your Primal Companion recovers hit dice equal to half of your Ranger level (minimum of 1)</li>
         <li>Recover all expended spell slots</li>
         <li v-if="campaignStore.selectedCampaign.value.madness">If your stress level is greater than your stress threshold, it becomes equal to your threshold</li>
         <li v-if="campaignStore.selectedCampaign.value.madness">If your stress level is less than or equal to your stress threshold, you lose 50 stress</li>
         <li v-if="campaignStore.selectedCampaign.value.madness">Lose your Affliction or Virtue if you have one</li>
         <li v-if="campaignStore.selectedCampaign.value.madness">Recover 5 meditation dice</li>
       </ul>
+
+      *Decimals are always rounded down unless specified otherwise
     </CModalBody>
     <CModalFooter>
       <CButton color="secondary" @click="() => { longRest = false; }">Cancel</CButton>
@@ -780,36 +815,36 @@
   </CModal>
 
   <!-- Edit Character Modal -->
-  <CModal size="xl" :visible="editCharacter" @close="closeEditorAndCancelEdits()" >
+  <CModal size="xl" :visible="editCharacter" @close="closeCharacterEditorAndCancelEdits()" >
     <CModalHeader>
       <CModalTitle>Edit {{ characterStore.characterList.value[indexToEditOrRest].name }}</CModalTitle>
     </CModalHeader>
     <CModalBody>
       <!-- Classes -->
       <CRow class="mb-1" v-for="classLevel, classLevelIndex in characterStore.characterList.value[indexToEditOrRest].classLevelList" :key="classLevel.id">
-        <CCol xs="4" v-if="classLevel.baseClass">
+        <CCol xs="4" sm="3" v-if="classLevel.baseClass">
           <strong>Base Class:</strong> {{ classLevel.characterClass.name }}
         </CCol>
-        <CCol xs="4" v-else>
+        <CCol xs="4" sm="3" v-else>
           <strong>Multiclass:</strong> {{ classLevel.characterClass.name }}
         </CCol>
-        <CCol xs="4">
+        <CCol xs="4" sm="3">
           <strong>Level:</strong> {{ classLevel.levels }}
         </CCol>
-        <CCol xs="4" v-if="canBeEldritchNight(classLevel) && levelUp === true">
+        <CCol xs="4" sm="3" v-if="canBeEldritchNight(classLevel) && levelUp === true">
           <CFormCheck label="Eldtritch Knight" v-model="classLevel.eldtritchKnight" value="true"/>
         </CCol>
-        <CCol xs="4" v-if="canBeArcaneTrickster(classLevel) && levelUp === true">
+        <CCol xs="4" sm="3" v-if="canBeArcaneTrickster(classLevel) && levelUp === true">
           <CFormCheck label="Arcane Trickster" v-model="classLevel.aracneTrickster" value="true" />
         </CCol>
-        <CCol xs="4" v-if="canBeBeastmaster(classLevel)">
+        <CCol xs="4" sm="3" v-if="canBeBeastmaster(classLevel)">
           <CFormCheck label="Beastmaster" v-model="classLevel.beastMaster" value="true" />
         </CCol>
-        <CCol xs="4" v-if="!levelUp && characterStoreFunctions.getTotalLevels(indexToEditOrRest) < 20">
+        <CCol xs="4" sm="3" v-if="!levelUp && characterStoreFunctions.getTotalLevels(indexToEditOrRest) < 20">
           <CButton size="sm" color="dark" @click="() => { levelUp = true; characterStoreFunctions.levelUp(indexToEditOrRest, classLevelIndex)}">Level Up</CButton>
         </CCol>
       </CRow>
-      <CButton size="sm"  v-if="!levelUp && characterStore.characterList.value[indexToEditOrRest].classLevelList.length < classList.length &&
+      <CButton size="sm" v-if="!levelUp && characterStore.characterList.value[indexToEditOrRest].classLevelList.length < characterStore.masterData.value.characterClasses.length &&
                                 newMulticlass.characterClass.id === 0 && characterStoreFunctions.getTotalLevels(indexToEditOrRest) < 20" color="dark" 
         @click="setNewMulticlass(1)">Add Multiclass</CButton>
       <CRow v-if="newMulticlass.characterClass.id != 0">
@@ -818,7 +853,7 @@
         </CCol>
         <CCol xs="5" sm="3">
           <CFormSelect @change="setNewMulticlass(parseInt($event.target.value))" :id="'multiClass'">
-            <option v-for="(item) in classList" :value="item.id" :key="item.id">{{ item.name }}</option>
+            <option v-for="(item) in characterStore.masterData.value.characterClasses" :value="item.id" :key="item.id">{{ item.name }}</option>
           </CFormSelect>
         </CCol>
         <CCol>
@@ -832,7 +867,7 @@
           <CFormLabel class="fw-bold align-text-bottom" for="reduction">Max HP Reduction:</CFormLabel>
         </CCol>
         <CCol lg="2" xl="1">
-          <CFormInput id="reduction" min="0" v-model.number="characterStore.characterList.value[indexToEditOrRest].maxHpReduction" type="number" />
+          <CFormInput id="reduction" v-model.number="characterStore.characterList.value[indexToEditOrRest].maxHpReduction" type="number" />
         </CCol>
       </CRow>
 
@@ -1213,12 +1248,55 @@
       </CRow>
     </CModalBody>
     <CModalFooter>
-      <CButton color="secondary" @click="closeEditorAndCancelEdits()">Cancel</CButton>
-      <CButton color="dark" @click="closeEditorAndSaveEdits()">Save</CButton>
+      <CButton color="secondary" @click="closeCharacterEditorAndCancelEdits()">Cancel</CButton>
+      <CButton color="dark" @click="closeCharacterEditorAndSaveEdits()">Save</CButton>
     </CModalFooter>
   </CModal>
 
   <!-- Edit Primal Companion Modal -->
+  <CModal :visible="editCompanion" @close="closeCompanionEditorAndCancelEdits()" >
+    <CModalHeader>
+      <CModalTitle>Edit Primal Companion</CModalTitle>
+    </CModalHeader>
+    <CModalBody>
+      <!-- Name -->
+      <CRow>
+        <CCol>
+          <CFormLabel class="mt-1 fw-bold" for="companionName">Name:</CFormLabel>
+        </CCol>
+        <CCol>
+          <CFormInput id="companionName" v-model="characterStore.characterList.value[indexToEditOrRest].primalCompanion!.name" />
+        </CCol>
+      </CRow>
+
+      <!-- Type -->
+      <CRow class="mt-1">
+        <CCol>
+          <CFormLabel class="mt-1 fw-bold">Primal Companion Type:</CFormLabel>
+        </CCol>
+        <CCol>
+          <CFormSelect @change="characterStoreFunctions.setCompanionType(indexToEditOrRest, parseInt($event.target.value))" :id="'companionType'"
+            :model-value="characterStore.characterList.value[indexToEditOrRest].primalCompanion!.primalCompanionType.id.toString()">
+            <option v-for="(item) in characterStore.masterData.value.primalCompanionTypes" :value="item.id" :key="item.id">{{ item.name }}</option>
+          </CFormSelect>
+        </CCol>
+      </CRow>
+
+      <!-- Max HP Reduction -->
+      <CRow class="mt-1">
+        <CCol>
+          <CFormLabel class="mt-1 fw-bold" for="reduction">Max HP Reduction:</CFormLabel>
+        </CCol>
+        <CCol>
+          <CFormInput id="reduction" v-model.number="characterStore.characterList.value[indexToEditOrRest].primalCompanion!.maxHpReduction" type="number" />
+        </CCol>
+      </CRow>
+    </CModalBody>
+    <CModalFooter>
+      <CButton color="secondary" @click="closeCompanionEditorAndCancelEdits()">Cancel</CButton>
+      <CButton color="dark" @click="closeCompanionEditorAndSaveEdits()">Save</CButton>
+    </CModalFooter>
+  </CModal>
 
 </template>
 
@@ -1230,8 +1308,7 @@
   import { useCharacterStore } from '@/stores/CharacterStore'
   import { CAccordion, CAccordionBody, CAccordionHeader, CAccordionItem, CButton, CCard, CCardBody, CCardHeader, CCol, CFormCheck, CFormInput, CFormLabel, CFormSelect, CModal, CModalBody, CModalFooter, CModalHeader, CModalTitle, CRow } from '@coreui/vue'
   import { CharacterClass, ClassLevel, PlayerCharacter } from '@/models/PlayerCharacter'
-import agent from '@/api/agent'
-import { Campaign } from '@/models/Campaign'
+  import { Campaign } from '@/models/Campaign'
   
   export default defineComponent({
     name: "ManageCharacters",
@@ -1251,7 +1328,6 @@ import { Campaign } from '@/models/Campaign'
         getCharacterList: useCharacterStore().getCharacterList,
         setSelectedCampaign: useCampaignStore().setSelectedCampaign,
         clearCharacterList: useCharacterStore().clearCharacterList,
-        classList: [] as CharacterClass[],
         numberList: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10,
                     11, 12, 13, 14, 15, 16, 17, 18, 19, 20],
         savingThrowLevels: [
@@ -1265,11 +1341,12 @@ import { Campaign } from '@/models/Campaign'
         ],
         longRest: false,
         editCharacter: false,
+        editCompanion: false,
         levelUp: false,
         newMulticlass: { characterClass: { id: 0 } as CharacterClass } as ClassLevel,
         stressRoll: 1,
         characterToEdit: {} as PlayerCharacter,
-        indexToEditOrRest: 0
+        indexToEditOrRest: -1
       }
     },
     methods: {
@@ -1296,19 +1373,14 @@ import { Campaign } from '@/models/Campaign'
         this.newMulticlass.levels = 1;
         this.newMulticlass.baseClass = false;
       },
-      async getClassList() {
-        await agent.playerCharacter.getClassList().then((data) => {
-          this.classList = data;
-        })
-      },
-      async closeEditorAndCancelEdits() {
+      async closeCharacterEditorAndCancelEdits() {
         this.editCharacter = false;
         this.levelUp = false;
         this.newMulticlass = { characterClass: { id: 0 } as CharacterClass } as ClassLevel;
         await this.characterStoreFunctions.cancelEdits(this.indexToEditOrRest);
-        this.indexToEditOrRest = 0;
+        this.indexToEditOrRest = -1;
       },
-      async closeEditorAndSaveEdits() {
+      async closeCharacterEditorAndSaveEdits() {
         this.editCharacter = false;
         this.levelUp = false;
         if (this.newMulticlass.characterClass.id != 0) {
@@ -1317,7 +1389,17 @@ import { Campaign } from '@/models/Campaign'
 
         await this.characterStoreFunctions.saveCharacter(this.indexToEditOrRest);
         this.newMulticlass = { characterClass: { id: 0 } as CharacterClass } as ClassLevel;
-        this.indexToEditOrRest = 0;
+        this.indexToEditOrRest = -1;
+      },
+      async closeCompanionEditorAndCancelEdits() {
+        this.editCompanion = false;
+        await this.characterStoreFunctions.cancelEdits(this.indexToEditOrRest);
+        this.indexToEditOrRest = -1;
+      },
+      async closeCompanionEditorAndSaveEdits() {
+        this.editCompanion = false;
+        await this.characterStoreFunctions.saveCharacter(this.indexToEditOrRest);
+        this.indexToEditOrRest = -1;
       },
       showLongRest(index: number) {
         this.longRest = true;
@@ -1329,7 +1411,7 @@ import { Campaign } from '@/models/Campaign'
       },
       closeLongRest() {
         this.longRest = false;
-        this.indexToEditOrRest = 0;
+        this.indexToEditOrRest = -1;
       },
       getScoreModifier(score: number) {
         return Math.floor((score - 10) / 2.0);
@@ -1348,11 +1430,11 @@ import { Campaign } from '@/models/Campaign'
         return modString;
       },
       getCompanionSkillSaveBonus(index: number, score: number) {
-      let bonus = Math.floor((score - 10) / 2);
-      bonus += this.characterStoreFunctions.getProficiencyBonus(index);
+        let bonus = Math.floor((score - 10) / 2);
+        bonus += this.characterStoreFunctions.getProficiencyBonus(index);
 
-      return "+" + bonus;
-    },
+        return "+" + bonus;
+      },
       getSavingThrowBonus(score: number, proficient: boolean, proficiencyBonus: number) {
         var bonus = this.getScoreModifier(score);
         var bonusString: string;
@@ -1405,17 +1487,24 @@ import { Campaign } from '@/models/Campaign'
       showEditCharacter(index: number) {
         this.editCharacter = true;
         this.indexToEditOrRest = index;
+      },
+      showEditCompanion(index: number) {
+        if (this.characterStore.characterList.value[index].primalCompanion != null) {
+          this.editCompanion = true;
+          this.indexToEditOrRest = index;
+        }
       }
     },
     async mounted() {
+      console.log("here");
       if (this.campaignStore.activeCampaign.value.id === 0) {
         await this.getCampaignList();
         await this.getActiveCampaign();
       }
       
+      console.log("here");
       await this.characterStoreFunctions.getMasterData();
       await this.getCharacterList(this.userStore.user.value.id as number, this.campaignStore.selectedCampaign.value.id);
-      await this.getClassList();
     }
   });
 </script>

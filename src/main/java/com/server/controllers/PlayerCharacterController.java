@@ -36,6 +36,8 @@ public class PlayerCharacterController {
     private SpellSlotsRepository spellSlotsRepo;
     @Autowired
     private WarlockSpellSlotsRepository warlockSpellSlotsRepo;
+    @Autowired
+    private PrimalCompanionTypeRepository primalCompanionTypeRepo;
 
     //TODO: add methods for android to update ONLY the fields it has uses (init, combatant, etc)
 
@@ -47,6 +49,7 @@ public class PlayerCharacterController {
         masterData.setStressStatuses(stressRepo.findAll());
         masterData.setSpellSlots(spellSlotsRepo.findAll());
         masterData.setWarlockSpellSlots(warlockSpellSlotsRepo.findAll());
+        masterData.setPrimalCompanionTypes(primalCompanionTypeRepo.findAll());
 
         return ResponseEntity.ok(masterData);
     }

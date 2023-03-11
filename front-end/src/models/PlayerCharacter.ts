@@ -3,7 +3,8 @@ export interface PlayerCharacterMasterData {
 	proficiencyBonuses: ProficiencyBonus[],
 	stressStatuses: StressStatus[],
 	spellSlots: SpellSlots[],
-	warlockSpellSlots: WarlockSpellSlots[]
+	warlockSpellSlots: WarlockSpellSlots[],
+	primalCompanionTypes: PrimalCompanionType[]
 }
 
 export interface PlayerCharacter {
@@ -159,6 +160,7 @@ export interface PrimalCompanion {
 	hitDiceUsed: number,
 	deathSaveSuccesses: number,
 	deathSaveFailures: number,
+	maxHpReduction: number,
 	baseArmorClass: number,
 	senses: string,
 	languages: string,

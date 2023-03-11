@@ -201,8 +201,14 @@ quantity = VALUES(quantity), slotLevel = VALUES(slotLevel);
 INSERT INTO PrimalCompanionType(id, name, size, speed, baseHitPoints, hitDie, strength, dexterity, constitution,
 intelligence, wisdom, charisma, abilityName, abilityDescription, actionName, actionDescription) VALUES
     (1, 'Beast of the Land', 'Medium', '40 ft., climb 40 ft.', 5, 8, 14, 14, 15, 8, 14, 11,
-    'Charge', 'If the beast moves at least 20 feet straight toward a target and then hits it with a maul attack on the same turn, the target takes an extra ld6 slashing damage. If the target is a creature, it must succeed on a {{ 8 + characterStoreFunctions.getScoreModifier(character.wisdom) + characterStoreFunctions.getProficiencyBonus(characterIndex) }} DC Strength saving throw or be knocked prone.',
-    'Maul', '<em>Melee Weapon Attack:</em> +{{ characterStoreFunctions.getScoreModifier(character.wisdom) + characterStoreFunctions.getProficiencyBonus(characterIndex) }} to hit, reach 5 ft., one target. Hit: 1d8 + {{ 2 +  characterStoreFunctions.getProficiencyBonus(characterIndex) }} slashing damage.')
+    'Charge', 'If the beast moves at least 20 feet straight toward a target and then hits it with a maul attack on the same turn, the target takes an extra 1d6 slashing damage. If the target is a creature, it must succeed on a <wisSpellSave> DC Strength saving throw or be knocked prone.',
+    'Maul', '<em>Melee Weapon Attack:</em> +<toHitBonus> to hit, reach 5 ft., one target.<br/><em>Hit:</em> 1d8 + <strDamage> slashing damage.'),
+    (2, 'Beast of the Sea', 'Medium', '5 ft., swim 60 ft.', 5, 8, 14, 14, 15, 8, 14, 11,
+    'Amphibious', 'The beast can breathe both air and water.',
+    'Binding Strike', '<em>Melee Weapon Attack:</em> +<toHitBonus> to hit, reach 5 ft., one target.<br/><em>Hit:</em> 1d8 + <strDamage> piercing or bludgeoning damage (your choice), and the target is grappled (escape DC <wisSpellSave>). Until this grapple ends, the beast can\'t use this attack on another target.'),
+    (3, 'Beast of the Sky', 'Small', '10 ft., fly 60 ft.', 4, 6, 6, 16, 13, 8, 14, 11,
+    'Flyby', 'The beast doesn\'t provoke opportunity attacks when it flies out of an enemy\'s reach.',
+    'Binding Strike', '<em>Melee Weapon Attack:</em> +<toHitBonus> to hit, reach 5 ft., one target.<br/><em>Hit:</em> 1d8 + <dexDamage> slashing damage.')
 ON DUPLICATE KEY UPDATE
 name = VALUES(name), strength = VALUES(strength), dexterity = VALUES(dexterity), constitution = VALUES(constitution),
 intelligence = VALUES(intelligence), wisdom = VALUES(wisdom), charisma = VALUES(charisma), abilityName = VALUES(abilityName),

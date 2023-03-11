@@ -591,6 +591,19 @@ export const useCharacterStore = defineStore({
         }
       });
 
+      if (this.characterList[index].primalCompanion != null) {
+        this.characterList[index].primalCompanion!.damage = 0;
+
+        let compantionHitDiceToRestore = Math.floor(this.getBeastmasterLevel(index) / 2);
+
+        if (compantionHitDiceToRestore < 0) {
+          compantionHitDiceToRestore = 1;
+        }
+
+        this.characterList[index].primalCompanion!.hitDiceUsed -= compantionHitDiceToRestore;
+        this.characterList[index].primalCompanion!.temporaryHitPoints = 0;
+      }
+
       if (this.characterList[index].spellSlots != null) {
         this.characterList[index].firstSlotsUsed = 0;
         this.characterList[index].secondSlotsUsed = 0;
@@ -658,7 +671,7 @@ export const useCharacterStore = defineStore({
 
       const baseHitPoints = this.characterList[index].primalCompanion!.primalCompanionType.baseHitPoints;
 
-      return baseHitPoints * (this.getBeastmasterLevel(index) + 1);
+      return baseHitPoints * (this.getBeastmasterLevel(index) + 1) - this.characterList[index].primalCompanion!.maxHpReduction;
     },
     adjustCompanionDamage(index: number, damage: number) {
       if (this.characterList[index].primalCompanion === null) {
@@ -723,11 +736,19 @@ export const useCharacterStore = defineStore({
       this.setUpdateTimer(index);
     },
     resetCompanionDeathSaves(index: number) {
+      if (this.characterList[index].primalCompanion === null) {
+        return;
+      }
+
       this.characterList[index].primalCompanion!.deathSaveFailures = 0;
       this.characterList[index].primalCompanion!.deathSaveSuccesses = 0;
       this.setUpdateTimer(index);
     },
     adjustCompanionDeathSaveSuccesses(index: number, amount: number) {
+      if (this.characterList[index].primalCompanion === null) {
+        return;
+      }
+
       this.characterList[index].primalCompanion!.deathSaveSuccesses += amount;
 
       if (this.characterList[index].primalCompanion!.deathSaveSuccesses < 0) {
@@ -741,6 +762,10 @@ export const useCharacterStore = defineStore({
       this.setUpdateTimer(index);
     },
     adjustCompanionDeathSaveFailures(index: number, amount: number) {
+      if (this.characterList[index].primalCompanion === null) {
+        return;
+      }
+
       this.characterList[index].primalCompanion!.deathSaveFailures += amount;
 
       if (this.characterList[index].primalCompanion!.deathSaveFailures < 0) {
@@ -753,11 +778,42 @@ export const useCharacterStore = defineStore({
 
       this.setUpdateTimer(index);
     },
-    getCompanionSkillSaveBonus(index: number, score: number) {
-      let bonus = Math.floor((score - 10) / 2);
-      bonus += this.getProficiencyBonus(index);
+    getCompanionAbilityDescription(index: number) {
+      if (this.characterList[index].primalCompanion === null) {
+        return "";
+      }
 
-      return "+" + bonus;
+      const wisSpellSave = 8 + this.getProficiencyBonus(index) + Math.floor(( this.characterList[index].wisdom.score - 10) / 2);
+
+      return this.characterList[index].primalCompanion!.primalCompanionType.abilityDescription.replace("<wisSpellSave>", wisSpellSave.toString());
+    },
+    getCompanionActionDescription(index: number) {
+      if (this.characterList[index].primalCompanion === null) {
+        return "";
+      }
+
+      const wisSpellSave = 8 + this.getProficiencyBonus(index) + Math.floor(( this.characterList[index].wisdom.score - 10) / 2);
+      const toHitBonus = this.getProficiencyBonus(index) + Math.floor(( this.characterList[index].wisdom.score - 10) / 2);
+      const strDamage = Math.floor(( this.characterList[index].primalCompanion!.primalCompanionType.strength - 10) / 2) + this.getProficiencyBonus(index);
+      const dexDamage = Math.floor(( this.characterList[index].primalCompanion!.primalCompanionType.dexterity - 10) / 2) + this.getProficiencyBonus(index);
+
+      let baseDesc = this.characterList[index].primalCompanion!.primalCompanionType.actionDescription;
+
+      baseDesc = baseDesc.replace("<toHitBonus>", toHitBonus.toString());
+      baseDesc = baseDesc.replace("<wisSpellSave>", wisSpellSave.toString());
+      baseDesc = baseDesc.replace("<strDamage>", strDamage.toString());
+      baseDesc = baseDesc.replace("<dexDamage>", dexDamage.toString());
+
+      return baseDesc;
+    },
+    setCompanionType(index: number, typeId: number) {
+      if (this.characterList[index].primalCompanion === null) {
+        return;
+      }
+
+      console.log(typeId);
+
+      this.characterList[index].primalCompanion!.primalCompanionType = this.masterData.primalCompanionTypes.find(x => x.id === typeId) as PrimalCompanionType;
     },
     async cancelEdits(index: number) {
       await agent.playerCharacter.getCharacter(this.characterList[index].id).then((data) => {

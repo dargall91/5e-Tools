@@ -14,6 +14,7 @@ public class PrimalCompanion {
     private int hitDiceUsed;
     private int deathSaveSuccesses;
     private int deathSaveFailures;
+    private int maxHpReduction;
     @OneToOne
     @JoinColumn(name = "primalCompanionTypeId")
     private PrimalCompanionType primalCompanionType;
@@ -49,6 +50,11 @@ public class PrimalCompanion {
     public int getDeathSaveFailures() {
         return deathSaveFailures;
     }
+
+    public int getMaxHpReduction() {
+        return maxHpReduction;
+    }
+
     public PrimalCompanionType getPrimalCompanionType() {
         return primalCompanionType;
     }
