@@ -26,6 +26,10 @@ public class PrimalCompanionType {
     @Column(length = Integer.MAX_VALUE)
     private String actionDescription;
 
+    public PrimalCompanionType() {
+        id = 1;
+    }
+
     public int getId() {
         return id;
     }
@@ -88,26 +92,5 @@ public class PrimalCompanionType {
 
     public String getActionDescription() {
         return actionDescription;
-    }
-
-    public int getBaseArmorClass() {
-        return 13;
-    }
-
-    public String getSenses() {
-        return "Darkvision 60 ft., passive perception {{ 10 + Math.floor((wisdom - 10) / 2) + " +
-                "characterStoreFunctions.getProficiencyBonus(characterIndex) }}";
-    }
-
-    public String getLanguages() {
-        return "Understands the languages you speak";
-    }
-
-    public String getAlignment() {
-        return "Neutral";
-    }
-
-    public String getType() {
-        return "Beast";
     }
 }

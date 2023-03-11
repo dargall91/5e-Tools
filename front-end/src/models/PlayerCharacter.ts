@@ -47,6 +47,7 @@ export interface PlayerCharacter {
 	eighthSlotsUsed: number,
 	ninthSlotsUsed: number,
 	warlockSlotsUsed: number,
+	primalCompanion: PrimalCompanion | null
 };
 
 interface AbilityScore {
@@ -147,4 +148,40 @@ export interface WarlockSpellSlots {
 	warlockLevel: number,
 	quantity: number,
 	slotLevel: number
+}
+
+export interface PrimalCompanion {
+	id: number,
+	name: string,
+	damage: number,
+	temporaryHitPoints: number,
+	acBonus: number,
+	hitDiceUsed: number,
+	deathSaveSuccesses: number,
+	deathSaveFailures: number,
+	baseArmorClass: number,
+	senses: string,
+	languages: string,
+	alignment: string,
+	type: string,
+	primalCompanionType: PrimalCompanionType
+}
+
+export interface PrimalCompanionType {
+	id: number,
+	name: string,
+	size: string,
+	speed: string,
+	baseHitPoints: number,
+	hitDie: number,
+	strength: number,
+	dexterity: number,
+	constitution: number,
+	intelligence: number,
+	wisdom: number,
+	charisma: number,
+	abilityName: string,
+	abilityDescription: string,
+	actionName: string,
+	actionDescription: string
 }

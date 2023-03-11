@@ -1,9 +1,9 @@
 import { defineStore } from 'pinia'
 import agent from '@/api/agent';
-import { ClassLevel, PlayerCharacter, PlayerCharacterMasterData, SpellSlots, StressStatus, WarlockSpellSlots } from '@/models/PlayerCharacter';
+import { ClassLevel, PlayerCharacter, PlayerCharacterMasterData, PrimalCompanion, PrimalCompanionType, SpellSlots, StressStatus, WarlockSpellSlots } from '@/models/PlayerCharacter';
 import { Campaign } from '@/models/Campaign';
 
-const updateDelay = 2000;
+const updateDelay = 1500;
 let updateTimer: number | undefined;
 
 export const useCharacterStore = defineStore({
@@ -536,13 +536,26 @@ export const useCharacterStore = defineStore({
       return bonus;
     },
     isJackOfAllTrades(index: number) {
+      let jackOfAllTrades = false;
+
       this.characterList[index].classLevelList.forEach((classLevel) => {
         if (classLevel.characterClass.name === "Bard" && classLevel.levels > 1) {
-          return true;
+          jackOfAllTrades = true;
         }
       });
 
-      return false;
+      return jackOfAllTrades;
+    },
+    isBeastmaster(index: number) {
+      let beastmaster = false;
+
+      this.characterList[index].classLevelList.forEach((classLevel) => {
+        if (classLevel.beastMaster) {
+          beastmaster = true;
+        }
+      });
+
+      return beastmaster;
     },
     longRest(index: number, campaign: Campaign) {
       this.characterList[index].damage = 0;
@@ -607,6 +620,144 @@ export const useCharacterStore = defineStore({
     },
     levelUp(characterIndex: number, classLevelIndex: number) {
       this.characterList[characterIndex].classLevelList[classLevelIndex].levels++;
+    },
+    getCompanionSenses(index: number) {
+      const passivePerception = 10 + Math.floor((this.characterList[index].primalCompanion!.primalCompanionType.wisdom - 10) / 2) + this.getProficiencyBonus(index);
+      return this.characterList[index].primalCompanion!.senses.replace("<perception>", passivePerception.toString());
+    },
+    getBeastmasterLevel(index: number) {
+      const beastmaster = this.characterList[index].classLevelList.find(x => x.beastMaster);
+
+      if (beastmaster != undefined) {
+        return beastmaster.levels;
+      }
+
+      return 0;
+    },
+    adjustCompanionHitDie(index: number, amount: number) {
+      if (this.characterList[index].primalCompanion === null) {
+        return;
+      }
+
+      this.characterList[index].primalCompanion!.hitDiceUsed += amount;
+
+      if (this.characterList[index].primalCompanion!.hitDiceUsed < 0) {
+        this.characterList[index].primalCompanion!.hitDiceUsed = 0;
+      }
+
+      if (this.characterList[index].primalCompanion!.hitDiceUsed > this.getBeastmasterLevel(index)) {
+        this.characterList[index].primalCompanion!.hitDiceUsed = this.getBeastmasterLevel(index);
+      }
+
+      this.setUpdateTimer(index);
+    },
+    getCompanionMaxHitPoints(index: number) {
+      if (this.characterList[index].primalCompanion === null) {
+        return 0;
+      }
+
+      const baseHitPoints = this.characterList[index].primalCompanion!.primalCompanionType.baseHitPoints;
+
+      return baseHitPoints * (this.getBeastmasterLevel(index) + 1);
+    },
+    adjustCompanionDamage(index: number, damage: number) {
+      if (this.characterList[index].primalCompanion === null) {
+        return;
+      }
+
+      if (this.characterList[index].primalCompanion!.temporaryHitPoints > 0 && damage > 0) {
+        this.characterList[index].primalCompanion!.temporaryHitPoints -= damage;
+
+        if (this.characterList[index].primalCompanion!.temporaryHitPoints < 0) {
+          damage = this.characterList[index].primalCompanion!.temporaryHitPoints * -1;
+          this.characterList[index].primalCompanion!.temporaryHitPoints = 0;
+        } else {
+          return;
+        }
+      }
+
+      this.characterList[index].primalCompanion!.damage += damage;
+      const maxHitPoints = this.getCompanionMaxHitPoints(index);
+
+      if (this.characterList[index].primalCompanion!.damage > maxHitPoints) {
+        this.characterList[index].primalCompanion!.damage = maxHitPoints;
+      }
+
+      if (this.characterList[index].primalCompanion!.damage < 0) {
+        this.characterList[index].primalCompanion!.damage = 0;
+      }
+
+      this.setUpdateTimer(index);
+    },
+    adjustCompanionTemporaryHitPoints(index: number, amount: number) {
+      if (this.characterList[index].primalCompanion === null) {
+        return;
+      }
+
+      this.characterList[index].primalCompanion!.temporaryHitPoints += amount;
+
+      if (this.characterList[index].primalCompanion!.temporaryHitPoints < 0) {
+        this.characterList[index].primalCompanion!.temporaryHitPoints = 0;
+      }
+
+      this.setUpdateTimer(index);
+    },
+    getCompanionBaseAc(index: number) {
+      if (this.characterList[index].primalCompanion === null) {
+        return 0;
+      }
+
+      return this.characterList[index].primalCompanion!.baseArmorClass + this.getProficiencyBonus(index);
+    },
+    adjustCompanionAcBonus(index: number, amount: number) {
+      if (this.characterList[index].primalCompanion === null) {
+        return;
+      }
+
+      this.characterList[index].primalCompanion!.acBonus += amount;
+
+      if (this.characterList[index].primalCompanion!.acBonus < 0) {
+        this.characterList[index].primalCompanion!.acBonus = 0;
+      }
+
+      this.setUpdateTimer(index);
+    },
+    resetCompanionDeathSaves(index: number) {
+      this.characterList[index].primalCompanion!.deathSaveFailures = 0;
+      this.characterList[index].primalCompanion!.deathSaveSuccesses = 0;
+      this.setUpdateTimer(index);
+    },
+    adjustCompanionDeathSaveSuccesses(index: number, amount: number) {
+      this.characterList[index].primalCompanion!.deathSaveSuccesses += amount;
+
+      if (this.characterList[index].primalCompanion!.deathSaveSuccesses < 0) {
+        this.characterList[index].primalCompanion!.deathSaveSuccesses = 0;
+      }
+
+      if (this.characterList[index].primalCompanion!.deathSaveSuccesses > 3) {
+        this.characterList[index].primalCompanion!.deathSaveSuccesses = 3;
+      }
+
+      this.setUpdateTimer(index);
+    },
+    adjustCompanionDeathSaveFailures(index: number, amount: number) {
+      this.characterList[index].primalCompanion!.deathSaveFailures += amount;
+
+      if (this.characterList[index].primalCompanion!.deathSaveFailures < 0) {
+        this.characterList[index].primalCompanion!.deathSaveFailures = 0;
+      }
+
+      if (this.characterList[index].primalCompanion!.deathSaveFailures > 3) {
+        this.characterList[index].primalCompanion!.deathSaveFailures = 3;
+      }
+
+      this.setUpdateTimer(index);
+    },
+    getCompanionSkillSaveBonus(index: number, score: number) {
+      let bonus = Math.floor((score - 10) / 2);
+      bonus += this.getProficiencyBonus(index);
+
+      return "+" + bonus;
     },
     async cancelEdits(index: number) {
       await agent.playerCharacter.getCharacter(this.characterList[index].id).then((data) => {

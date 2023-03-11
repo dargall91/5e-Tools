@@ -65,8 +65,8 @@ public class PlayerCharacter {
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "playerCharacterId")
     private List<ClassLevel> classLevelList;
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name="id")
+    @OneToOne(optional=true, cascade = CascadeType.ALL)
+    @JoinColumn(name="primalCompanionId")
     private PrimalCompanion primalCompanion = null;
 
     public PlayerCharacter() { }

@@ -1,9 +1,7 @@
 package com.server.controllers;
 
 import com.server.entities.Campaign;
-import com.server.entities.playercharacter.PlayerCharacter;
-import com.server.entities.playercharacter.PlayerCharacterMasterData;
-import com.server.entities.playercharacter.StressStatus;
+import com.server.entities.playercharacter.*;
 import com.server.repositories.CampaignRepository;
 import com.server.repositories.playercharacter.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -113,6 +111,18 @@ public class PlayerCharacterController {
      */
     @PostMapping("update")
     public ResponseEntity<?> updatePlayerCharacter(@RequestBody PlayerCharacter pc) {
+        if (pc.getPrimalCompanion() == null) {
+            for (ClassLevel classLevel : pc.getClassLevelList()) {
+                if (classLevel.isBeastMaster()) {
+                    PrimalCompanion primalCompanion = new PrimalCompanion();
+                    PrimalCompanionType primalCompanionType = new PrimalCompanionType();
+                    primalCompanion.setPrimalCompanionType(primalCompanionType);
+                    pc.setPrimalCompanion(primalCompanion);
+                    break;
+                }
+            }
+        }
+
         //pc not found
         if (!playerRepo.existsById(pc.getId())) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND)
