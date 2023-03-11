@@ -7,8 +7,12 @@ public class ClassLevel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    private boolean firstLevel;
+    private boolean baseClass;
     private int levels;
+    private int usedHitDice = 0;
+    private boolean eldritchKnight;
+    private boolean arcaneTrickster;
+    private boolean beastMaster;
     @OneToOne
     @JoinColumn(name = "classId")
     private CharacterClass characterClass;
@@ -17,15 +21,31 @@ public class ClassLevel {
         return id;
     }
 
-    public boolean isFirstLevel() {
-        return firstLevel;
+    public boolean isBaseClass() {
+        return baseClass;
     }
 
     public int getLevels() {
         return levels;
     }
 
+    public int getUsedHitDice() {
+        return usedHitDice;
+    }
+
     public CharacterClass getCharacterClass() {
         return characterClass;
+    }
+
+    public boolean isEldritchKnight() {
+        return eldritchKnight;
+    }
+
+    public boolean isArcaneTrickster() {
+        return arcaneTrickster;
+    }
+
+    public boolean isBeastMaster() {
+        return beastMaster;
     }
 }

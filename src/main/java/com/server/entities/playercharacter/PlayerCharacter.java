@@ -12,10 +12,33 @@ public class PlayerCharacter {
     private Integer id;
     private String name;
     private int ac;
+    private int acBonus;
+    private int damage = 0;
+    private int temporaryHitPoints;
+    private int maxHpReduction;
     private int initiativeBonus;
     private int rolledInitiative;
     private int campaignId;
     private int userId;
+    private int deathSaveSuccesses;
+    private int deathSaveFailures;
+    private int stress;
+    private int meditationDiceUsed;
+    private boolean dwarvenToughness;
+    private boolean toughFeat;
+    private int firstSlotsUsed = 0;
+    private int secondSlotsUsed = 0;
+    private int thirdSlotsUsed = 0;
+    private int fourthSlotsUsed = 0;
+    private int fifthSlotsUsed = 0;
+    private int sixthSlotsUsed = 0;
+    private int seventhSlotsUsed = 0;
+    private int eighthSlotsUsed = 0;
+    private int ninthSlotsUsed = 0;
+    private int warlockSlotsUsed = 0;
+    @ManyToOne
+    @JoinColumn(name = "stressStatusId")
+    private StressStatus stressStatus;
     private boolean dead;
     private boolean combatant = false;
     @OneToOne(cascade = CascadeType.ALL)
@@ -42,18 +65,11 @@ public class PlayerCharacter {
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "playerCharacterId")
     private List<ClassLevel> classLevelList;
+    @OneToOne(optional=true, cascade = CascadeType.ALL)
+    @JoinColumn(name="primalCompanionId")
+    private PrimalCompanion primalCompanion = null;
 
     public PlayerCharacter() { }
-
-    public PlayerCharacter(int userId, int campaignId, boolean madness, String name) {
-        this.name = name;
-        this.userId = userId;
-        this.campaignId = campaignId;
-
-        if (madness) {
-            resolve = new Resolve();
-        }
-    }
 
     public Integer getId() {
         return id;
@@ -65,6 +81,22 @@ public class PlayerCharacter {
 
     public int getAc() {
         return ac;
+    }
+
+    public int getAcBonus() {
+        return acBonus;
+    }
+
+    public int getDamage() {
+        return damage;
+    }
+
+    public int getTemporaryHitPoints() {
+        return temporaryHitPoints;
+    }
+
+    public int getMaxHpReduction() {
+        return maxHpReduction;
     }
 
     public int getInitiativeBonus() {
@@ -81,6 +113,14 @@ public class PlayerCharacter {
 
     public boolean isDead() {
         return dead;
+    }
+
+    public int getDeathSaveSuccesses() {
+        return deathSaveSuccesses;
+    }
+
+    public int getDeathSaveFailures() {
+        return deathSaveFailures;
     }
 
     public boolean isCombatant() {
@@ -133,5 +173,77 @@ public class PlayerCharacter {
 
     public List<ClassLevel> getClassLevelList() {
         return classLevelList;
+    }
+
+    public int getStress() {
+        return stress;
+    }
+
+    public StressStatus getStressStatus() {
+        return stressStatus;
+    }
+
+    public void setStressStatus(StressStatus stressStatus) {
+        this.stressStatus = stressStatus;
+    }
+
+    public boolean isDwarvenToughness() {
+        return dwarvenToughness;
+    }
+
+    public boolean isToughFeat() {
+        return toughFeat;
+    }
+
+    public int getFirstSlotsUsed() {
+        return firstSlotsUsed;
+    }
+
+    public int getSecondSlotsUsed() {
+        return secondSlotsUsed;
+    }
+
+    public int getThirdSlotsUsed() {
+        return thirdSlotsUsed;
+    }
+
+    public int getFourthSlotsUsed() {
+        return fourthSlotsUsed;
+    }
+
+    public int getFifthSlotsUsed() {
+        return fifthSlotsUsed;
+    }
+
+    public int getSixthSlotsUsed() {
+        return sixthSlotsUsed;
+    }
+
+    public int getSeventhSlotsUsed() {
+        return seventhSlotsUsed;
+    }
+
+    public int getEighthSlotsUsed() {
+        return eighthSlotsUsed;
+    }
+
+    public int getNinthSlotsUsed() {
+        return ninthSlotsUsed;
+    }
+
+    public int getWarlockSlotsUsed() {
+        return warlockSlotsUsed;
+    }
+
+    public int getMeditationDiceUsed() {
+        return meditationDiceUsed;
+    }
+
+    public PrimalCompanion getPrimalCompanion() {
+        return primalCompanion;
+    }
+
+    public void setPrimalCompanion(PrimalCompanion primalCompanion) {
+        this.primalCompanion = primalCompanion;
     }
 }

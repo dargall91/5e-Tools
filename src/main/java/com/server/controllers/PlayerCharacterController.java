@@ -1,10 +1,9 @@
 package com.server.controllers;
 
 import com.server.entities.Campaign;
-import com.server.entities.playercharacter.PlayerCharacter;
+import com.server.entities.playercharacter.*;
 import com.server.repositories.CampaignRepository;
-import com.server.repositories.playercharacter.CharacterClassRepository;
-import com.server.repositories.playercharacter.PlayerCharacterRepository;
+import com.server.repositories.playercharacter.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.http.HttpStatus;
@@ -29,8 +28,33 @@ public class PlayerCharacterController {
     private CampaignRepository campaignRepo;
     @Autowired
     private CharacterClassRepository classRepo;
+    @Autowired
+    private StressStatusRepository stressRepo;
+    @Autowired
+    private ProficiencyBonusRepository proficiencyRepo;
+    @Autowired
+    private SpellSlotsRepository spellSlotsRepo;
+    @Autowired
+    private WarlockSpellSlotsRepository warlockSpellSlotsRepo;
+    @Autowired
+    private PrimalCompanionTypeRepository primalCompanionTypeRepo;
 
     //TODO: add methods for android to update ONLY the fields it has uses (init, combatant, etc)
+
+    @GetMapping("masterdata")
+    public ResponseEntity<?> getMasterData() {
+        PlayerCharacterMasterData masterData = new PlayerCharacterMasterData();
+        masterData.setCharacterClasses(classRepo.findAllByOrderByNameAsc());
+        masterData.setProficiencyBonuses(proficiencyRepo.findAllByOrderByLevelAsc());
+        masterData.setStressStatuses(stressRepo.findAll());
+        masterData.setSpellSlots(spellSlotsRepo.findAll());
+        masterData.setWarlockSpellSlots(warlockSpellSlotsRepo.findAll());
+        masterData.setPrimalCompanionTypes(primalCompanionTypeRepo.findAll());
+
+        return ResponseEntity.ok(masterData);
+    }
+
+
     /**
      * Gets the data for a specified character
      * @param pcId id of the character in the table
@@ -54,6 +78,8 @@ public class PlayerCharacterController {
      */
     @PutMapping("add")
     public ResponseEntity<?> addPlayerCharacter(@RequestBody PlayerCharacter pc) {
+        Optional<StressStatus> stressStatus = stressRepo.findById(1);
+        pc.setStressStatus(stressStatus.get());
         PlayerCharacter added = playerRepo.save(pc);
 
         String requestMap = this.getClass().getAnnotation(RequestMapping.class).value()[0];
@@ -88,15 +114,27 @@ public class PlayerCharacterController {
      */
     @PostMapping("update")
     public ResponseEntity<?> updatePlayerCharacter(@RequestBody PlayerCharacter pc) {
+        if (pc.getPrimalCompanion() == null) {
+            for (ClassLevel classLevel : pc.getClassLevelList()) {
+                if (classLevel.isBeastMaster()) {
+                    PrimalCompanion primalCompanion = new PrimalCompanion();
+                    PrimalCompanionType primalCompanionType = new PrimalCompanionType();
+                    primalCompanion.setPrimalCompanionType(primalCompanionType);
+                    pc.setPrimalCompanion(primalCompanion);
+                    break;
+                }
+            }
+        }
+
         //pc not found
         if (!playerRepo.existsById(pc.getId())) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND)
                     .body("PC with id " + pc.getId() + " not found.");
         }
 
-        playerRepo.save(pc);
+        PlayerCharacter updated = playerRepo.save(pc);
 
-        return ResponseEntity.ok().build();
+        return ResponseEntity.ok(updated);
     }
 
     /**
@@ -148,7 +186,7 @@ public class PlayerCharacterController {
         return ResponseEntity.ok().build();
     }
 
-    @GetMapping("{userId}/{campaignId}")
+    @GetMapping("list/{userId}/{campaignId}")
     public ResponseEntity<?> getUsersCharactersInCampaign(@PathVariable int userId, @PathVariable int campaignId) {
         List<PlayerCharacter> pcList = playerRepo.findAllByUserIdAndCampaignId(userId, campaignId);
 

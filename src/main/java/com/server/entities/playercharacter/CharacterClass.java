@@ -12,6 +12,11 @@ public class CharacterClass {
     private int id;
     private String name;
     private int hitDie;
+    private int averageHitDie;
+    private boolean fullCaster;
+    private boolean halfCaster;
+    private boolean artificer;
+    private boolean warlock;
 
     public int getId() {
         return id;
@@ -23,5 +28,25 @@ public class CharacterClass {
 
     public int getHitDie() {
         return hitDie;
+    }
+
+    public int getAverageHitDie() {
+        return averageHitDie;
+    }
+
+    public boolean isFullCaster() {
+        return fullCaster;
+    }
+
+    public boolean isHalfCaster() {
+        return halfCaster;
+    }
+
+    public boolean isArtificer() {
+        return artificer;
+    }
+
+    public boolean isWarlock() {
+        return warlock;
     }
 }
