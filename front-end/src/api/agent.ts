@@ -1,7 +1,7 @@
 import { Campaign } from "@/models/Campaign";
 import { LoginRegisterRequest } from "@/models/LoginRegisterRequest";
 import { User } from "@/models/User";
-import { CharacterClass, PlayerCharacter, PlayerCharacterMasterData } from "@/models/PlayerCharacter";
+import { PlayerCharacter, PlayerCharacterMasterData } from "@/models/PlayerCharacter";
 import { AxiosResponse } from "axios";
 import axiosInstance from "./axiosInstance";
 
