@@ -103,8 +103,16 @@ public class PlayerCharacter {
         return initiativeBonus;
     }
 
+    public void setInitiativeBonus(int initiativeBonus) {
+        this.initiativeBonus = initiativeBonus;
+    }
+
     public int getRolledInitiative() {
         return rolledInitiative;
+    }
+
+    public void setRolledInitiative(int rolledInitiative) {
+        this.rolledInitiative = rolledInitiative;
     }
 
     public void setDead(boolean dead) {

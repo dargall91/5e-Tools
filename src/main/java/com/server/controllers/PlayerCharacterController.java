@@ -1,9 +1,9 @@
 package com.server.controllers;
 
-import com.server.entities.Campaign;
 import com.server.entities.playercharacter.*;
 import com.server.repositories.CampaignRepository;
 import com.server.repositories.playercharacter.*;
+import com.server.repositories.projections.AndroidPlayerCharacterProjection;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.http.HttpStatus;
@@ -125,6 +125,14 @@ public class PlayerCharacterController {
      */
     @PostMapping("update")
     public ResponseEntity<?> updatePlayerCharacter(@RequestBody PlayerCharacter pc) {
+        Optional<PlayerCharacter> currentState = playerRepo.findById(pc.getId());
+
+        //pc not found
+        if (currentState.isEmpty()) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                    .body("PC with id " + pc.getId() + " not found.");
+        }
+
         if (pc.getPrimalCompanion() == null) {
             for (ClassLevel classLevel : pc.getClassLevelList()) {
                 if (classLevel.isBeastMaster()) {
@@ -137,15 +145,29 @@ public class PlayerCharacterController {
             }
         }
 
-        //pc not found
-        if (!playerRepo.existsById(pc.getId())) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND)
-                    .body("PC with id " + pc.getId() + " not found.");
-        }
+        //do not override initative data, which is controlled by android client
+        pc.setInitiativeBonus(currentState.get().getInitiativeBonus());
+        pc.setRolledInitiative(currentState.get().getRolledInitiative());
+        pc.setCombatant(currentState.get().isCombatant());
 
         PlayerCharacter updated = playerRepo.save(pc);
 
         return ResponseEntity.ok(updated);
+    }
+
+    @PostMapping("{pcId}")
+    public ResponseEntity<?> updatePlayerAndroid(@PathVariable int pcId,
+                                                 @RequestParam int initiativeBonus,
+                                                 @RequestParam int rolledInitiative,
+                                                 @RequestParam boolean combatant) {
+        if (!playerRepo.existsById(pcId)) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                    .body("PC with id " + pcId + " not found.");
+        }
+
+        playerRepo.updateInitiative(pcId, initiativeBonus, rolledInitiative, combatant);
+
+        return ResponseEntity.ok().build();
     }
 
     /**
@@ -154,9 +176,9 @@ public class PlayerCharacterController {
      */
     @GetMapping("campaignList/{campaignId}")
     public ResponseEntity<?> getPlayerCharacterList(@PathVariable int campaignId) {
-        List<PlayerCharacter> list = playerRepo.findAllAliveByCampaignId(campaignId);
-        Integer.compare(1, 2);
-        return ResponseEntity.ok(playerRepo.findAllAliveByCampaignId(campaignId));
+        List<AndroidPlayerCharacterProjection> list = playerRepo.findAllByCampaignIdAndDeadFalse(campaignId);
+
+        return ResponseEntity.ok(list);
     }
 
     /**
@@ -197,15 +219,17 @@ public class PlayerCharacterController {
         return ResponseEntity.ok().build();
     }
 
-    @GetMapping("list/{userId}/{campaignId}")
-    public ResponseEntity<?> getUsersCharactersInCampaign(@PathVariable int userId, @PathVariable int campaignId) {
-        List<PlayerCharacter> pcList = playerRepo.findAllByUserIdAndCampaignId(userId, campaignId);
+    @GetMapping("{userId}/{campaignId}/alive")
+    public ResponseEntity<?> getAliveListByUserForCampaign(@PathVariable int userId, @PathVariable int campaignId) {
+        List<PlayerCharacter> pcList = playerRepo.findAllByUserIdAndCampaignIdAndDeadFalse(userId, campaignId);
 
         return ResponseEntity.ok(pcList);
     }
 
-    @GetMapping("classList")
-    public ResponseEntity<?> getClassList() {
-        return ResponseEntity.ok(classRepo.findAllByOrderByNameAsc());
+    @GetMapping("{userId}/{campaignId}/dead")
+    public ResponseEntity<?> getDeadListByUserForCampaign(@PathVariable int userId, @PathVariable int campaignId) {
+        List<PlayerCharacter> pcList = playerRepo.findAllByUserIdAndCampaignIdAndDeadTrue(userId, campaignId);
+
+        return ResponseEntity.ok(pcList);
     }
 }
