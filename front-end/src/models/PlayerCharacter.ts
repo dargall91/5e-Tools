@@ -101,8 +101,8 @@ export interface ClassLevel {
 	baseClass: boolean,
 	levels: number,
 	usedHitDice: number,
-	eldtritchKnight: boolean,
-	aracneTrickster: boolean,
+	eldritchKnight: boolean,
+	arcaneTrickster: boolean,
 	beastMaster: boolean,
 	characterClass: CharacterClass
 };

@@ -1,97 +1,111 @@
 <template>
   <h2 class="mt-2">Character Creator</h2>
-
+  
   <div :key="key">
     <CForm @submit.prevent="submit">
       <!-- Campiagn Selector -->
       <CRow>
-        <CCol sm="3" md="2" class="mt-2">
+        <CCol xs="3" md="2" class="mt-1">
           <CFormLabel for="campaign" class="fw-bold align-text-bottom">Campaign:</CFormLabel>
         </CCol>
-        <CCol sm="8" md="6">
-          <CFormSelect @change="setCampaign(parseInt($event.target.value))" id="campaign" :modelValue="'0'">
-            <option :value="0">Select a Campaign</option>
-            <option v-for="(item) in campaign.campaignList.value" :value="item.id" :key="item.id">{{ item.name }}</option>
+        <CCol xs="9" md="6">
+          <CFormSelect @change="setCampaign(parseInt($event.target.value))" id="campaign" :modelValue="campaignStore.activeCampaign.value.id.toString()">
+            <option v-for="(item) in campaignStore.campaignList.value" :value="item.id" :key="item.id">{{ item.name }}</option>
           </CFormSelect>
         </CCol>
       </CRow>
 
       <!-- Name -->
-      <CRow class="mt-2">
-        <CCol sm="3" md="2" class="mt-2">
+      <CRow class="mt-1">
+        <CCol xs="3" md="2" class="mt-1">
           <CFormLabel for="name" class="fw-bold align-text-bottom">Name:</CFormLabel>
         </CCol>
-        <CCol sm="8" md="6">
+        <CCol xs="9" sm="8" md="6">
           <CFormInput id="name" v-model="playerCharacter.name" type="text"></CFormInput>
         </CCol>
       </CRow>
     
       <!-- AC -->
-      <CRow class="mt-2">
-        <CCol sm="3" md="2" class="mt-2">
+      <CRow class="mt-1">
+        <CCol xs="4" sm="3" md="2" class="mt-1">
           <CFormLabel for="armorClass" class="fw-bold align-text-bottom">Armor Class:</CFormLabel>
         </CCol>
-        <CCol sm="8" md="6">
+        <CCol xs="3">
           <CFormInput id="armorClass" min="1" max="30" v-model.number="playerCharacter.ac" type="number"></CFormInput>
         </CCol>
       </CRow>
 
       <!-- Base Class Selector -->
-      <CRow class="mt-2">
-        <CCol sm="3" md="2" class="mt-2">
+      <CRow>
+        <CCol xs="4" md="2" class="mt-2">
           <CFormLabel for="baseclass" class="fw-bold">Base Class:</CFormLabel>
         </CCol>
-        <CCol sm="5" md="4" lg="3">
-          <CFormSelect @change="setClass(parseInt($event.target.value))" id="baseclass">
-            <option :value="0">Select a Base Class</option>
-            <option v-for="(item) in classList" :value="item.id" :key="item.id">{{ item.name }}</option>
+        <CCol class="mt-1" xs="8" md="4" lg="3">
+          <CFormSelect @change="setBaseClass(parseInt($event.target.value))" id="baseclass">
+            <option v-for="(item) in characterStore.masterData.value.characterClasses" :value="item.id" :key="item.id">{{ item.name }}</option>
           </CFormSelect>
         </CCol>
-        <CCol sm="2" md="1" class="mt-2">
+        <CCol xs="3" md="1" class="mt-2">
           <CFormLabel for="baselevel" class="fw-bold">Level:</CFormLabel>
         </CCol>
-        <CCol sm="2" md="2" lg="1">
+        <CCol class="mt-1" xs="3" md="2" lg="1">
           <CFormSelect @change="setBaseLevel(parseInt($event.target.value))" id="baselevel">
             <option v-for="level in numberList" :value="level" :key="level">{{ level }}</option>
           </CFormSelect>
         </CCol>
+        <CCol class="mt-2" xs="5" sm="3" v-if="playerCharacter.classLevelList != undefined">
+          <CFormCheck v-show="canBeArcaneTrickster(playerCharacter.classLevelList[0])" :id="'baseArcaneTrickster'" label="Arcane Trickster" v-model="playerCharacter.classLevelList[0].arcaneTrickster" value="true" />
+          <CFormCheck v-show="canBeEldritchKnight(playerCharacter.classLevelList[0])" :id="'baseEldritchKnight'" label="Eldritch Knight" v-model="playerCharacter.classLevelList[0].eldritchKnight" value="true" />
+          <CFormCheck v-show="canBeBeastmaster(playerCharacter.classLevelList[0])" :id="'baseBeastmaster'" label="Beastmaster" v-model="playerCharacter.classLevelList[0].beastMaster" value="true" />
+        </CCol>
       </CRow>
 
       <!-- multiclass -->
-      <CRow v-for="(multiClass, index) in multiClassList" :id="index.toString()" :key="index" class="mt-2">
-        <CCol sm="3" md="2" class="mt-2">
+      <CRow v-for="(multiclass, index) in multiClassList" :id="index.toString()" :key="index" class="mt-1">
+        <CCol xs="4" md="2" class="mt-2">
           <CFormLabel :for="'multiClass' + index" class="fw-bold">Multiclass:</CFormLabel>
         </CCol>
-        <CCol sm="5" md="4" lg="3">
-          <CFormSelect @change="setMultiClass(parseInt($event.target.value), index)" :id="'multiClass' + index" :key="index">
-            <option :value="0">Select a Multiclass</option>
-            <option v-for="(item) in classList" :value="item.id" :key="item.id">{{ item.name }}</option>
+        <CCol class="mt-1" xs="8" md="4" lg="3">
+          <CFormSelect @change="setMultiClass(multiclass, parseInt($event.target.value))" :id="'multiClass' + index" :key="index" :modelValue="multiclass.characterClass.id.toString()">
+            <option v-for="(item) in characterStore.masterData.value.characterClasses" :value="item.id" :key="item.id">{{ item.name }}</option>
           </CFormSelect>
         </CCol>
-        <CCol sm="2" md="1" class="mt-2">
+        <CCol xs="3" md="1" class="mt-2">
           <CFormLabel :for="'multiClassLevel' + index" class="fw-bold">Level:</CFormLabel>
         </CCol>
-        <CCol sm="2" md="2" lg="1">
-          <CFormSelect @change="setMultiClassLevel(parseInt($event.target.value), index)" :id="'multiClassLevel' + index" :key="index">
+        <CCol class="mt-1" xs="3" md="2" lg="1">
+          <CFormSelect @change="($event) => {multiclass.levels = parseInt($event.target.value)}" :id="'multiClassLevel' + index" :key="index">
             <option v-for="level in numberList" :value="level" :key="level">{{ level }}</option>
           </CFormSelect>
         </CCol>
-        <CCol>
+        <CCol class="mt-2" xs="5" sm="3" lg="2" v-if="canBeArcaneTrickster(multiclass)">
+          <CFormCheck :id="'multircaneTrickster' + index" label="Arcane Trickster" v-model="multiclass.arcaneTrickster" value="true" />
+        </CCol>
+        <CCol class="mt-2" xs="5" sm="3" lg="2" v-if="canBeEldritchKnight(multiclass)">
+          <CFormCheck :id="'multiEldritchKnight' + index" label="Eldritch Knight" v-model="multiclass.eldritchKnight" value="true" />
+        </CCol>
+        <CCol class="mt-2" xs="5" sm="3" lg="2" v-if="canBeBeastmaster(multiclass)">
+          <CFormCheck :id="'multiBeastmaster' + index" label="Beastmaster" v-model="multiclass.beastMaster" value="true" />
+        </CCol>
+        <CCol class="mt-1">
           <CButton color="dark" type="button" @click="removeMulticlass(index)" class="btn btn-primary">Remove Mulitclass</CButton>
         </CCol>
       </CRow>
 
-      <CButton v-if="multiClassList.length < 12" color="dark" type="button" @click="addMulticlass" class="mt-2 btn btn-primary">Add Mulitclass</CButton>
+      <CButton v-if="multiClassList.length < 12" color="dark" type="button" @click="addMulticlass" class="mt-1 btn btn-primary">Add Mulitclass</CButton>
+
+      <CFormCheck class="mt-2" :id="'tough'" label="Tough Feat" v-model="playerCharacter.toughFeat" value="true" />
+      <CFormCheck :id="'dwarf'" label="Dwarven Toughness" v-model="playerCharacter.dwarvenToughness" value="true" />
 
       <!-- Ability Scores -->
       <CRow>
         <!-- Strength -->
         <CCol xs="6" sm="4">
-          <CCard class="mt-2">
+          <CCard class="mt-1">
             <CCardHeader>Strength (STR)</CCardHeader>
             <CCardBody>
               <CRow>
-                <CCol class="mt-2">
+                <CCol class="mt-1">
                   <CFormLabel class="fw-bold">Score:</CFormLabel>
                 </CCol>
                 <CCol sm="auto">
@@ -101,7 +115,7 @@
                 </CCol>
               </CRow>
               <CRow>
-                <CCol class="mt-2">
+                <CCol class="mt-1">
                   <CFormLabel class="fw-bold">Saving Throws:</CFormLabel>
                 </CCol>
                 <CCol sm="auto">
@@ -111,7 +125,7 @@
                 </CCol>
               </CRow>
               <CRow>
-                <CCol class="mt-2">
+                <CCol class="mt-1">
                   <CFormLabel class="fw-bold">Athletics:</CFormLabel>
                 </CCol>
                 <CCol sm="auto">
@@ -126,11 +140,11 @@
 
         <!-- Dexterity -->
         <CCol xs="6" sm="4">
-          <CCard class="mt-2">
+          <CCard class="mt-1">
             <CCardHeader>Dexterity (DEX)</CCardHeader>
             <CCardBody>
               <CRow>
-                <CCol class="mt-2">
+                <CCol class="mt-1">
                   <CFormLabel class="fw-bold">Score:</CFormLabel>
                 </CCol>
                 <CCol sm="auto">
@@ -140,7 +154,7 @@
                 </CCol>
               </CRow>
               <CRow>
-                <CCol class="mt-2">
+                <CCol class="mt-1">
                   <CFormLabel class="fw-bold">Saving Throws:</CFormLabel>
                 </CCol>
                 <CCol sm="auto">
@@ -150,7 +164,7 @@
                 </CCol>
               </CRow>
               <CRow>
-                <CCol class="mt-2">
+                <CCol class="mt-1">
                   <CFormLabel class="fw-bold">Acrobatics:</CFormLabel>
                 </CCol>
                 <CCol sm="auto">
@@ -160,7 +174,7 @@
                 </CCol>
               </CRow>
               <CRow>
-                <CCol class="mt-2">
+                <CCol class="mt-1">
                   <CFormLabel class="fw-bold">Sleight of Hand:</CFormLabel>
                 </CCol>
                 <CCol sm="auto">
@@ -170,7 +184,7 @@
                 </CCol>
               </CRow>
               <CRow>
-                <CCol class="mt-2">
+                <CCol class="mt-1">
                   <CFormLabel class="fw-bold">Stealth:</CFormLabel>
                 </CCol>
                 <CCol sm="auto">
@@ -185,11 +199,11 @@
 
         <!-- Constitution -->
         <CCol xs="6" sm="4">
-          <CCard class="mt-2">
+          <CCard class="mt-1">
             <CCardHeader>Constitution (CON)</CCardHeader>
             <CCardBody>
               <CRow>
-                <CCol class="mt-2">
+                <CCol class="mt-1">
                   <CFormLabel class="fw-bold">Score:</CFormLabel>
                 </CCol>
                 <CCol sm="auto">
@@ -199,7 +213,7 @@
                 </CCol>
               </CRow>
               <CRow>
-                <CCol class="mt-2">
+                <CCol class="mt-1">
                   <CFormLabel class="fw-bold">Saving Throws:</CFormLabel>
                 </CCol>
                 <CCol sm="auto">
@@ -214,11 +228,11 @@
 
         <!-- Intelligence  -->
         <CCol xs="6" sm="4">
-        <CCard class="mt-2">
+        <CCard class="mt-1">
         <CCardHeader>Intelligence (INT)</CCardHeader>
         <CCardBody>
           <CRow>
-            <CCol class="mt-2">
+            <CCol class="mt-1">
               <CFormLabel class="fw-bold">Score:</CFormLabel>
             </CCol>
             <CCol sm="auto">
@@ -228,7 +242,7 @@
             </CCol>
           </CRow>
           <CRow>
-            <CCol class="mt-2">
+            <CCol class="mt-1">
               <CFormLabel class="fw-bold">Saving Throws:</CFormLabel>
             </CCol>
             <CCol sm="auto">
@@ -238,7 +252,7 @@
             </CCol>
           </CRow>
           <CRow>
-            <CCol class="mt-2">
+            <CCol class="mt-1">
               <CFormLabel class="fw-bold">Arcana:</CFormLabel>
             </CCol>
             <CCol sm="auto">
@@ -248,7 +262,7 @@
             </CCol>
           </CRow>
           <CRow>
-            <CCol class="mt-2">
+            <CCol class="mt-1">
               <CFormLabel class="fw-bold">History:</CFormLabel>
             </CCol>
             <CCol sm="auto">
@@ -258,7 +272,7 @@
             </CCol>
           </CRow>
           <CRow>
-            <CCol class="mt-2">
+            <CCol class="mt-1">
               <CFormLabel class="fw-bold">Investigation:</CFormLabel>
             </CCol>
             <CCol sm="auto">
@@ -268,7 +282,7 @@
             </CCol>
           </CRow>
           <CRow>
-            <CCol class="mt-2">
+            <CCol class="mt-1">
               <CFormLabel class="fw-bold">Nature:</CFormLabel>
             </CCol>
             <CCol sm="auto">
@@ -278,7 +292,7 @@
             </CCol>
           </CRow>
           <CRow>
-            <CCol class="mt-2">
+            <CCol class="mt-1">
               <CFormLabel class="fw-bold">Religion:</CFormLabel>
             </CCol>
             <CCol sm="auto">
@@ -293,11 +307,11 @@
 
         <!-- Wisdom -->
         <CCol xs="6" sm="4">
-          <CCard class="mt-2">
+          <CCard class="mt-1">
               <CCardHeader>Wisdom (WIS)</CCardHeader>
             <CCardBody>
               <CRow>
-                <CCol class="mt-2">
+                <CCol class="mt-1">
                   <CFormLabel class="fw-bold">Score:</CFormLabel>
                 </CCol>
                 <CCol sm="auto">
@@ -307,7 +321,7 @@
                 </CCol>
               </CRow>
               <CRow>
-                <CCol class="mt-2">
+                <CCol class="mt-1">
                   <CFormLabel class="fw-bold">Saving Throws:</CFormLabel>
                 </CCol>
                 <CCol sm="auto">
@@ -317,7 +331,7 @@
                 </CCol>
               </CRow>
               <CRow>
-                <CCol class="mt-2">
+                <CCol class="mt-1">
                   <CFormLabel class="fw-bold">Animal Handling:</CFormLabel>
                 </CCol>
                 <CCol sm="auto">
@@ -327,7 +341,7 @@
                 </CCol>
               </CRow>
               <CRow>
-                <CCol class="mt-2">
+                <CCol class="mt-1">
                   <CFormLabel class="fw-bold">Insight:</CFormLabel>
                 </CCol>
                 <CCol sm="auto">
@@ -337,7 +351,7 @@
                 </CCol>
               </CRow>
               <CRow>
-                <CCol class="mt-2">
+                <CCol class="mt-1">
                   <CFormLabel class="fw-bold">Medicine:</CFormLabel>
                 </CCol>
                 <CCol sm="auto">
@@ -347,7 +361,7 @@
                 </CCol>
               </CRow>
               <CRow>
-                <CCol class="mt-2">
+                <CCol class="mt-1">
                   <CFormLabel class="fw-bold">Perception:</CFormLabel>
                 </CCol>
                 <CCol sm="auto">
@@ -357,7 +371,7 @@
                 </CCol>
               </CRow>
               <CRow>
-                <CCol class="mt-2">
+                <CCol class="mt-1">
                   <CFormLabel class="fw-bold">Survival:</CFormLabel>
                 </CCol>
                 <CCol sm="auto">
@@ -372,11 +386,11 @@
 
         <!-- Charisma -->
         <CCol xs="6" sm="4">
-          <CCard class="mt-2">
+          <CCard class="mt-1">
             <CCardHeader>Charisma (CHA)</CCardHeader>
             <CCardBody>
               <CRow>
-                <CCol class="mt-2">
+                <CCol class="mt-1">
                   <CFormLabel class="fw-bold">Score:</CFormLabel>
                 </CCol>
                 <CCol sm="auto">
@@ -386,7 +400,7 @@
                 </CCol>
               </CRow>
               <CRow>
-                <CCol class="mt-2">
+                <CCol class="mt-1">
                   <CFormLabel class="fw-bold">Saving Throws:</CFormLabel>
                 </CCol>
                 <CCol sm="auto">
@@ -396,7 +410,7 @@
                 </CCol>
               </CRow>
               <CRow>
-                <CCol class="mt-2">
+                <CCol class="mt-1">
                   <CFormLabel class="fw-bold">Deception:</CFormLabel>
                 </CCol>
                 <CCol sm="auto">
@@ -406,7 +420,7 @@
                 </CCol>
               </CRow>
               <CRow>
-                <CCol class="mt-2">
+                <CCol class="mt-1">
                   <CFormLabel class="fw-bold">Intimidation:</CFormLabel>
                 </CCol>
                 <CCol sm="auto">
@@ -416,7 +430,7 @@
                 </CCol>
               </CRow>
               <CRow>
-                <CCol class="mt-2">
+                <CCol class="mt-1">
                   <CFormLabel class="fw-bold">Performance:</CFormLabel>
                 </CCol>
                 <CCol sm="auto">
@@ -426,7 +440,7 @@
                 </CCol>
               </CRow>
               <CRow>
-                <CCol class="mt-2">
+                <CCol class="mt-1">
                   <CFormLabel class="fw-bold">Persuasion:</CFormLabel>
                 </CCol>
                 <CCol sm="auto">
@@ -440,12 +454,12 @@
         </CCol>
 
         <!-- Resolve -->
-        <CCol xs="6" sm="4" v-if="madness">
-          <CCard class="mt-2">
+        <CCol xs="6" sm="4" v-if="campaignStore.activeCampaign.value.madness">
+          <CCard class="mt-1">
             <CCardHeader>Resolve (RES)</CCardHeader>
             <CCardBody>
               <CRow>
-                <CCol  class="mt-2">
+                <CCol  class="mt-1">
                   <CFormLabel class="fw-bold">Score:</CFormLabel>
                 </CCol>
                 <CCol sm="auto">
@@ -459,7 +473,7 @@
         </CCol>
       </CRow>
 
-      <CButton color="dark" type="submit" class="btn btn-primary mt-2">Create {{ playerCharacter.name }}</CButton>
+      <CButton color="dark" type="submit" class="btn btn-primary mt-1">Create {{ playerCharacter.name }}</CButton>
     </CForm>
   </div>
 
@@ -494,25 +508,27 @@
   import { storeToRefs } from 'pinia'
   import { useUserStore } from '@/stores/UserStore'
   import { useCampaignStore } from '@/stores/CampaignStore'
-  import { CButton, CCard, CCardBody, CCardHeader, CCol, CForm, CFormInput, CFormLabel, CFormSelect, CRow, CToast, CToastBody, CToaster, CToastHeader } from '@coreui/vue'
+  import { useCharacterStore } from '@/stores/CharacterStore'
+  import { CButton, CCard, CCardBody, CCardHeader, CCol, CForm, CFormCheck, CFormInput, CFormLabel, CFormSelect, CRow, CToast, CToastBody, CToaster, CToastHeader } from '@coreui/vue'
   import { CharacterClass, ClassLevel, PlayerCharacter, Resolve } from '@/models/PlayerCharacter'
   import agent from '@/api/agent';
   
   export default defineComponent({
     name: "CharacterCreator",
-    components: { CFormSelect, CFormLabel, CRow, CCol, CButton, CCard, CCardBody, CCardHeader, CForm, CFormInput, CToast, CToaster, CToastHeader, CToastBody },
+    components: { CFormSelect, CFormLabel, CRow, CCol, CButton, CCard, CCardBody, CCardHeader, CForm, CFormInput, CToast, CToaster, CToastHeader, CToastBody, CFormCheck },
     setup() {
       return {
-        user: storeToRefs(useUserStore()),
-        campaign: storeToRefs(useCampaignStore())
+        userStore: storeToRefs(useUserStore()),
+        campaignStore: storeToRefs(useCampaignStore()),
+        characterStore: storeToRefs(useCharacterStore())
       };
     },
     data() {
       return {
         getCampaignList: useCampaignStore().getCampaignList,
+        setSelectedCampaign: useCampaignStore().setSelectedCampaign,
         getActiveCampaign: useCampaignStore().getActiveCampaign,
-        madness: useCampaignStore().activeCampaign?.madness,
-        classList: [] as CharacterClass[],
+        getMasterData: useCharacterStore().getMasterData,
         numberList: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10,
                     11, 12, 13, 14, 15, 16, 17, 18, 19, 20],
         savingThrowLevels: [
@@ -524,8 +540,7 @@
           { level: 1, value: "Proficient"},
           { level: 2, value: "Expertise"},
         ],
-        multiClassList: [] as number[],
-        multiClassLevelList: [] as number[],
+        multiClassList: [] as ClassLevel[],
         playerCharacter: { } as PlayerCharacter,
         errorToasts: [] as any,
         successToasts: [] as any,
@@ -534,51 +549,40 @@
     },
     methods: {
       setCampaign(id: number) {
-        this.playerCharacter.campaignId = id;
-
-        if (this.playerCharacter.campaignId === 0) {
-          this.madness = false;
-          this.playerCharacter.resolve = null;
+        if (id === 0) {
           return;
         }
 
-        this.campaign.campaignList.value.forEach(campaign => {
-          if (campaign.id === this.playerCharacter.campaignId) {
-            this.madness = campaign.madness;
-            this.playerCharacter.resolve = { score: 10, proficient: false } as Resolve;
-          }
-        });
+        this.setSelectedCampaign(id);
+        this.playerCharacter.campaignId = id;
       },
-      async getClassList() {
-        await agent.playerCharacter.getClassList().then((data) => {
-          this.classList = data;
-        })
-      },
-      setClass(id: number) {
-        this.playerCharacter.classLevelList[0].characterClass.id = id;
-        if (id === 1) {
-          this.playerCharacter.classLevelList[0].eldtritchKnight = true;
-        } else {
-          this.playerCharacter.classLevelList[0].eldtritchKnight = false;
-        }
+      setBaseClass(id: number) {
+        this.playerCharacter.classLevelList[0].characterClass = this.characterStore.masterData.value.characterClasses.find(x => x.id === id) as CharacterClass;
+        this.playerCharacter.classLevelList[0].arcaneTrickster = false;
+        this.playerCharacter.classLevelList[0].eldritchKnight = false;
+        this.playerCharacter.classLevelList[0].beastMaster = false;
       },
       setBaseLevel(level: number) {
         this.playerCharacter.classLevelList[0].levels = level;
       },
       addMulticlass() {
-        if (this.multiClassList.length < this.classList.length - 1) {
-          this.multiClassList.push(0);
+        if (this.multiClassList.length < this.characterStore.masterData.value.characterClasses.length - 1) {
+          let newClassLevel = {
+              baseClass: false,
+              levels: 1,
+              beastMaster: false,
+              arcaneTrickster: false,
+              eldritchKnight: false,
+              characterClass: this.characterStore.masterData.value.characterClasses.find(x => x.id === 1)
+            } as ClassLevel;
+          this.multiClassList.push(newClassLevel);
         }
       },
       removeMulticlass(index: number) {
         this.multiClassList.splice(index, 1);
-        this.multiClassLevelList.splice(index, 1);
       },
-      setMultiClass(id: number, index: number) {
-        this.multiClassList[index] = id;
-      },
-      setMultiClassLevel(level: number, index: number) {
-        this.multiClassLevelList[index] = level;
+      setMultiClass(multiclass: ClassLevel, id: number) {
+        multiclass.characterClass = this.characterStore.masterData.value.characterClasses.find(x => x.id === id) as CharacterClass;
       },
       setStrength(score: number) {
         this.playerCharacter.strength.score = score;
@@ -677,8 +681,7 @@
       },
       initPlayerCharacter() {
         this.playerCharacter = {
-          campaignId: 0,
-          userId: this.user.user.value?.id,
+          userId: this.userStore.user.value?.id,
           name: "",
           ac: 10,
           acBonus: 0,
@@ -733,14 +736,32 @@
             performance: 0,
             persuasion: 0
           },
-          resolve: null,
+          resolve: {score: 10 } as Resolve,
           classLevelList: [
-            { baseClass: true, levels: 1, characterClass: { id: 0 } }
-        ]
+            { 
+              baseClass: true,
+              levels: 1,
+              beastMaster: false,
+              arcaneTrickster: false,
+              eldritchKnight: false,
+              characterClass: this.characterStore.masterData.value.characterClasses.find(x => x.id === 1)
+            } as ClassLevel
+          ] as ClassLevel[]
         } as PlayerCharacter;
+      },
+      canBeArcaneTrickster(classLevel: ClassLevel) {
+        return classLevel.characterClass.name === "Rogue" && classLevel.levels >= 3;
+      },
+      canBeEldritchKnight(classLevel: ClassLevel) {
+        return classLevel.characterClass.name === "Fighter" && classLevel.levels >= 3;
+      },
+      canBeBeastmaster(classLevel: ClassLevel) {
+        return classLevel.characterClass.name === "Ranger" && classLevel.levels >= 3;
       },
       async submit() {
         let error = false;
+        this.playerCharacter.campaignId = this.campaignStore.selectedCampaign.value.id;
+
         //campiagn validator
         if (this.playerCharacter.campaignId === 0) {
           error = true;
@@ -749,7 +770,9 @@
           );
         }
 
-        if (this.playerCharacter.name.trim() === "") {
+        this.playerCharacter.name = this.playerCharacter.name.trim();
+
+        if (this.playerCharacter.name === "") {
           error = true;
           this.errorToasts.push(
             { title: "Submission Error:", body: "Name cannot be blank"}
@@ -765,36 +788,40 @@
         }
 
         //validate each multiclass
-        this.multiClassList.forEach((multiclass, index) => {
-          if (multiclass === 0) {
+        this.multiClassList.forEach((classLevel, index) => {
+          if (classLevel.characterClass.id === 0) {
             error = true;
             this.errorToasts.push(
               { title: "Submission Error:", body: "No multiclass selected"}
             );
-          }
+          } else {
+            //check for duplicate multiclasses
+            const duplicateMulticlass = this.multiClassList.slice(index + 1, this.multiClassList.length).find(x => x.characterClass.id === classLevel.characterClass.id);
 
-          //check for duplicate multiclasses, ignore matches where no class was selected
-          if (this.multiClassList.includes(multiclass, index + 1) && multiclass != 0) {
-            error = true;
-            this.errorToasts.push(
-              { title: "Submission Error:", body: "Duplicate multiclass selected"}
-            );
+            if (duplicateMulticlass != undefined) {
+              error = true;
+              this.errorToasts.push(
+                { title: "Submission Error:", body: "Duplicate multiclass selected"}
+              );
+            }
           }
+        });
 
-            //compare to base class, ignore matches where no class was selected
-          if (multiclass === this.playerCharacter.classLevelList[0].characterClass.id && multiclass != 0) {
-            error = true;
+        //search for duplicates of base class
+        const matchBaseClass = this.multiClassList.find(x => x.characterClass.id === this.playerCharacter.classLevelList[0].characterClass.id);
+
+        if (matchBaseClass != undefined) {
+          error = true;
             this.errorToasts.push(
               { title: "Submission Error:", body: "Multiclass cannot match base class"}
             );
-          }
-        })
+        }
 
         //validate levels
         let totalLevels = this.playerCharacter.classLevelList[0].levels;
 
-        this.multiClassLevelList.forEach(classLevel => {
-          totalLevels += classLevel;
+        this.multiClassList.forEach(classLevel => {
+          totalLevels += classLevel.levels;
         });
 
         if (totalLevels > 20) {
@@ -805,22 +832,7 @@
         }
 
         if (!error) {
-          this.multiClassList.forEach((multiclass) => {
-            var newClassLevel = {
-              id: 0,
-              baseClass: false,
-              levels: this.multiClassLevelList[this.multiClassList.indexOf(multiclass)],
-              usedHitDice: 0,
-              characterClass: {
-                id: multiclass,
-                name: "",
-                hitDie: 0,
-                averageHitDie: 0
-              } as CharacterClass
-            } as ClassLevel;
-
-            this.playerCharacter.classLevelList.push(newClassLevel);
-          });
+          this.playerCharacter.classLevelList.push(...this.multiClassList);
 
           await agent.playerCharacter.addPlayerCharacter(this.playerCharacter).then(() => {
             this.successToasts.push(
@@ -828,15 +840,19 @@
             );
             this.key += 1;
             this.initPlayerCharacter();
+            this.multiClassList = [];
           });
+
+          useCharacterStore().getCharacterList(this.userStore.user.value.id, this.campaignStore.selectedCampaign.value.id);
         }
       }
     },
     mounted() {
       this.getCampaignList();
       this.getActiveCampaign();
-      this.getClassList();
       this.initPlayerCharacter();
+      this.getMasterData();
+      this.setCampaign(this.campaignStore.selectedCampaign.value.id);
     } 
   });
 </script>
