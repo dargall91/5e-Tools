@@ -686,8 +686,6 @@
           ac: 10,
           acBonus: 0,
           temporaryHitPoints: 0,
-          initiativeBonus: 0,
-          rolledInitiative: 0,
           dead: false,
           deathSaveSuccesses: 0,
           deathSaveFailures: 0,
@@ -843,7 +841,7 @@
             this.multiClassList = [];
           });
 
-          useCharacterStore().getCharacterList(this.userStore.user.value.id, this.campaignStore.selectedCampaign.value.id);
+          useCharacterStore().getCharacterLists(this.userStore.user.value.id, this.campaignStore.selectedCampaign.value.id);
         }
       }
     },

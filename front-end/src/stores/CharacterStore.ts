@@ -10,7 +10,8 @@ export const useCharacterStore = defineStore({
   id: 'character',
   state: () => ({
     characterList: [] as PlayerCharacter[],
-    masterData: {} as PlayerCharacterMasterData
+    masterData: {} as PlayerCharacterMasterData,
+    deadCharacterList: [] as PlayerCharacter[]
   }),
   actions: {
     async getMasterData() {
@@ -18,13 +19,13 @@ export const useCharacterStore = defineStore({
         this.masterData = data;
       })
     },
-    async getCharacterList(userId: number, campaignId: number) {
+    async getCharacterLists(userId: number, campaignId: number) {
       if (userId === 0 || campaignId === 0) {
         this.clearCharacterList();
         return;
       }
       
-      await agent.playerCharacter.getCharacterList(userId, campaignId)
+      await agent.playerCharacter.getAliveCharacterList(userId, campaignId)
         .then((data) => {
           this.characterList = data;
         });
@@ -32,6 +33,11 @@ export const useCharacterStore = defineStore({
       this.characterList.forEach((character) => {
         this.setSpellSlots(character);
       });
+
+      await agent.playerCharacter.getDeadCharacterList(userId, campaignId)
+        .then((data) => {
+          this.deadCharacterList = data;
+        });
     },
     setSpellSlots(character: PlayerCharacter) {
       let spellCasterLevel = 0;
@@ -824,6 +830,12 @@ export const useCharacterStore = defineStore({
       updateTimer = setTimeout(() => {
         this.saveCharacter(characterIndex);
       }, updateDelay)
+    },
+    async killCharacter(index: number) {
+      await agent.playerCharacter.killCharacter(this.characterList[index].id);
+    },
+    async reviveCharacter(id: number) {
+      await agent.playerCharacter.reviveCharacter(id);
     }
   },
   persist: true

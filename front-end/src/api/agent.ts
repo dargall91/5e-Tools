@@ -35,20 +35,26 @@ const playerCharacter = {
   getMasterData() {
     return requests.get<PlayerCharacterMasterData>('pc/masterdata');
   },
-  getClassList() {
-    return requests.get<CharacterClass[]>('pc/classList');
-  },
   addPlayerCharacter(playerCharacter: PlayerCharacter) {
     return requests.put('pc/add', playerCharacter);
   },
-  getCharacterList(userId: number, campaignId: number) {
-    return requests.get<PlayerCharacter[]>(`pc/list/${userId}/${campaignId}`);
+  getAliveCharacterList(userId: number, campaignId: number) {
+    return requests.get<PlayerCharacter[]>(`pc/${userId}/${campaignId}/alive`);
+  },
+  getDeadCharacterList(userId: number, campaignId: number) {
+    return requests.get<PlayerCharacter[]>(`pc/${userId}/${campaignId}/dead`);
   },
   getCharacter(characterId: number) {
     return requests.get<PlayerCharacter>(`pc/${characterId}`);
   },
   updatePlayerCharacter(playerCharacter: PlayerCharacter) {
     return requests.post<PlayerCharacter>('pc/update', playerCharacter);
+  },
+  killCharacter(characterId: number) {
+    return requests.post<PlayerCharacter>(`pc/${characterId}/kill`, null);
+  },
+  reviveCharacter(characterId: number) {
+    return requests.post<PlayerCharacter>(`pc/${characterId}/revive`, null);
   }
 }
 
