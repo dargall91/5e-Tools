@@ -15,7 +15,6 @@ import java.util.Optional;
 
 @RequestMapping("5eTools/api/campaign")
 @RestController
-@CrossOrigin(origins = "https://localhost:3000")
 public class CampaignController {
     @Autowired
     private CampaignRepository campaignRepo;

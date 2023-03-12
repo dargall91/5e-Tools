@@ -20,7 +20,6 @@ import java.util.Optional;
  */
 @RequestMapping("5eTools/api/pc")
 @RestController
-@CrossOrigin(origins = "https://localhost:3000")
 public class PlayerCharacterController {
     @Autowired
     private PlayerCharacterRepository playerRepo;

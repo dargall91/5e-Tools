@@ -30,7 +30,7 @@ const errorHandler = (error: AxiosError): Promise<never> => {
 }
 
 const axiosInstance = axios.create({
-    baseURL: 'http://localhost:8080/5eTools/api/',
+    baseURL: '/5eTools/api/',
     timeout: 4000,
 });
 
