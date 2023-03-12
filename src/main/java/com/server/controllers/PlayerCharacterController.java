@@ -80,6 +80,17 @@ public class PlayerCharacterController {
     public ResponseEntity<?> addPlayerCharacter(@RequestBody PlayerCharacter pc) {
         Optional<StressStatus> stressStatus = stressRepo.findById(1);
         pc.setStressStatus(stressStatus.get());
+
+        for (ClassLevel classLevel : pc.getClassLevelList()) {
+            if (classLevel.isBeastMaster()) {
+                PrimalCompanion primalCompanion = new PrimalCompanion();
+                PrimalCompanionType primalCompanionType = new PrimalCompanionType();
+                primalCompanion.setPrimalCompanionType(primalCompanionType);
+                pc.setPrimalCompanion(primalCompanion);
+                break;
+            }
+        }
+
         PlayerCharacter added = playerRepo.save(pc);
 
         String requestMap = this.getClass().getAnnotation(RequestMapping.class).value()[0];

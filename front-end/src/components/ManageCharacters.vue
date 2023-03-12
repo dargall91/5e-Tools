@@ -1,5 +1,6 @@
 <template>
   <h2 class="mt-2">Manage Characters</h2>
+  
   <CRow>
     <CCol sm="3" md="2" class="mt-2">
       <CFormLabel for="campaign" class="fw-bold align-text-bottom">Campaign:</CFormLabel>
@@ -12,7 +13,6 @@
     </CCol>
   </CRow>
 
-  {{ characterStore.characterList }}
   <CAccordion class="mt-2" accordion-color="black" always-open>
     <CAccordionItem v-for="(character, characterIndex) in characterStore.characterList.value" :key="characterIndex" :item-key="characterIndex">
       <CAccordionHeader>
@@ -831,11 +831,11 @@
         <CCol xs="4" sm="3">
           <strong>Level:</strong> {{ classLevel.levels }}
         </CCol>
-        <CCol xs="4" sm="3" v-if="canBeEldritchNight(classLevel) && levelUp === true">
-          <CFormCheck label="Eldtritch Knight" v-model="classLevel.eldtritchKnight" value="true"/>
+        <CCol xs="4" sm="3" v-if="canBeEldritchNight(classLevel)">
+          <CFormCheck label="Eldtritch Knight" v-model="classLevel.eldritchKnight" value="true"/>
         </CCol>
-        <CCol xs="4" sm="3" v-if="canBeArcaneTrickster(classLevel) && levelUp === true">
-          <CFormCheck label="Arcane Trickster" v-model="classLevel.aracneTrickster" value="true" />
+        <CCol xs="4" sm="3" v-if="canBeArcaneTrickster(classLevel)">
+          <CFormCheck label="Arcane Trickster" v-model="classLevel.arcaneTrickster" value="true" />
         </CCol>
         <CCol xs="4" sm="3" v-if="canBeBeastmaster(classLevel)">
           <CFormCheck label="Beastmaster" v-model="classLevel.beastMaster" value="true" />
@@ -887,7 +887,7 @@
                     <option v-for="score in numberList" :value="score" :key="score">{{ score }}</option>
                   </CFormSelect>
                 </CCol>
-              </CRow>dex
+              </CRow>
               <CRow>
                 <CCol class="mt-2">
                   <CFormLabel class="fw-bold">Saving Throws:</CFormLabel>
@@ -1496,13 +1496,11 @@
       }
     },
     async mounted() {
-      console.log("here");
       if (this.campaignStore.activeCampaign.value.id === 0) {
         await this.getCampaignList();
         await this.getActiveCampaign();
       }
       
-      console.log("here");
       await this.characterStoreFunctions.getMasterData();
       await this.getCharacterList(this.userStore.user.value.id as number, this.campaignStore.selectedCampaign.value.id);
     }

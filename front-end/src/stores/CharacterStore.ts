@@ -36,7 +36,7 @@ export const useCharacterStore = defineStore({
     setSpellSlots(character: PlayerCharacter) {
       let spellCasterLevel = 0;
       character.classLevelList.forEach((classLevel) => {
-        if (classLevel.aracneTrickster || classLevel.eldtritchKnight) {
+        if (classLevel.arcaneTrickster || classLevel.eldritchKnight) {
           spellCasterLevel += Math.floor(classLevel.levels / 3);
         }
 
@@ -810,8 +810,6 @@ export const useCharacterStore = defineStore({
       if (this.characterList[index].primalCompanion === null) {
         return;
       }
-
-      console.log(typeId);
 
       this.characterList[index].primalCompanion!.primalCompanionType = this.masterData.primalCompanionTypes.find(x => x.id === typeId) as PrimalCompanionType;
     },
