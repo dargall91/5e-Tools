@@ -4,6 +4,7 @@ import { User } from "@/models/User";
 import { PlayerCharacter, PlayerCharacterMasterData } from "@/models/PlayerCharacter";
 import { AxiosResponse } from "axios";
 import axiosInstance from "./axiosInstance";
+import { Combatant } from "@/models/Combatant";
 
 const responseBody = <T>(response: AxiosResponse<T>) => response.data;
 
@@ -58,10 +59,17 @@ const playerCharacter = {
   }
 }
 
+const combat = {
+  getCombatants() {
+    return requests.get<Combatant[]>('combat/combatants');
+  }
+}
+
 const agent = {
   user,
   campaign,
-  playerCharacter
+  playerCharacter,
+  combat
 };
 
 export default agent;

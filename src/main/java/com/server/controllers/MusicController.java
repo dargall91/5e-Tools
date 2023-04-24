@@ -132,6 +132,10 @@ public class MusicController {
                 musicList.add(newTrack);
             }
         }
+
+        if (musicList.size() > 0) {
+            musicRepo.saveAll(musicList);
+        }
         
         return ResponseEntity.ok(musicList);
     }
