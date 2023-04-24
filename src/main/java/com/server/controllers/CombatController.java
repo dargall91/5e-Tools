@@ -23,17 +23,13 @@ public class CombatController {
     private EncounterRepository encounterRepo;
     private List<Combatant> combatantList;
 
-    @GetMapping("/")
-    public String combatView(Model model) {
-        if (CampaignManager.getCampaign() != null) {
-            model.addAttribute("campaignName", CampaignManager.getCampaign().getName());
-        } else {
-            model.addAttribute("campaignName", "No Campaign Selected");
+    @GetMapping("combatants")
+    public ResponseEntity<List<Combatant>> getCombatants() {
+        if (combatantList == null) {
+            combatantList = new ArrayList<>();
         }
 
-        model.addAttribute("combatantList", combatantList);
-
-        return "combat";
+        return ResponseEntity.ok(combatantList);
     }
 
     @PostMapping("setCombatants")

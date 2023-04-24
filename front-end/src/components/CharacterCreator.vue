@@ -511,7 +511,7 @@
   import { useCharacterStore } from '@/stores/CharacterStore'
   import { CButton, CCard, CCardBody, CCardHeader, CCol, CForm, CFormCheck, CFormInput, CFormLabel, CFormSelect, CRow, CToast, CToastBody, CToaster, CToastHeader } from '@coreui/vue'
   import { CharacterClass, ClassLevel, PlayerCharacter, Resolve } from '@/models/PlayerCharacter'
-  import agent from '@/api/agent';
+  import agent from '@/api/agent'
   
   export default defineComponent({
     name: "CharacterCreator",
