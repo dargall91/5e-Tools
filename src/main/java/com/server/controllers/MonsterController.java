@@ -337,7 +337,7 @@ public class MonsterController {
         return ResponseEntity.ok(crList);
     }
 
-    @PutMapping("convert")
+    @GetMapping("convert")
     public ResponseEntity<?> convertOldMonsters() {
         File file = new File("Monsters/");
         String[] fileNames = file.list();
@@ -351,6 +351,6 @@ public class MonsterController {
             monsterRepo.save(monster);
         }
 
-        return ResponseEntity.created(null).build();
+        return ResponseEntity.ok(monsterRepo.findAll());
     }
 }

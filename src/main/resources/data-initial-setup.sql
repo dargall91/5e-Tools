@@ -48,11 +48,6 @@ UPDATE Campaign
 SET active = 0
 WHERE id > 1;
 
--- make sure at least one music track exists
-INSERT INTO Music(id, name, fileName) VALUES
-    (1, "BFG - Division", "BFG-Division.mp3")
-ON DUPLICATE KEY UPDATE name = VALUES(name);
-
 -- xp thresholds
 INSERT INTO XpThresholds(level, easy, medium, hard, deadly, budget) VALUES
     (1, 25, 50, 75, 100, 300),
@@ -80,8 +75,7 @@ UPDATE easy = VALUES(easy), medium = VALUES(medium), hard = VALUES(hard), deadly
 
 --test users
 INSERT INTO User(id, username, password, admin) VALUES
-    (1, 'admin', 'admin', 1),
-    (2, 'user', 'user', 0)
+    (1, 'admin', 'f!v3e7Oo15', 1)
 ON DUPLICATE KEY
 UPDATE username = VALUES(username), password = VALUES(password), admin = VALUES(admin);
 
