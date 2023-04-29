@@ -44,29 +44,37 @@
         
         <!-- Hit Points -->
         <CRow class="mt-1">
-          <CCol xs="7" md="5" lg="4" xl="3">
-            <strong>Hit Points:</strong> {{ characterStoreFunctions.getMaxHitPoints(characterIndex, campaignStore.selectedCampaign.value) - character.damage }} / {{ characterStoreFunctions.getMaxHitPoints(characterIndex, campaignStore.selectedCampaign.value) }}
+          <CCol xs="12" sm="7" md="5" lg="4" xl="3">
+            <CRow>
+              <CCol>
+                <strong>Hit Points:</strong> {{ characterStoreFunctions.getMaxHitPoints(characterIndex, campaignStore.selectedCampaign.value) - character.damage }} / {{ characterStoreFunctions.getMaxHitPoints(characterIndex, campaignStore.selectedCampaign.value) }}
+              </CCol>
+            </CRow>
+            <CRow>
+              <CCol>
+                <CButton size="sm" color="danger" @click="characterStoreFunctions.adjustDamage(characterIndex, 10, campaignStore.selectedCampaign.value)">-10</CButton>
+                <CButton size="sm" color="danger" @click="characterStoreFunctions.adjustDamage(characterIndex, 5, campaignStore.selectedCampaign.value)">-5</CButton>
+                <CButton size="sm" color="danger" @click="characterStoreFunctions.adjustDamage(characterIndex, 1, campaignStore.selectedCampaign.value)">-1</CButton>
+                <CButton size="sm" color="success" @click="characterStoreFunctions.adjustDamage(characterIndex, -1, campaignStore.selectedCampaign.value)">+1</CButton>
+                <CButton size="sm" color="success" @click="characterStoreFunctions.adjustDamage(characterIndex, -5, campaignStore.selectedCampaign.value)">+5</CButton>
+                <CButton size="sm" color="success" @click="characterStoreFunctions.adjustDamage(characterIndex, -10, campaignStore.selectedCampaign.value)">+10</CButton>
+              </CCol>
+            </CRow>
           </CCol>
-          <CCol xs="5">
-            <strong>Temporary HP:</strong> {{ character.temporaryHitPoints }}
-          </CCol>
-        </CRow>
-
-        <!-- Damage -->
-        <CRow>
-          <CCol xs="7" md="5" lg="4" xl="3">
-            <CButton size="sm" color="danger" @click="characterStoreFunctions.adjustDamage(characterIndex, 10, campaignStore.selectedCampaign.value)">-10</CButton>
-            <CButton size="sm" color="danger" @click="characterStoreFunctions.adjustDamage(characterIndex, 5, campaignStore.selectedCampaign.value)">-5</CButton>
-            <CButton size="sm" color="danger" @click="characterStoreFunctions.adjustDamage(characterIndex, 1, campaignStore.selectedCampaign.value)">-1</CButton>
-            <CButton size="sm" color="success" @click="characterStoreFunctions.adjustDamage(characterIndex, -1, campaignStore.selectedCampaign.value)">+1</CButton>
-            <CButton size="sm" color="success" @click="characterStoreFunctions.adjustDamage(characterIndex, -5, campaignStore.selectedCampaign.value)">+5</CButton>
-            <CButton size="sm" color="success" @click="characterStoreFunctions.adjustDamage(characterIndex, -10, campaignStore.selectedCampaign.value)">+10</CButton>
-          </CCol>
-          <CCol xs="5">
-            <CButton size="sm" color="danger" @click="characterStoreFunctions.adjustTemporyHitPoints(characterIndex, -5)">-5</CButton>
-            <CButton size="sm" color="danger" @click="characterStoreFunctions.adjustTemporyHitPoints(characterIndex, -1)">-1</CButton>
-            <CButton size="sm" color="success" @click="characterStoreFunctions.adjustTemporyHitPoints(characterIndex, 1)">+1</CButton>
-            <CButton size="sm" color="success" @click="characterStoreFunctions.adjustTemporyHitPoints(characterIndex, 5)">+5</CButton>
+          <CCol xs="12" sm="5">
+            <CRow>
+              <CCol>
+                <strong>Temporary HP:</strong> {{ character.temporaryHitPoints }}
+              </CCol>
+            </CRow>
+            <CRow>
+              <CCol>
+                <CButton size="sm" color="danger" @click="characterStoreFunctions.adjustTemporyHitPoints(characterIndex, -5)">-5</CButton>
+                <CButton size="sm" color="danger" @click="characterStoreFunctions.adjustTemporyHitPoints(characterIndex, -1)">-1</CButton>
+                <CButton size="sm" color="success" @click="characterStoreFunctions.adjustTemporyHitPoints(characterIndex, 1)">+1</CButton>
+                <CButton size="sm" color="success" @click="characterStoreFunctions.adjustTemporyHitPoints(characterIndex, 5)">+5</CButton>
+              </CCol>
+            </CRow>
           </CCol>
         </CRow>
 
@@ -93,12 +101,12 @@
             <strong>Death Saving Throws: </strong>
             <CButton size="sm" color="dark" @click="characterStoreFunctions.resetDeathSaves(characterIndex)">Reset</CButton>
           </CCol>
-          <CCol class="mt-1" xs="6" lg="3" xxl="2">
+          <CCol class="mt-1" xs="12" sm="6" lg="3" xxl="2">
             <strong>Successes:</strong> {{ character.deathSaveSuccesses }}
             <CButton size="sm" color="danger" @click="characterStoreFunctions.adjustDeathSaveSuccesses(characterIndex, -1)">-1</CButton>
             <CButton size="sm" color="success" @click="characterStoreFunctions.adjustDeathSaveSuccesses(characterIndex, 1)">+1</CButton>
           </CCol>
-          <CCol class="mt-1" xs="6" lg="3" xl="2">
+          <CCol class="mt-1" xs="12" sm="6" lg="3" xl="2">
             <strong>Failures:</strong> {{ character.deathSaveFailures }}
             <CButton size="sm" color="danger" @click="characterStoreFunctions.adjustDeathSaveFailures(characterIndex, -1)">-1</CButton>
             <CButton size="sm" color="success" @click="characterStoreFunctions.adjustDeathSaveFailures(characterIndex, 1)">+1</CButton>
@@ -106,65 +114,64 @@
         </CRow>
 
         <!-- Stress -->
-        <div  v-if="campaignStore.selectedCampaign.value.madness">
-          <CRow>
-            <CCol class="mt-1" xs="7" md="5" lg="4" xl="3">
-              <CRow>
-                <CCol>
-                  <strong>Stress:</strong> {{ character.stress }} / {{ characterStoreFunctions.getStressThreshold(characterIndex, campaignStore.selectedCampaign.value) }}
-                </CCol>
-              </CRow>
-              <CRow>
-                <CCol>
-                  <CButton size="sm" color="danger" @click="characterStoreFunctions.adjustStress(characterIndex, -10, campaignStore.selectedCampaign.value)">-10</CButton>
-                  <CButton size="sm" color="danger" @click="characterStoreFunctions.adjustStress(characterIndex, -5, campaignStore.selectedCampaign.value)">-5</CButton>
-                  <CButton size="sm" color="danger" @click="characterStoreFunctions.adjustStress(characterIndex, -1, campaignStore.selectedCampaign.value)">-1</CButton>
-                  <CButton size="sm" color="success" @click="characterStoreFunctions.adjustStress(characterIndex, 1, campaignStore.selectedCampaign.value)">+1</CButton>
-                  <CButton size="sm" color="success" @click="characterStoreFunctions.adjustStress(characterIndex, 5, campaignStore.selectedCampaign.value)">+5</CButton>
-                  <CButton size="sm" color="success" @click="characterStoreFunctions.adjustStress(characterIndex, 10, campaignStore.selectedCampaign.value)">+10</CButton>
-                </CCol>
-              </CRow>
-            </CCol>
-            <CCol class="mt-1" xs="5" md="3"  v-if="character.stress >= characterStoreFunctions.getStressThreshold(characterIndex, campaignStore.selectedCampaign.value) && character.stressStatus.id === 1">
-              <CRow>
-                <CCol>
-                  <CFormLabel for="stressRoll" class="fw-bold">d100 Roll:</CFormLabel>
-                </CCol>
-              </CRow>
-              <CRow>
-                <CCol>
-                  <CFormInput id="stressRoll" min="1" max="100" v-model.number="stressRoll" type="number" />
-                </CCol>
-                <CCol>
-                  <CButton size="sm" color="dark" @click="characterStoreFunctions.applyAfflictionOrVirtue(characterIndex, stressRoll, campaignStore.selectedCampaign.value); stressRoll = 1;">Enter</CButton>
-                </CCol>
-              </CRow>
-            </CCol>
-            <CCol class="mt-1" xs="12" lg="4">
-              <CRow>
-                <CCol>
-                  <strong>Meditation Dice Used: </strong> {{ character.meditationDiceUsed }} / 10
-                </CCol>
-              </CRow>
-              <CRow>
-                <CCol>
-                  <CButton size="sm" color="danger" @click="characterStoreFunctions.adjustMeditationDice(characterIndex, -1, campaignStore.selectedCampaign.value)">-1</CButton>
-                  <CButton size="sm" color="success" @click="characterStoreFunctions.adjustMeditationDice(characterIndex, 1, campaignStore.selectedCampaign.value)">+1</CButton>
-                </CCol>
-              </CRow>
-            </CCol>
-          </CRow>
-            
-          <CCard class="mt-1" v-if="character.stressStatus.id > 1">
-            <CCardHeader>
-              {{ character.stressStatus.type }}: {{ character.stressStatus.name }}
-              <CButton size="sm" color="dark" @click="characterStoreFunctions.applyAfflictionOrVirtue(characterIndex, 0, campaignStore.selectedCampaign.value)">Clear</CButton>
-            </CCardHeader>
-            <CCardBody>
-              <span v-html="character.stressStatus.description"></span>
-            </CCardBody>
-          </CCard>
-        </div>
+        <CRow v-if="campaignStore.selectedCampaign.value.madness">
+          <CCol class="mt-1" xs="12" sm="7" md="5" lg="4" xl="3">
+            <CRow>
+              <CCol>
+                <strong>Stress:</strong> {{ character.stress }} / {{ characterStoreFunctions.getStressThreshold(characterIndex, campaignStore.selectedCampaign.value) }}
+              </CCol>
+            </CRow>
+            <CRow>
+              <CCol>
+                <CButton size="sm" color="danger" @click="characterStoreFunctions.adjustStress(characterIndex, -10, campaignStore.selectedCampaign.value)">-10</CButton>
+                <CButton size="sm" color="danger" @click="characterStoreFunctions.adjustStress(characterIndex, -5, campaignStore.selectedCampaign.value)">-5</CButton>
+                <CButton size="sm" color="danger" @click="characterStoreFunctions.adjustStress(characterIndex, -1, campaignStore.selectedCampaign.value)">-1</CButton>
+                <CButton size="sm" color="success" @click="characterStoreFunctions.adjustStress(characterIndex, 1, campaignStore.selectedCampaign.value)">+1</CButton>
+                <CButton size="sm" color="success" @click="characterStoreFunctions.adjustStress(characterIndex, 5, campaignStore.selectedCampaign.value)">+5</CButton>
+                <CButton size="sm" color="success" @click="characterStoreFunctions.adjustStress(characterIndex, 10, campaignStore.selectedCampaign.value)">+10</CButton>
+              </CCol>
+            </CRow>
+          </CCol>
+          <CCol class="mt-1" xs="12" sm="5" md="3"  v-if="character.stress >= characterStoreFunctions.getStressThreshold(characterIndex, campaignStore.selectedCampaign.value) && character.stressStatus.id === 1">
+            <CRow>
+              <CCol>
+                <CFormLabel for="stressRoll" class="fw-bold">d100 Roll:</CFormLabel>
+              </CCol>
+            </CRow>
+            <CRow>
+              <CCol>
+                <CFormInput id="stressRoll" min="1" max="100" v-model.number="stressRoll" type="number" />
+              </CCol>
+              <CCol>
+                <CButton size="sm" color="dark" @click="characterStoreFunctions.applyAfflictionOrVirtue(characterIndex, stressRoll, campaignStore.selectedCampaign.value); stressRoll = 1;">Enter</CButton>
+              </CCol>
+            </CRow>
+          </CCol>
+          <CCol class="mt-1" xs="12" lg="4">
+            <CRow>
+              <CCol>
+                <strong>Meditation Dice Used: </strong> {{ character.meditationDiceUsed }} / 10
+              </CCol>
+            </CRow>
+            <CRow>
+              <CCol>
+                <CButton size="sm" color="danger" @click="characterStoreFunctions.adjustMeditationDice(characterIndex, -1, campaignStore.selectedCampaign.value)">-1</CButton>
+                <CButton size="sm" color="success" @click="characterStoreFunctions.adjustMeditationDice(characterIndex, 1, campaignStore.selectedCampaign.value)">+1</CButton>
+              </CCol>
+            </CRow>
+          </CCol>
+        </CRow>
+        
+        <!-- Affliction/Virtue -->
+        <CCard class="mt-1" v-if="character.stressStatus.id > 1">
+          <CCardHeader>
+            {{ character.stressStatus.type }}: {{ character.stressStatus.name }}
+            <CButton size="sm" color="dark" @click="characterStoreFunctions.applyAfflictionOrVirtue(characterIndex, 0, campaignStore.selectedCampaign.value)">Clear</CButton>
+          </CCardHeader>
+          <CCardBody>
+            <span v-html="character.stressStatus.description"></span>
+          </CCardBody>
+        </CCard>
 
         <!-- Ability Scores, Spell Slots, Primal Companion -->
         <CAccordion class="mt-1" always-open>
@@ -673,10 +680,10 @@
 
               <!-- AC -->
               <CRow class="mt-1">
-                <CCol class="mt-1" xs="4" sm="4" md="4" lg="2">
+                <CCol class="mt-1" xs="12" sm="4" md="4" lg="2">
                   <strong>Base AC:</strong> {{ characterStoreFunctions.getCompanionBaseAc(characterIndex) }} 
                 </CCol>
-                <CCol xs="7" sm="6" md="4" lg="3">
+                <CCol xs="12" sm="6" md="4" lg="3">
                   <strong>AC Bonuses:</strong> {{ character.primalCompanion.acBonus }} 
                   <CButton size="sm" color="danger" @click="characterStoreFunctions.adjustCompanionAcBonus(characterIndex, -1)">-1</CButton>
                   <CButton size="sm" color="success" @click="characterStoreFunctions.adjustCompanionAcBonus(characterIndex, 1)">+1</CButton>
@@ -697,7 +704,7 @@
                   <CButton size="sm" color="danger" @click="characterStoreFunctions.adjustCompanionDeathSaveSuccesses(characterIndex, -1)">-1</CButton>
                   <CButton size="sm" color="success" @click="characterStoreFunctions.adjustCompanionDeathSaveSuccesses(characterIndex, 1)">+1</CButton>
                 </CCol>
-                <CCol class="mt-1" xs="6" lg="3" xl="2">
+                <CCol class="mt-1" xs="12" lg="3" xl="2">
                   <strong>Failures:</strong> {{ character.primalCompanion.deathSaveFailures }}
                   <CButton size="sm" color="danger" @click="characterStoreFunctions.adjustCompanionDeathSaveFailures(characterIndex, -1)">-1</CButton>
                   <CButton size="sm" color="success" @click="characterStoreFunctions.adjustCompanionDeathSaveFailures(characterIndex, 1)">+1</CButton>
@@ -1587,8 +1594,12 @@
 
   }
 
-  .accordion-button:after {
+  .accordion-button.collapsed::before {
     background-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23000000'><path fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/></svg>") !important;
+  }
+
+  .accordion-button:not(.collapsed)::after {
+    background-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23FFFFFF'><path fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/></svg>") !important;
   }
 
   .accordion-button {
