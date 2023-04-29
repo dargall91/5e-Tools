@@ -23,16 +23,17 @@
           this.combatants = data;
         });
 
-        console.log("here");
-
         clearTimeout(this.timer);
         this.timer = setTimeout(() => {
-        this.getCombatants();
-      }, this.delay)
+          this.getCombatants();
+        }, this.delay)
       }
     },
     async mounted() {
       this.getCombatants();
+    },
+    unmounted() {
+      clearTimeout(this.timer);
     }
   })
 </script>
@@ -44,9 +45,19 @@
     margin: auto;
     font-size: 3em;
     text-align: left;
-    grid-template-columns: repeat(3, 33%);
+    grid-template-columns: repeat(3, 32%);
     display: grid;
     grid-auto-flow: row;
     grid-row-gap: 25px;
+    grid-column-gap: 2%;
+  }
+
+  @media (max-width: 480px) {
+    .combat {
+      font-size: 1.5em;
+      grid-template-columns: repeat(2, 48%);
+      grid-row-gap: 10px;
+      grid-column-gap: 4%;
+    }
   }
 </style>
