@@ -3,7 +3,7 @@ import agent from '@/api/agent';
 import { ClassLevel, PlayerCharacter, PlayerCharacterMasterData, PrimalCompanion, PrimalCompanionType, SpellSlots, StressStatus, WarlockSpellSlots } from '@/models/PlayerCharacter';
 import { Campaign } from '@/models/Campaign';
 
-const updateDelay = 1500;
+const updateDelay = 3000;
 let updateTimer: number | undefined;
 
 export const useCharacterStore = defineStore({
@@ -41,31 +41,34 @@ export const useCharacterStore = defineStore({
     },
     setSpellSlots(character: PlayerCharacter) {
       let spellCasterLevel = 0;
+      //roudning is different for 1/2 and 1/3 casters when multiclassed
+      //they round down when multiclassed, and up when single classed
+      //however they both need to reach a minimum level to gain slots
       character.classLevelList.forEach((classLevel) => {
-        if (classLevel.arcaneTrickster || classLevel.eldritchKnight) {
-          spellCasterLevel += Math.floor(classLevel.levels / 3);
-        }
-
-        if (classLevel.characterClass.fullCaster) {
+        if ((classLevel.arcaneTrickster || classLevel.eldritchKnight) && classLevel.levels >= 3) {
+          if (character.classLevelList.length === 1) {
+            spellCasterLevel += Math.ceil(classLevel.levels / 3);
+          } else {
+            spellCasterLevel += Math.floor(classLevel.levels / 3);
+          }
+        } else if (classLevel.characterClass.fullCaster) {
           spellCasterLevel += classLevel.levels;
-        }
-
-        if (classLevel.characterClass.halfCaster) {
-          spellCasterLevel += Math.floor(classLevel.levels / 2);
-        }
-
-        if (classLevel.characterClass.artificer) {
+        } else if (classLevel.characterClass.halfCaster && classLevel.levels >= 2) {
+          if (character.classLevelList.length === 1) {
+            spellCasterLevel += Math.ceil(classLevel.levels / 2);
+          } else {
+            spellCasterLevel += Math.floor(classLevel.levels / 2);
+          }
+        } else if (classLevel.characterClass.artificer) {
           spellCasterLevel += Math.ceil(classLevel.levels / 2);
-        }
-
-        if (spellCasterLevel > 0) {
-          character.spellSlots = this.masterData.spellSlots.find(x => x.casterLevel === spellCasterLevel) as SpellSlots;
-        }
-
-        if (classLevel.characterClass.warlock) {
+        } else if (classLevel.characterClass.warlock) {
           character.warlockSpellSlots = this.masterData.warlockSpellSlots.find(x => x.warlockLevel === classLevel.levels) as WarlockSpellSlots;
         }
       });
+
+      if (spellCasterLevel > 0) {
+        character.spellSlots = this.masterData.spellSlots.find(x => x.casterLevel === spellCasterLevel) as SpellSlots;
+      }
     },
     async saveCharacter(index: number) {
       await agent.playerCharacter.updatePlayerCharacter(this.characterList[index])
